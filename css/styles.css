@@ -1,0 +1,261 @@
+/* ----- Reset / Base ----- */
+*,*::before,*::after{box-sizing:border-box}
+html:focus-within{scroll-behavior:smooth}
+body{margin:0;line-height:1.6;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,-apple-system,"Apple Color Emoji","Segoe UI Emoji";-webkit-font-smoothing:antialiased}
+img,svg,video{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* ----- Theme tokens ----- */
+:root{
+    --bg:#0b1020;--panel:#0f172a;--panel-2:#121a31;--text:#e5e7eb;--muted:#94a3b8;
+    --brand:#a3e635;--brand-2:#22d3ee;--ring:#a3e63544;--card:#0e1530;--shadow:0 8px 24px rgba(2,6,23,.35);--border:#1f2a44;--code:#0a0f1e
+}
+.light{
+    --bg:#ffffff;--panel:#f8fafc;--panel-2:#eef2f7;--text:#0f172a;--muted:#475569;
+    --brand:#3b82f6;--brand-2:#22c55e;--ring:#3b82f655;--card:#ffffff;--shadow:0 8px 24px rgba(15,23,42,.12);--border:#e5e7eb;--code:#0f172a
+}
+body{background:var(--bg);color:var(--text)}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* ===== Glass–matte tokens ===== */
+:root{
+    --glass-bg: color-mix(in oklab, var(--panel) 55%, transparent);
+    --glass-border: #ffffff22;
+    --glass-highlight: #ffffff26;
+    --glass-shadow: 0 8px 24px rgba(2,6,23,.25);
+}
+.light{
+    --glass-border: #0f172a22;
+    --glass-highlight: #ffffff3a;
+}
+
+/* ===== Avatars ===== */
+/* real image avatars keep your existing rule */
+.avatar img,
+img.avatar{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 4/3;
+    border-bottom: 1px solid var(--border);
+    display: block;
+}
+
+/* glass–matte avatar placeholder */
+.avatar.placeholder{
+    width: 100%;
+    aspect-ratio: 4/3;
+    position: relative;
+    background: linear-gradient(180deg, var(--glass-bg), color-mix(in oklab, var(--panel-2) 85%, transparent));
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow) inset 0 1px 0 var(--glass-highlight);
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+}
+.avatar.placeholder::after{
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,0) 40%);
+    pointer-events:none;
+}
+
+/* ===== Publication thumbnails ===== */
+.pub-thumb{
+    width:130px; height:90px;
+    object-fit:cover;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background: var(--panel-2);
+    display:block;
+}
+
+/* glass–matte thumbnail placeholder */
+.pub-thumb.placeholder{
+    position: relative;
+    background: linear-gradient(180deg, var(--glass-bg), color-mix(in oklab, var(--panel-2) 85%, transparent));
+    border:1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow) inset 0 1px 0 var(--glass-highlight);
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+}
+.pub-thumb.placeholder::after{
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,0) 45%);
+    border-radius:inherit;
+    pointer-events:none;
+}
+
+/* ----- Header / Nav ----- */
+header.site-header{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);background:color-mix(in oklab,var(--panel) 90%, transparent);border-bottom:1px solid var(--border)}
+.nav{display:flex;align-items:center;gap:16px;justify-content:space-between;padding:14px 0}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700}
+.brand svg{width:28px;height:28px}
+.nav-links{display:flex;gap:8px;flex-wrap:wrap}
+.nav-links a{padding:8px 12px;border-radius:999px;border:1px solid transparent;color:var(--muted)}
+.nav-links a.active,.nav-links a:hover{color:var(--text);border-color:var(--border);background:var(--panel-2)}
+.controls{display:flex;gap:8px;align-items:center}
+.btn,button,.chip{display:inline-flex;align-items:center;gap:8px;border-radius:12px;border:1px solid var(--border);padding:10px 14px;background:var(--panel);color:var(--text);cursor:pointer}
+.btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#0b1020;border:0}
+.btn.ghost{background:transparent}
+.btn:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+
+/* ----- Hero ----- */
+
+.hero{position:relative;overflow:hidden;background:
+        radial-gradient(1200px 600px at 50% -10%, color-mix(in oklab,var(--brand) 18%, transparent) 0%, transparent 60%),
+        linear-gradient(180deg, var(--panel), var(--bg));
+    border-bottom:1px solid var(--border)}
+.hero-wrap{padding:72px 0 48px;display:grid;grid-template-columns:1.2fr .8fr;gap:24px}
+@media (max-width:900px){.hero-wrap{grid-template-columns:1fr}}
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:999px;padding:6px 10px;color:var(--muted);background:var(--panel-2)}
+.title{font-size:clamp(28px,4vw,44px);line-height:1.2;margin:12px 0 8px}
+.subtitle{color:var(--muted);max-width:60ch}
+.hero-card{background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+.hero-actions{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+.hero-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:700px){.hero-grid{grid-template-columns:1fr 1fr}}
+.metric{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px}
+.metric .k{font-size:24px;font-weight:800}
+.metric .k sub{font-size:12px;color:var(--muted);margin-left:4px}
+
+
+/* ----- Sections ----- */
+section{padding:64px 0;border-bottom:1px solid var(--border)}
+section:last-of-type{border-bottom:0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+.section-head h2{font-size:clamp(22px,3vw,32px);margin:0}
+.section-desc{color:var(--muted);max-width:75ch}
+
+/* ----- Cards & Grids (default) ----- */
+.grid{display:grid;gap:16px}
+.grid.people{grid-template-columns:repeat(4,1fr)}
+.grid.research{grid-template-columns:repeat(3,1fr)}
+.grid.pub{grid-template-columns:1fr}
+@media(max-width:1100px){.grid.people{grid-template-columns:repeat(3,1fr)}.grid.research{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:780px){.grid.people{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.grid.people{grid-template-columns:1fr}.grid.research{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.card .body{padding:16px}
+.card .meta{color:var(--muted);font-size:14px}
+/*.avatar{width:100%;aspect-ratio:4/3;background:*/
+/*        radial-gradient(40% 60% at 30% 30%, color-mix(in oklab,var(--brand) 22%,transparent), transparent 60%),*/
+/*        radial-gradient(60% 80% at 70% 20%, color-mix(in oklab,var(--brand-2) 22%,transparent), transparent 70%),*/
+/*        linear-gradient(135deg, #1a233d, #0e1430)}*/
+/* Neutral blank avatar background (no question mark, no pattern) */
+.avatar{
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: var(--panel-2);    /* ← clean, blank */
+    border-bottom: 1px solid var(--border);
+}
+.avatar img,
+img.avatar{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 4/3;
+    border-bottom: 1px solid var(--border);
+    display: block;
+}
+
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.tag{font-size:12px;padding:6px 8px;border:1px solid var(--border);border-radius:999px;color:var(--muted);background:var(--panel)}
+.kbd{font-family:ui-monospace,Menlo,Consolas,monospace;background:var(--panel-2);border:1px solid var(--border);padding:2px 6px;border-radius:6px}
+
+/* ----- Publications (rich cards) ----- */
+.pub-item{display:grid;grid-template-columns:auto 1fr auto;gap:12px;padding:14px;border:1px solid var(--border);border-radius:14px;background:var(--panel)}
+.pub-item .year{font-weight:700;color:var(--brand);min-width:44px;text-align:center}
+.pub-item .title{font-weight:700}
+.pub-item .authors,.pub-item .venue{color:var(--muted);font-size:14px}
+.pub-actions{display:flex;gap:8px;align-items:center}
+.pub-actions .btn{padding:8px 10px;border-radius:10px}
+.bibtex{display:none;margin-top:8px;padding:10px;border-radius:10px;background:#020617;color:#e5e7eb;overflow:auto}
+.light .bibtex{background:#0f172a;color:#e5e7eb}
+
+/* Rich publication layout */
+.pub-rich{grid-template-columns:140px 1fr auto;align-items:start}
+@media (max-width:680px){.pub-rich{grid-template-columns:1fr}}
+.pub-left{display:flex;align-items:flex-start;justify-content:center}
+.pub-thumb{width:130px;height:90px;object-fit:cover;border-radius:10px;border:1px solid var(--border);background:var(--panel-2)}
+.pub-mid .title{font-weight:700;margin-bottom:4px}
+.pub-abstract{margin:10px 0 0;color:var(--text)}
+
+/* Publication thumbnail (real image) */
+.pub-thumb{
+    width: 130px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--panel-2);
+    display: block;
+}
+
+/* When there's no image, we render a blank box of the same size */
+.pub-thumb.placeholder{
+    width: 130px;
+    height: 90px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--panel-2);   /* ← clean, blank */
+}
+
+
+/* ----- Scrollable containers & sliders ----- */
+.h-scroll{
+    display:flex;
+    gap:10px;
+    padding:0;
+    margin:0;
+    list-style:none;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    padding-bottom:6px;
+}
+.h-scroll > *{scroll-snap-align:start;min-width:clamp(260px,40vw,420px)}
+.news-card .body{display:flex;gap:10px;align-items:flex-start}
+.news-date{flex:0 0 auto;font-size:12px;color:var(--muted);border:1px solid var(--border);border-radius:999px;padding:4px 8px;background:var(--panel-2)}
+.news-text{flex:1}
+
+/* Make grid sections behave as horizontal carousels when .h-scroll is applied */
+.grid.h-scroll{display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.grid.h-scroll > .card{flex:0 0 auto;scroll-snap-align:start;min-width:clamp(260px,32vw,360px)}
+#research-grid.grid.h-scroll > .card{min-width:clamp(280px,36vw,420px)}
+.grid.h-scroll{grid-template-columns:unset !important}
+
+
+/* ===== Vertical scroll containers (shared) ===== */
+.v-scroll{
+    max-height: 520px;           /* adjust to taste */
+    overflow: auto;
+    padding-right: 4px;          /* room for scrollbar */
+}
+
+/* NEWS as a vertical list */
+#news-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+}
+.news-card .body{display:flex; gap:10px; align-items:flex-start}
+.news-date{flex:0 0 auto; font-size:12px; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:4px 8px; background:var(--panel-2)}
+.news-text{flex:1}
+
+
+
+
+/* ----- Footer ----- */
+footer{padding:36px 0;color:var(--muted)}
+.foot{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.foot-left{display:flex;gap:10px;align-items:center}
+.foot-links{display:flex;gap:12px;flex-wrap:wrap}
+
+/* ----- Utilities ----- */
+:focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:8px}
+.hidden{display:none !important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}

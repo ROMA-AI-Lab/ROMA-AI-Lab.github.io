@@ -1,0 +1,110 @@
+{
+  "manual_url": "manual/ROMA Lab实验室手册（2025年版） 28afeec35b9080f98051d9690a2aa63e.html",
+  "news_visible": 3,
+  "news": [
+    { "date": "2025-10-13", "text": "Our Lab website estabilished!" },
+    { "date": "2025-10-13", "text": "Our Lab website estabilished!" },
+    { "date": "2025-10-13", "text": "Our Lab website estabilished!" },
+    { "date": "2025-10-13", "text": "Our Lab website estabilished!" },
+    { "date": "2025-10-13", "text": "Our Lab website estabilished!" },
+    { "date": "2025-06-10", "text": "Our Lab website estabilished!" }
+  ],
+  "people": [
+    {
+      "name": "Xiangguo Sun",
+      "role": "Lab Lead / Postdoctoral Fellow",
+      "email": " ",
+      "site": " ",
+      "avatar": "assets/people/xiangguo.jpeg",
+      "topics": ["Data Mining","LLMs","Social Computing","OSNs"],
+      "affiliation": "CUHK",
+      "status": "lead"
+    },
+    {
+      "name": "Zhang San",
+      "role": "PhD Student",
+      "email": " ",
+      "avatar": " ",
+      "topics": ["RAG","Legal/Finance AI","Retrieval"],
+      "affiliation": "Partner University",
+      "status": "student"
+    },
+    {
+      "name": "Lee Si",
+      "role": "Research Assistant",
+      "email": " ",
+      "avatar": "",
+      "topics": ["Token Compression","MM-LLM","Systems"],
+      "affiliation": "ROMA Lab",
+      "status": "ra"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Project One",
+      "area": "Reasoning",
+      "summary": "Nonlinear reasoning over knowledge graphs and hypergraphs integrated with LLMs for complex decision-making.",
+      "highlights": ["Dynamic planning over graphs","Tool-augmented inference","Consistency checking"],
+      "links": [{"label":"Preprint","href":"#"},{"label":"Code","href":"#"}]
+    },
+    {
+      "title": "Project One",
+      "area": "Reasoning",
+      "summary": "Nonlinear reasoning over knowledge graphs and hypergraphs integrated with LLMs for complex decision-making.",
+      "highlights": ["Dynamic planning over graphs","Tool-augmented inference","Consistency checking"],
+      "links": [{"label":"Preprint","href":"#"},{"label":"Code","href":"#"}]
+    },
+    {
+      "title": "Project One",
+      "area": "Reasoning",
+      "summary": "Nonlinear reasoning over knowledge graphs and hypergraphs integrated with LLMs for complex decision-making.",
+      "highlights": ["Dynamic planning over graphs","Tool-augmented inference","Consistency checking"],
+      "links": [{"label":"Preprint","href":"#"},{"label":"Code","href":"#"}]
+    },
+    {
+      "title": "Neural-Symbolic Knowledge Engine",
+      "area": "Knowledge",
+      "summary": "Hybrid retrieval and symbolic constraints over large knowledge bases for trustworthy answers.",
+      "highlights": ["Intent-aware agents","Constraint satisfaction","Audit trails"],
+      "links": [{"label":"Slides","href":"#"}]
+    }
+  ],
+  "publications": [
+    {
+      "title": "All-in-One: ",
+      "authors": ["X. Sun","A. Coauthor","B. Coauthor"],
+      "venue": "KDD 2023 (Best Research Paper)",
+      "year": 2023,
+      "type": "Conference",
+      "pdf": "#",
+      "code": "#",
+      "image": "assets/papers/prog-thumb.png",
+      "abstract": "We present ProG, a unified library and theory for prompting over graphs and hypergraphs, with practical adapters and formal guarantees.",
+      "bibtex": "@inproceedings{sun2023prog, title={All-in-One: A Unified Graph Prompting Library}, author={Sun, Xiangguo and Others}, booktitle={KDD}, year={2023}}"
+    },
+    {
+      "title": "All-in-One: ",
+      "authors": ["X. Sun","A. Coauthor","B. Coauthor"],
+      "venue": "KDD 2023 (Best Research Paper)",
+      "year": 2023,
+      "type": "Conference",
+      "pdf": "#",
+      "code": "#",
+      "image": "assets/papers/prog-thumb.png",
+      "abstract": "We present ProG, a unified library and theory for prompting over graphs and hypergraphs, with practical adapters and formal guarantees.",
+      "bibtex": "@inproceedings{sun2023prog, title={All-in-One: A Unified Graph Prompting Library}, author={Sun, Xiangguo and Others}, booktitle={KDD}, year={2023}}"
+    },
+    {
+      "title": "All-in-One: ",
+      "authors": ["X. Sun","A. Coauthor","B. Coauthor"],
+      "venue": "KDD 2023 (Best Research Paper)",
+      "year": 2023,
+      "type": "Conference",
+      "pdf": "#",
+      "code": "#",
+      "image": "assets/papers/prog-thumb.png",
+      "abstract": "We present ProG, a unified library and theory for prompting over graphs and hypergraphs, with practical adapters and formal guarantees.",
+      "bibtex": "@inproceedings{sun2023prog, title={All-in-One: A Unified Graph Prompting Library}, author={Sun, Xiangguo and Others}, booktitle={KDD}, year={2023}}"
+    }
+  ]
+}
