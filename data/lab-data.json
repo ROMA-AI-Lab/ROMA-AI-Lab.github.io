@@ -1,20 +1,18 @@
 {
   "manual_url": "manual/ROMA Lab实验室手册（2025年版） 28afeec35b9080f98051d9690a2aa63e.html",
-  "news_visible": 3,
+  "news_visible": 4,
   "news": [
-    { "date": "2025-10-13", "text": "Our Lab website estabilished!" },
-    { "date": "2025-10-13", "text": "Our Lab website estabilished!" },
-    { "date": "2025-10-13", "text": "Our Lab website estabilished!" },
-    { "date": "2025-10-13", "text": "Our Lab website estabilished!" },
-    { "date": "2025-10-13", "text": "Our Lab website estabilished!" },
-    { "date": "2025-06-10", "text": "Our Lab website estabilished!" }
+    { "date": "2025-10-14", "text": "ROMA Lab承办“CAAI-青年科学家大会”，即将在北京召开！" },
+    { "date": "2025-10-13", "text": "Dr. Xiangguo SUN was elected as vice executive secretary of Social Computing Committee, CAAI" },
+    { "date": "2025-10-13", "text": "2 papers accepted by ICML 2025!" },
+    { "date": "2025-10-13", "text": "Our Lab website estabilished!" }
   ],
   "people": [
     {
       "name": "Xiangguo Sun",
       "role": "Lab Lead / Postdoctoral Fellow",
-      "email": " ",
-      "site": " ",
+      "email": "roma_lab@yeah.net",
+      "site": "https://xgsun.mysxl.cn",
       "avatar": "assets/people/xiangguo.jpeg",
       "topics": ["Data Mining","LLMs","Social Computing","OSNs"],
       "affiliation": "CUHK",
@@ -71,40 +69,28 @@
   ],
   "publications": [
     {
-      "title": "All-in-One: ",
-      "authors": ["X. Sun","A. Coauthor","B. Coauthor"],
+      "title": "All in One: Multi-task Prompting for Graph Neural Networks.",
+      "authors": ["Xiangguo Sun", "Hong Cheng", "Jia Li", "Bo Liu", "Jihong Guan"],
       "venue": "KDD 2023 (Best Research Paper)",
       "year": 2023,
       "type": "Conference",
       "pdf": "#",
       "code": "#",
       "image": "assets/papers/prog-thumb.png",
-      "abstract": "We present ProG, a unified library and theory for prompting over graphs and hypergraphs, with practical adapters and formal guarantees.",
-      "bibtex": "@inproceedings{sun2023prog, title={All-in-One: A Unified Graph Prompting Library}, author={Sun, Xiangguo and Others}, booktitle={KDD}, year={2023}}"
+      "abstract": "The standard \"pre-training and fine-tuning\" approach for graph models often fails due to the diversity of graph tasks, leading to poor performance. Inspired by prompt learning in NLP, we introduce a multi-task prompting method for graphs. Our approach unifies graph and language prompts, reformulates various downstream problems into graph-level tasks, and uses meta-learning to find a strong, general-purpose prompt initialization. Experiments confirm our method's superiority over existing techniques.",
+      "bibtex": "@inproceedings{sun2023all,\n  title={All in One: Multi-Task Prompting for Graph Neural Networks},\n  author={Sun, Xiangguo and Cheng, Hong and Li, Jia and Liu, Bo and Guan, Jihong},\n  booktitle={Proceedings of the 26th ACM SIGKDD international conference on knowledge discovery \\& data mining (KDD'23)},\n  year={2023},\n  pages = {2120–2131},\n  location = {Long Beach, CA, USA},\n  isbn = {9798400701030},\n  url = {https://doi.org/10.1145/3580305.3599256},\n  doi = {10.1145/3580305.3599256}\n}"
     },
     {
-      "title": "All-in-One: ",
-      "authors": ["X. Sun","A. Coauthor","B. Coauthor"],
-      "venue": "KDD 2023 (Best Research Paper)",
-      "year": 2023,
+      "title": "Does Graph Prompt Work? A Data Operation Perspective with Theoretical Analysis.",
+      "authors": ["Qunzhong Wang", "Xiangguo Sun", "Hong Cheng"],
+      "venue": "ICML 2025",
+      "year": 2025,
       "type": "Conference",
       "pdf": "#",
       "code": "#",
-      "image": "assets/papers/prog-thumb.png",
-      "abstract": "We present ProG, a unified library and theory for prompting over graphs and hypergraphs, with practical adapters and formal guarantees.",
-      "bibtex": "@inproceedings{sun2023prog, title={All-in-One: A Unified Graph Prompting Library}, author={Sun, Xiangguo and Others}, booktitle={KDD}, year={2023}}"
-    },
-    {
-      "title": "All-in-One: ",
-      "authors": ["X. Sun","A. Coauthor","B. Coauthor"],
-      "venue": "KDD 2023 (Best Research Paper)",
-      "year": 2023,
-      "type": "Conference",
-      "pdf": "#",
-      "code": "#",
-      "image": "assets/papers/prog-thumb.png",
-      "abstract": "We present ProG, a unified library and theory for prompting over graphs and hypergraphs, with practical adapters and formal guarantees.",
-      "bibtex": "@inproceedings{sun2023prog, title={All-in-One: A Unified Graph Prompting Library}, author={Sun, Xiangguo and Others}, booktitle={KDD}, year={2023}}"
+      "image": "#",
+      "abstract": "",
+      "bibtex": ""
     }
   ]
 }
