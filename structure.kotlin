@@ -1,0 +1,18 @@
+roma-lab.github.io/
+├─ index.html
+├─ css/
+│  └─ styles.css
+├─ js/
+│  └─ main.js
+├─ data/
+│  └─ lab-data.json
+├─ assets/
+│  ├─ favicon.svg
+│  ├─ people/
+│  │  ├─ xiangguo.jpg          ← sample avatar
+│  │  └─ yicong.png            ← sample avatar
+│  └─ papers/
+│     ├─ prog-thumb.png        ← sample paper thumbnail
+│     └─ tokencarve-thumb.jpg  ← sample paper thumbnail
+└─ manual/
+   └─ manual_index.html        ← your manual entry page

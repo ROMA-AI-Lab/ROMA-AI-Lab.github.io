@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ROMA Lab | Research on Open-world Modeling & AI</title>
+    <meta name="description" content="ROMA Lab — AI research on graph learning, multimodal reasoning, and neural-symbolic systems." />
+    <meta name="theme-color" content="#0f172a" />
+    <meta property="og:title" content="ROMA Lab" />
+    <meta property="og:description" content="AI research on graph learning, multimodal reasoning, and neural-symbolic knowledge systems." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://roma-lab.github.io" />
+    <link rel="icon" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<!-- Header / Nav -->
+<header class="site-header" role="banner">
+    <div class="container nav">
+        <a class="brand" href="#home" aria-label="ROMA Lab - Home" data-link>
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+                <rect x="6" y="6" width="52" height="52" rx="12" fill="currentColor" opacity=".12"></rect>
+                <path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round"></path>
+            </svg>
+            <span>ROMA Lab</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+            <a href="#home" data-link class="active">HOME</a>
+            <a href="#people" data-link>PEOPLE</a>
+            <a href="#research" data-link>RESEARCH</a>
+            <a href="#publications" data-link>PUBLICATIONS</a>
+            <a id="nav-manual" href="#">LAB MANUAL</a>
+        </nav>
+        <div class="controls">
+            <button id="theme-toggle" class="btn ghost" aria-label="Toggle theme" title="Toggle light/dark">
+                <span aria-hidden="true">🌓</span><span class="sr-only">Toggle theme</span>
+            </button>
+            <a class="btn primary" href="https://github.com/roma-lab" target="_blank" rel="noopener">GitHub</a>
+            <button id="menu" class="btn ghost" aria-label="Menu" title="Menu" style="display:none">☰</button>
+        </div>
+    </div>
+</header>
+
+<!-- HOME -->
+<main id="home" class="hero" role="main">
+    <div class="container hero-wrap">
+        <div>
+            <span class="badge">Research · Open-world Modeling · AI Systems</span>
+            <h1 class="title">ROMA Lab</h1>
+            <p class="subtitle">
+                This is a test website.
+                We study <strong>graph learning</strong>, <strong>multimodal reasoning</strong>, and <strong>neural-symbolic knowledge engines</strong> to build reliable, efficient, and human-centered AI.
+            </p>
+            <div class="hero-actions">
+                <a class="btn" href="#research" data-link>Explore Research</a>
+                <a class="btn ghost" href="#people" data-link>Meet the Team</a>
+            </div>
+
+            <div class="hero-card">
+                <div class="hero-grid">
+                    <div class="metric"><div class="k" id="metric-pubs">—</div><div class="meta">Publications</div></div>
+                    <div class="metric"><div class="k" id="metric-projects">—</div><div class="meta">Active Projects</div></div>
+                    <div class="metric"><div class="k" id="metric-members">—</div><div class="meta">Lab Members</div></div>
+                </div>
+            </div>
+        </div>
+
+        <aside class="hero-card" aria-labelledby="news-head">
+            <h2 id="news-head" class="news-head">News & Highlights</h2>
+            <ul id="news-list" class="v-scroll"></ul>
+            <div class="news-actions"><a class="btn ghost" href="#publications" data-link>See Publications</a></div>
+        </aside>
+    </div>
+</main>
+
+<!-- PEOPLE -->
+<section id="people" aria-labelledby="people-h">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <h2 id="people-h">People</h2>
+                <p class="section-desc">We are a collaborative team of faculty, postdocs, students, and research engineers.</p>
+            </div>
+            <div class="filters">
+                <input type="search" id="people-search" placeholder="Search people (name, role, topic)…" aria-label="Search people" />
+            </div>
+        </div>
+        <div class="grid people v-scroll" id="people-grid"></div>
+    </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research" aria-labelledby="research-h">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <h2 id="research-h">Research</h2>
+                <p class="section-desc">Core directions span graph-of-thought reasoning, graph prompting, multimodal token compression, and neural-symbolic knowledge systems.</p>
+            </div>
+            <div class="filters">
+                <select id="research-area-filter" aria-label="Filter by area">
+                    <option value="">All areas</option>
+                </select>
+            </div>
+        </div>
+        <div class="grid research v-scroll" id="research-grid"></div>
+    </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications" aria-labelledby="pub-h">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <h2 id="pub-h">Publications</h2>
+                <p class="section-desc">Selected publications by ROMA Lab. Use the search and filters to narrow results.</p>
+            </div>
+            <div class="filters">
+                <input type="search" id="pub-search" placeholder="Search title/author/venue…" aria-label="Search publications" />
+                <select id="pub-year" aria-label="Filter by year"><option value="">All years</option></select>
+                <select id="pub-type" aria-label="Filter by type"><option value="">All types</option><option>Conference</option><option>Journal</option><option>Preprint</option></select>
+            </div>
+        </div>
+        <div class="count"><span id="pub-count">—</span> results</div>
+        <div class="grid pub v-scroll" id="pub-list"></div>
+    </div>
+</section>
+
+<!-- LAB MANUAL -->
+<section id="manual" aria-labelledby="manual-h">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <h2 id="manual-h">Lab Manual</h2>
+                <p class="section-desc">Our official lab manual is hosted externally. Open it in a new tab below.</p>
+            </div>
+            <div>
+                <a id="manual-cta" class="btn" href="#" target="_blank" rel="noopener">Open Lab Manual ↗</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer role="contentinfo">
+    <div class="container foot">
+        <div class="foot-left">
+            <svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+            <small>© <span id="year"></span> ROMA Lab. All rights reserved.</small>
+        </div>
+        <div class="foot-links">
+            <a class="chip" href="mailto:contact@roma-lab.example">contact@roma-lab.example</a>
+            <a class="chip" href="https://github.com/roma-lab" target="_blank" rel="noopener">GitHub</a>
+            <a class="chip" href="#home" data-link>Back to top ↑</a>
+        </div>
+    </div>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
