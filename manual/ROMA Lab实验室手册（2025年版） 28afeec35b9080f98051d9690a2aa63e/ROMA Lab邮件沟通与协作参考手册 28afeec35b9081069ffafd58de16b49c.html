@@ -1,0 +1,719 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ROMA Lab邮件沟通与协作参考手册</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(134, 131, 126, 1);
+	fill: rgba(134, 131, 126, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(134, 131, 126, 1);
+	fill: rgba(134, 131, 126, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="28afeec3-5b90-8106-9ffa-fd58de16b49c" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/nasa_robert_stewart_spacewalk.jpg" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">📘</span></div><h1 class="page-title"><strong>ROMA Lab邮件沟通与协作参考手册</strong></h1><p class="page-description"></p></header><div class="page-body"><p id="28afeec3-5b90-8109-bcda-f089db6b450f" class=""><em><mark class="highlight-gray">最后更新 </mark></em><em><mark class="highlight-gray"><time>@October 13, 2025</time></mark></em></p><p id="28bfeec3-5b90-8088-b3b9-e8b25b4680eb" class="">
+</p><p id="28bfeec3-5b90-800c-b636-ddc3c151e4ba" class=""><code>本节目录</code></p><nav id="28afeec3-5b90-811b-8e1e-f6e3f08e4975" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-81b6-ac22-c2dd7c934a87"><strong>前言</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-8152-bd2b-d55a5a4234b5"><strong>第一部分：核心原则与基础礼仪</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-8108-a7a4-ce16666e056a"><strong>第二部分：导师指导与研究管理</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-8124-b0b4-d05d1b2e0214"><strong>第三部分：学生主动沟通与请示</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-8103-9b8c-e06099074ee4"><strong>第四部分：学术对外交流</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-81a8-8573-e6282f487c1a"><strong>第五部分：实验室内部管理</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-81af-8bf3-d6fbaebfa472"><strong>第六部分：高级技巧与情境应对</strong></a></div></nav><p id="28afeec3-5b90-8175-9d1f-d2be39073997" class="">
+</p><h3 id="28afeec3-5b90-81b6-ac22-c2dd7c934a87" class=""><strong>前言</strong></h3><p id="28afeec3-5b90-8172-a45b-fe9a8243b576" class="">本手册旨在提升实验室成员（包括导师、研究员、学生）在学术与专业场景下的邮件沟通能力。有效的邮件沟通不仅是礼貌的体现，更是推动研究进展、建立学术合作、管理团队事务的关键技能。我们鼓励实验室每位成员参考并灵活运用本手册中的原则与模板，共同营造高效、专业、互相尊重的沟通文化。</p><hr id="28afeec3-5b90-814e-a841-f13c6007ff2e"/><h3 id="28afeec3-5b90-8152-bd2b-d55a5a4234b5" class=""><strong>第一部分：核心原则与基础礼仪</strong></h3><p id="28afeec3-5b90-81d0-8c27-ff13af9ae64b" class=""><strong>1.1 主题行：邮件的“第一印象”</strong></p><ul id="28afeec3-5b90-81b9-8964-f382b3e0757d" class="bulleted-list"><li style="list-style-type:disc"><strong>核心要求</strong>：清晰、具体、包含关键词。</li></ul><ul id="28afeec3-5b90-810d-97da-f72670a3df7e" class="bulleted-list"><li style="list-style-type:disc"><strong>好例子</strong>：<ul id="28afeec3-5b90-818c-b8bf-e2973861eb6d" class="bulleted-list"><li style="list-style-type:circle"><code>PhD Application Inquiry: [Your Name] - ML for Healthcare</code></li></ul><ul id="28afeec3-5b90-818e-8ab0-fdac77a4643f" class="bulleted-list"><li style="list-style-type:circle"><code>Meeting Request: Discussion on [Project Name] Experiments</code></li></ul><ul id="28afeec3-5b90-816e-b078-d22170814573" class="bulleted-list"><li style="list-style-type:circle"><code>[Journal Name] Submission Inquiry - Manuscript ID: [ID]</code></li></ul><ul id="28afeec3-5b90-816d-a0b6-ccf68004726c" class="bulleted-list"><li style="list-style-type:circle"><code>Lab Meeting This Friday, [Date] - Presenter: [Name]</code></li></ul></li></ul><ul id="28afeec3-5b90-8160-9a74-db630e677106" class="bulleted-list"><li style="list-style-type:disc"><strong>坏例子</strong>：<code>Hello</code>, <code>Question</code>, <code>Update</code></li></ul><p id="28afeec3-5b90-813e-a720-c0f37595111c" class=""><strong>1.2 专业签名档</strong><br/>建议使用统一格式，包含以下信息：</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="28afeec3-5b90-815d-b60f-d63ddd56da05" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">[您的全名] ([您的代词]) (e.g., he/him, she/her, they/them)
+[您的职位] (e.g., Research Fellow, PhD Candidate)
+[您的实验室名称] (e.g., AI Lab)
+[您的所属院系与大学]
+[您的办公室地址]
+[您的办公电话] (可选)
+[您的邮箱]
+[您的个人主页/实验室网站链接]
+</code></pre><p id="28afeec3-5b90-817c-87b1-e9c028ccc51e" class=""><strong>1.3 基础沟通礼仪</strong></p><ul id="28afeec3-5b90-8138-b9c1-d1549422c8d2" class="bulleted-list"><li style="list-style-type:disc"><strong>称呼</strong>：不确定时，使用 <code>Dear Professor [LastName]</code> 或 <code>Dear Dr. [LastName]</code>。对方回复使用名字后，方可改用 <code>Dear [FirstName]</code>。</li></ul><ul id="28afeec3-5b90-81d3-b612-f0e773193b3b" class="bulleted-list"><li style="list-style-type:disc"><strong>结构</strong>：段落简短，每段一个核心意思。使用项目符号让内容更易读。</li></ul><ul id="28afeec3-5b90-81fa-8651-c849c332ff68" class="bulleted-list"><li style="list-style-type:disc"><strong>时效性</strong>：争取在24-48小时内回复工作邮件。若问题复杂，可先回复“已收到，我将于[日期]前给您详细回复”。</li></ul><ul id="28afeec3-5b90-8158-931b-ed05d3b06b52" class="bulleted-list"><li style="list-style-type:disc"><strong>回复全部</strong>：谨慎使用，确保所有收件人都需要看到你的回复。</li></ul><hr id="28afeec3-5b90-814c-a0e9-ecde16d574f4"/><h3 id="28afeec3-5b90-8108-a7a4-ce16666e056a" class=""><strong>第二部分：导师指导与研究管理</strong></h3><p id="28afeec3-5b90-8177-bf28-c26fd2e951b0" class=""><strong>2.1 常规进度跟进主题：</strong> Quick Update on [Project Name]</p><p id="28afeec3-5b90-81df-a013-dd9379e98793" class="">Dear [Student Name],</p><p id="28afeec3-5b90-812c-8b2c-e295a8620576" class="">Hope you are having a productive week.</p><p id="28afeec3-5b90-8166-8d6e-dd2ddb25b43b" class="">I&#x27;m writing to check in on the progress of [Project Name]. <strong>Have you had a chance to</strong> [完成某个具体任务，如：run the baseline experiments]?</p><p id="28afeec3-5b90-8138-a876-d76af4b731f7" class=""><strong>It would be great if you could</strong> provide a brief update by [日期]. Also, <strong>please let me know if you are facing any challenges</strong> or would like to schedule a meeting to discuss next steps.</p><p id="28afeec3-5b90-8158-a968-cfbda444b4ec" class="">Looking forward to hearing from you.</p><p id="28afeec3-5b90-8106-9bd7-e18b5623aec4" class="">Best regards,<br/>[Your Name]</p><p id="28afeec3-5b90-8120-bc90-f707160c48bc" class=""><strong>2.2 分配具体任务主题：</strong> Action Items for [Paper Title] - Deadline [Date]</p><p id="28afeec3-5b90-8163-9154-c50d444285cd" class="">Dear [Student Name],</p><p id="28afeec3-5b90-81c8-8ab9-c4aa7dd590d2" class="">As we advance on [Paper Title], please complete the following tasks in the shared Overleaf project by [日期]:</p><ol type="1" id="28afeec3-5b90-81ac-97f6-d4c7ba74ba06" class="numbered-list" start="1"><li><strong>Motivations</strong> (1-2 bullet points)</li></ol><ol type="1" id="28afeec3-5b90-81bd-8436-d20a549c236f" class="numbered-list" start="2"><li><strong>Challenges of existing work</strong> (up to 3 bullet points)</li></ol><ol type="1" id="28afeec3-5b90-81f6-9597-e39bf9078e86" class="numbered-list" start="3"><li><strong>Our contributions</strong> (up to 3 bullet points)</li></ol><p id="28afeec3-5b90-81e8-9553-f13b99d1aaa0" class="">Additionally, <strong>please briefly explain the underlying connections between these three lists.</strong></p><p id="28afeec3-5b90-8188-ac97-c22836099278" class=""><strong>Do you wish to have a quick sync this week?</strong> Please let me know your availability.</p><p id="28afeec3-5b90-8198-bac0-d2013c339069" class="">Feel free to stop by my office if you prefer a face-to-face discussion.</p><p id="28afeec3-5b90-81e4-b921-e6aa80705065" class="">Kind regards,<br/>[Your Name]</p><p id="28afeec3-5b90-81dc-9ffe-c8eb6d22a9e3" class=""><strong>2.3 跟进长时间未回复主题：</strong> Follow-up: [Project Name]</p><p id="28afeec3-5b90-8174-8585-f19ed7377d09" class="">Dear [Student Name],</p><p id="28afeec3-5b90-81db-9349-dccbc454c6d6" class="">Hope you are well. <strong>It has been [e.g., 2 weeks] since our last communication.</strong></p><p id="28afeec3-5b90-8130-ac13-c75a2d1bfdda" class=""><strong>I haven&#x27;t received an update on [Project Name] for a while</strong> and I&#x27;m following up to ensure everything is on track. <strong>It would be greatly appreciated if you could let me know your current status</strong> or any problems you&#x27;ve encountered.</p><p id="28afeec3-5b90-8171-901d-c8626cd49fb2" class="">We could arrange a meeting this week to evaluate our progress if needed. Please get back to me by [日期].</p><p id="28afeec3-5b90-81f0-bf92-c5327489b39e" class="">Best regards,<br/>[Your Name]</p><hr id="28afeec3-5b90-8122-9769-ccb4958368d6"/><h3 id="28afeec3-5b90-8124-b0b4-d05d1b2e0214" class=""><strong>第三部分：学生主动沟通与请示</strong></h3><p id="28afeec3-5b90-811c-b017-d032813495c9" class=""><strong>3.1 首次联系潜在导师主题：</strong> PhD Application Inquiry: [Your Name] - Interest in [Research Area]</p><p id="28afeec3-5b90-814a-ad14-c2106dcb1e9f" class="">Dear Professor [Last Name],</p><p id="28afeec3-5b90-81e1-98d3-e1cf727364d6" class="">My name is [Your Name], and I am a [Your Current Status]. I am writing to express my profound interest in your research on [Mention 1-2 specific research topics of the professor].</p><p id="28afeec3-5b90-81b7-8427-e08938e0a1da" class="">In particular, I was fascinated by your paper &quot;[Paper Title]&quot;. This aligns perfectly with my past experience in [Your relevant experience] and my ambition to pursue [Your research goal].</p><p id="28afeec3-5b90-8103-aa8f-d49907c46069" class="">I am planning to apply for the [Program Name] at [University]. I have attached my CV and transcript for your reference.</p><p id="28afeec3-5b90-811c-ac66-f837c833de10" class=""><strong>Would you be open to accepting new PhD students for the upcoming academic year?</strong> I would be grateful for the opportunity to discuss my background and research interests with you further.</p><p id="28afeec3-5b90-8111-81ca-ff37aad44d39" class="">Thank you for your time and consideration.</p><p id="28afeec3-5b90-8111-9650-dfe51f33fcfb" class="">Sincerely,<br/>[Your Name]</p><p id="28afeec3-5b90-81d0-ab3d-efe4c0cdbf78" class=""><strong>3.2 请求推荐信主题：</strong> Request for Recommendation Letter - [Your Name]</p><p id="28afeec3-5b90-8168-b333-d3be428e298f" class="">Dear Professor [Last Name],</p><p id="28afeec3-5b90-81d4-87d3-f9c387159310" class="">I hope this email finds you well. This is [Your Name], who previously [e.g., took your ML course and worked as your RA on the XX project].</p><p id="28afeec3-5b90-81dc-acc6-e8a2022bce2c" class="">I am currently applying for [e.g., PhD programs] and <strong>I am writing to respectfully ask if you would be willing to write a strong letter of recommendation for me.</strong></p><p id="28afeec3-5b90-817a-9aba-c0e5b32468bf" class="">The deadline is [Date]. To assist you, I have attached my CV, personal statement, and a summary of our work together.</p><p id="28afeec3-5b90-81b2-890e-cb94e51125b4" class=""><strong>Please let me know if you feel comfortable supporting my application.</strong></p><p id="28afeec3-5b90-81aa-a169-c5b8d0ed1b1b" class="">Thank you so much for your guidance and support.</p><p id="28afeec3-5b90-8147-a18c-de7839e04390" class="">Best regards,<br/>[Your Name]</p><p id="28afeec3-5b90-8183-9fe5-f87a89298265" class=""><strong>3.3 预约会议并共享议程主题：</strong> Meeting Agenda &amp; Request: Discussion on [Topic]</p><p id="28afeec3-5b90-81e9-aed9-d489b271190b" class="">Dear Professor [Last Name],</p><p id="28afeec3-5b90-81fa-86a9-d87e86f2e903" class="">I would like to request a meeting to discuss <strong>[The main topic, e.g., the experimental results for Section 3]</strong>.</p><p id="28afeec3-5b90-8116-8954-d9db859a4c36" class="">To make our discussion more efficient, I have prepared a brief agenda:</p><ol type="1" id="28afeec3-5b90-8147-88c5-c03afae585dd" class="numbered-list" start="1"><li>Update on [Task A]</li></ol><ol type="1" id="28afeec3-5b90-8104-b4a7-ca6e991fb62e" class="numbered-list" start="2"><li>Challenges with [Task B] and proposed solutions</li></ol><ol type="1" id="28afeec3-5b90-8193-ac80-e37581221e6f" class="numbered-list" start="3"><li>Questions regarding [Task C]</li></ol><ol type="1" id="28afeec3-5b90-8130-afc4-cbe3d04b7c4a" class="numbered-list" start="4"><li>Next steps and timeline</li></ol><p id="28afeec3-5b90-812f-b418-d030f586e73e" class=""><strong>Please let me know what time next week would be convenient for you.</strong> I am available on [List 2-3 specific time slots].</p><p id="28afeec3-5b90-8111-b89b-d84859d1d9f7" class="">Thank you,<br/>[Your Name]</p><hr id="28afeec3-5b90-818c-8ff4-ea4c1dfacbd9"/><h3 id="28afeec3-5b90-8103-9b8c-e06099074ee4" class=""><strong>第四部分：学术对外交流</strong></h3><p id="28afeec3-5b90-8194-a748-ca347d2aa651" class=""><strong>4.1 学术求职（博士后/教职）主题：</strong> Inquiry Regarding Postdoctoral Opportunities</p><p id="28afeec3-5b90-813c-b917-dbb3e1543c55" class="">Dear Professor [Last Name],</p><p id="28afeec3-5b90-81e2-9734-d1d625ab1606" class=""><strong>I hope this email finds you well.</strong></p><p id="28afeec3-5b90-81d0-91d1-eaabba08dc97" class="">My name is [Your Name], and I am currently a [Your Position] at [Your University]. I have been closely following your impactful work on [Specific research area], and I am deeply inspired by your contributions to [Mention a specific paper or topic].</p><p id="28afeec3-5b90-81ef-aadc-d0e4fcc2ce3c" class="">My research focuses on [Your research focus], which I believe aligns remarkably well with the ongoing projects in your group.</p><p id="28afeec3-5b90-81b2-8432-d34c083f7180" class="">I have attached my CV and a brief research proposal for your consideration. I would be honored to discuss any potential opportunities to contribute to your esteemed team.</p><p id="28afeec3-5b90-818d-8aaa-d70396b1f52c" class="">Thank you for your time and consideration.</p><p id="28afeec3-5b90-81d0-950f-fffa22cc0305" class="">Warm regards,<br/>[Your Name]</p><p id="28afeec3-5b90-8169-981f-c9ef94470af9" class=""><strong>4.2 期刊/会议投稿状态查询主题：</strong> Inquiry about Manuscript Status - [Manuscript ID]</p><p id="28afeec3-5b90-81e0-8b81-f4b314180bf0" class="">Dear [Editor&#x27;s Name],</p><p id="28afeec3-5b90-81f9-96d1-d4149d88ce9f" class=""><strong>I hope this email finds you well.</strong></p><p id="28afeec3-5b90-81b4-b8c4-f6c1ebd9cc69" class=""><strong>We are writing to kindly follow up on the status of our manuscript,</strong> &quot;[Your Manuscript Title]&quot; (ID: [Manuscript ID]), submitted on [Submission Date].</p><p id="28afeec3-5b90-813f-b98f-d4172dc2ea3b" class=""><strong>Further to your previous email on [Date of last email],</strong> we learned that [e.g., the reviews are being finalized]. We are wondering if there is any update on the decision timeline.</p><p id="28afeec3-5b90-81b7-80aa-f6b155d48bc9" class="">[<strong>可选：说明紧迫性</strong>]<br/>We apologize for any inconvenience, but as this work addresses a timely problem in [Your Field], we are hopeful to share our findings with the community as soon as possible.</p><p id="28afeec3-5b90-81a3-a8a3-df021166e7a9" class=""><strong>Thank you for your time and hard work.</strong> Please also extend our gratitude to the reviewers.</p><p id="28afeec3-5b90-8120-b6c3-d5401eaf759d" class="">We look forward to hearing from you.</p><p id="28afeec3-5b90-8133-a538-c54ed8cd08c7" class="">Sincerely,<br/>[Your Name]</p><p id="28afeec3-5b90-811a-b7a2-d9a6d08b97a1" class=""><strong>4.3 学术合作请求主题：</strong> Collaboration Inquiry: [Brief Project Idea]</p><p id="28afeec3-5b90-81c7-87cb-fde6c5f567f5" class="">Dear Professor [Last Name],</p><p id="28afeec3-5b90-8146-93f3-e4495d516433" class="">I hope this email finds you well. My name is [Your Name] from [Your Lab]. I have been following your excellent work on [Their research area], particularly your paper on [Specific paper].</p><p id="28afeec3-5b90-81f1-afbd-c5f35e2a98e6" class="">Our lab has been working on [Your research area], and we have developed [Your tool/method/finding] that we believe could be powerfully combined with your expertise in [Their expertise] to tackle [Shared problem].</p><p id="28afeec3-5b90-810d-8347-fb24d9d4a8e5" class="">Would you be open to a brief discussion to explore potential collaboration ideas? We are flexible and can meet at your convenience.</p><p id="28afeec3-5b90-8176-97b9-d7ac29910a68" class="">Thank you for considering this opportunity.</p><p id="28afeec3-5b90-816b-8a32-c330f0076927" class="">Best regards,<br/>[Your Name]</p><hr id="28afeec3-5b90-8129-9748-de374610c0b8"/><h3 id="28afeec3-5b90-81a8-8573-e6282f487c1a" class=""><strong>第五部分：实验室内部管理</strong></h3><p id="28afeec3-5b90-81fe-b18b-fa20da600dba" class=""><strong>5.1 宣布组会/研讨会主题：</strong> Lab Meeting This [Day], [Date] - Presenter: [Name]</p><p id="28afeec3-5b90-8152-8ece-d3c8c8d66b82" class="">Hi everyone,</p><p id="28afeec3-5b90-81b7-8f83-c93abe4eb8da" class="">Our weekly lab meeting will be held as usual.</p><ul id="28afeec3-5b90-81ee-a9af-d941953be1c0" class="bulleted-list"><li style="list-style-type:disc"><strong>Date &amp; Time</strong>: [Date], [Time]</li></ul><ul id="28afeec3-5b90-8161-98ff-d65a3b54ef6c" class="bulleted-list"><li style="list-style-type:disc"><strong>Location</strong>: [Room / Zoom Link]</li></ul><ul id="28afeec3-5b90-81d1-b16c-fccc3157fe3b" class="bulleted-list"><li style="list-style-type:disc"><strong>Presenter</strong>: [Name]</li></ul><ul id="28afeec3-5b90-8138-b695-cacc59260b13" class="bulleted-list"><li style="list-style-type:disc"><strong>Topic</strong>: &quot;[Presentation Title]&quot;</li></ul><p id="28afeec3-5b90-81bc-859b-f21adaa6514a" class="">Please come prepared to engage in a constructive discussion. <strong>Kindly upload your slides to the shared drive by EOD [Date]</strong>.</p><p id="28afeec3-5b90-8171-861e-f797c51ba6c8" class="">Best,<br/>[Your Name]</p><p id="28afeec3-5b90-819b-ab45-f4e2d78be32c" class=""><strong>5.2 发布项目/招聘信息主题：</strong> [RA/Intern] Opportunity: [Project Brief Description]</p><p id="28afeec3-5b90-8158-b401-d7eebb082a49" class="">Dear Lab Members,</p><p id="28afeec3-5b90-81aa-be6a-e04e1018b74e" class="">A research opportunity is available in our lab focusing on <strong>[Project Area]</strong>.</p><p id="28afeec3-5b90-8163-9f74-cf6256c3cc2f" class=""><strong>Responsibilities include:</strong></p><ul id="28afeec3-5b90-817d-9b76-f75505942444" class="bulleted-list"><li style="list-style-type:disc">[Task 1, e.g., Literature review and data collection]</li></ul><ul id="28afeec3-5b90-812a-ae63-c91535848798" class="bulleted-list"><li style="list-style-type:disc">[Task 2, e.g., Implementing and benchmarking baseline models]</li></ul><p id="28afeec3-5b90-8165-8d51-d81cc88ee89d" class=""><strong>Ideal candidates should have:</strong></p><ul id="28afeec3-5b90-8152-b64a-df6830ca4f36" class="bulleted-list"><li style="list-style-type:disc">[Requirement 1, e.g., Strong programming skills in Python]</li></ul><ul id="28afeec3-5b90-81fd-948d-d4b68328ae1d" class="bulleted-list"><li style="list-style-type:disc">[Requirement 2, e.g., Familiarity with PyTorch]</li></ul><p id="28afeec3-5b90-81a7-8e86-ed8d9be35134" class="">If you are interested, <strong>please send your CV and a brief statement of interest to me by [Date]</strong>.</p><p id="28afeec3-5b90-81b6-a96b-ecbd786504a8" class="">Cheers,<br/>[Your Name]</p><p id="28afeec3-5b90-81fb-9529-c676c1fdf351" class=""><strong>5.3 发送附件/文件主题：</strong> [File Description] for Your Reference</p><p id="28afeec3-5b90-81ff-9679-c8423c80ab15" class="">Dear [Recipient Name],</p><p id="28afeec3-5b90-814c-85a4-fd948df0f4f3" class="">Please find attached the [Description of the file, e.g., project report, meeting minutes] for your review.</p><p id="28afeec3-5b90-810c-94f9-db78399f2235" class=""><strong>For your easy reference,</strong> I have also attached [any additional files, e.g., a template or guidelines].</p><p id="28afeec3-5b90-8173-98cf-e16aa43468b3" class=""><strong>Should you have any questions, please do not hesitate to contact me.</strong></p><p id="28afeec3-5b90-8135-8cad-de2e7fb3ab1b" class="">Thank you.</p><p id="28afeec3-5b90-81ad-998e-c0ac59fcb474" class="">Best regards,<br/>[Your Name]</p><p id="28afeec3-5b90-81fb-9500-d89779a11c27" class=""><strong>Encl:</strong></p><ul id="28afeec3-5b90-8116-a174-f0583c090022" class="bulleted-list"><li style="list-style-type:disc">[FileName1.pdf]</li></ul><ul id="28afeec3-5b90-8158-977f-c80d86569ddb" class="bulleted-list"><li style="list-style-type:disc">[FileName2.docx]</li></ul><hr id="28afeec3-5b90-8151-a5db-f8e0cde0e392"/><h3 id="28afeec3-5b90-81af-8bf3-d6fbaebfa472" class=""><strong>第六部分：高级技巧与情境应对</strong></h3><p id="28afeec3-5b90-8188-83a5-cd3644c364f8" class=""><strong>6.1 如何优雅地跟进</strong></p><ul id="28afeec3-5b90-8143-aa47-f045ce6b0c3f" class="bulleted-list"><li style="list-style-type:disc"><strong>策略</strong>：在原邮件上回复，并添加 <code>Follow Up</code> 到主题行。</li></ul><ul id="28afeec3-5b90-81aa-a52d-dd14bd583daa" class="bulleted-list"><li style="list-style-type:disc"><strong>话术</strong>：<ul id="28afeec3-5b90-81ca-966e-d84e21e548bf" class="bulleted-list"><li style="list-style-type:circle">&quot;Just wanted to gently bump this to the top of your inbox.&quot;</li></ul><ul id="28afeec3-5b90-8120-afa1-d1fc4a324031" class="bulleted-list"><li style="list-style-type:circle">&quot;Following up on this. I&#x27;ve also found a related paper that might be relevant, attached here for your reference.&quot;</li></ul><ul id="28afeec3-5b90-818c-83d8-ea702ac18e2d" class="bulleted-list"><li style="list-style-type:circle">&quot;In case a quick yes/no reply is easier, please feel free to just reply with &#x27;approve&#x27; or &#x27;let&#x27;s discuss&#x27;.&quot;</li></ul></li></ul><p id="28afeec3-5b90-8198-9219-c5fb3af0b76f" class=""><strong>6.2 处理分歧或敏感问题</strong></p><ul id="28afeec3-5b90-8148-9004-f0cda05afaa6" class="bulleted-list"><li style="list-style-type:disc"><strong>原则</strong>：对事不对人，聚焦于共同目标和解决方案。</li></ul><ul id="28afeec3-5b90-81a9-952f-f7c01e9bfa6a" class="bulleted-list"><li style="list-style-type:disc"><strong>话术</strong>：<ul id="28afeec3-5b90-8178-b42c-eae046418f49" class="bulleted-list"><li style="list-style-type:circle">&quot;Thank you for sharing your perspective. To ensure we are aligned on the project&#x27;s goal, I understand your point is [paraphrase their point]. From my side, the challenge I see is [state your concern]. Perhaps we can explore a solution that [propose a compromise]?&quot;</li></ul></li></ul><p id="28afeec3-5b90-8140-89e1-f9adc861fd89" class=""><strong>6.3 跨文化沟通要点</strong></p><ul id="28afeec3-5b90-8118-afe5-d99b2cd1fe2a" class="bulleted-list"><li style="list-style-type:disc"><strong>称呼</strong>：在英美学术圈，首次联系务必使用 <code>Professor/Dr. [Last Name]</code>。</li></ul><ul id="28afeec3-5b90-81a5-8d8e-ecc83d89081f" class="bulleted-list"><li style="list-style-type:disc"><strong>直接程度</strong>：清晰、直接但礼貌的沟通最受赞赏。</li></ul><ul id="28afeec3-5b90-811e-8035-e13e4d0de1d3" class="bulleted-list"><li style="list-style-type:disc"><strong>小提示</strong>：如果对方来自不同时区，可以在邮件中注明你的时间，如 <code>I am writing from UTC+8</code>.</li></ul><p id="28bfeec3-5b90-8068-865c-f493dbc62a80" class="">
+</p><p id="28bfeec3-5b90-8039-b5f9-e410c7ea1215" class="">
+</p><hr id="28bfeec3-5b90-80c2-9a98-f77df0b78a2e"/><div id="28bfeec3-5b90-8051-ba93-ff67bcd20d98" class="column-list"><div id="28bfeec3-5b90-80cb-88d3-c6bd3831e623" style="width:100%" class="column"><p id="28bfeec3-5b90-801d-96ec-db9a174c6882" class=""><a href="Weekly%20Report%20Template%2028afeec35b908116944fe330e50f16ba.html">上一页</a></p></div><div id="28bfeec3-5b90-80a2-bf86-db7d3efe9390" style="width:100%" class="column"><p id="28bfeec3-5b90-80ce-ba98-f5c28d3adbb5" class=""><a href="../ROMA%20Lab%E5%AE%9E%E9%AA%8C%E5%AE%A4%E6%89%8B%E5%86%8C%EF%BC%882025%E5%B9%B4%E7%89%88%EF%BC%89%2028afeec35b9080f98051d9690a2aa63e.html">回到上级</a></p></div><div id="28bfeec3-5b90-80f7-ad7c-da4e340a30ba" style="width:100%" class="column"><p id="28bfeec3-5b90-807a-97e4-c60af6f85f91" class=""><a href="%E5%8F%8D%E9%9C%B8%E5%87%8C%E6%AD%A7%E8%A7%86%E6%80%A7%E9%AA%9A%E6%89%B0%E6%8C%87%E5%8D%97%2028dfeec35b9080978db5f1a11dce87f4.html">下一页</a></p></div></div><p id="28bfeec3-5b90-80f4-834d-ece2b7e670ae" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

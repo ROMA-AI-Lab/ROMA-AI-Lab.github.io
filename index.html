@@ -24,25 +24,55 @@
             </svg>
             <span>ROMA Lab</span>
         </a>
-        <nav class="nav-links" aria-label="Primary">
-            <a href="#home" data-link class="active">HOME</a>
-            <a href="#people" data-link>PEOPLE</a>
-            <a href="#research" data-link>RESEARCH</a>
-            <a href="#publications" data-link>PUBLICATIONS</a>
-            <a id="nav-manual" href="#">LAB MANUAL</a>
+
+        <!-- primary nav (desktop inline) -->
+        <nav id="primary-nav" class="nav-links-inline" aria-label="Primary" role="menubar">
+            <a href="#home" data-link role="menuitem" class="active">HOME</a>
+            <a href="#people" data-link role="menuitem">PEOPLE</a>
+            <a href="#research" data-link role="menuitem">RESEARCH</a>
+            <a href="#publications" data-link role="menuitem">PUBLICATIONS</a>
+            <a href="#life" data-link role="menuitem">LIFE</a>
+            <a id="nav-manual" href="#" role="menuitem">LAB MANUAL</a>
         </nav>
+
+        <!-- controls -->
         <div class="controls">
             <button id="theme-toggle" class="btn ghost" aria-label="Toggle theme" title="Toggle light/dark">
                 <span aria-hidden="true">🌓</span><span class="sr-only">Toggle theme</span>
             </button>
             <a class="btn primary" href="https://github.com/ROMA-AI-Lab" target="_blank" rel="noopener">GitHub</a>
-            <button id="menu" class="btn ghost" aria-label="Menu" title="Menu" style="display:none">☰</button>
+
+            <!-- mobile menu trigger -->
+            <button
+                    id="menu"
+                    class="btn ghost"
+                    aria-label="Menu"
+                    title="Menu"
+                    aria-controls="mobile-drawer"
+                    aria-expanded="false"">☰</button>
         </div>
     </div>
 </header>
 
-<!-- HOME -->
-<main id="home" class="hero" role="main">
+<!-- Mobile drawer & overlay (for small screens) -->
+<div id="nav-overlay" class="nav-overlay" aria-hidden="true"></div>
+<aside id="mobile-drawer" class="nav-drawer" aria-label="Mobile navigation" aria-hidden="true">
+    <div class="title">Menu</div>
+    <a href="#home" data-link>Home</a>
+    <a href="#people" data-link>People</a>
+    <a href="#research" data-link>Research</a>
+    <a href="#publications" data-link>Publications</a>
+    <a href="#life" data-link>Life</a>
+    <a id="drawer-manual" href="#">Lab Manual</a>
+    <div class="spacer"></div>
+    <div class="footer">
+        <a class="btn" href="https://github.com/ROMA-AI-Lab" target="_blank" rel="noopener">GitHub</a>
+        <button id="drawer-theme" class="btn ghost">🌓 Theme</button>
+    </div>
+</aside>
+
+<!-- ======== HOME (Overview + News & Highlights) ======== -->
+<main id="home" class="hero" role="main" data-view="home">
     <div class="container hero-wrap">
         <div>
             <span class="badge">Foundational AI Theory · LLMs & Graphs · Online Social Networks</span>
@@ -57,7 +87,7 @@
             <div class="hero-actions">
                 <a class="btn" href="#research" data-link>Explore Research</a>
                 <a class="btn ghost" href="#people" data-link>Meet the Team</a>
-                <a class="btn ghost" href="mailto:roma_lab@yeah.net" data-link>Send An Email</a>
+                <a class="btn ghost" href="mailto:roma_lab@yeah.net">Send An Email</a>
             </div>
             <br>
 
@@ -71,68 +101,94 @@
         </div>
 
         <aside class="hero-card" aria-labelledby="news-head">
-            <h2 id="news-head" class="news-head">News & Highlights</h2>
-            <ul id="news-list" class="v-scroll"></ul>
-<!--            <div class="news-actions"><a class="btn ghost" href="#publications" data-link>See Publications</a></div>-->
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+                <h2 id="news-head" class="news-head" style="margin:0">News & Highlights</h2>
+                <a class="btn ghost" href="pages/news.html" target="_blank" rel="noopener" aria-label="View all news">All News →</a>
+            </div>
+            <ul id="news-list" class="v-scroll" aria-live="polite"></ul>
         </aside>
     </div>
 </main>
 
-<!-- PEOPLE -->
-<section id="people" aria-labelledby="people-h">
+<!-- ======== PEOPLE ======== -->
+<section id="people" aria-labelledby="people-h" data-view="people">
     <div class="container">
         <div class="section-head">
             <div>
                 <h2 id="people-h">People</h2>
                 <p class="section-desc">We are a collaborative team of faculty, postdocs, students, and research engineers.</p>
             </div>
-            <div class="filters">
+            <div class="filters" style="display:flex; gap:8px; align-items:center">
                 <input type="search" id="people-search" placeholder="Search people (name, role, topic)…" aria-label="Search people" />
+                <a class="btn ghost" href="pages/people.html" target="_blank" rel="noopener">All People →</a>
             </div>
         </div>
-        <div class="grid people v-scroll" id="people-grid"></div>
+        <div class="grid people v-scroll" id="people-grid" aria-live="polite"></div>
     </div>
 </section>
 
-<!-- RESEARCH -->
-<section id="research" aria-labelledby="research-h">
+<!-- ======== RESEARCH ======== -->
+<section id="research" aria-labelledby="research-h" data-view="research">
     <div class="container">
         <div class="section-head">
             <div>
                 <h2 id="research-h">Research</h2>
                 <p class="section-desc">Core directions span graph-of-thought reasoning, graph prompting, multimodal token compression, and neural-symbolic knowledge systems.</p>
             </div>
-            <div class="filters">
+            <div class="filters" style="display:flex; gap:8px; align-items:center">
                 <select id="research-area-filter" aria-label="Filter by area">
                     <option value="">All areas</option>
                 </select>
+                <a class="btn ghost" href="pages/projects.html" target="_blank" rel="noopener">Full Projects →</a>
             </div>
         </div>
-        <div class="grid research v-scroll" id="research-grid"></div>
+        <div class="grid research v-scroll" id="research-grid" aria-live="polite"></div>
     </div>
 </section>
 
-<!-- PUBLICATIONS -->
-<section id="publications" aria-labelledby="pub-h">
+<!-- ======== PUBLICATIONS ======== -->
+<section id="publications" aria-labelledby="pub-h" data-view="publications">
     <div class="container">
         <div class="section-head">
             <div>
                 <h2 id="pub-h">Publications</h2>
-                <p class="section-desc">Selected publications by ROMA Lab. Use the search and filters to narrow results.</p>
+                <p class="section-desc">Selected publications by ROMA Lab. (Thumbnails removed; concise text-first listing.)</p>
             </div>
-            <div class="filters">
+            <div class="filters" style="display:flex; gap:8px; align-items:center">
                 <input type="search" id="pub-search" placeholder="Search title/author/venue…" aria-label="Search publications" />
                 <select id="pub-year" aria-label="Filter by year"><option value="">All years</option></select>
-                <select id="pub-type" aria-label="Filter by type"><option value="">All types</option><option>Conference</option><option>Journal</option><option>Preprint</option></select>
+                <select id="pub-type" aria-label="Filter by type">
+                    <option value="">All types</option>
+                    <option>Conference</option>
+                    <option>Journal</option>
+                    <option>Preprint</option>
+                </select>
+                <a class="btn ghost" href="pages/publications.html" target="_blank" rel="noopener">Full Publications →</a>
             </div>
         </div>
         <div class="count"><span id="pub-count">—</span> results</div>
-        <div class="grid pub v-scroll" id="pub-list"></div>
+        <div class="grid pub v-scroll" id="pub-list" aria-live="polite"></div>
     </div>
 </section>
 
-<!-- LAB MANUAL -->
-<section id="manual" aria-labelledby="manual-h">
+<!-- ======== LIFE (Home preview) ======== -->
+<section id="life" aria-labelledby="life-h">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <h2 id="life-h">Life</h2>
+                <p class="section-desc">Snapshots from our lab life. Click to view larger.</p>
+            </div>
+            <div>
+                <a id="life-all-btn" class="btn ghost" href="pages/life.html" target="_blank" rel="noopener">All Photos →</a>
+            </div>
+        </div>
+        <div id="life-home-grid" class="grid"></div>
+    </div>
+</section>
+
+<!-- ======== LAB MANUAL ======== -->
+<section id="manual" aria-labelledby="manual-h" data-view="manual">
     <div class="container">
         <div class="section-head">
             <div>
@@ -162,5 +218,23 @@
 </footer>
 
 <script type="module" src="js/main.js"></script>
+<script>
+    // 抽屉里的“Lab Manual”和“Theme”按钮与主逻辑对齐
+    document.addEventListener('DOMContentLoaded', () => {
+        const drawerManual = document.getElementById('drawer-manual');
+        const navManual = document.getElementById('nav-manual');
+        if (drawerManual && navManual) {
+            drawerManual.addEventListener('click', (e)=>{
+                e.preventDefault();
+                navManual.click(); // 触发 main.js 中 wireManualLink 的逻辑
+            });
+        }
+        const drawerTheme = document.getElementById('drawer-theme');
+        const themeToggle = document.getElementById('theme-toggle');
+        if (drawerTheme && themeToggle) {
+            drawerTheme.addEventListener('click', ()=> themeToggle.click());
+        }
+    });
+</script>
 </body>
 </html>

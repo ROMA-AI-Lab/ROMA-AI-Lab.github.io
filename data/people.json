@@ -1,0 +1,120 @@
+{
+  "items": [
+    {
+      "name": "Xiangguo Sun",
+      "slug": "xiangguo-sun",
+      "role": "Lab Lead / Postdoctoral Fellow",
+      "email": "roma_lab@yeah.net",
+      "site": "https://xgsun.mysxl.cn",
+      "avatar": "/assets/people/xiangguo.jpeg",
+      "topics": ["Data Mining","Social Intelligence"],
+      "affiliation": "CUHK",
+      "status": "lead",
+      "education": [
+        "Ph.D., Computer Science, SEU",
+        "B.S., EE, DUT"
+      ],
+      "selected_publications": [
+        "All in One: Multi-Task Prompting for GNNs (KDD'23)",
+        "Graph Prompt — Theoretical Analysis (ICML'25)"
+      ],
+      "awards": ["KDD'23 Best Research Paper"],
+      "placement": ["MSRA","Zhejiang Lab"]
+    },
+    {
+      "name": "Zhang San",
+      "slug": "zhang-san",
+      "role": "PhD Student",
+      "email": "",
+      "site": "",
+      "avatar": "",
+      "topics": ["RAG","Legal/Finance AI","Retrieval"],
+      "affiliation": "Partner University",
+      "status": "student",
+      "education": [],
+      "selected_publications": [],
+      "awards": []
+    },
+    {
+      "name": "Lee Si",
+      "slug": "lee-si",
+      "role": "Research Assistant",
+      "email": "",
+      "site": "",
+      "avatar": "",
+      "topics": ["Token Compression","MM-LLM","Systems"],
+      "affiliation": "ROMA Lab",
+      "status": "ra"
+    },
+    {
+      "name": "Lee Si",
+      "slug": "lee-si",
+      "role": "Research Assistant",
+      "email": "",
+      "site": "",
+      "avatar": "",
+      "topics": ["Token Compression","MM-LLM","Systems"],
+      "affiliation": "ROMA Lab",
+      "status": "ra"
+    },
+    {
+      "name": "Lee Si",
+      "slug": "lee-si",
+      "role": "Research Assistant",
+      "email": "",
+      "site": "",
+      "avatar": "",
+      "topics": ["Token Compression","MM-LLM","Systems"],
+      "affiliation": "ROMA Lab",
+      "status": "ra"
+    },
+    {
+      "name": "Lee Si",
+      "slug": "lee-si",
+      "role": "Research Assistant",
+      "email": "",
+      "site": "",
+      "avatar": "",
+      "topics": ["Token Compression","MM-LLM","Systems"],
+      "affiliation": "ROMA Lab",
+      "status": "ra"
+    },
+    {
+      "name": "Lee Si",
+      "slug": "lee-si",
+      "role": "Research Assistant",
+      "email": "",
+      "site": "",
+      "avatar": "",
+      "topics": [
+        "Token Compression",
+        "MM-LLM",
+        "Systems"
+      ],
+      "affiliation": "ROMA Lab",
+      "status": "ra"
+    },
+    {
+      "name": "Lee Si",
+      "slug": "lee-si",
+      "role": "Research Assistant",
+      "email": "",
+      "site": "",
+      "avatar": "",
+      "topics": ["Token Compression","MM-LLM","Systems"],
+      "affiliation": "ROMA Lab",
+      "status": "ra"
+    },
+    {
+      "name": "Lee Si",
+      "slug": "lee-si",
+      "role": "Research Assistant",
+      "email": "",
+      "site": "",
+      "avatar": "",
+      "topics": ["Token Compression","MM-LLM","Systems"],
+      "affiliation": "ROMA Lab",
+      "status": "ra"
+    }
+  ]
+}

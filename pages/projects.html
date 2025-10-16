@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>All Projects | ROMA Lab</title>
+    <meta name="description" content="All research projects from ROMA Lab."/>
+    <link rel="icon" href="../assets/favicon.svg"/>
+    <link rel="stylesheet" href="../css/styles.css"/>
+    <style>
+        header.simple {position:sticky;top:0;z-index:40;background:var(--panel);border-bottom:1px solid var(--border)}
+        header.simple .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
+        header.simple .brand{display:flex;align-items:center;gap:8px;font-weight:700}
+        main{padding:32px 0}
+        .filters-row{display:flex;gap:10px;flex-wrap:wrap}
+        .filters-row input,.filters-row select{padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--panel);color:var(--text)}
+    </style>
+</head>
+<body data-page="projects">
+<!-- 轻量页头 -->
+<header class="simple">
+    <div class="container bar">
+        <div class="left">
+            <a class="brand" href="../index.html#home">
+                <svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true">
+                    <path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46"
+                          stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/>
+                </svg>
+                <span>ROMA Lab</span>
+            </a>
+            <span class="meta">All Projects</span>
+        </div>
+        <div class="right">
+            <button id="theme-toggle" class="btn ghost" title="Toggle theme">🌓</button>
+            <a class="btn" href="../index.html#home">Back to Home</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <h2>All Projects</h2>
+                <p class="section-desc">Explore every research direction and project. Click a card to open the project detail page.</p>
+            </div>
+            <div class="filters-row">
+                <input id="proj-all-search" type="search" placeholder="Search title, summary, highlight…" aria-label="Search projects"/>
+                <select id="proj-all-area" aria-label="Filter by area">
+                    <option value="">All areas</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="proj-all-grid" class="grid research"></div>
+    </div>
+</main>
+
+<footer>
+    <div class="container foot">
+        <div class="foot-left">
+            <svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true">
+                <path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46"
+                      stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/>
+            </svg>
+            <small>© <span id="year"></span> ROMA Lab.</small>
+        </div>
+        <div class="foot-links">
+            <a class="chip" href="mailto:roma_lab@yeah.net">roma_lab@yeah.net</a>
+            <a class="chip" href="https://github.com/ROMA-AI-Lab" target="_blank" rel="noopener">GitHub</a>
+        </div>
+    </div>
+</footer>
+
+<!-- 通用逻辑（已提供） -->
+<script src="pages.js"></script>
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

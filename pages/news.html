@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>All News | ROMA Lab</title>
+    <meta name="description" content="All lab news and highlights."/>
+    <link rel="icon" href="../assets/favicon.svg"/>
+    <!-- 复用主站样式，保证主题一致 -->
+    <link rel="stylesheet" href="../css/styles.css"/>
+    <style>
+        /* 独立页的小幅微调（不影响主站） */
+        header.simple {position:sticky;top:0;z-index:40;background:var(--panel);border-bottom:1px solid var(--border)}
+        header.simple .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
+        header.simple .left{display:flex;align-items:center;gap:10px}
+        header.simple .brand{display:flex;align-items:center;gap:8px;font-weight:700}
+        main{padding:32px 0}
+        .filters-row{display:flex;gap:10px;flex-wrap:wrap}
+        .filters-row input,.filters-row select{padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--panel);color:var(--text)}
+    </style>
+</head>
+<body data-page="news">
+<!-- 轻量页头 -->
+<header class="simple">
+    <div class="container bar">
+        <div class="left">
+            <a class="brand" href="../index.html#home">
+                <svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+                <span>ROMA Lab</span>
+            </a>
+            <span class="meta">All News</span>
+        </div>
+        <div class="right">
+            <button id="theme-toggle" class="btn ghost" aria-label="Toggle theme" title="Toggle light/dark">🌓</button>
+            <a class="btn" href="../index.html#home">Back to Home</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <h2>All News</h2>
+                <p class="section-desc">Browse every announcement and highlight from ROMA Lab.</p>
+            </div>
+            <div class="filters-row">
+                <input type="search" id="news-search" placeholder="Search text…" aria-label="Search news"/>
+                <select id="news-year" aria-label="Filter by year">
+                    <option value="">All years</option>
+                </select>
+            </div>
+        </div>
+
+        <ul id="news-all-list" class="v-scroll" style="display:grid;gap:10px;list-style:none;margin:0;padding:0"></ul>
+    </div>
+</main>
+
+<footer role="contentinfo">
+    <div class="container foot">
+        <div class="foot-left">
+            <svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+            <small>© <span id="year"></span> ROMA Lab.</small>
+        </div>
+        <div class="foot-links">
+            <a class="chip" href="mailto:roma_lab@yeah.net">roma_lab@yeah.net</a>
+            <a class="chip" href="https://github.com/ROMA-AI-Lab" target="_blank" rel="noopener">GitHub</a>
+        </div>
+    </div>
+</footer>
+
+<!-- 通用逻辑（已在上一步提供） -->
+<script src="pages.js"></script>
+<script>
+    // 页脚年份
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

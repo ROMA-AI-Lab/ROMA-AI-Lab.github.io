@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "title": "Project One",
+      "slug": "project-one",
+      "area": "Reasoning",
+      "summary": "Nonlinear reasoning over knowledge graphs and hypergraphs integrated with LLMs for complex decision-making.",
+      "highlights": ["Dynamic planning over graphs","Tool-augmented inference","Consistency checking"],
+      "cover": "/assets/research/xiangguo.jpeg",
+      "featured": true,
+      "links": [
+        { "label": "Preprint", "href": "#" },
+        { "label": "Code", "href": "#" },
+        { "label": "dd", "href": "#" }
+      ]
+    }
+  ]
+}

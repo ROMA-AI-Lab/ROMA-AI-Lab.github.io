@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>All Publications | ROMA Lab</title>
+    <meta name="description" content="All publications and research outputs from ROMA Lab."/>
+    <link rel="icon" href="../assets/favicon.svg"/>
+    <link rel="stylesheet" href="../css/styles.css"/>
+    <style>
+        header.simple {position:sticky;top:0;z-index:40;background:var(--panel);border-bottom:1px solid var(--border)}
+        header.simple .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
+        header.simple .brand{display:flex;align-items:center;gap:8px;font-weight:700}
+        main{padding:32px 0}
+        .filters-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+        .filters-row input,.filters-row select{padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--panel);color:var(--text)}
+        .filters-row .btn{margin-left:auto}
+        .pub-item{padding:14px 18px;border:1px solid var(--border);border-radius:14px;background:var(--panel-2);margin-bottom:14px}
+        .pub-item .title{font-weight:600}
+        .pub-actions{margin-top:8px;display:flex;flex-wrap:wrap;gap:8px}
+        .pub-actions .btn{padding:6px 10px;font-size:.9rem}
+    </style>
+</head>
+<body data-page="pubs">
+<header class="simple">
+    <div class="container bar">
+        <div class="left">
+            <a class="brand" href="../index.html#home">
+                <svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true">
+                    <path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46"
+                          stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/>
+                </svg>
+                <span>ROMA Lab</span>
+            </a>
+            <span class="meta">All Publications</span>
+        </div>
+        <div class="right">
+            <button id="theme-toggle" class="btn ghost" title="Toggle theme">🌓</button>
+            <a class="btn" href="../index.html#home">Back to Home</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <h2>All Publications</h2>
+                <p class="section-desc">Complete publication list of ROMA Lab members. Search, filter, or export BibTeX.</p>
+            </div>
+            <div class="filters-row">
+                <input id="pub-all-search" type="search" placeholder="Search title, author, venue…" aria-label="Search publications"/>
+                <select id="pub-all-year" aria-label="Filter by year">
+                    <option value="">All years</option>
+                </select>
+                <select id="pub-all-type" aria-label="Filter by type">
+                    <option value="">All types</option>
+                    <option value="Conference">Conference</option>
+                    <option value="Journal">Journal</option>
+                    <option value="Preprint">Preprint</option>
+                </select>
+                <button id="pub-export-bib" class="btn ghost">Export BibTeX</button>
+            </div>
+        </div>
+
+        <div id="pub-all-count" class="meta" style="margin-bottom:10px"></div>
+        <div id="pub-all-list"></div>
+    </div>
+</main>
+
+<footer>
+    <div class="container foot">
+        <div class="foot-left">
+            <svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true">
+                <path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46"
+                      stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/>
+            </svg>
+            <small>© <span id="year"></span> ROMA Lab.</small>
+        </div>
+        <div class="foot-links">
+            <a class="chip" href="mailto:roma_lab@yeah.net">roma_lab@yeah.net</a>
+            <a class="chip" href="https://github.com/ROMA-AI-Lab" target="_blank" rel="noopener">GitHub</a>
+        </div>
+    </div>
+</footer>
+
+<script src="pages.js"></script>
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

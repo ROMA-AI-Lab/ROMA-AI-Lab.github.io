@@ -1,0 +1,709 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>招生文案</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(134, 131, 126, 1);
+	fill: rgba(134, 131, 126, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(134, 131, 126, 1);
+	fill: rgba(134, 131, 126, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="28afeec3-5b90-819e-bf60-f9c378092bdc" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/solid_red.png" style="object-position:center 40%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">📕</span></div><h1 class="page-title">招生文案</h1><p class="page-description"></p></header><div class="page-body"><p id="28bfeec3-5b90-8058-8bc6-d1fe1370dddd" class=""><em><mark class="highlight-gray">最后更新 </mark></em><em><mark class="highlight-gray"><time>@October 14, 2025</time></mark></em></p><p id="28bfeec3-5b90-806a-b4a4-d96af8e4bf97" class="">
+</p><p id="28afeec3-5b90-81b9-8894-effefe1bb31e" class=""><code>本节目录</code></p><nav id="28afeec3-5b90-801b-bf74-e49981d437a3" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-809b-aec2-faa0d474ee4e">📢 东南大学ROMA Lab在线捞人</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-8018-9f85-f3100d243285">🎯 我们的基本承诺</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-8000-8cb6-fe5dd9a4bae7">💎 我们能给你什么</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-80ef-9582-de679a86f0df">🔬 我们研究什么</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#28afeec3-5b90-80c4-8475-f5503f7bb519">⭐ 核心研究方向</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-80be-8408-cd5d31f6569a">✨ 期待这样的你</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-8037-83b5-e2e889d28e75">📮 如何申请</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-8092-9010-c6b9ada248aa">🏛️ ROMA Lab的由来</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-8016-94da-d244040e3d3e">🎬 实验室宣传片</a></div></nav><h1 id="28afeec3-5b90-809b-aec2-faa0d474ee4e" class="block-color-purple_background">📢 东南大学ROMA Lab在线捞人</h1><figure class="callout" style="white-space:pre-wrap;display:flex" id="28afeec3-5b90-8058-bb58-c81c856d5777"><div style="width:100%">东南大学青年首席教授孙相国团队启动ROMA Lab，诚邀AI、数据科学方向博士硕士生加入，共创未来智能社会。</div></figure><figure id="28afeec3-5b90-81c1-9a75-fdbd95e9de0d" class="image" style="text-align:left"><a href="%E6%8B%9B%E7%94%9F%E6%96%87%E6%A1%88%2028afeec35b90819ebf60f9c378092bdc/WechatIMG602.jpeg"><img style="width:240px" src="%E6%8B%9B%E7%94%9F%E6%96%87%E6%A1%88%2028afeec35b90819ebf60f9c378092bdc/WechatIMG602.jpeg"/></a><figcaption>ROMA Lab创始人，东南大学青年首席教授，孙相国博士</figcaption></figure><p id="28afeec3-5b90-80f5-b7ce-eb57d10c75b1" class="">各位未来的学者、工程师、创造者们，我是孙相国，33岁，即将于26年全职加入东南大学，在计算机学院担任青年首席教授（Young Chair Professor, Full Professor)。我的ROMA Lab今年正式启动，现在诚挚地邀请1-2名博士生、2-3名硕士生加入，同时亦欢迎本科生、博士后，RA等莅临实验室交流合作！我想用绝对的坦诚告诉你，我们正在维护的ROMA Lab是一个怎样的学术组织。</p><hr id="28afeec3-5b90-8053-b36f-ec521d588ff7"/><h2 id="28afeec3-5b90-8018-9f85-f3100d243285" class="block-color-blue_background">🎯 我们的基本承诺</h2><ul id="28afeec3-5b90-80c2-9c1c-d53b502895ba" class="block-color-blue bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default"><strong>🌟抵制浮夸：</strong></mark><mark class="highlight-default">不造神，不捧星，不搞流量崇拜，不经营学术偶像。我们的荣誉，来自于赢得小同行的好感和大同行的尊敬，我们相信，做难事必有所得，学术品位是最核心的竞争力。</mark></li></ul><ul id="28cfeec3-5b90-80f3-bab1-ff331cb1de81" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default">🤝 </mark><mark class="highlight-default"><strong>不抢占学生的一作权益</strong></mark></li></ul><ul id="28afeec3-5b90-8059-8458-cf836805e505" class="block-color-blue bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default">⏰ </mark><mark class="highlight-default"><strong>保护你的非工作时间</strong></mark><mark class="highlight-default"> — 法定节假日和下班后，不会联系你处理事务性工作，请彼此相忘于江湖。亦不搞微信/QQ碎片化轰炸，工作沟通主要以英文邮件进行。我们有一个非正式的微信群用来恰饭爬山。</mark></li></ul><ul id="28afeec3-5b90-80fa-a997-f63b852b67aa" class="block-color-blue bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default">🛡️ </mark><mark class="highlight-default"><strong>对霸凌歧视和性骚扰零容忍</strong></mark><mark class="highlight-default"> — 实验室内部设有清晰、保密的反馈与申诉机制。你不必因你的性别、出身、年级或个性而有丝毫顾虑。</mark></li></ul><ul id="28afeec3-5b90-804c-b84b-dbcbd959821f" class="block-color-blue bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default">💬 </mark><mark class="highlight-default"><strong>频繁的流于形式大组会？不存在</strong></mark><mark class="highlight-default"> — 实验室内部不搞高频次的大组会，我们更倾向于以解决问题为导向的小规模线上短会议。我们亦不会在大组会上让学生轮流汇报自己的工作进展。</mark></li></ul><hr id="28afeec3-5b90-80eb-afe0-d82d426f6537"/><h2 id="28afeec3-5b90-8000-8cb6-fe5dd9a4bae7" class="block-color-teal_background">💎 我们能给你什么</h2><ul id="28afeec3-5b90-8012-aa60-e2cfbd865f6f" class="block-color-teal bulleted-list"><li style="list-style-type:disc">🎓 <strong>一线的学术指导</strong> — 做&quot;转发型&quot;导师，我将直接指导所有博士研究生、硕士研究生及本科生。尽我所能给你提供最一线的想法，最专业的意见，和最高效的反馈。我在学术研究上给你的所有意见都是非强制性的，你可以拒绝。我相信有价值的意见不需要强制，你会主动follow。</li></ul><ul id="28afeec3-5b90-80d6-9678-cea156c76764" class="block-color-teal bulleted-list"><li style="list-style-type:disc">💰 <strong>充足的资源支持</strong> — 实验室受国家级青年人才项目经费和学校高标准配套支持，拥有充足的计算资源、采购预算，并能为你参加国际顶会、海外访学提供强有力的资助。</li></ul><ul id="28afeec3-5b90-80ee-8b28-c1babcaec83c" class="block-color-teal bulleted-list"><li style="list-style-type:disc">🗺️ <strong>清晰的成长路径</strong> — 我们为每一位即将进入实验室的新生制定个性化培养方案，一人一议，助你心无旁骛地奔向自己的目标（善意地建议您不要频繁更换赛道，这可能会增加你的试错成本，也给我们的实验室建设带来挑战）。</li></ul><ul id="28afeec3-5b90-80c9-96a6-df7f32ff47b8" class="block-color-teal bulleted-list"><li style="list-style-type:disc">❤️ <strong>&quot;人本&quot;的实验室文化</strong> — 我们相信，卓越的创造力源于对生活的热爱。我们鼓励你去爱，去生活，去成为一个丰富而完整的人。我们支持成员的长期人生规划，并愿意在科研安排上提供灵活性。不干涉你的私生活，不对你做道德评价，尊重你的个性与选择。（同样，也请别把我挂网上评价，无论是好的还是不好的）。</li></ul><hr id="28afeec3-5b90-80e1-bbd0-ee81d520ea6b"/><h2 id="28afeec3-5b90-80ef-9582-de679a86f0df" class="block-color-orange_background">🔬 我们研究什么</h2><p id="28afeec3-5b90-80db-940d-f4c71aa0ca9c" class="">我们致力于构建<strong>下一代社会通用智能（Next-Generation AI for Social Science）</strong>，旨在让AI真正理解并赋能人类社会。我们的研究围绕<strong>&quot;绿色、人本、可信&quot;</strong>三大支柱展开，不仅追求技术前沿的突破，更关注技术落地带来的实际价值。在这里，你既能深耕最前沿的AI理论，也能将你的代码转化为服务社会的产品。我们欢迎所有对人工智能、社交网络、大数据分析感兴趣，富有好奇心和行动力的同学加入我们，共同定义未来社会与智能的交互方式。</p><h3 id="28afeec3-5b90-80c4-8475-f5503f7bb519" class="block-color-orange">⭐ 核心研究方向</h3><ul id="28afeec3-5b90-802b-88ca-d88e6cf1f677" class="block-color-orange toggle"><li><details open=""><summary><strong>⛳ 方向一：非线性数据智能基础理论（核心基石）</strong></summary><p id="28afeec3-5b90-8091-aa3c-e7976c4fb9d0" class="">我们专注于突破当前非线性数据神经网络的瓶颈，研究如何更高效、更强大地处理大规模、动态的非线性结构数据，为所有应用方向提供先进的模型和算法支撑。如果你热爱数学、算法和底层模型创新，渴望在AI基础架构上留下自己的印记，这里将是你的绝佳舞台。</p></details></li></ul><ul id="28afeec3-5b90-8076-ad55-e8f2dc4cce4c" class="block-color-orange toggle"><li><details open=""><summary><strong>⛳ 方向二：大模型前沿技术与应用（创新引擎）</strong></summary><p id="28afeec3-5b90-8033-b5cb-fd99bd67f56e" class="">我们直面大模型领域的核心挑战（如幻觉、可靠性），并探索其与图智能的融合互促。你将研究如何让大模型更好地理解复杂关系，又如何用图结构增强大模型的逻辑与推理能力，如何探索最佳的多智能体协作网络，以及如何加速大模型推理等。这些是当前AI领域最火热、最前沿的阵地。</p></details></li></ul><ul id="28afeec3-5b90-80a8-a886-dd3190f2d86f" class="block-color-orange toggle"><li><details open=""><summary><strong>⛳ 方向三：智能社会网络分析与应用（应用旗舰）</strong></summary><p id="28afeec3-5b90-80e7-a4a8-ed20d7515a90" class="">我们将前沿理论应用于真实的社会网络。不再是纯学术研究，而是侧重于技术转化、产业落地和社会服务，包括但不限于推荐系统、在线社交网络分析、心理干预、科学探索、量化金融（甚至是生物医药）等。如果你对如何用AI解析社会现象、赋能企业发展、甚至创业实干充满兴趣，这里有丰富的工业界问题、数据集和合作机会等你来挑战。</p></details></li></ul><hr id="28afeec3-5b90-80e9-84eb-e7c452ee473b"/><h2 id="28afeec3-5b90-80be-8408-cd5d31f6569a" class="block-color-pink_background">✨ 期待这样的你</h2><ul id="28afeec3-5b90-802b-8578-f7027e99e428" class="block-color-pink bulleted-list"><li style="list-style-type:disc">🚀 积极主动，追求卓越，有探索欲，有执行力</li></ul><ul id="28afeec3-5b90-80a6-964d-c6d3ed1adba5" class="block-color-pink bulleted-list"><li style="list-style-type:disc">🎯 低调、务实，有责任心</li></ul><ul id="28afeec3-5b90-8051-b010-dbb21800ff7a" class="block-color-pink bulleted-list"><li style="list-style-type:disc">🌍 强大的英文沟通能力（日常邮件沟通大部分为英文）</li></ul><ul id="28afeec3-5b90-80a4-b594-d436c8c92f31" class="block-color-pink bulleted-list"><li style="list-style-type:disc">💫 最重要的是，你的人品和态度，远大于你的出身</li></ul><hr id="28afeec3-5b90-8054-a215-f39db43841ee"/><h2 id="28afeec3-5b90-8037-83b5-e2e889d28e75" class="block-color-purple_background">📮 如何申请</h2><figure class="block-color-red_background callout" style="white-space:pre-wrap;display:flex" id="28afeec3-5b90-8003-a984-fad9c64cb89f"><div style="width:100%"><strong>为高效沟通，请务必先阅读我们精心撰写的《ROMA Lab实验室手册》</strong>，里面事无巨细地写明了所有好坏、要求与流程，涵盖了几乎所有您可能感兴趣的问题和顾虑。阅读后，若依然感兴趣，欢迎按照里面的指引投递邮件（请勿在小红书等社交账号中私信，平日不怎么上）</div></figure><p id="28afeec3-5b90-80b6-99ce-f36e3f876482" class="">我们在这里，不招&quot;员工&quot;，而是寻找共同成长的<strong>&quot;达瓦里氏&quot;（同志）</strong>💪💪💪</p><hr id="28afeec3-5b90-80d5-83ac-ddb3917bf369"/><h2 id="28afeec3-5b90-8092-9010-c6b9ada248aa" class="block-color-gray_background">🏛️ ROMA Lab的由来</h2><p id="28afeec3-5b90-8002-a162-fd689b907441" class="">ROMA Lab，全称为 <strong>Responsible Online Media Analytics Lab（负责任在线媒体分析实验室）</strong>。&quot;ROMA&quot;一词，既指向古罗马的务实、法治与工程精神，也寓意着&quot;条条大路通罗马&quot;——我们尊重并支持每位成员探索属于自己的独特发展路径。我们致力于在人工智能与社会计算的交叉领域，以负责任的态度，开展兼具理论深度与现实价值的研究。</p><figure id="28afeec3-5b90-814f-b257-fb5db1b10ab7" class="image"><a href="%E6%8B%9B%E7%94%9F%E6%96%87%E6%A1%88%2028afeec35b90819ebf60f9c378092bdc/ROMA_Lab_%25E4%25B8%25BBLOGO_800x600.jpg"><img style="width:432px" src="%E6%8B%9B%E7%94%9F%E6%96%87%E6%A1%88%2028afeec35b90819ebf60f9c378092bdc/ROMA_Lab_%25E4%25B8%25BBLOGO_800x600.jpg"/></a><figcaption>ROMA Lab Logo: Responsible Online Media Analytics</figcaption></figure><p id="28afeec3-5b90-8075-add9-ec03e5886d5f" class=""><em>（实验室logo，由实验室leader老孙头儿亲自设计）</em></p><hr id="28afeec3-5b90-80bb-862c-cb17c183945b"/><h2 id="28afeec3-5b90-8016-94da-d244040e3d3e" class="block-color-blue_background">🎬 实验室宣传片</h2><p id="28bfeec3-5b90-805b-bb53-cabdb00bd73a" class="">【ROMA Lab招生宣传视频】 </p><figure id="28cfeec3-5b90-80f7-b3be-ecd1326431f5"><div class="source"><a href="https://www.bilibili.com/video/BV1iT4bzsEce/?share_source=copy_web&amp;vd_source=dc2c6946b0127024c2225b0e695d9a83">https://www.bilibili.com/video/BV1iT4bzsEce/?share_source=copy_web&amp;vd_source=dc2c6946b0127024c2225b0e695d9a83</a></div></figure><p id="28cfeec3-5b90-8040-b1d4-e96f825a9d13" class="">
+</p><p id="28bfeec3-5b90-803b-acf6-ce277e025e38" class="">
+</p><div id="28bfeec3-5b90-80b1-b37c-cc94fa6c8e72" class="column-list"><div id="28bfeec3-5b90-80ba-8faa-d8faf5b95536" style="width:100%" class="column"><p id="28bfeec3-5b90-80dc-b901-ef95b101be90" class=""><a href="../ROMA%20Lab%E6%8B%9B%E7%94%9F%E6%8C%87%E5%8D%97%2028afeec35b90810fb98fd8227ac8628b.html">上一页</a></p></div><div id="28bfeec3-5b90-807a-aa54-d156a7c5ae28" style="width:100%" class="column"><p id="28bfeec3-5b90-80bc-9e1e-f5a87a3c6a8f" class=""><a href="../ROMA%20Lab%E6%8B%9B%E7%94%9F%E6%8C%87%E5%8D%97%2028afeec35b90810fb98fd8227ac8628b.html">回到上级</a></p></div><div id="28bfeec3-5b90-804e-8bfd-c56bf344d0e2" style="width:100%" class="column"><p id="28bfeec3-5b90-806a-bc75-fb77701a5937" class=""><a href="%E5%AF%BC%E5%B8%88%E7%9A%84%E5%AD%A6%E6%9C%AF%E6%B0%B4%E5%B9%B3%E4%B8%8E%E8%83%BD%E5%8A%9B%E8%AF%84%E4%BC%B0%2028afeec35b908128a441fab6fa2b7737.html">下一页</a></p></div></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

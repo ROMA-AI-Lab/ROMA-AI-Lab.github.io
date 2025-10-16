@@ -30,7 +30,6 @@ body{background:var(--bg);color:var(--text)}
 }
 
 /* ===== Avatars ===== */
-/* real image avatars keep your existing rule */
 .avatar img,
 img.avatar{
     width: 100%;
@@ -59,31 +58,21 @@ img.avatar{
     pointer-events:none;
 }
 
-/* ===== Publication thumbnails ===== */
-.pub-thumb{
-    width:130px; height:90px;
+/* ===== Project cover (NEW, for project cards & gallery) ===== */
+.project-cover{
+    width:100%;
+    aspect-ratio: 16/9;
     object-fit:cover;
-    border-radius:10px;
-    border:1px solid var(--border);
-    background: var(--panel-2);
+    border-bottom:1px solid var(--border);
     display:block;
 }
-
-/* glass–matte thumbnail placeholder */
-.pub-thumb.placeholder{
-    position: relative;
+.project-cover.placeholder{
+    position:relative;
     background: linear-gradient(180deg, var(--glass-bg), color-mix(in oklab, var(--panel-2) 85%, transparent));
-    border:1px solid var(--glass-border);
+    border-bottom:1px solid var(--glass-border);
     box-shadow: var(--glass-shadow) inset 0 1px 0 var(--glass-highlight);
     backdrop-filter: blur(10px) saturate(120%);
     -webkit-backdrop-filter: blur(10px) saturate(120%);
-}
-.pub-thumb.placeholder::after{
-    content:"";
-    position:absolute; inset:0;
-    background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,0) 45%);
-    border-radius:inherit;
-    pointer-events:none;
 }
 
 /* ----- Header / Nav ----- */
@@ -91,17 +80,30 @@ header.site-header{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);ba
 .nav{display:flex;align-items:center;gap:16px;justify-content:space-between;padding:14px 0}
 .brand{display:flex;align-items:center;gap:12px;font-weight:700}
 .brand svg{width:28px;height:28px}
-.nav-links{display:flex;gap:8px;flex-wrap:wrap}
-.nav-links a{padding:8px 12px;border-radius:999px;border:1px solid transparent;color:var(--muted)}
-.nav-links a.active,.nav-links a:hover{color:var(--text);border-color:var(--border);background:var(--panel-2)}
-.controls{display:flex;gap:8px;align-items:center}
+.nav-links-inline{display:flex;gap:8px;flex-wrap:wrap} /* FIX: 给桌面端导航加类名 */
+.nav-links-inline a{padding:8px 12px;border-radius:999px;border:1px solid transparent;color:var(--muted)}
+.nav-links-inline a.active,.nav-links-inline a:hover{color:var(--text);border-color:var(--border);background:var(--panel-2)}
+.controls{display:flex;gap:8px;align-items:center; padding-right:max(10px, env(safe-area-inset-right));} /* FIX: 右侧安全留白 */
 .btn,button,.chip{display:inline-flex;align-items:center;gap:8px;border-radius:12px;border:1px solid var(--border);padding:10px 14px;background:var(--panel);color:var(--text);cursor:pointer}
 .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#0b1020;border:0}
 .btn.ghost{background:transparent}
 .btn:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
 
-/* ----- Hero ----- */
+/* 移动端 menu 按钮更靠左一点，避免被滚动条挡住 */
+#menu{display:none;margin-right:12px;} /* FIX */
+@media (max-width:720px){ #menu{display:inline-flex;} }
 
+/* ----- Mobile drawer (NEW) ----- */
+.nav-drawer{position:fixed;top:0;right:0;bottom:0;width:min(86vw,360px);background:var(--panel);border-left:1px solid var(--border);transform:translateX(100%);transition:transform .25s ease;z-index:60;display:flex;flex-direction:column;padding:16px}
+.nav-drawer .title{font-weight:700;margin-bottom:10px}
+.nav-drawer a{padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--panel-2);color:var(--text);margin-bottom:8px}
+.nav-drawer .spacer{flex:1}
+.nav-drawer .footer{display:flex;gap:8px;flex-wrap:wrap}
+.nav-drawer.show{transform:none}
+.nav-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;visibility:hidden;transition:opacity .2s ease;z-index:59;backdrop-filter:none;} /* FIX: 去掉强模糊，只做半透明遮罩 */
+.nav-overlay.show{opacity:1;visibility:visible}
+
+/* ----- Hero ----- */
 .hero{position:relative;overflow:hidden;background:
         radial-gradient(1200px 600px at 50% -10%, color-mix(in oklab,var(--brand) 18%, transparent) 0%, transparent 60%),
         linear-gradient(180deg, var(--panel), var(--bg));
@@ -118,7 +120,6 @@ header.site-header{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);ba
 .metric{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px}
 .metric .k{font-size:24px;font-weight:800}
 .metric .k sub{font-size:12px;color:var(--muted);margin-left:4px}
-
 
 /* ----- Sections ----- */
 section{padding:64px 0;border-bottom:1px solid var(--border)}
@@ -138,34 +139,12 @@ section:last-of-type{border-bottom:0}
 .card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
 .card .body{padding:16px}
 .card .meta{color:var(--muted);font-size:14px}
-/*.avatar{width:100%;aspect-ratio:4/3;background:*/
-/*        radial-gradient(40% 60% at 30% 30%, color-mix(in oklab,var(--brand) 22%,transparent), transparent 60%),*/
-/*        radial-gradient(60% 80% at 70% 20%, color-mix(in oklab,var(--brand-2) 22%,transparent), transparent 70%),*/
-/*        linear-gradient(135deg, #1a233d, #0e1430)}*/
-/* Neutral blank avatar background (no question mark, no pattern) */
-.avatar{
-    width: 100%;
-    aspect-ratio: 4/3;
-    background: var(--panel-2);    /* ← clean, blank */
-    border-bottom: 1px solid var(--border);
-}
-.avatar img,
-img.avatar{
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    aspect-ratio: 4/3;
-    border-bottom: 1px solid var(--border);
-    display: block;
-}
 
-.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.tag{font-size:12px;padding:6px 8px;border:1px solid var(--border);border-radius:999px;color:var(--muted);background:var(--panel)}
-.kbd{font-family:ui-monospace,Menlo,Consolas,monospace;background:var(--panel-2);border:1px solid var(--border);padding:2px 6px;border-radius:6px}
+/* 统一按钮行高度，确保 Email / Profile 对齐（FIX） */
+.actions-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center;min-height:42px}
 
-/* ----- Publications (rich cards) ----- */
-.pub-item{display:grid;grid-template-columns:auto 1fr auto;gap:12px;padding:14px;border:1px solid var(--border);border-radius:14px;background:var(--panel)}
-.pub-item .year{font-weight:700;color:var(--brand);min-width:44px;text-align:center}
+/* ----- Publication (no thumbnails on home) ----- */
+.pub-item{display:grid;grid-template-columns:1fr auto;gap:12px;padding:14px;border:1px solid var(--border);border-radius:14px;background:var(--panel)}
 .pub-item .title{font-weight:700}
 .pub-item .authors,.pub-item .venue{color:var(--muted);font-size:14px}
 .pub-actions{display:flex;gap:8px;align-items:center}
@@ -173,81 +152,12 @@ img.avatar{
 .bibtex{display:none;margin-top:8px;padding:10px;border-radius:10px;background:#020617;color:#e5e7eb;overflow:auto}
 .light .bibtex{background:#0f172a;color:#e5e7eb}
 
-/* Rich publication layout */
-.pub-rich{grid-template-columns:140px 1fr auto;align-items:start}
-@media (max-width:680px){.pub-rich{grid-template-columns:1fr}}
-.pub-left{display:flex;align-items:flex-start;justify-content:center}
-.pub-thumb{width:130px;height:90px;object-fit:cover;border-radius:10px;border:1px solid var(--border);background:var(--panel-2)}
-.pub-mid .title{font-weight:700;margin-bottom:4px}
-.pub-abstract{margin:10px 0 0;color:var(--text)}
-
-/* Publication thumbnail (real image) */
-.pub-thumb{
-    width: 130px;
-    height: 90px;
-    object-fit: cover;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    background: var(--panel-2);
-    display: block;
-}
-
-/* When there's no image, we render a blank box of the same size */
-.pub-thumb.placeholder{
-    width: 130px;
-    height: 90px;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    background: var(--panel-2);   /* ← clean, blank */
-}
-
-
-/* ----- Scrollable containers & sliders ----- */
-.h-scroll{
-    display:flex;
-    gap:10px;
-    padding:0;
-    margin:0;
-    list-style:none;
-    overflow-x:auto;
-    overflow-y:hidden;
-    scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;
-    padding-bottom:6px;
-}
-.h-scroll > *{scroll-snap-align:start;min-width:clamp(260px,40vw,420px)}
+/* ----- Scroll containers ----- */
+.v-scroll{max-height:520px;overflow:auto;padding-right:4px}
+#news-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .news-card .body{display:flex;gap:10px;align-items:flex-start}
 .news-date{flex:0 0 auto;font-size:12px;color:var(--muted);border:1px solid var(--border);border-radius:999px;padding:4px 8px;background:var(--panel-2)}
 .news-text{flex:1}
-
-/* Make grid sections behave as horizontal carousels when .h-scroll is applied */
-.grid.h-scroll{display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-.grid.h-scroll > .card{flex:0 0 auto;scroll-snap-align:start;min-width:clamp(260px,32vw,360px)}
-#research-grid.grid.h-scroll > .card{min-width:clamp(280px,36vw,420px)}
-.grid.h-scroll{grid-template-columns:unset !important}
-
-
-/* ===== Vertical scroll containers (shared) ===== */
-.v-scroll{
-    max-height: 520px;           /* adjust to taste */
-    overflow: auto;
-    padding-right: 4px;          /* room for scrollbar */
-}
-
-/* NEWS as a vertical list */
-#news-list{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 10px;
-}
-.news-card .body{display:flex; gap:10px; align-items:flex-start}
-.news-date{flex:0 0 auto; font-size:12px; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:4px 8px; background:var(--panel-2)}
-.news-text{flex:1}
-
-
-
 
 /* ----- Footer ----- */
 footer{padding:36px 0;color:var(--muted)}
@@ -259,3 +169,23 @@ footer{padding:36px 0;color:var(--muted)}
 :focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:8px}
 .hidden{display:none !important}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ---------- Markdown prose (for custom .md sections) ---------- */
+.prose { margin-top: 16px; line-height: 1.7; }
+.prose h1,.prose h2,.prose h3,.prose h4{ margin: 1.2em 0 .5em; line-height:1.3 }
+.prose h1{ font-size:clamp(22px,3vw,28px) }
+.prose h2{ font-size:clamp(20px,2.6vw,24px) }
+.prose h3{ font-size:clamp(18px,2.2vw,20px) }
+.prose p{ margin:.6em 0; color:var(--text) }
+.prose a{ color:inherit; text-decoration:underline }
+.prose ul,.prose ol{ padding-left:1.2em; margin:.6em 0 }
+.prose li{ margin:.25em 0 }
+.prose img{ max-width:100%; border:1px solid var(--border); border-radius:12px; margin:.6em 0 }
+.prose code{ font-family:ui-monospace,Menlo,Consolas,monospace; background:var(--panel-2); padding:.15em .4em; border-radius:6px; border:1px solid var(--border) }
+.prose pre.code{ background:var(--panel-2); border:1px solid var(--border); padding:12px; border-radius:12px; overflow:auto }
+.prose hr{ border:0; border-top:1px solid var(--border); margin:1em 0 }
+
+
+/* 标签容器与胶囊样式 */
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.tag{font-size:12px;padding:6px 8px;border:1px solid var(--border);border-radius:999px;color:var(--muted);background:var(--panel)}

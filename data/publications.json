@@ -1,0 +1,17 @@
+{
+  "items": [
+    {
+      "title": "All in One: Multi-Task Prompting for Graph Neural Networks.",
+      "authors": ["Xiangguo Sun", "Hong Cheng", "Jia Li", "Bo Liu", "Jihong Guan"],
+      "venue": "KDD 2023 (Best Research Paper)",
+      "year": 2023,
+      "type": "Conference",
+      "pdf": "#",
+      "code": "#",
+      "image": "assets/papers/prog-thumb.png",
+      "abstract": "We introduce a multi-task prompting method for graphs, unifying graph and language prompts with meta-learned initialization across tasks.",
+      "bibtex": "@inproceedings{sun2023all,\n  title={All in One: Multi-Task Prompting for Graph Neural Networks},\n  author={Sun, Xiangguo and Cheng, Hong and Li, Jia and Liu, Bo and Guan, Jihong},\n  booktitle={Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining},\n  year={2023}\n}",
+      "featured": true
+    }
+  ]
+}

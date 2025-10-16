@@ -1,0 +1,712 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>毕业要求</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(134, 131, 126, 1);
+	fill: rgba(134, 131, 126, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(134, 131, 126, 1);
+	fill: rgba(134, 131, 126, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="28afeec3-5b90-8176-bfe2-e167da30d2b7" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/webb3.jpg" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🧤</span></div><h1 class="page-title">毕业要求</h1><p class="page-description"></p></header><div class="page-body"><p id="28afeec3-5b90-81ae-b3a8-f9766d4d0cee" class=""><em><mark class="highlight-gray">最后更新 </mark></em><em><mark class="highlight-gray"><time>@October 13, 2025</time></mark></em></p><p id="28bfeec3-5b90-8067-b774-ee9131cedc1f" class="">
+</p><p id="28bfeec3-5b90-804e-8096-ec2850950183" class="">
+</p><div id="28afeec3-5b90-81ff-b8d2-e713c124b764" class="collection-content"><h4 class="collection-title">评分表</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><img src="https://www.notion.so/icons/hashtag_gray.svg" style="width:14px;height:14px;display:block"/></span>序号</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/font_gray.svg" style="width:14px;height:14px;display:block"/></span>条件</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/hashtag_gray.svg" style="width:14px;height:14px;display:block"/></span>score</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/description_gray.svg" style="width:14px;height:14px;display:block"/></span>note</th></tr></thead><tbody><tr id="28afeec3-5b90-81f7-bcd6-d1de03eb1bac"><td class="cell-Be^S">1</td><td class="cell-title"><a href="%E6%AF%95%E4%B8%9A%E8%A6%81%E6%B1%82%2028afeec35b908176bfe2e167da30d2b7/%E8%AF%84%E5%88%86%E8%A1%A8%2028afeec35b9081ffb8d2e713c124b764/%E5%AE%8C%E6%88%90%E5%BC%80%E9%A2%98%E7%AD%94%E8%BE%A9%E5%92%8C%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87%2028afeec35b9081f7bcd6d1de03eb1bac.html">完成开题答辩和毕业论文</a></td><td class="cell-@vdb">0</td><td class="cell-_o]r">必须要满足的条件</td></tr><tr id="28afeec3-5b90-8168-96d8-d5cb1aaa3a5c"><td class="cell-Be^S">2</td><td class="cell-title"><a href="%E6%AF%95%E4%B8%9A%E8%A6%81%E6%B1%82%2028afeec35b908176bfe2e167da30d2b7/%E8%AF%84%E5%88%86%E8%A1%A8%2028afeec35b9081ffb8d2e713c124b764/%E7%AC%AC%E4%B8%80%E4%BD%9C%E8%80%85%E5%8F%91%E8%A1%A8%E9%AB%98%E6%B0%B4%E5%B9%B3%E8%AE%BA%E6%96%87%2028afeec35b90816896d8d5cb1aaa3a5c.html">第一作者发表高水平论文</a></td><td class="cell-@vdb">6</td><td class="cell-_o]r"></td></tr><tr id="28afeec3-5b90-81b9-b4e7-d658480f7dc6"><td class="cell-Be^S">3</td><td class="cell-title"><a href="%E6%AF%95%E4%B8%9A%E8%A6%81%E6%B1%82%2028afeec35b908176bfe2e167da30d2b7/%E8%AF%84%E5%88%86%E8%A1%A8%2028afeec35b9081ffb8d2e713c124b764/%E4%BB%A5%E8%B4%9F%E8%B4%A3%E4%BA%BA%E7%9A%84%E8%BA%AB%E4%BB%BD%E5%8F%82%E4%B8%8E%E4%BC%81%E4%B8%9A%E9%A1%B9%E7%9B%AE%2028afeec35b9081b9b4e7d658480f7dc6.html">以负责人的身份参与企业项目</a></td><td class="cell-@vdb">5</td><td class="cell-_o]r">独当一面，担当主要负责人</td></tr><tr id="28afeec3-5b90-8126-b008-f709f479bd64"><td class="cell-Be^S">4</td><td class="cell-title"><a href="%E6%AF%95%E4%B8%9A%E8%A6%81%E6%B1%82%2028afeec35b908176bfe2e167da30d2b7/%E8%AF%84%E5%88%86%E8%A1%A8%2028afeec35b9081ffb8d2e713c124b764/%E4%B8%BA%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%9B%A2%E9%98%9F%E5%81%9A%E8%BF%87%E7%AA%81%E5%87%BA%E8%B4%A1%E7%8C%AE%2028afeec35b908126b008f709f479bd64.html">为实验室团队做过突出贡献</a></td><td class="cell-@vdb">4</td><td class="cell-_o]r">活动有力的组织者；团队有力的促进者；实验室热心的维护者；</td></tr><tr id="28afeec3-5b90-811b-8a97-d9897f322c4b"><td class="cell-Be^S">5</td><td class="cell-title"><a href="%E6%AF%95%E4%B8%9A%E8%A6%81%E6%B1%82%2028afeec35b908176bfe2e167da30d2b7/%E8%AF%84%E5%88%86%E8%A1%A8%2028afeec35b9081ffb8d2e713c124b764/%E5%8F%82%E4%B8%8E%E5%AF%BC%E5%B8%88%E4%B9%A6%E7%B1%8D%E6%92%B0%E5%86%99%2028afeec35b90811b8a97d9897f322c4b.html">参与导师书籍撰写</a></td><td class="cell-@vdb">4</td><td class="cell-_o]r"></td></tr><tr id="28afeec3-5b90-81cb-86f2-f63be7afc011"><td class="cell-Be^S">6</td><td class="cell-title"><a href="%E6%AF%95%E4%B8%9A%E8%A6%81%E6%B1%82%2028afeec35b908176bfe2e167da30d2b7/%E8%AF%84%E5%88%86%E8%A1%A8%2028afeec35b9081ffb8d2e713c124b764/%E9%A1%B6%E5%B0%96%E7%A7%91%E6%8A%80%E7%AB%9E%E8%B5%9B%E8%8E%B7%E5%A5%96%2028afeec35b9081cb86f2f63be7afc011.html">顶尖科技竞赛获奖</a></td><td class="cell-@vdb">4</td><td class="cell-_o]r">第一名、一等奖、金牌(我作指导教师)</td></tr><tr id="28afeec3-5b90-811a-8703-db22a6a6fa0c"><td class="cell-Be^S">7</td><td class="cell-title"><a href="%E6%AF%95%E4%B8%9A%E8%A6%81%E6%B1%82%2028afeec35b908176bfe2e167da30d2b7/%E8%AF%84%E5%88%86%E8%A1%A8%2028afeec35b9081ffb8d2e713c124b764/%E7%AC%AC%E4%B8%80%E5%AE%9E%E9%AA%8C%E5%91%98%E5%8F%82%E4%B8%8E%E8%AE%BA%E6%96%87%E5%AE%9E%E9%AA%8C%EF%BC%88%E4%BA%8C%E4%BD%9C%E5%8F%91%E8%A1%A8%E8%AE%BA%E6%96%87%EF%BC%89%2028afeec35b90811a8703db22a6a6fa0c.html">第一实验员参与论文实验（二作发表论文）</a></td><td class="cell-@vdb">4</td><td class="cell-_o]r">主要针对入学第二年或高年级学生</td></tr><tr id="28afeec3-5b90-81ee-b01c-c781b64d430b"><td class="cell-Be^S">8</td><td class="cell-title"><a href="%E6%AF%95%E4%B8%9A%E8%A6%81%E6%B1%82%2028afeec35b908176bfe2e167da30d2b7/%E8%AF%84%E5%88%86%E8%A1%A8%2028afeec35b9081ffb8d2e713c124b764/%E7%AC%AC%E4%BA%8C%E5%AE%9E%E9%AA%8C%E5%91%98%E5%8F%82%E4%B8%8E%E8%AE%BA%E6%96%87%E5%AE%9E%E9%AA%8C%EF%BC%88%E4%B8%89%E4%BD%9C%E5%8F%91%E8%A1%A8%E8%AE%BA%E6%96%87%EF%BC%89%2028afeec35b9081eeb01cc781b64d430b.html">第二实验员参与论文实验（三作发表论文）</a></td><td class="cell-@vdb">2</td><td class="cell-_o]r">主要针对入学第一年或低年级学生</td></tr><tr id="28afeec3-5b90-81d6-b848-f3c4c8fd7607"><td class="cell-Be^S">9</td><td class="cell-title"><a href="%E6%AF%95%E4%B8%9A%E8%A6%81%E6%B1%82%2028afeec35b908176bfe2e167da30d2b7/%E8%AF%84%E5%88%86%E8%A1%A8%2028afeec35b9081ffb8d2e713c124b764/%E8%8E%B7%E5%BE%97%E4%B8%80%E5%AE%B6%E4%BC%9F%E5%A4%A7%E5%85%AC%E5%8F%B8%20%E5%A4%A7%E5%AD%A6%E7%9A%84offer%2028afeec35b9081d6b848f3c4c8fd7607.html">获得一家伟大公司/大学的offer</a></td><td class="cell-@vdb">5</td><td class="cell-_o]r">MSRA、达摩院、华为、腾讯etc<br/>MIT, Stanford, top international university</td></tr></tbody></table><br/><br/></div><p id="28afeec3-5b90-8132-ba6c-c9fdd10e01a0" class="">
+</p><h1 id="28afeec3-5b90-80f4-984b-e0bb0e3e8402" class="block-color-blue_background">📋 毕业要求概览</h1><figure class="block-color-blue_background callout" style="white-space:pre-wrap;display:flex" id="28afeec3-5b90-80a2-8c8d-e2df45cf621f"><div style="width:100%"><strong>📌 高水平论文定义</strong><ul id="28afeec3-5b90-8081-8a0a-d0e36ef8f271" class="bulleted-list"><li style="list-style-type:disc"><strong>CCF A类：</strong>CCF A类会议/期刊</li></ul><ul id="28afeec3-5b90-806f-b0ad-ef716219aa82" class="bulleted-list"><li style="list-style-type:disc"><strong>SCI顶级期刊：</strong>SCI JCR Q1区 且同时为中科院分区1区Top，且口碑较好的期刊，不在任何机构的期刊预警名录中，也不曾在任何机构的期刊预警名录中</li></ul><ul id="28afeec3-5b90-803b-88c6-ed3e3e3e28c5" class="bulleted-list"><li style="list-style-type:disc"><strong>国际知名会议：</strong>其他得到学术界普遍尊重的高水平期刊会议如ICLR、WSDM、ICDM、EMNLP、CIKM、IEEE Trans等</li></ul><ul id="28afeec3-5b90-8088-85c8-d94f6843282e" class="bulleted-list"><li style="list-style-type:disc"><strong>导师认可的优秀工作：</strong>不属于上述期刊会议的论文，但导师觉得工作做得很棒（只是没遇到伯乐审稿人），亦可算作是导师心目中的高水平论文（但我劝你别太自信，因为你很难打动我，这一条的bar其实要比上面三条更高）</li></ul></div></figure><h2 id="28afeec3-5b90-8034-a820-e87f75f90981" class="block-color-red_background">🎓 硕士研究生毕业标准</h2><p id="28afeec3-5b90-80fe-a3ab-efca15cd5576" class=""><strong>以下条件需同时满足：</strong></p><ul id="28afeec3-5b90-803a-b6ec-c737a3663f89" class="block-color-red bulleted-list"><li style="list-style-type:disc">✅ 满足条件1</li></ul><ul id="28afeec3-5b90-808c-a19a-f434b337a46f" class="block-color-red bulleted-list"><li style="list-style-type:disc">✅ Total Score &gt; 10分</li></ul><h2 id="28afeec3-5b90-80c2-8bfb-ec247c8a8be8" class="block-color-red_background">🎓 博士研究生毕业标准</h2><p id="28afeec3-5b90-80ac-bd2c-fdd8f2681b93" class=""><strong>以下条件需同时满足：</strong></p><ul id="28afeec3-5b90-808d-9a99-e51d390dec5b" class="block-color-red bulleted-list"><li style="list-style-type:disc">✅ 满足条件1</li></ul><ul id="28afeec3-5b90-80e4-839f-df2461c0517c" class="block-color-red bulleted-list"><li style="list-style-type:disc">✅ Total Score达到20分</li></ul><ul id="28afeec3-5b90-80ed-8f3c-cbd4e74c123e" class="block-color-red bulleted-list"><li style="list-style-type:disc">✅ 以第一作者至少发表2篇高水平论文</li></ul><h2 id="28afeec3-5b90-804c-9e9a-ff4275925bfd" class="block-color-orange_background">⚠️ 特殊情况说明</h2><ul id="28afeec3-5b90-805f-bf73-e3ff5818608b" class="block-color-orange_background toggle"><li><details open=""><summary><strong>🌟 特殊情况学生培养方案</strong></summary><p id="28afeec3-5b90-80f9-acb2-fab09ba512fa" class="">有特殊情况的学生（例如：身体功能受限、专项计划、基层边疆、军队退役学员、道德模范、见义勇为、奥运冠军、家庭贫困、精神健康等），不受上述毕业条件的限制，请在报考前第一时间与导师团队沟通，实验室会和申请人共同制定专属的培养方案，培养方案一人一议。</p></details></li></ul><ul id="28afeec3-5b90-8047-8ee6-d6ae679da20b" class="block-color-teal_background toggle"><li><details open=""><summary><strong>🏆 最佳论文奖直接毕业政策</strong></summary><p id="28afeec3-5b90-809d-bfbc-cf23a18fcdfe" class="">获得ICML、NeurIPS、ICLR、KDD、ICDE、VLDB、SIGMOD、SIGIR、WSDM、ICDM、ACL、EMNLP、RecSys、CIKM、WWW、AAAI、IJCAI等国际顶尖会议的最佳论文奖(Best Paper at Any Track)的学生，无论是否达到上述毕业条件，亦无论是否达到培养年限，可直接申请毕业。</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28afeec3-5b90-8055-87a3-e803557efddf"><div style="width:100%"><strong>📝 注意事项：</strong><ul id="28afeec3-5b90-802e-8e4a-fb5de91553f7" class="bulleted-list"><li style="list-style-type:disc">ICLR等会议的spotlight不是best paper award，但亦是很高的荣誉</li></ul><ul id="28afeec3-5b90-8078-b15a-c6e64c740573" class="bulleted-list"><li style="list-style-type:disc">Best Paper Runner UP、Best Paper Nominated，均不是best paper，但亦是很高的荣誉（可按best paper对待）</li></ul><ul id="28afeec3-5b90-8063-834f-c26a3595ca62" class="bulleted-list"><li style="list-style-type:disc">ACL等会议的findings论文不是best paper award，一般按short paper对待</li></ul></div></figure></details></li></ul><p id="28bfeec3-5b90-8039-8ed3-d50f1ff3c4a7" class="">
+</p><p id="28bfeec3-5b90-803e-bcae-c13cbb6cb289" class="">
+</p><hr id="28bfeec3-5b90-80e3-a2db-da0bf75de5c6"/><div id="28bfeec3-5b90-8062-a5ef-da190af4fe73" class="column-list"><div id="28bfeec3-5b90-80cd-91d3-cfee2bc8e41d" style="width:100%" class="column"><p id="28bfeec3-5b90-8085-81b1-d5f503cb9cc4" class=""><a href="%E6%B4%A5%E8%B4%B4%E4%B8%8E%E5%AE%9E%E4%B9%A0(Stipends%20&amp;%20Internships)%2028afeec35b90817b97addd7d17870992.html">上一页</a></p></div><div id="28bfeec3-5b90-8022-9ec5-e5cb1d8c7a47" style="width:100%" class="column"><p id="28bfeec3-5b90-80df-b6e8-e7be501130cc" class=""><a href="../ROMA%20Lab%E5%AE%9E%E9%AA%8C%E5%AE%A4%E6%89%8B%E5%86%8C%EF%BC%882025%E5%B9%B4%E7%89%88%EF%BC%89%2028afeec35b9080f98051d9690a2aa63e.html">回到上级</a></p></div><div id="28bfeec3-5b90-80ad-87c7-cb1e61858a5d" style="width:100%" class="column"><p id="28bfeec3-5b90-80d5-8113-e5945cce00d7" class=""><a href="%E5%9F%B9%E5%85%BB%E8%AE%A1%E5%88%92%2028afeec35b90817c9813c1c79ddb7cbd.html">下一页</a></p></div></div><p id="28bfeec3-5b90-803a-86f9-c0883f18f61f" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
