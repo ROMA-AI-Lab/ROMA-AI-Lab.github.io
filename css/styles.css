@@ -189,3 +189,23 @@ footer{padding:36px 0;color:var(--muted)}
 /* 标签容器与胶囊样式 */
 .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .tag{font-size:12px;padding:6px 8px;border:1px solid var(--border);border-radius:999px;color:var(--muted);background:var(--panel)}
+
+.pub-actions a[href=""] { opacity: .5; pointer-events: none; }
+
+/* 首页 publication 区块（例如 #pub-list 在首页） */
+#pub-list .pub-item .title {
+    font-size: 0.95rem;
+}
+
+/* 独立页（pages/publications.html） */
+#pub-all-list .pub-item .title {
+    font-size: 1rem;
+}
+
+
+
+@media (max-width: 768px) {
+    .pub-item .title {
+        font-size: 0.9rem;
+    }
+}

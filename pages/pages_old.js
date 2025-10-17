@@ -1,6 +1,5 @@
 /* ROMA Lab — standalone pages shared script (no deps) */
 /* ============ Common utilities (once) ============ */
-
 // 获取 ?slug=xxx
 function getQueryParam(name){
     const u = new URL(location.href);
@@ -49,316 +48,6 @@ async function loadDataForPages(){
     }
 }
 
-
-// DOM helpers
-const $  = (sel, root=document) => root.querySelector(sel);
-const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
-const fmtDate = d => isNaN(new Date(d)) ? '' : new Date(d).toLocaleDateString();
-
-// 图片占位回退
-function applyImageFallbacks(root=document){
-    const imgs = root.querySelectorAll('img[data-fallback]');
-    imgs.forEach(img=>{
-        const kind = img.dataset.fallback;
-        if (!img.getAttribute('src')){
-            replace(img, kind); return;
-        }
-        img.addEventListener('error', ()=> replace(img, kind), {once:true});
-    });
-    function replace(img, kind){
-        const repl = document.createElement('div');
-        if (kind === 'avatar'){
-            repl.className = 'avatar placeholder';
-            repl.setAttribute('role','img');
-            if (img.alt) repl.setAttribute('aria-label', img.alt);
-        } else {
-            repl.className = 'project-cover placeholder';
-            repl.setAttribute('aria-hidden','true');
-        }
-        img.replaceWith(repl);
-    }
-}
-
-/* ============ Data loading (JSON) ============ */
-async function loadJSON(path, fallback){
-    try{
-        const res = await fetch(path, {cache:'no-store'});
-        if (!res.ok) throw new Error(res.statusText);
-        return await res.json();
-    }catch(e){
-        console.error('Failed to load', path, e);
-        return fallback;
-    }
-}
-
-async function loadAll(){
-    const [settings, news, people, projects, pubs, gallery] = await Promise.all([
-        loadJSON('../data/settings.json', {}),
-        loadJSON('../data/news.json', {items:[]}),
-        loadJSON('../data/people.json', {items:[]}),
-        loadJSON('../data/projects.json', {items:[]}),
-        loadJSON('../data/publications.json', {items:[]}),
-        loadJSON('../data/gallery.json', {items:[]})
-    ]);
-
-    return {
-        settings,
-        news: Array.isArray(news) ? news : (news.items || []),
-        people: (Array.isArray(people) ? people : (people.items || [])).map(p=>({ ...p, slug: p.slug || slugify(p.name) })),
-        projects: (Array.isArray(projects) ? projects : (projects.items || [])).map(p=>({ ...p, slug: p.slug || slugify(p.title) })),
-        publications: Array.isArray(pubs) ? pubs : (pubs.items || []),
-        gallery: Array.isArray(gallery) ? gallery : (gallery.items || []),
-    };
-}
-
-/* ============ BibTeX priority loader (publications) ============ */
-
-async function loadPublicationsUnified(){
-    // 允许 settings.json 指定路径
-    let settings = {};
-    try{
-        const r = await fetch('../data/settings.json', {cache:'no-store'});
-        if (r.ok) settings = await r.json();
-    }catch{}
-
-    const bibPath = settings.publications_bib || '../data/publications.bib';
-
-    // 1) 先尝试 bib
-    try{
-        const r = await fetch(bibPath, {cache:'no-store'});
-        if (r.ok){
-            const bibText = await r.text();
-            const pubs = parseBibTeXToPubs(bibText) || [];
-            console.info('[pubs] loaded from BibTeX:', pubs.length);
-            return pubs;
-        }
-    }catch(e){
-        console.warn('[pubs] bib load failed:', e);
-    }
-
-    // 2) 回退 publications.json
-    try{
-        const r = await fetch('../data/publications.json', {cache:'no-store'});
-        if (r.ok){
-            const j = await r.json();
-            const pubs = Array.isArray(j) ? j : (j.items || []);
-            console.info('[pubs] loaded from JSON:', pubs.length);
-            return pubs;
-        }
-    }catch(e){
-        console.warn('[pubs] json load failed:', e);
-    }
-
-    console.warn('[pubs] no publications loaded');
-    return [];
-}
-
-
-
-/* ============ Lightweight BibTeX parser ============ */
-function parseBibTeXToPubs(bibText){
-    if (!bibText || typeof bibText !== 'string') return [];
-
-    // 按条目切分：@type{key, ...}
-    const entryRe = /@(\w+)\s*\{\s*([^,]+)\s*,([\s\S]*?)\}\s*(?=@|\s*$)/g;
-    const pubs = [];
-    let m;
-    while ((m = entryRe.exec(bibText)) !== null){
-        const typeRaw = m[1].trim();
-        const key = m[2].trim();
-        const body = m[3].trim();
-
-        // 顶层逗号安全切分 k = {...} 或 "..."
-        const fields = {};
-        const parts = splitTopLevel(body, ',');
-        for (const part of parts){
-            const kv = part.split(/=(.+)/); // 只分第一个 "="
-            if (kv.length < 2) continue;
-            const k = kv[0].trim().toLowerCase();        // ← 统一小写
-            let v = kv[1].trim();
-
-            // 去掉收尾逗号
-            if (v.endsWith(',')) v = v.slice(0, -1).trim();
-
-            // 去掉外层引号/花括号（保留内容）
-            if ((v.startsWith('{') && v.endsWith('}')) || (v.startsWith('"') && v.endsWith('"'))){
-                v = v.slice(1, -1).trim();
-            }
-            // 兼容多行，合并空白
-            v = v.replace(/\s+\n\s+/g, ' ').replace(/\s{2,}/g, ' ').trim();
-
-            fields[k] = v;
-        }
-
-        pubs.push(mapBibToPub(typeRaw, key, fields));
-    }
-    return pubs;
-
-    // 在顶层分隔符切分（忽略花括号/引号内的分隔符）
-    function splitTopLevel(s, sepChar=','){
-        const out = [];
-        let buf = '';
-        let depth = 0;
-        let inQuote = false;
-        for (let i=0;i<s.length;i++){
-            const c = s[i];
-            if (c === '"' && s[i-1] !== '\\') inQuote = !inQuote;
-            else if (!inQuote){
-                if (c === '{') depth++;
-                else if (c === '}') depth = Math.max(0, depth-1);
-            }
-            if (c === sepChar && !inQuote && depth === 0){
-                if (buf.trim()) out.push(buf.trim());
-                buf = '';
-            } else {
-                buf += c;
-            }
-        }
-        if (buf.trim()) out.push(buf.trim());
-        return out;
-    }
-}
-
-
-
-
-// 解析 key = {…} / "…" / 裸值
-function parseBibFields(body){
-    const out = {};
-    let i = 0, k = '', v = '', mode = 'key', depth = 0;
-
-    const commit = ()=>{
-        if (!k) return;
-        out[k.trim().toLowerCase()] = (v || '').trim().replace(/,$/,'');
-        k = ''; v = ''; mode = 'key'; depth = 0;
-    };
-
-    while (i < body.length){
-        const ch = body[i];
-
-        if (mode === 'key'){
-            if (ch === '=') mode = 'preval';
-            else if (ch === '}') break;
-            else k += ch;
-        }
-        else if (mode === 'preval'){
-            if (ch === '{'){ mode = 'brace'; depth = 1; v=''; }
-            else if (ch === '"'){ mode = 'quote'; v=''; }
-            else if (/\S/.test(ch)){ mode = 'bare'; v = ch; }
-        }
-        else if (mode === 'brace'){
-            if (ch === '{') depth++;
-            if (ch === '}'){
-                depth--;
-                if (depth === 0){ commit(); i++; continue; }
-            }
-            v += ch;
-        }
-        else if (mode === 'quote'){
-            if (ch === '"' && body[i-1] !== '\\'){ commit(); i++; continue; }
-            v += ch;
-        }
-        else if (mode === 'bare'){
-            if (ch === ','){ commit(); }
-            else if (ch === '}'){ commit(); break; }
-            else { v += ch; }
-        }
-        i++;
-    }
-
-    // 去除外层大括号
-    for (const kk in out){
-        const vv = out[kk].trim();
-        out[kk] = (vv.startsWith('{') && vv.endsWith('}')) ? vv.slice(1,-1) : vv;
-    }
-    return out;
-}
-
-// 将 "Last, First Middle" → "First Middle Last"
-// 若无逗号或是组织名（大括号包裹），保持原样
-function normalizeAuthorName(raw=''){
-    let s = String(raw).trim();
-    // 去掉外围大括号（例如 {ROMA Lab}），仅去一层
-    const wasBraced = /^\{.*\}$/.test(s);
-    if (wasBraced) s = s.slice(1, -1).trim();
-
-    if (s.includes(',')){
-        const parts = s.split(',').map(t => t.trim()).filter(Boolean);
-        const last = parts.shift();                    // 第一段是 last name
-        const rest = parts.join(' ').trim();           // 其余合并成 first/middle
-        s = (rest ? (rest + ' ' + last) : last).replace(/\s+/g, ' ');
-    } else {
-        s = s.replace(/\s+/g, ' ');
-    }
-    return s;
-}
-
-
-function mapBibToPub(typeRaw, key, f){
-    // authors：支持 author/authors，用 " and " 拆分，数组化
-    // authors：支持 author/authors，用 " and " 拆分，并将 "Last, First" → "First Last"
-    const authorField = f.author || f.authors || '';
-    const authors = authorField
-        ? authorField
-            .split(/\s+and\s+/i)
-            .map(a => normalizeAuthorName(a))
-            .filter(Boolean)
-        : [];
-
-
-    // venue：优先识别 arXiv；否则 journal/booktitle/school/publisher
-    const isArxiv = String(f.archiveprefix || f.archivePrefix || '').toLowerCase() === 'arxiv'
-        || /arxiv/i.test(String(f.journal || ''))
-        || !!f.eprint;
-    const venue = isArxiv
-        ? 'arXiv'
-        : (f.journal || f.booktitle || f['book title'] || f.school || f.publisher || '');
-
-    // year：取4位数字
-    const year = Number((f.year || '').match(/\d{4}/)?.[0] || 0);
-
-    // type：BibTeX → 站内
-    const t = (typeRaw || '').toLowerCase();
-    let type = 'Preprint';
-    if (t === 'article') type = 'Journal';
-    if (t === 'inproceedings' || t === 'proceedings') type = 'Conference';
-
-    // pdf/code：优先显式字段；其次 url 若明显是 pdf（也放行 arxiv/pdf 这种即使没 .pdf 扩展名）
-    const url = f.url || '';
-    const pdfFromUrl = (/\.pdf(\?|$)/i.test(url) || /arxiv\.org\/pdf\//i.test(url)) ? url : '';
-    const pdf = f.pdf || pdfFromUrl || '';
-    const code = f.code || f.github || f.repository || '';
-
-    // featured：默认 false；true/1/yes 视为 true（你 bib 里的 featured={true} 会被识别）
-    const featured = ('featured' in f) ? /^y(es)?|true|1$/i.test(String(f.featured).trim()) : false;
-
-    return {
-        key,
-        title: f.title || '',
-        authors,                        // 数组
-        venue,
-        year,
-        type,
-        pdf,                            // 允许为空字符串（按钮仍渲染）
-        code,                           // 允许为空字符串（按钮仍渲染）
-        image: f.image || '',
-        abstract: f.abstract || '',
-        featured,
-        bibtex: rebuildBibtex(typeRaw, key, f)
-    };
-}
-
-function rebuildBibtex(typeRaw, key, f){
-    const lines = Object.entries(f).map(([k,v])=>`  ${k} = {${v}}`);
-    return `@${typeRaw}{${key},\n${lines.join(',\n')}\n}`;
-}
-
-
-/* ============ Markdown support ============ */
-
-
-
-
 // 读取 Markdown（不存在时返回 null）
 async function fetchMarkdown(path){
     try{
@@ -366,79 +55,6 @@ async function fetchMarkdown(path){
         if (!res.ok) return null;
         return await res.text();
     }catch{ return null; }
-}
-
-// 高级 Markdown（若第三方库存在）；否则退回轻量版
-function renderMarkdown(mdText){
-    if (!mdText) return '';
-    const hasMarked = (typeof window !== 'undefined' && window.marked);
-    const hasPurify = (typeof window !== 'undefined' && window.DOMPurify);
-
-    if (hasMarked && hasPurify){
-        // Marked 配置
-        marked.setOptions({
-            gfm: true,
-            breaks: true,
-            smartypants: true,
-            headerIds: true,
-            mangle: false
-        });
-
-        const raw = marked.parse(mdText);
-        const clean = DOMPurify.sanitize(raw, {
-            USE_PROFILES: { html: true },
-            ADD_ATTR: ['target','rel','class','id','style']
-        });
-
-        const wrap = document.createElement('div');
-        wrap.innerHTML = clean;
-
-        // 代码高亮
-        try{
-            if (window.hljs){
-                wrap.querySelectorAll('pre code').forEach(block => { hljs.highlightElement(block); });
-            }
-        }catch(_){}
-
-        // KaTeX
-        try{
-            if (window.renderMathInElement){
-                renderMathInElement(wrap, {
-                    delimiters: [
-                        {left:"$$", right:"$$", display:true},
-                        {left:"$",  right:"$",  display:false},
-                        {left:"\\(", right:"\\)", display:false},
-                        {left:"\\[", right:"\\]", display:true}
-                    ],
-                    throwOnError:false
-                });
-            }
-        }catch(_){}
-
-        // Mermaid：支持 ```mermaid / .mermaid
-        try{
-            if (window.mermaid){
-                if (!renderMarkdown._mInited){
-                    mermaid.initialize({ startOnLoad:false, securityLevel:'strict' });
-                    renderMarkdown._mInited = true;
-                }
-                const blocks = wrap.querySelectorAll('code.language-mermaid, pre.mermaid, .mermaid');
-                blocks.forEach(codeEl=>{
-                    const holder = document.createElement('div');
-                    holder.className = 'mermaid';
-                    holder.textContent = codeEl.textContent;
-                    const pre = codeEl.closest('pre');
-                    (pre || codeEl).replaceWith(holder);
-                });
-                mermaid.run({ querySelector: '.mermaid' });
-            }
-        }catch(_){}
-
-        return wrap.innerHTML;
-    }
-
-    // —— 轻量回退（你原来的实现） ——
-    return markdownToHTML(mdText);
 }
 
 // 轻量 Markdown → HTML（安全：先整体转义，再做白名单替换）
@@ -485,6 +101,74 @@ function markdownToHTML(mdRaw){
     return lines.join('\n');
 }
 
+
+
+/* -------------------- Small utils -------------------- */
+const $  = (sel, root=document) => root.querySelector(sel);
+const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+const fmtDate = d => isNaN(new Date(d)) ? '' : new Date(d).toLocaleDateString();
+function slugify(s=''){
+    return (s||'').toString().trim().toLowerCase()
+        .replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-');
+}
+function getQuery(key){
+    const u = new URL(location.href);
+    return u.searchParams.get(key);
+}
+function applyImageFallbacks(root=document){
+    const imgs = root.querySelectorAll('img[data-fallback]');
+    imgs.forEach(img=>{
+        const kind = img.dataset.fallback;
+        if (!img.getAttribute('src')){
+            replace(img, kind); return;
+        }
+        img.addEventListener('error', ()=> replace(img, kind), {once:true});
+    });
+    function replace(img, kind){
+        const repl = document.createElement('div');
+        if (kind === 'avatar'){
+            repl.className = 'avatar placeholder';
+            repl.setAttribute('role','img');
+            if (img.alt) repl.setAttribute('aria-label', img.alt);
+        } else {
+            repl.className = 'project-cover placeholder';
+            repl.setAttribute('aria-hidden','true');
+        }
+        img.replaceWith(repl);
+    }
+}
+
+/* -------------------- Data loading -------------------- */
+async function loadJSON(path, fallback){
+    try{
+        const res = await fetch(path, {cache:'no-store'});
+        if (!res.ok) throw new Error(res.statusText);
+        return await res.json();
+    }catch(e){
+        console.error('Failed to load', path, e);
+        return fallback;
+    }
+}
+async function loadAll(){
+    const [settings, news, people, projects, pubs, gallery] = await Promise.all([
+        loadJSON('../data/settings.json', {}),
+        loadJSON('../data/news.json', {items:[]}),
+        loadJSON('../data/people.json', {items:[]}),
+        loadJSON('../data/projects.json', {items:[]}),
+        loadJSON('../data/publications.json', {items:[]}),
+        loadJSON('../data/gallery.json', {items:[]})
+    ]);
+
+    return {
+        settings,
+        news: Array.isArray(news) ? news : (news.items || []),
+        people: (Array.isArray(people) ? people : (people.items || [])).map(p=>({ ...p, slug: p.slug || slugify(p.name) })),
+        projects: (Array.isArray(projects) ? projects : (projects.items || [])).map(p=>({ ...p, slug: p.slug || slugify(p.title) })),
+        publications: Array.isArray(pubs) ? pubs : (pubs.items || []),
+        gallery: Array.isArray(gallery) ? gallery : (gallery.items || []),
+    };
+}
+
 /* -------------------- All News -------------------- */
 async function initNewsPage(){
     const {news} = await loadAll();
@@ -516,9 +200,7 @@ async function initNewsPage(){
 
 /* -------------------- All People -------------------- */
 function personCard(p){
-    const tags = (Array.isArray(p.topics)?p.topics:String(p.topics||'').split(/[;,]/))
-        .map(t=>t.trim()).filter(Boolean)
-        .map(t=>`<span class="tag">${t}</span>`).join('');
+    const tags = (p.topics||[]).map(t=>`<span class="tag">${t}</span>`).join('');
     const personURL = `person.html?slug=${encodeURIComponent(p.slug)}`;
     const avatar = p.avatar
         ? `<a class="avatar-link" href="${personURL}" target="_blank" rel="noopener"><img class="avatar" src="${p.avatar}" alt="${p.name}" loading="lazy" data-fallback="avatar" /></a>`
@@ -539,7 +221,6 @@ function personCard(p){
     </div>
   </article>`;
 }
-
 async function initPeoplePage(){
     const {people} = await loadAll();
     const grid = $('#people-all-grid');
@@ -571,9 +252,7 @@ function projectCard(p){
     const cover = p.cover
         ? `<img class="project-cover" src="${p.cover}" alt="${p.title}" loading="lazy" data-fallback="cover" />`
         : `<div class="project-cover placeholder" aria-hidden="true"></div>`;
-    const chips = (Array.isArray(p.highlights)?p.highlights:String(p.highlights||'').split(/[;,]/))
-        .map(h=>h.trim()).filter(Boolean)
-        .map(h=>`<span class="tag">${h}</span>`).join('');
+    const chips = (p.highlights||[]).map(h=>`<span class="tag">${h}</span>`).join('');
     const links = (p.links||[]).map(l=>`<a class="btn ghost" href="${l.href}" target="_blank" rel="noopener">${l.label}</a>`).join('');
     const detailURL = `project.html?slug=${encodeURIComponent(p.slug)}`;
     return `
@@ -588,7 +267,6 @@ function projectCard(p){
       </div>
     </article>`;
 }
-
 async function initProjectsPage(){
     const {projects} = await loadAll();
     const grid = $('#proj-all-grid');
@@ -613,20 +291,16 @@ async function initProjectsPage(){
 
 /* -------------------- All Publications -------------------- */
 function pubHTML(p, idx){
-    const authorsText = Array.isArray(p.authors) ? p.authors.join(', ')
-        : (typeof p.authors === 'string' ? p.authors : '');
-    const yearTag = p.year ? `<span class="tag">${p.year}</span>` : '';
+    const authors = (p.authors||[]).join(', ');
+    const btnPdf  = p.pdf  ? `<a class="btn" href="${p.pdf}" target="_blank" rel="noopener">PDF</a>` : '';
+    const btnCode = p.code ? `<a class="btn ghost" href="${p.code}" target="_blank" rel="noopener">Code</a>` : '';
     const abstract = p.abstract ? `<p class="pub-abstract">${p.abstract}</p>` : '';
-
-    // PDF / Code 按钮始终出现（没值时 href 为空字符串）
-    const btnPdf  = `<a class="btn" href="${p.pdf || ''}" target="_blank" rel="noopener">PDF</a>`;
-    const btnCode = `<a class="btn ghost" href="${p.code || ''}" target="_blank" rel="noopener">Code</a>`;
-
+    const yearTag = p.year ? `<span class="tag">${p.year}</span>` : '';
     return `
-  <div class="pub-item" data-year="${p.year||''}" data-type="${p.type||''}" data-hay="${(p.title+' '+authorsText+' '+(p.venue||'')+' '+(p.type||'')).toLowerCase()}">
+  <div class="pub-item" data-year="${p.year||''}" data-type="${p.type||''}" data-hay="${(p.title+' '+authors+' '+(p.venue||'')+' '+(p.type||'')).toLowerCase()}">
     <div class="pub-mid">
       <div class="title">${p.title}</div>
-      <div class="authors">${authorsText}</div>
+      <div class="authors">${authors}</div>
       <div class="venue">${p.venue||''} · <span class="tag">${p.type||''}</span> · ${yearTag}</div>
       ${abstract}
       <pre class="bibtex" id="bib-${idx}" aria-hidden="true">${p.bibtex || ''}</pre>
@@ -637,8 +311,6 @@ function pubHTML(p, idx){
     </div>
   </div>`;
 }
-
-
 function wireCopyBib(root=document){
     $$('.copy-bib', root).forEach(btn=>{
         btn.addEventListener('click', async ()=>{
@@ -656,17 +328,15 @@ function wireCopyBib(root=document){
         });
     });
 }
-
 async function initPublicationsPage(){
-    // 使用 BibTeX 优先加载
-    const publications = await loadPublicationsUnified();
+    const {publications} = await loadAll();
 
     const list = $('#pub-all-list');
-    const items = publications.slice().sort((a,b)=> (Number(b.year||0) - Number(a.year||0)) || String(a.title||'').localeCompare(String(b.title||'')));
+    const items = publications.slice().sort((a,b)=> (b.year - a.year) || a.title.localeCompare(b.title));
     list.innerHTML = items.map(pubHTML).join('');
     wireCopyBib(list);
 
-    const years = Array.from(new Set(publications.map(p=>p.year).filter(Boolean))).sort((a,b)=>b-a);
+    const years = Array.from(new Set(publications.map(p=>p.year))).sort((a,b)=>b-a);
     $('#pub-all-year').innerHTML = '<option value="">All years</option>' + years.map(y=>`<option>${y}</option>`).join('');
 
     function draw(){
@@ -719,13 +389,12 @@ function wireLightbox(root){
         if (!dialog.open) dialog.showModal();
     });
 }
-
 async function initLifePage(){
     const {gallery} = await loadAll();
     const grid = $('#life-grid');
 
     const years = Array.from(new Set(gallery.map(g => (g.date ? new Date(g.date).getFullYear() : null)).filter(Boolean))).sort((a,b)=>b-a);
-    $('#life-year').innerHTML = '<option value="">All years</option>' + years.map(y=>`<option value="${y}">${y}</option>`).join('');
+    $('#life-year').innerHTML = '<option value="">All years</option>' + years.map(y=>`<option>${y}</option>`).join('');
     const tags = Array.from(new Set(gallery.flatMap(g => g.tags || []))).sort();
     $('#life-tag').innerHTML = '<option value="">All tags</option>' + tags.map(t=>`<option>${t}</option>`).join('');
 
@@ -762,7 +431,9 @@ async function initLifePage(){
     wireLightbox(grid);
 }
 
+
 /* ============ Person detail ============ */
+// 在 person.html 里有一个 <div id="person-detail-body"></div>
 async function initPersonDetail(){
     const body = document.getElementById('person-detail-body');
     if (!body) return;
@@ -776,13 +447,12 @@ async function initPersonDetail(){
         return;
     }
 
+    // —— 默认信息（头像 / 基本信息 / topics / 邮件等）
     const avatarEl = person.avatar
         ? `<img class="avatar" src="${person.avatar}" alt="${person.name}" loading="lazy" />`
         : `<div class="avatar placeholder" role="img" aria-label="${person.name}"></div>`;
 
-    const tags = (Array.isArray(person.topics)?person.topics:String(person.topics||'').split(/[;,]/))
-        .map(t=>t.trim()).filter(Boolean)
-        .map(t=>`<span class="tag">${t}</span>`).join('');
+    const tags = (person.topics||[]).map(t=>`<span class="tag">${t}</span>`).join('');
     const emailBtn = person.email ? `<a class="btn" href="mailto:${person.email}">Email</a>` : '';
     const siteBtn  = person.site  ? `<a class="btn ghost" href="${person.site}" target="_blank" rel="noopener">External Profile</a>` : '';
 
@@ -799,21 +469,23 @@ async function initPersonDetail(){
     </div>
   `;
 
-    // ⬇️ 附加 Markdown （content/people/slug.md）
+    // ⬇️ 追加 Markdown（如果 content/people/slug.md 存在就渲染，没有就忽略）
     const md = await fetchMarkdown(`../content/people/${slug}.md`);
     if (md){
-        const html = renderMarkdown(md);
+        const html = markdownToHTML(md);
         const wrap = document.createElement('section');
         wrap.className = 'prose';
-        wrap.innerHTML = `${html}`;
+        wrap.innerHTML = `${html}`;//`<h3>More</h3>${html}`;
         body.appendChild(wrap);
     }
 }
 
+// 把教育、获奖、代表作等做成可选区块
 function renderPersonExtraBlocks(p){
     const edu = (p.education||[]).map(e=>`<li>${e}</li>`).join('');
     const awards = (p.awards||[]).map(a=>`<li>${a}</li>`).join('');
     const pubs = (p.selected_publications||[]).map(t=>`<li>${t}</li>`).join('');
+    // const placement = p.placement ? `<p><strong>Work Experience:</strong> ${p.placement}</p>` : '';
     const placement = (p.placement||[]).map(e=>`<li>${e}</li>`).join('');
 
     return `
@@ -824,7 +496,12 @@ function renderPersonExtraBlocks(p){
   `;
 }
 
+
+
+/* -------------------- Project detail -------------------- */
+
 /* ============ Project detail ============ */
+// 在 project.html 里有一个 <div id="proj-detail-body"></div>
 async function initProjectDetail(){
     const body = document.getElementById('proj-detail-body');
     if (!body) return;
@@ -842,9 +519,7 @@ async function initProjectDetail(){
         ? `<img class="project-cover" src="${project.cover}" alt="${project.title}" loading="lazy" />`
         : `<div class="project-cover placeholder" aria-hidden="true"></div>`;
 
-    const chips = (Array.isArray(project.highlights)?project.highlights:String(project.highlights||'').split(/[;,]/))
-        .map(h=>h.trim()).filter(Boolean)
-        .map(h=>`<span class="tag">${h}</span>`).join('');
+    const chips = (project.highlights||[]).map(h=>`<span class="tag">${h}</span>`).join('');
     const links = (project.links||[]).map(l=>`<a class="btn ghost" href="${l.href}" target="_blank" rel="noopener">${l.label}</a>`).join('');
 
     body.innerHTML = `
@@ -858,10 +533,10 @@ async function initProjectDetail(){
     </div>
   `;
 
-    // ⬇️ 附加 Markdown （content/projects/slug.md）
+    // ⬇️ 追加 Markdown（如果 content/projects/slug.md 存在就渲染，没有就忽略）
     const md = await fetchMarkdown(`../content/projects/${slug}.md`);
     if (md){
-        const html = renderMarkdown(md);
+        const html = markdownToHTML(md);
         const wrap = document.createElement('section');
         wrap.className = 'prose';
         wrap.innerHTML = `${html}`;
@@ -878,11 +553,12 @@ function renderProjectGallery(p){
     return imgs ? `<h3>Gallery</h3>${imgs}` : '';
 }
 
+
 /* -------------------- Entrypoint by data-page attr -------------------- */
 document.addEventListener('DOMContentLoaded', ()=>{
     const page = document.body.dataset.page;
 
-    // 轻量主题切换（独立页）
+    // Lightweight theme toggle for standalone pages (optional)
     const saved = localStorage.getItem('roma-theme');
     if (saved === 'light') document.body.classList.add('light');
     const t = document.getElementById('theme-toggle');
@@ -901,3 +577,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
     else if (page === 'person')   initPersonDetail();
     else if (page === 'project')  initProjectDetail();
 });
+
+// // ===== Auto bootstrap for detail pages =====
+// document.addEventListener('DOMContentLoaded', ()=>{
+//     // 如果当前页包含这个容器，就初始化人员详情
+//     if (document.getElementById('person-detail-body')) {
+//         initPersonDetail();
+//     }
+//     // 如果当前页包含这个容器，就初始化项目详情
+//     if (document.getElementById('proj-detail-body')) {
+//         initProjectDetail();
+//     }
+// });

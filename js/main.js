@@ -229,6 +229,253 @@ function setupStepScroll(el, {
     return stop;
 }
 
+/* -------------------- BibTeX 支持：加载 + 解析 -------------------- */
+
+async function loadPublicationsUnified(){
+    // 允许 settings.json 指定路径
+    let settings = {};
+    try{
+        const r = await fetch('data/settings.json', {cache:'no-store'});
+        if (r.ok) settings = await r.json();
+    }catch{}
+
+    const bibPath = settings.publications_bib || 'data/publications.bib';
+
+    // 1) 先尝试 bib
+    try{
+        const r = await fetch(bibPath, {cache:'no-store'});
+        if (r.ok){
+            const bibText = await r.text();
+            const pubs = parseBibTeXToPubs(bibText) || [];
+            console.info('[pubs] loaded from BibTeX:', pubs.length);
+            return pubs;
+        }
+    }catch(e){
+        console.warn('[pubs] bib load failed:', e);
+    }
+
+    // 2) 回退 publications.json
+    try{
+        const r = await fetch('data/publications.json', {cache:'no-store'});
+        if (r.ok){
+            const j = await r.json();
+            const pubs = Array.isArray(j) ? j : (j.items || []);
+            console.info('[pubs] loaded from JSON:', pubs.length);
+            return pubs;
+        }
+    }catch(e){
+        console.warn('[pubs] json load failed:', e);
+    }
+
+    console.warn('[pubs] no publications loaded');
+    return [];
+}
+
+
+
+
+function parseBibTeXToPubs(bibText){
+    if (!bibText || typeof bibText !== 'string') return [];
+
+    // 按条目切分：@type{key, ...}
+    const entryRe = /@(\w+)\s*\{\s*([^,]+)\s*,([\s\S]*?)\}\s*(?=@|\s*$)/g;
+    const pubs = [];
+    let m;
+    while ((m = entryRe.exec(bibText)) !== null){
+        const typeRaw = m[1].trim();
+        const key = m[2].trim();
+        const body = m[3].trim();
+
+        // 顶层逗号安全切分 k = {...} 或 "..."
+        const fields = {};
+        const parts = splitTopLevel(body, ',');
+        for (const part of parts){
+            const kv = part.split(/=(.+)/); // 只分第一个 "="
+            if (kv.length < 2) continue;
+            const k = kv[0].trim().toLowerCase();        // ← 统一小写
+            let v = kv[1].trim();
+
+            // 去掉收尾逗号
+            if (v.endsWith(',')) v = v.slice(0, -1).trim();
+
+            // 去掉外层引号/花括号（保留内容）
+            if ((v.startsWith('{') && v.endsWith('}')) || (v.startsWith('"') && v.endsWith('"'))){
+                v = v.slice(1, -1).trim();
+            }
+            // 兼容多行，合并空白
+            v = v.replace(/\s+\n\s+/g, ' ').replace(/\s{2,}/g, ' ').trim();
+
+            fields[k] = v;
+        }
+
+        pubs.push(mapBibToPub(typeRaw, key, fields));
+    }
+    return pubs;
+
+    // 在顶层分隔符切分（忽略花括号/引号内的分隔符）
+    function splitTopLevel(s, sepChar=','){
+        const out = [];
+        let buf = '';
+        let depth = 0;
+        let inQuote = false;
+        for (let i=0;i<s.length;i++){
+            const c = s[i];
+            if (c === '"' && s[i-1] !== '\\') inQuote = !inQuote;
+            else if (!inQuote){
+                if (c === '{') depth++;
+                else if (c === '}') depth = Math.max(0, depth-1);
+            }
+            if (c === sepChar && !inQuote && depth === 0){
+                if (buf.trim()) out.push(buf.trim());
+                buf = '';
+            } else {
+                buf += c;
+            }
+        }
+        if (buf.trim()) out.push(buf.trim());
+        return out;
+    }
+}
+
+
+/**
+ * 支持  value = { ...可嵌套花括号... }  或 value = " ... "
+ * 简单状态机解析 key = value, key = value, ...
+ */
+function parseBibFields(body){
+    const out = {};
+    let i = 0, k = '', v = '', mode = 'key', quote = false, depth = 0;
+
+    function commit(){
+        if (!k) return;
+        out[k.trim().toLowerCase()] = (v || '').trim().replace(/,$/,'');
+        k = ''; v = ''; mode = 'key'; quote = false; depth = 0;
+    }
+
+    while (i < body.length){
+        const ch = body[i];
+
+        if (mode === 'key'){
+            if (ch === '='){ mode = 'preval'; }
+            else if (ch === '}' ){ break; }            // 条目结束
+            else { k += ch; }
+        }
+        else if (mode === 'preval'){
+            if (ch === '{'){ mode = 'brace'; depth = 1; v = ''; }
+            else if (ch === '"'){ mode = 'quote'; quote = true; v=''; }
+            else if (/\S/.test(ch)){ // 非空白，容忍裸值
+                mode = 'bare'; v = ch;
+            }
+        }
+        else if (mode === 'brace'){
+            if (ch === '{') depth++;
+            if (ch === '}'){
+                depth--;
+                if (depth === 0){ commit(); i++; continue; }
+            }
+            v += ch;
+        }
+        else if (mode === 'quote'){
+            if (ch === '"' && body[i-1] !== '\\'){ commit(); i++; continue; }
+            v += ch;
+        }
+        else if (mode === 'bare'){
+            if (ch === ','){ commit(); }
+            else if (ch === '}'){ commit(); break; }
+            else { v += ch; }
+        }
+        i++;
+    }
+    return Object.fromEntries(Object.entries(out).map(([kk,vv])=>[kk.trim(), stripBraces(vv.trim())]));
+}
+
+// 去除最外层一对大括号（若存在）
+function stripBraces(s){
+    if (s.startsWith('{') && s.endsWith('}')) return s.slice(1, -1);
+    return s;
+}
+
+// 将 "Last, First Middle" → "First Middle Last"
+// 若无逗号或是组织名（大括号包裹），保持原样
+function normalizeAuthorName(raw=''){
+    let s = String(raw).trim();
+    // 去掉外围大括号（例如 {ROMA Lab}），仅去一层
+    const wasBraced = /^\{.*\}$/.test(s);
+    if (wasBraced) s = s.slice(1, -1).trim();
+
+    if (s.includes(',')){
+        const parts = s.split(',').map(t => t.trim()).filter(Boolean);
+        const last = parts.shift();                    // 第一段是 last name
+        const rest = parts.join(' ').trim();           // 其余合并成 first/middle
+        s = (rest ? (rest + ' ' + last) : last).replace(/\s+/g, ' ');
+    } else {
+        s = s.replace(/\s+/g, ' ');
+    }
+    return s;
+}
+
+
+
+function mapBibToPub(typeRaw, key, f){
+    // authors：支持 author/authors，用 " and " 拆分，数组化
+    // authors：支持 author/authors，用 " and " 拆分，并将 "Last, First" → "First Last"
+    const authorField = f.author || f.authors || '';
+    const authors = authorField
+        ? authorField
+            .split(/\s+and\s+/i)
+            .map(a => normalizeAuthorName(a))
+            .filter(Boolean)
+        : [];
+
+    // venue：优先识别 arXiv；否则 journal/booktitle/school/publisher
+    const isArxiv = String(f.archiveprefix || f.archivePrefix || '').toLowerCase() === 'arxiv'
+        || /arxiv/i.test(String(f.journal || ''))
+        || !!f.eprint;
+    const venue = isArxiv
+        ? 'arXiv'
+        : (f.journal || f.booktitle || f['book title'] || f.school || f.publisher || '');
+
+    // year：取4位数字
+    const year = Number((f.year || '').match(/\d{4}/)?.[0] || 0);
+
+    // type：BibTeX → 站内
+    const t = (typeRaw || '').toLowerCase();
+    let type = 'Preprint';
+    if (t === 'article') type = 'Journal';
+    if (t === 'inproceedings' || t === 'proceedings') type = 'Conference';
+
+    // pdf/code：优先显式字段；其次 url 若明显是 pdf（也放行 arxiv/pdf 这种即使没 .pdf 扩展名）
+    const url = f.url || '';
+    const pdfFromUrl = (/\.pdf(\?|$)/i.test(url) || /arxiv\.org\/pdf\//i.test(url)) ? url : '';
+    const pdf = f.pdf || pdfFromUrl || '';
+    const code = f.code || f.github || f.repository || '';
+
+    // featured：默认 false；true/1/yes 视为 true（你 bib 里的 featured={true} 会被识别）
+    const featured = ('featured' in f) ? /^y(es)?|true|1$/i.test(String(f.featured).trim()) : false;
+
+    return {
+        key,
+        title: f.title || '',
+        authors,                        // 数组
+        venue,
+        year,
+        type,
+        pdf,                            // 允许为空字符串（按钮仍渲染）
+        code,                           // 允许为空字符串（按钮仍渲染）
+        image: f.image || '',
+        abstract: f.abstract || '',
+        featured,
+        bibtex: rebuildBibtex(typeRaw, key, f)
+    };
+}
+
+function rebuildBibtex(typeRaw, key, f){
+    const lines = Object.entries(f).map(([k,v])=>`  ${k} = {${v}}`);
+    return `@${typeRaw}{${key},\n${lines.join(',\n')}\n}`;
+}
+
+
+
 /* ----------------- DATA LOADING ----------------- */
 async function loadData(){
     try{
@@ -425,37 +672,146 @@ function pubHTML(p, idx){
     </div>
     <div class="pub-actions">
       ${btnPdf}${btnCode}
-      <button class="btn ghost copy-bib" data-bib="${idx}">Copy BibTeX</button>
+      <button class="btn ghost copy-bib" data-bib="${idx}">BibTeX</button>
     </div>
   </div>`;
 }
+
 function renderPubs(){
-    const list = $('#pub-list'); if (!list) return;
-    list.innerHTML = (DATA.publications||[])
-        .slice().sort((a,b)=> (b.year - a.year) || a.title.localeCompare(b.title))
-        .map(pubHTML).join('');
+    const list = $('#pub-list');
+    if (!list) return;
+
+    const all = (DATA.publications || []).slice();
+
+    const isFeatured = p => (p && (
+        p.featured === true ||
+        p.featured === 1 ||
+        (typeof p.featured === 'string' && /^y(es)?|true|1$/i.test(p.featured))
+    ));
+
+    // 只取 featured（没有就显示空——你要改成回退显示全部也很容易）
+    const src = all.filter(isFeatured)
+        .sort((a,b)=> (Number(b.year||0) - Number(a.year||0)) || String(a.title||'').localeCompare(String(b.title||'')));
+
+    list.innerHTML = src.map((p, idx)=>{
+        const authorsText = Array.isArray(p.authors) ? p.authors.join(', ')
+            : (typeof p.authors === 'string' ? p.authors : '');
+        const yearTag = p.year ? `<span class="tag">${p.year}</span>` : '';
+        const abstract = p.abstract ? `<p class="pub-abstract">${p.abstract}</p>` : '';
+
+        // 注意：PDF / Code 始终渲染按钮，即便 href 为空字符串
+        const btnPdf  = `<a class="btn" href="${p.pdf || ''}" target="_blank" rel="noopener">PDF</a>`;
+        const btnCode = `<a class="btn ghost" href="${p.code || ''}" target="_blank" rel="noopener">Code</a>`;
+
+        return `
+      <div class="pub-item" data-year="${p.year||''}" data-type="${p.type||''}" data-hay="${(p.title+' '+authorsText+' '+(p.venue||'')+' '+(p.type||'')).toLowerCase()}">
+        <div class="pub-mid">
+          <div class="title">${p.title}</div>
+          <div class="authors">${authorsText}</div>
+          <div class="venue">${p.venue||''} · <span class="tag">${p.type||''}</span> · ${yearTag}</div>
+          ${abstract}
+          <pre class="bibtex" id="bib-${idx}" aria-hidden="true">${p.bibtex || ''}</pre>
+        </div>
+        <div class="pub-actions">
+          ${btnPdf}${btnCode}
+          <button class="btn ghost copy-bib" data-bib="${idx}">Copy BibTeX</button>
+        </div>
+      </div>`;
+    }).join('');
 
     // 复制 BibTeX
-    $$('.copy-bib').forEach(btn=>{
+    $$('.copy-bib', list).forEach(btn=>{
         btn.addEventListener('click', async ()=>{
             const id = btn.getAttribute('data-bib');
-            const box = document.getElementById('bib-'+id);
-            const text = (box && box.textContent) ? box.textContent.trim() : '';
+            const el = document.getElementById('bib-'+id);
+            const text = (el && el.textContent) ? el.textContent.trim() : '';
             try{
                 if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(text);
-                else {
-                    const ta = document.createElement('textarea');
-                    ta.value = text; document.body.appendChild(ta); ta.select();
-                    document.execCommand('copy'); document.body.removeChild(ta);
-                }
-                const old = btn.textContent; btn.textContent = 'Copied!'; setTimeout(()=> btn.textContent = old, 1200);
-            }catch(e){ console.error('Clipboard failed', e); }
+                else { const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
+                const old=btn.textContent; btn.textContent='Copied!'; setTimeout(()=>btn.textContent=old,1200);
+            }catch(e){ console.error(e); }
         });
     });
 
     if (stopPubScroll) stopPubScroll();
     stopPubScroll = setupStepScroll(list, {axis:'y', pause:2400, duration:650, selector:':scope > .pub-item'});
 }
+
+
+
+
+
+// function renderPubs(){
+//     const list = $('#pub-list');
+//     if (!list) return;
+//
+//     // 1) 数据源：优先展示 featured；若没有任何 featured，则降级为全部
+//     const all = (DATA.publications || []).slice();
+//     const featuredOnly = all.filter(p => p.featured === true || p.featured === 'true' || p.featured === 1 || /^y(es)?$/i.test(String(p.featured||'')));
+//     const src = (featuredOnly.length ? featuredOnly : all)
+//         .slice()
+//         .sort((a,b)=> (Number(b.year||0) - Number(a.year||0)) || String(a.title||'').localeCompare(String(b.title||'')));
+//
+//     // 2) 渲染
+//     list.innerHTML = src.map(pubHTML).join('');
+//
+//     // 如果你在 pubHTML 里仍然渲染了缩略图，可保留这行占位回退；否则无妨
+//     if (typeof applyImageFallbacks === 'function') applyImageFallbacks(list);
+//
+//     // 3) 复制 BibTeX
+//     $$('.copy-bib').forEach(btn=>{
+//         btn.addEventListener('click', async ()=>{
+//             const id = btn.getAttribute('data-bib');
+//             const box = document.getElementById('bib-'+id);
+//             const text = (box && box.textContent) ? box.textContent.trim() : '';
+//             try{
+//                 if (navigator.clipboard?.writeText) {
+//                     await navigator.clipboard.writeText(text);
+//                 } else {
+//                     const ta = document.createElement('textarea');
+//                     ta.value = text; document.body.appendChild(ta); ta.select();
+//                     document.execCommand('copy'); document.body.removeChild(ta);
+//                 }
+//                 const old = btn.textContent;
+//                 btn.textContent = 'Copied!';
+//                 setTimeout(()=> btn.textContent = old, 1200);
+//             }catch(e){ console.error('Clipboard failed', e); }
+//         });
+//     });
+//
+//     // 4) 自动步进滚动（仅针对可见项）
+//     if (stopPubScroll) stopPubScroll();
+//     stopPubScroll = setupStepScroll(list, {axis:'y', pause:2400, duration:650, selector:':scope > .pub-item'});
+// }
+
+// function renderPubs(){
+//     const list = $('#pub-list');
+//     if (!list) return;
+//     list.innerHTML = (DATA.publications||[])
+//         .slice().sort((a,b)=> (b.year - a.year) || a.title.localeCompare(b.title))
+//         .map(pubHTML).join('');
+//
+//     // 复制 BibTeX
+//     $$('.copy-bib').forEach(btn=>{
+//         btn.addEventListener('click', async ()=>{
+//             const id = btn.getAttribute('data-bib');
+//             const box = document.getElementById('bib-'+id);
+//             const text = (box && box.textContent) ? box.textContent.trim() : '';
+//             try{
+//                 if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(text);
+//                 else {
+//                     const ta = document.createElement('textarea');
+//                     ta.value = text; document.body.appendChild(ta); ta.select();
+//                     document.execCommand('copy'); document.body.removeChild(ta);
+//                 }
+//                 const old = btn.textContent; btn.textContent = 'Copied!'; setTimeout(()=> btn.textContent = old, 1200);
+//             }catch(e){ console.error('Clipboard failed', e); }
+//         });
+//     });
+//
+//     if (stopPubScroll) stopPubScroll();
+//     stopPubScroll = setupStepScroll(list, {axis:'y', pause:2400, duration:650, selector:':scope > .pub-item'});
+// }
 function updatePubCount(){
     const visible = [...document.querySelectorAll('#pub-list .pub-item')].filter(x=>x.style.display !== 'none').length;
     const el = $('#pub-count'); if (el) el.textContent = visible;
@@ -529,29 +885,69 @@ function renderLifeHome(limit=6){
 
 
 /* ----------------- INIT ----------------- */
+
 async function init(){
     applySavedTheme();
     setYear();
 
+    // 1) 先加载基础数据（people / projects / news / 等）
     DATA = await loadData();
+
+    // 2) 尝试用 BibTeX 覆盖 publications（失败则保持原有 JSON / lab-data）
+    try{
+        const pubs = await loadPublicationsUnified(); // 优先 data/publications.bib → publications.json → lab-data.json
+        if (Array.isArray(pubs) && pubs.length){
+            DATA.publications = pubs;
+        }
+    }catch(err){
+        console.error('[init] loadPublicationsUnified failed:', err);
+    }
+
     wireManualLink();
 
+    // 3) 首屏渲染（注意顺序：yearOptions/renderPubs 依赖 DATA.publications）
     renderMetrics();
     renderHomeNews();
     renderPeople();
     renderResearch();
-    yearOptions();
-    renderPubs();
+    yearOptions();     // ← 基于 DATA.publications 生成年份下拉
+    renderPubs();      // ← 若首页只想展示精选，请在该函数内对 featured 过滤
     renderLifeHome();
     updatePubCount();
 
+    // 4) 交互/路由
     wireHashRouter();
     wireThemeToggle();
     wireMobileMenu();
 
-    // 启动时滚动到 hash 对应区块
+    // 5) 启动时滚动到 hash 对应区块（带平滑滚动版本的话也可保持不变）
     setActive(location.hash || '#home');
 }
+
+
+// async function init(){
+//     applySavedTheme();
+//     setYear();
+//
+//     DATA = await loadData();
+//     wireManualLink();
+//
+//     renderMetrics();
+//     renderHomeNews();
+//     renderPeople();
+//     renderResearch();
+//     yearOptions();
+//     renderPubs();
+//     renderLifeHome();
+//     updatePubCount();
+//
+//     wireHashRouter();
+//     wireThemeToggle();
+//     wireMobileMenu();
+//
+//     // 启动时滚动到 hash 对应区块
+//     setActive(location.hash || '#home');
+// }
 
 document.addEventListener('DOMContentLoaded', init);
 

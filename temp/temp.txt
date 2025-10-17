@@ -1,0 +1,18 @@
+这是我的bib：
+
+@inproceedings{zhao2024all,
+  title={All in one and one for all: A simple yet effective method towards cross-domain graph pretraining},
+  author={Zhao, Haihong and Chen, Aochuan and Sun, Xiangguo and Cheng, Hong and Li, Jia},
+  booktitle={KDD 2023},
+  pages={4443--4454},
+  pdf = {https://arxiv.org/pdf/2307.01504},% ← 你也可以自定义这些字段
+  code = {https://github.com/sheldonresearch/ProG},% ← 自定义字段
+  image   = {/assets/papers/prog-thumb.png}, % ← 自定义字段（如果你想）
+  featured= {true},                      % ← 自定义字段：精选
+  year={2024}
+}
+
+All in one and one for all: A simple yet effective method towards cross-domain graph pretraining
+Xiangguo Sun, Hong Cheng, Jia Li, Bo Liu, Jihong Guan
+KDD 2023 (Best Research Paper) · Conference · 2023
+We introduce a multi-task prompting method for graphs, unifying graph and language prompts with meta-learned initialization across tasks.

@@ -1,3 +1,48 @@
 [
-  { "src": "assets/gallery/pic-01.jpeg", "title": "Welcome Party", "date": "2025-09-12", "tags": ["party"] }
+  { "src": "/assets/gallery/Weixin Image_20251017134149_232_83.jpg ", "title": "Home Party", "date": "2025-09-12", "tags": ["party"] },
+  { "src": "/assets/gallery/Weixin Image_20251017134120_221_83.jpg ", "title": "Watching A Drama", "date": "2025-09-12", "tags": ["theater"] },
+  { "src": "/assets/gallery/Weixin Image_20251017134147_231_83.jpg ", "title": "Family Cooking", "date": "2025-09-12", "tags": ["party"] },
+  { "src": "/assets/gallery/Weixin Image_20251017134122_222_83.jpg ", "title": "Happy Birthday", "date": "2025-09-12", "tags": ["birthday"] },
+  { "src": "/assets/gallery/Weixin Image_20251017133912_175_83.jpg", "title": "Ice Skating", "date": "2025-09-12", "tags": ["sports"] },
+  { "src": "/assets/gallery/Weixin Image_20251017133902_167_83.jpg", "title": "Nametag Game", "date": "2025-09-12", "tags": ["sports"] },
+
+
+
+
+  { "src": "/assets/gallery/Weixin Image_20251017134132_226_83.jpg ", "title": "Bowling", "date": "2025-09-12", "tags": ["sports"] },
+  { "src": "/assets/gallery/Weixin Image_20251017134144_230_83.jpg ", "title": "Ice & Snow World", "date": "2025-09-12", "tags": ["sports"] },
+  { "src": "/assets/gallery/Weixin Image_20251017133905_170_83.jpg", "title": "Seminar", "date": "2025-09-12", "tags": ["seminar"] },
+
+  { "src": "/assets/gallery/Weixin Image_20251017133906_171_83.jpg", "title": "Happy Birthday", "date": "2025-09-12", "tags": ["birthday"] },
+  { "src": "/assets/gallery/Weixin Image_20251017133958_184_83.jpg ", "title": "CNCC Conference", "date": "2025-09-12", "tags": ["seminar"] },
+  { "src": "/assets/gallery/Weixin Image_20251017134007_187_83.jpg ", "title": "Lecture", "date": "2025-09-12", "tags": ["seminar"] },
+
+  { "src": "/assets/gallery/Weixin Image_20251017133915_177_83.jpg", "title": "Welcome Party", "date": "2025-09-12", "tags": ["party"] },
+  { "src": "/assets/gallery/Weixin Image_20251017133910_174_83.jpg", "title": "Home Party", "date": "2025-09-12", "tags": ["party"] },
+  { "src": "/assets/gallery/Weixin Image_20251017134019_194_83.jpg ", "title": "Giving a Lecture", "date": "2025-09-12", "tags": ["seminar"] },
+
+  { "src": "/assets/gallery/Weixin Image_20251017134022_195_83.jpg ", "title": "Hong Kong Seminar", "date": "2025-09-12", "tags": ["seminar"] },
+  { "src": "/assets/gallery/Weixin Image_20251017134026_197_83.jpg ", "title": "Watching A Movie", "date": "2025-09-12", "tags": ["theater"] },
+  { "src": "/assets/gallery/Weixin Image_20251017134031_199_83.jpg ", "title": "KDD 24", "date": "2025-09-12", "tags": ["seminar"] },
+
+  { "src": "/assets/gallery/Weixin Image_20251017134032_200_83.jpg ", "title": "BDSC Conference", "date": "2025-09-12", "tags": ["seminar"] },
+  { "src": "/assets/gallery/Weixin Image_20251017134045_204_83.jpg ", "title": "ICLR", "date": "2025-09-12", "tags": ["seminar"] },
+  { "src": "/assets/gallery/Weixin Image_20251017134052_207_83.jpg ", "title": "SEU Alumni Association @ Hong Kong", "date": "2025-09-12", "tags": ["seminar"] },
+
+
+  { "src": "/assets/gallery/Weixin Image_20251017134057_210_83.jpg ", "title": "Welcome Party", "date": "2025-09-12", "tags": ["party"] },
+  { "src": "/assets/gallery/Weixin Image_20251017134101_212_83.jpg ", "title": "Welcome Party", "date": "2025-09-12", "tags": ["party"] },
+  { "src": "/assets/gallery/Weixin Image_20251017134104_214_83.jpg ", "title": "Welcome Party", "date": "2025-09-12", "tags": ["party"] },
+
+  { "src": "/assets/gallery/Weixin Image_20251017134109_216_83.jpg ", "title": "Welcome Party", "date": "2025-09-12", "tags": ["party"] },
+  { "src": "/assets/gallery/Weixin Image_20251017134112_217_83.jpg ", "title": "Welcome Party", "date": "2025-09-12", "tags": ["party"] },
+  { "src": "/assets/gallery/Weixin Image_20251017134114_218_83.jpg ", "title": "Welcome Party", "date": "2025-09-12", "tags": ["party"] },
+
+  { "src": "/assets/gallery/Weixin Image_20251017134116_219_83.jpg ", "title": "Welcome Party", "date": "2025-09-12", "tags": ["party"] },
+  { "src": "/assets/gallery/Weixin Image_20251017134118_220_83.jpg ", "title": "Welcome Party", "date": "2025-09-12", "tags": ["party"] },
+  { "src": "/assets/gallery/Weixin Image_20251017134124_223_83.jpg ", "title": "Welcome Party", "date": "2025-09-12", "tags": ["party"] },
+
+  { "src": "/assets/gallery/Weixin Image_20251017134127_224_83.jpg ", "title": "Welcome Party", "date": "2025-09-12", "tags": ["party"] },
+  { "src": "/assets/gallery/Weixin Image_20251017134129_225_83.jpg ", "title": "Welcome Party", "date": "2025-09-12", "tags": ["party"] },
+  { "src": "/assets/gallery/Weixin Image_20251017134136_227_83.jpg ", "title": "Welcome Party", "date": "2025-09-12", "tags": ["party"] }
 ]
