@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Tempt Page</title>
+    <meta name="description" content="Currently not available yet."/>
+    <link rel="icon" href="../assets/favicon.svg"/>
+    <link rel="stylesheet" href="../css/styles.css"/>
+    <style>
+        header.simple {position:sticky;top:0;z-index:40;background:var(--panel);border-bottom:1px solid var(--border)}
+        header.simple .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
+        header.simple .brand{display:flex;align-items:center;gap:8px;font-weight:700}
+        main{padding:32px 0}
+        #person-detail{max-width:900px;margin:0 auto}
+        #person-detail .avatar{width:100%;max-width:680px;border:1px solid var(--border);border-radius:12px}
+        #person-detail h1{font-size:clamp(24px,3vw,32px)}
+        #person-detail .tags{margin:10px 0}
+        #person-detail .btn{padding:8px 12px;border-radius:10px}
+        #person-detail h3{margin-top:18px}
+    </style>
+</head>
+<body data-page="tmp">
+<header class="simple">
+    <div class="container bar">
+        <div class="left">
+            <a class="brand" href="../index.html#home" aria-label="Back to home">
+                <svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true">
+                    <path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46"
+                          stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/>
+                </svg>
+                <span>ROMA Lab</span>
+            </a>
+        </div>
+        <div class="right">
+            <button id="theme-toggle" class="btn ghost" title="Toggle theme">🌓</button>
+            <a class="btn" href="../index.html#home">Back to Home</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <h2 >Coming Soon</h2>
+            <strong>We plan to update our policies by the end of November 2025. Currently, you can visit our video clip via</strong>
+            <br>
+            <a class="chip" href="https://www.bilibili.com/video/BV1iT4bzsEce/?share_source=copy_web&vd_source=dc2c6946b0127024c2225b0e695d9a83" target="_blank"><img src="/assets/bilibili.png" height="25"></a>
+            <br>
+            <strong> You can also send us an email for consultation: </strong>
+            <br>
+            <a class="chip" href="mailto:roma_lab@yeah.net">roma_lab@yeah.net</a>
+        </article>
+    </div>
+</main>
+
+<footer role="contentinfo">
+    <div class="container foot">
+        <div class="foot-left">
+            <svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+            <small>© <span id="year"></span> ROMA Lab. All rights reserved.</small>
+        </div>
+        <div class="foot-links">
+            <a class="chip" href="https://www.bilibili.com/video/BV1iT4bzsEce/?share_source=copy_web&vd_source=dc2c6946b0127024c2225b0e695d9a83" target="_blank"><img src="/assets/bilibili.png" height="25"></a>
+            <a class="chip" href="https://xhslink.com/m/cZO7eAkIYO" target="_blank"><img src="/assets/redbook.png" height="25"></a>
+            <a class="chip" href="mailto:roma_lab@yeah.net">roma_lab@yeah.net</a>
+            <!--            <a class="chip" href="https://github.com/ROMA-AI-Lab" target="_blank" rel="noopener">GitHub</a>-->
+            <a class="chip" href="#home" data-link>Back to top ↑</a>
+        </div>
+    </div>
+</footer>
+
+
+
+<script src="../pages/pages.js"></script>
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
