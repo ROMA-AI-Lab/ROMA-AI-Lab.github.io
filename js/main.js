@@ -497,6 +497,12 @@ function wireManualLink(){
         manualCta.target = '_blank';
         manualCta.rel = 'noopener';
     }
+    const call2students = $('#call2students');
+    if (call2students) {
+        call2students.href = manualURL;
+        call2students.target = '_blank';
+        call2students.rel = 'noopener';
+    }
 }
 
 /* ---------- LIFE (Home preview) ---------- */
