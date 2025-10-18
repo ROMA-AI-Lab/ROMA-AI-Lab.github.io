@@ -8,7 +8,7 @@
       "site": "https://xgsun.mysxl.cn",
       "avatar": "/assets/people/xiangguo.jpeg",
       "topics": ["Data Mining","Social Intelligence","AI Theory for Non-linear Data"],
-      "affiliation": "CUHK",
+      "affiliation": "CUHK (Hong Kong)",
       "status": "lead",
       "education": [
         "Ph.D. from Southeast University",
@@ -64,6 +64,17 @@
       "status": "ra"
     },
     {
+      "name": "Ping Wang",
+      "slug": "ping-wang",
+      "role": "RA / Ph.D.",
+      "email": "",
+      "site": "",
+      "avatar": "/assets/people/pingwang.jpg",
+      "topics": ["LLM Reasoning","Trustworthy and Responsible LLMs"],
+      "affiliation": "RUC",
+      "status": "ra"
+    },
+    {
       "name": "Qunzhong Wang",
       "slug": "qunzhong-wang",
       "role": "Former RA / Undergraduate",
@@ -75,6 +86,17 @@
       "status": "ra"
     },
     {
+      "name": "Xinyan Yang",
+      "slug": "xinyan-yang",
+      "role": "Former RA / Master",
+      "email": "",
+      "site": "",
+      "avatar": "/assets/people/xinyanyang.png",
+      "topics": ["Rumor Detection","Online Social Networks"],
+      "affiliation": "Tencent",
+      "status": "ra"
+    },
+    {
       "name": "Sixu An",
       "slug": "sixu-an",
       "role": "Former RA / Master",
@@ -83,6 +105,28 @@
       "avatar": "/assets/people/sixuan.png",
       "topics": ["Personality","AI4Education","Visual Large Language Models"],
       "affiliation": "PolyU (Hong Kong)",
+      "status": "ra"
+    },
+    {
+      "name": "Wang Han",
+      "slug": "wang-han",
+      "role": "Former RA / Master",
+      "email": "",
+      "site": "",
+      "avatar": "",
+      "topics": ["Graph Learning","Online Social Networks"],
+      "affiliation": "ByteDance",
+      "status": "ra"
+    },
+    {
+      "name": "Yanyi Pu",
+      "slug": "yanyi-pu",
+      "role": "Former RA / Ph.D.",
+      "email": "",
+      "site": "",
+      "avatar": "",
+      "topics": ["LLMs", "Agentic AI","Hallucinations in High-stakes Domains"],
+      "affiliation": "The University of Sheffield",
       "status": "ra"
     },
     {
@@ -116,6 +160,17 @@
       "avatar": "/assets/people/jiuxincao.jpg",
       "topics": ["Social Computing", "AI Security & Trustworthiness"],
       "affiliation": "SEU",
+      "status": "sc"
+    },
+    {
+      "name": "Prof. Hongyang Chen",
+      "slug": "hongyang-chen",
+      "role": "🌟Steering Committee",
+      "email": "hongyang@zhejianglab.com",
+      "site": "https://www.zhejianglab.org/lab/person?pid=290&id=379&bannerId=191",
+      "avatar": "/assets/people/hongyangchen.jpg",
+      "topics": ["Big Data & AI", "Graph Computing", "Machine Learning"],
+      "affiliation": "Zhejiang Lab",
       "status": "sc"
     },
     {

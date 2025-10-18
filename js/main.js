@@ -593,7 +593,7 @@ function personCardHome(p){
     <div class="body">
       <div class="meta">${p.role||''}</div>
       <h3 style="margin:.2rem 0 .3rem">${p.name}</h3>
-      <div class="meta">Affiliation: ${p.affiliation||'—'}</div>
+      <div class="meta">${p.affiliation||'—'}</div>
       <div class="tags">${tags}</div>
       <div class="actions-row">${emailBtn}${profileBtn}</div>
     </div>
