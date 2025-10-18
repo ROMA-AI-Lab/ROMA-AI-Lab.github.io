@@ -3,16 +3,16 @@
     {
       "name": "Xiangguo Sun",
       "slug": "xiangguo-sun",
-      "role": "Lab Lead / Postdoctoral Fellow",
+      "role": "\uD83C\uDF1F Lab Lead / Postdoctoral Fellow",
       "email": "roma_lab@yeah.net",
       "site": "https://xgsun.mysxl.cn",
       "avatar": "/assets/people/xiangguo.jpeg",
-      "topics": ["Data Mining","Social Intelligence"],
-      "affiliation": "CUHK",
+      "topics": ["Data Mining","Social Intelligence","AI Theory for Non-linear Structure Data"],
+      "affiliation": "SEU",
       "status": "lead",
       "education": [
-        "Ph.D., Computer Science, SEU",
-        "B.S., EE, DUT"
+        "Ph.D. from Southeast University",
+        "B.S. from Dalian University of Technology "
       ],
       "selected_publications": [
         "All in One: Multi-Task Prompting for GNNs (KDD'23)",
@@ -22,40 +22,90 @@
       "placement": ["MSRA","Zhejiang Lab"]
     },
     {
-      "name": "Zhang San",
-      "slug": "zhang-san",
-      "role": "PhD Student",
-      "email": "",
-      "site": "",
-      "avatar": "",
-      "topics": ["RAG","Legal/Finance AI","Retrieval"],
-      "affiliation": "Partner University",
-      "status": "student",
-      "education": [],
+      "name": "Yicong Li",
+      "slug": "yicong-li",
+      "role": "Partner / Associate Professor",
+      "email": "liyicong123@outlook.com",
+      "site": "https://abigale001.github.io",
+      "avatar": "/assets/people/liyicong.png",
+      "topics": ["Explainability","Fairness","RecSys","Counterfactual","GNNs"],
+      "affiliation": "NUAA",
+      "status": "partner",
+      "education": ["Ph.D. from University of Technology Sydney",
+        "Master from National University of Defense Technology"
+      ],
+      "placement": [
+        "Apr. 2024- Present: Associate Professor at the Nanjing University of Aeronautics and Astronautics",
+        "Sep. 2022 - Apr. 2024: Visiting student at The Hong Kong Polytechnic University"],
       "selected_publications": [],
       "awards": []
     },
     {
-      "name": "Lee Si",
-      "slug": "lee-si",
-      "role": "Research Assistant",
-      "email": "",
-      "site": "",
-      "avatar": "",
-      "topics": ["Token Compression","MM-LLM","Systems"],
-      "affiliation": "ROMA Lab",
+      "name": "Zoey (Zhiyao) Shu",
+      "slug": "zhiyao-shu",
+      "role": "Research Assistant / Ph.D.",
+      "email": "yaoshu0326@berkeley.edu",
+      "site": "https://upsilonv0.vercel.app",
+      "avatar": "/assets/people/zhiyaoshu.jpg",
+      "topics": ["Human-AI Collaboration","Computer Vision","LLM"],
+      "affiliation": "UC Berkerly",
+      "selected_publications": ["Zhiyao Shu, Xiangguo Sun, Hong Cheng. When LLM Meets Hypergraph: A Sociological Analysis on Personality via Online Social Networks. CIKM 2024."],
       "status": "ra"
     },
     {
-      "name": "Lee Si",
-      "slug": "lee-si",
-      "role": "Research Assistant",
+      "name": "Fangzhou Ge",
+      "slug": "fangzhou-ge",
+      "role": "Research Assistant / Undergraduate",
       "email": "",
       "site": "",
-      "avatar": "",
-      "topics": ["Token Compression","MM-LLM","Systems"],
-      "affiliation": "ROMA Lab",
+      "avatar": "/assets/people/fangzhouge.jpg",
+      "topics": ["Hypergraph","LLMs","Graph Prompt"],
+      "affiliation": "CUHK",
       "status": "ra"
+    },
+    {
+      "name": "Sixu An",
+      "slug": "sixu-an",
+      "role": "Research Assistant / Master",
+      "email": "ansixu123@163.com",
+      "site": "",
+      "avatar": "/assets/people/sixuan.png",
+      "topics": ["Personality","AI4Education","Visual Large Language Models"],
+      "affiliation": "PolyU",
+      "status": "ra"
+    },
+    {
+      "name": "Prof. Hong Cheng",
+      "slug": "hong-cheng",
+      "role": "🌟Steering Committee / Professor",
+      "email": "hcheng@se.cuhk.edu.hk",
+      "site": "https://www1.se.cuhk.edu.hk/~hcheng/",
+      "avatar": "/assets/people/hcheng.jpg",
+      "topics": ["Data Mining", "Machine Learning", "Database Systems"],
+      "affiliation": "CUHK",
+      "status": "sc"
+    },
+    {
+      "name": "Prof. Bo Liu",
+      "slug": "bo-liu",
+      "role": "🌟Steering Committee / Professor",
+      "email": "bliu@seu.edu.cn",
+      "site": "https://cs.seu.edu.cn/bliu/main.htm",
+      "avatar": "/assets/people/boliu.png",
+      "topics": ["Social Network Analysis", "AI Trustworthiness"],
+      "affiliation": "SEU",
+      "status": "sc"
+    },
+    {
+      "name": "Prof. Jiuxin Cao",
+      "slug": "jiuxin-cao",
+      "role": "🌟Steering Committee / Professor",
+      "email": "jx.cao@seu.edu.cn",
+      "site": "https://cyber.seu.edu.cn/cjx1/list.htm",
+      "avatar": "/assets/people/jiuxincao.jpg",
+      "topics": ["Social Computing", "AI Security & Trustworthiness"],
+      "affiliation": "SEU",
+      "status": "sc"
     }
   ]
 }
