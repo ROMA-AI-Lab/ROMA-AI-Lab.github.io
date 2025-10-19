@@ -117,8 +117,8 @@ function lockBodyScroll() {
     body.style.right = '0';
     body.style.width = '100%';
     // 可选：补偿桌面端滚动条宽度，避免布局抖动
-    // const sw = window.innerWidth - document.documentElement.clientWidth;
-    // if (sw > 0) body.style.paddingRight = sw + 'px';
+    const sw = window.innerWidth - document.documentElement.clientWidth;
+    if (sw > 0) body.style.paddingRight = sw + 'px';
 }
 function unlockBodyScroll() {
     const body = document.body;
@@ -146,7 +146,7 @@ function openMobileMenu(){
     overlay.setAttribute('aria-hidden', 'false');
     if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
 
-    lockBodyScroll();   // 打开时
+    // lockBodyScroll();   // 打开时
     // unlockBodyScroll(); // 关闭时
 
     drawerOpen = true;
@@ -164,7 +164,7 @@ function closeMobileMenu(){
     if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
 
     // lockBodyScroll();   // 打开时
-    unlockBodyScroll(); // 关闭时
+    // unlockBodyScroll(); // 关闭时
 
     drawerOpen = false;
 }
