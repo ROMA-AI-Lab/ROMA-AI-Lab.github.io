@@ -699,26 +699,68 @@ async function initPublicationsPage(){
 }
 
 /* -------------------- Life (gallery) -------------------- */
+// function wireLightbox(root){
+//     let dialog = $('dialog.lightbox');
+//     if (!dialog){
+//         dialog = document.createElement('dialog');
+//         dialog.className='lightbox';
+//         document.body.appendChild(dialog);
+//         dialog.addEventListener('click', e=>{
+//             const rect = dialog.getBoundingClientRect();
+//             const inBox = (e.clientY>=rect.top && e.clientY<=rect.bottom && e.clientX>=rect.left && e.clientX<=rect.right);
+//             if (!inBox) dialog.close();
+//         });
+//         document.addEventListener('keydown', e=>{ if (e.key === 'Escape' && dialog.open) dialog.close(); });
+//     }
+//     root.addEventListener('click', e=>{
+//         const img = e.target.closest('img');
+//         if (!img) return;
+//         dialog.innerHTML = `<img src="${img.getAttribute('src')}" alt="" />`;
+//         if (!dialog.open) dialog.showModal();
+//     });
+// }
+
+
 function wireLightbox(root){
-    let dialog = $('dialog.lightbox');
+    let dialog = document.querySelector('dialog.lightbox');
     if (!dialog){
         dialog = document.createElement('dialog');
-        dialog.className='lightbox';
+        dialog.className = 'lightbox';
         document.body.appendChild(dialog);
-        dialog.addEventListener('click', e=>{
-            const rect = dialog.getBoundingClientRect();
-            const inBox = (e.clientY>=rect.top && e.clientY<=rect.bottom && e.clientX>=rect.left && e.clientX<=rect.right);
-            if (!inBox) dialog.close();
+
+        // 点击背景（backdrop）：在 <dialog> 上触发，target === dialog
+        dialog.addEventListener('click', (e)=>{
+            if (e.target === dialog) dialog.close();
         });
-        document.addEventListener('keydown', e=>{ if (e.key === 'Escape' && dialog.open) dialog.close(); });
+
+        // 点击大图也关闭（满足“再点一下回去”的习惯）
+        dialog.addEventListener('click', (e)=>{
+            if (e.target && e.target.tagName === 'IMG') dialog.close();
+        });
+
+        // 键盘 ESC 关闭
+        document.addEventListener('keydown', (e)=>{
+            if (e.key === 'Escape' && dialog.open) dialog.close();
+        });
     }
-    root.addEventListener('click', e=>{
+
+    // 监听缩略图点击：填充大图并打开
+    root.addEventListener('click', (e)=>{
         const img = e.target.closest('img');
         if (!img) return;
-        dialog.innerHTML = `<img src="${img.getAttribute('src')}" alt="" />`;
+
+        // 原图地址：优先 data-full，否则用当前 src
+        const fullSrc = img.getAttribute('data-full') || img.getAttribute('src') || '';
+        if (!fullSrc) return;
+
+        // 也可以同步 alt 方便无障碍
+        const alt = img.getAttribute('alt') || '';
+
+        dialog.innerHTML = `<img src="${fullSrc}" alt="${alt}">`;
         if (!dialog.open) dialog.showModal();
     });
 }
+
 
 async function initLifePage(){
     const {gallery} = await loadAll();
@@ -901,3 +943,60 @@ document.addEventListener('DOMContentLoaded', ()=>{
     else if (page === 'person')   initPersonDetail();
     else if (page === 'project')  initProjectDetail();
 });
+
+/* ---- Back-to-top injector for subpages (robust) ---- */
+(function(){
+    function inject(){
+        // 避免重复
+        if (document.getElementById('to-top')) return;
+
+        // body 仍不存在的话再等等
+        if (!document.body) {
+            document.addEventListener('DOMContentLoaded', inject, { once: true });
+            return;
+        }
+
+        const btn = document.createElement('button');
+        btn.id = 'to-top';
+        btn.className = 'btn ghost hidden';
+        btn.setAttribute('aria-label', 'Back to top');
+        btn.title = 'Back to top';
+        btn.textContent = '↑';
+        document.body.appendChild(btn);
+
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function show(v){ btn.classList.toggle('hidden', !v); }
+        function onScroll(){
+            const y = window.scrollY || document.documentElement.scrollTop || 0;
+            const threshold = (window.innerWidth >= 721) ? 900 : 600;
+            // 若首页里的 drawerOpen 不存在，这里不会报错
+            if (typeof window.drawerOpen !== 'undefined' && window.drawerOpen) return show(false);
+            show(y > threshold);
+        }
+
+        btn.addEventListener('click', ()=>{
+            window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
+        });
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+
+        // 初次计算（页面够长时，刷新后就能马上出现/隐藏）
+        onScroll();
+
+        // 可选：Shift+T 快捷键
+        document.addEventListener('keydown', (e)=>{
+            if (e.shiftKey && (e.key === 'T' || e.key === 't')) {
+                window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
+            }
+        });
+    }
+
+    // 若脚本放在 <head> 且无 defer，确保等 DOM 就绪
+    if (document.readyState === 'loading'){
+        document.addEventListener('DOMContentLoaded', inject);
+    } else {
+        inject();
+    }
+})();

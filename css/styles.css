@@ -964,7 +964,7 @@ header.site-header .nav {
     position: fixed;
     right: clamp(16px, 2vw, 28px);
     bottom: clamp(18px, 3vh, 32px);
-    z-index: 90;                   /* 略高一点，避免被内容覆盖 */
+    z-index: 1000;                   /* 略高一点，避免被内容覆盖 */
     box-shadow: var(--shadow);
     min-width: 44px;               /* 更好的命中面积 */
     min-height: 44px;
@@ -1003,3 +1003,37 @@ header.site-header .nav {
 
 /*    !* 仅手机显示 *!*/
 /*}*/
+
+
+/* ===== Lightbox (dialog) ===== */
+dialog.lightbox{
+    padding: 0;
+    border: 0;
+    /* 让 dialog 自身全屏，只做容器；用 flex 居中承载图片 */
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    max-height: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 背景蒙层 */
+dialog.lightbox::backdrop{
+    background: rgba(0,0,0,.72);
+    backdrop-filter: blur(2px);
+}
+
+/* 预览大图：桌面不再真正“满屏”，给出边距方便点击关闭 */
+dialog.lightbox img{
+    max-width: min(96vw, 1600px);
+    max-height: 92vh;
+    border-radius: 12px;
+    box-shadow: 0 12px 36px rgba(0,0,0,.45);
+    cursor: zoom-out; /* 告诉用户“再点一下就缩回” */
+}
+
+/* 缩略图可选：提示可放大 */
+#life-grid img.project-cover{ cursor: zoom-in; }
