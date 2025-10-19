@@ -959,20 +959,47 @@ header.site-header .nav {
     min-height: 44px;
 }
 
-
-/* ---- Back-to-top (mobile only) ---- */
-#to-top {
+/* ---- Back-to-top (mobile + desktop) ---- */
+#to-top{
     position: fixed;
-    right: 16px;
-    bottom: 18px;
-    z-index: 70; /* 高于内容，低于抽屉(60)没关系；若需浮在抽屉上可调到 80+ */
+    right: clamp(16px, 2vw, 28px);
+    bottom: clamp(18px, 3vh, 32px);
+    z-index: 90;                   /* 略高一点，避免被内容覆盖 */
     box-shadow: var(--shadow);
+    min-width: 44px;               /* 更好的命中面积 */
+    min-height: 44px;
+    padding: 0 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    opacity: .95;
+    transition: transform .15s ease, opacity .15s ease;
 }
+#to-top:hover{ transform: translateY(-1px); }
 
-@media (min-width: 721px) {
-    #to-top {
-        display: none;
+/* 手机端保持更靠内的边距（避免和手势冲突） */
+@media (max-width: 720px){
+    #to-top{
+        right: 16px;
+        bottom: 18px;
     }
-
-    /* 仅手机显示 */
 }
+
+
+/*!* ---- Back-to-top (mobile only) ---- *!*/
+/*#to-top {*/
+/*    position: fixed;*/
+/*    right: 16px;*/
+/*    bottom: 18px;*/
+/*    z-index: 70; !* 高于内容，低于抽屉(60)没关系；若需浮在抽屉上可调到 80+ *!*/
+/*    box-shadow: var(--shadow);*/
+/*}*/
+
+/*@media (min-width: 721px) {*/
+/*    #to-top {*/
+/*        display: none;*/
+/*    }*/
+
+/*    !* 仅手机显示 *!*/
+/*}*/

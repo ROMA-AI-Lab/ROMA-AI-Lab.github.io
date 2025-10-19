@@ -1260,12 +1260,25 @@ async function init(){
     if(!btn) return;
 
     function setVisible(v){ btn.classList.toggle('hidden', !v); }
+    // function onScroll(){
+    //     const show = (window.scrollY || document.documentElement.scrollTop || 0) > 600;
+    //     // 抽屉打开时隐藏
+    //     if (typeof drawerOpen !== 'undefined' && drawerOpen) return setVisible(false);
+    //     setVisible(show);
+    // }
     function onScroll(){
-        const show = (window.scrollY || document.documentElement.scrollTop || 0) > 600;
-        // 抽屉打开时隐藏
-        if (typeof drawerOpen !== 'undefined' && drawerOpen) return setVisible(false);
-        setVisible(show);
+        const y = (window.scrollY || document.documentElement.scrollTop || 0);
+        // 桌面页面更长，阈值稍高；手机端保持 600
+        const threshold = (window.innerWidth >= 721) ? 900 : 600;
+
+        // 抽屉打开时隐藏（沿用你已有的 drawerOpen 变量）
+        if (typeof drawerOpen !== 'undefined' && drawerOpen){
+            btn.classList.add('hidden');
+            return;
+        }
+        btn.classList.toggle('hidden', y <= threshold);
     }
+
 
     // 点击回到顶部（保留你已有的平滑滚动手感）
     btn.addEventListener('click', ()=>{
