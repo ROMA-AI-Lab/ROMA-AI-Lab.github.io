@@ -15,16 +15,42 @@ let stopPeopleScroll = null;
 let stopResearchScroll = null;
 let stopPubScroll = null;
 
-function smoothScrollTo(targetEl, duration=900, easingFn=(t)=>1-(1-t)**5 ){ // easeOutQuint
+// function smoothScrollTo(targetEl, duration=900, easingFn=(t)=>1-(1-t)**5 ){ // easeOutQuint
+// //
+// //     惯性效果想更明显，就把 duration 加到 1400–1600；
+// // 想要不同的缓动，可把 easing 换成：1-(1-t)**5  easeOutQuint
+// // t*t（easeInQuad）、
+// // t*(2-t)（easeOutQuad）、
+// // 或者 t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2（easeInOutCubic）。
+//     const start = window.scrollY || document.documentElement.scrollTop;
+//     const rect = targetEl.getBoundingClientRect();
+//     const headerOffset = 0; // 若有吸顶高度，可填入比如 64
+//     const to = rect.top + start - headerOffset;
+//     const startTime = performance.now();
 //
-//     惯性效果想更明显，就把 duration 加到 1400–1600；
-// 想要不同的缓动，可把 easing 换成：1-(1-t)**5  easeOutQuint
-// t*t（easeInQuad）、
-// t*(2-t)（easeOutQuad）、
-// 或者 t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2（easeInOutCubic）。
+//     function step(now){
+//         const t = Math.min(1, (now - startTime) / duration);
+//         const eased = easingFn(t);
+//         window.scrollTo(0, start + (to - start) * eased);
+//         if (t < 1) requestAnimationFrame(step);
+//     }
+//     requestAnimationFrame(step);
+// }
+
+function smoothScrollTo(targetEl, duration=900, easingFn=(t)=>1-(1-t)**5 ){ // easeOutQuint
     const start = window.scrollY || document.documentElement.scrollTop;
     const rect = targetEl.getBoundingClientRect();
-    const headerOffset = 0; // 若有吸顶高度，可填入比如 64
+
+    // --- 新增：根据粘性头部自动计算遮挡修正 ---
+    const header = document.querySelector('header.site-header');
+    let headerOffset = 0;
+    if (header) {
+        // 取 header 实际高度（含安全区）
+        headerOffset = Math.round(header.getBoundingClientRect().height);
+        // 给出一点呼吸空间，避免紧贴标题
+        headerOffset += 8;
+    }
+
     const to = rect.top + start - headerOffset;
     const startTime = performance.now();
 
@@ -36,6 +62,7 @@ function smoothScrollTo(targetEl, duration=900, easingFn=(t)=>1-(1-t)**5 ){ // e
     }
     requestAnimationFrame(step);
 }
+
 
 
 /* ----------------- Hash Router (only for # links) ----------------- */
@@ -120,7 +147,7 @@ function openMobileMenu(){
     if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
 
     lockBodyScroll();   // 打开时
-    // unlockBodyScroll(); // 关闭时
+    unlockBodyScroll(); // 关闭时
 
     drawerOpen = true;
 }
@@ -136,7 +163,7 @@ function closeMobileMenu(){
     overlay.setAttribute('aria-hidden', 'true');
     if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
 
-    // lockBodyScroll();   // 打开时
+    lockBodyScroll();   // 打开时
     unlockBodyScroll(); // 关闭时
 
     drawerOpen = false;
@@ -246,7 +273,8 @@ function applyImageFallbacks(root=document){
 function setupStepScroll(el, {
     axis='y', pause=2200, duration=600, selector=':scope > *', pauseOnHover=true
 } = {}){
-    if (!el || prefersReduced) return () => {};
+    if (!el || prefersReduced || window.innerWidth < 720) return ()=>{}; // 手机禁用
+    // if (!el || prefersReduced) return () => {};
     let timer = null;
     let dir = 1;
 
@@ -320,6 +348,79 @@ function setupStepScroll(el, {
     schedule();
     return stop;
 }
+
+
+// ---- Lazy append helper (batch render for long lists) ----
+// htmlList: 由 HTML 字符串组成的数组；appendCallback: 每次追加后回调(可用于图片fallback/过滤)
+function lazyAppend(container, htmlList, {
+    batchMobile = 8,
+    batchDesktop = 9999,        // 桌面一次性全部渲染
+    selectorLast = ':scope > *',// 观察容器最后一个子元素
+    rootMargin = '200px',       // 触底前 200px 预加载
+    appendCallback = null
+} = {}){
+    if (!container || !Array.isArray(htmlList)) return { stop:()=>{} };
+
+    const isMobile = window.innerWidth < 721;
+    const batch = isMobile ? batchMobile : batchDesktop;
+    let index = 0;
+    const total = htmlList.length;
+
+    function appendChunk(n){
+        if (index >= total) return;
+        const end = Math.min(total, index + n);
+        const frag = document.createDocumentFragment();
+        for (let i = index; i < end; i++){
+            const wrap = document.createElement('div');
+            wrap.innerHTML = htmlList[i];
+            // 将子节点展开插入（避免多一层 div）
+            while (wrap.firstChild) frag.appendChild(wrap.firstChild);
+        }
+        container.appendChild(frag);
+        index = end;
+        if (typeof appendCallback === 'function') appendCallback(index, total);
+    }
+
+    // 初次渲染
+    appendChunk(batch);
+
+    // 若已全部渲染，直接返回
+    if (index >= total) return { stop:()=>{} };
+
+    // 观察容器末尾，靠近底部则追加
+    const io = new IntersectionObserver((entries)=>{
+        const hit = entries.some(e => e.isIntersecting);
+        if (!hit) return;
+        appendChunk(batch);
+        // 重新观察新的“最后一个”
+        const last = container.querySelector(selectorLast + ':last-child');
+        if (last) io.observe(last);
+    }, { root: container, rootMargin, threshold: 0.01 });
+
+    // 启动观察（容器可能暂时为空，延后一帧）
+    requestAnimationFrame(()=>{
+        const last = container.querySelector(selectorLast + ':last-child');
+        if (last) io.observe(last);
+    });
+
+    return { stop: ()=> io.disconnect() };
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* -------------------- BibTeX 支持：加载 + 解析 -------------------- */
 
@@ -691,14 +792,55 @@ function personCardHome(p){
     </div>
   </article>`;
 }
+
+
+// function renderPeople(){
+//     const grid = $('#people-grid'); if (!grid) return;
+//     // 这里仍展示全量；如需仅 featured，可在数据中加 featured 标记并在此过滤
+//     grid.innerHTML = (DATA.people||[]).map(personCardHome).join('');
+//     applyImageFallbacks(grid);
+//
+//     if (stopPeopleScroll) stopPeopleScroll();
+//     stopPeopleScroll = setupStepScroll(grid, {axis:'y', pause:2400, duration:650, selector:':scope > .card'});
+// }
+
+function applyPeopleFilter(){
+    const q = ($('#people-search')?.value || '').toLowerCase();
+    $$('#people-grid .card').forEach(card=>{
+        const hay = (card.dataset.name + ' ' + card.dataset.role + ' ' + card.dataset.topics).toLowerCase();
+        card.style.display = hay.includes(q) ? '' : 'none';
+    });
+}
+
 function renderPeople(){
     const grid = $('#people-grid'); if (!grid) return;
-    // 这里仍展示全量；如需仅 featured，可在数据中加 featured 标记并在此过滤
-    grid.innerHTML = (DATA.people||[]).map(personCardHome).join('');
-    applyImageFallbacks(grid);
 
-    if (stopPeopleScroll) stopPeopleScroll();
-    stopPeopleScroll = setupStepScroll(grid, {axis:'y', pause:2400, duration:650, selector:':scope > .card'});
+    // 先清空，准备懒加载
+    grid.innerHTML = '';
+
+    const people = (DATA.people || []);
+    const htmlList = people.map(personCardHome);
+
+    // 使用懒加载；每次追加后做：图片占位 & 过滤 &（仅桌面）自动滚动
+    const lazy = lazyAppend(grid, htmlList, {
+        batchMobile: 3,
+        batchDesktop: 9999,
+        selectorLast: ':scope > .card',
+        rootMargin: '200px',
+        appendCallback: (done, total)=>{
+            applyImageFallbacks(grid);
+            applyPeopleFilter();
+
+            // 自动步进滚动：移动端禁用，桌面端在首次追加后即可启动
+            if (window.innerWidth >= 721){
+                if (stopPeopleScroll) stopPeopleScroll();
+                stopPeopleScroll = setupStepScroll(grid, {axis:'y', pause:2400, duration:650, selector:':scope > .card'});
+            }
+        }
+    });
+
+    // 搜索框监听（你已有监听，这里确保懒加载后也能触发过滤）
+    $('#people-search')?.addEventListener('input', applyPeopleFilter);
 }
 $('#people-search')?.addEventListener('input', (e)=>{
     const q = e.target.value.toLowerCase();
@@ -707,6 +849,12 @@ $('#people-search')?.addEventListener('input', (e)=>{
         card.style.display = hay.includes(q) ? '' : 'none';
     });
 });
+
+
+
+
+
+
 
 // Research (home)
 function projectCardHome(p){
@@ -732,14 +880,51 @@ function projectCardHome(p){
     </div>
   </article>`;
 }
+
+
+// function renderResearch(){
+//     const grid = $('#research-grid'); if (!grid) return;
+//     grid.innerHTML = (DATA.projects||[]).map(projectCardHome).join('');
+//     applyImageFallbacks(grid);
+//
+//     if (stopResearchScroll) stopResearchScroll();
+//     stopResearchScroll = setupStepScroll(grid, {axis:'y', pause:2400, duration:650, selector:':scope > .card'});
+// }
+
+function applyResearchFilter(){
+    const v = $('#research-area-filter')?.value || '';
+    $$('#research-grid .card').forEach(c=>{
+        c.style.display = !v || c.dataset.area === v ? '' : 'none';
+    });
+}
+
 function renderResearch(){
     const grid = $('#research-grid'); if (!grid) return;
-    grid.innerHTML = (DATA.projects||[]).map(projectCardHome).join('');
-    applyImageFallbacks(grid);
 
-    if (stopResearchScroll) stopResearchScroll();
-    stopResearchScroll = setupStepScroll(grid, {axis:'y', pause:2400, duration:650, selector:':scope > .card'});
+    grid.innerHTML = '';
+
+    const projects = (DATA.projects || []);
+    const htmlList = projects.map(projectCardHome);
+
+    const lazy = lazyAppend(grid, htmlList, {
+        batchMobile: 6,                 // research 卡片稍大，手机端每批少一点
+        batchDesktop: 9999,
+        selectorLast: ':scope > .card',
+        rootMargin: '200px',
+        appendCallback: (done, total)=>{
+            applyImageFallbacks(grid);
+            applyResearchFilter();
+
+            if (window.innerWidth >= 721){
+                if (stopResearchScroll) stopResearchScroll();
+                stopResearchScroll = setupStepScroll(grid, {axis:'y', pause:2400, duration:650, selector:':scope > .card'});
+            }
+        }
+    });
 }
+
+// 过滤下拉保持不变（你已有），这里确保每次 change 都应用到后续追加的项
+$('#research-area-filter')?.addEventListener('change', applyResearchFilter);
 $('#research-area-filter')?.addEventListener('change', (e)=>{
     const v = e.target.value;
     $$('#research-grid .card').forEach(c=>{
@@ -1040,6 +1225,70 @@ async function init(){
 //     // 启动时滚动到 hash 对应区块
 //     setActive(location.hash || '#home');
 // }
+
+
+// ---- Auto hero top gap = header height + 8px ----
+(function autoHeroGap(){
+    const header = document.querySelector('header.site-header');
+    if (!header) return;
+
+    function apply() {
+        // 读取 header 实际高度（包含安全区 padding）
+        const h = Math.round(header.getBoundingClientRect().height);
+        const gap = Math.max(8, h + 8); // 至少保留 8px 的呼吸
+        document.documentElement.style.setProperty('--hero-top-gap', gap + 'px');
+    }
+
+    apply(); // 首次应用
+
+    // 方向/窗口变化时更新
+    window.addEventListener('resize', apply);
+
+    // iOS 地址栏伸缩或滚动后轻量防抖重算
+    let t;
+    window.addEventListener('scroll', () => {
+        clearTimeout(t);
+        t = setTimeout(apply, 120);
+    }, { passive: true });
+})();
+
+
+
+// ---- Back-to-top (mobile only) ----
+(function wireBackToTop(){
+    const btn = document.getElementById('to-top');
+    if(!btn) return;
+
+    function setVisible(v){ btn.classList.toggle('hidden', !v); }
+    function onScroll(){
+        const show = (window.scrollY || document.documentElement.scrollTop || 0) > 600;
+        // 抽屉打开时隐藏
+        if (typeof drawerOpen !== 'undefined' && drawerOpen) return setVisible(false);
+        setVisible(show);
+    }
+
+    // 点击回到顶部（保留你已有的平滑滚动手感）
+    btn.addEventListener('click', ()=>{
+        if (prefersReduced) return window.scrollTo(0,0);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // 跟随滚动显示/隐藏
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+
+    // 与抽屉开合联动（利用你现有的 open/closeMobileMenu）
+    const _open = window.openMobileMenu, _close = window.closeMobileMenu;
+    if (typeof _open === 'function'){
+        window.openMobileMenu = function(){ _open.apply(this, arguments); setVisible(false); };
+    }
+    if (typeof _close === 'function'){
+        window.closeMobileMenu = function(){ _close.apply(this, arguments); onScroll(); };
+    }
+})();
+
+
 
 document.addEventListener('DOMContentLoaded', init);
 

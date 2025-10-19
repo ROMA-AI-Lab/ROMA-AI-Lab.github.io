@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="format-detection" content="telephone=no, email=no"> <!-- 避免 iOS 误识别 -->
+    <meta name="color-scheme" content="dark light">                  <!-- 表示双主题可用 -->
     <title>ROMA Lab | Next-Generation AI for Social Science</title>
     <meta name="description" content="ROMA Lab — AI research on graph learning, multimodal reasoning, and neural-symbolic systems." />
     <meta name="theme-color" content="#0f172a" />
@@ -159,19 +161,28 @@
                 <p class="section-desc">Selected publications by ROMA Lab.</p>
             </div>
             <div class="filters" style="display:flex; gap:8px; align-items:center">
-                <input type="search" id="pub-search" placeholder="Search title/author/venue…" aria-label="Search publications" />
-                <select id="pub-year" aria-label="Filter by year"><option value="">All years</option></select>
-                <select id="pub-type" aria-label="Filter by type">
-                    <option value="">All types</option>
-                    <option>Conference</option>
-                    <option>Journal</option>
-                    <option>Preprint</option>
-                </select>
+                <!-- 把三控件包在 details 里 -->
+                <details id="pub-filters" class="filters-mobile">
+                    <summary>Filters</summary>
+                    <!-- 原来的 input + select 三件套 -->
+                    <input type="search" id="pub-search" placeholder="Search title/author/venue…" aria-label="Search publications" />
+                    <select id="pub-year" aria-label="Filter by year"><option value="">All years</option></select>
+                    <select id="pub-type" aria-label="Filter by type">
+                        <option value="">All types</option>
+                        <option>Conference</option>
+                        <option>Journal</option>
+                        <option>Preprint</option>
+                    </select>
+                </details>
+
                 <a class="btn ghost" href="pages/publications.html" target="_blank" rel="noopener">Full Publications →</a>
             </div>
         </div>
         <div class="count"><span id="pub-count">—</span> results</div>
         <div class="grid pub v-scroll" id="pub-list" aria-live="polite"></div>
+<!--        <div class="filters" style="display:flex; gap:8px; align-items:center">-->
+<!--        <a class="btn ghost" href="pages/publications.html" target="_blank" rel="noopener">Full Publications →</a>-->
+<!--        </div>-->
     </div>
 </section>
 
@@ -221,6 +232,11 @@
             <a class="chip" href="#home" data-link>Back to top ↑</a>
         </div>
     </div>
+
+    <!-- Back-to-top (mobile only) -->
+    <button id="to-top" class="btn ghost hidden" aria-label="Back to top" title="Back to top">↑</button>
+
+
 </footer>
 
 <script type="module" src="js/main.js"></script>
