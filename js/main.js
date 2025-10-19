@@ -146,8 +146,8 @@ function openMobileMenu(){
     overlay.setAttribute('aria-hidden', 'false');
     if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
 
-    // lockBodyScroll();   // 打开时
-    // unlockBodyScroll(); // 关闭时
+    lockBodyScroll();   // 打开时
+    unlockBodyScroll(); // 关闭时
 
     drawerOpen = true;
 }
@@ -163,8 +163,8 @@ function closeMobileMenu(){
     overlay.setAttribute('aria-hidden', 'true');
     if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
 
-    // lockBodyScroll();   // 打开时
-    // unlockBodyScroll(); // 关闭时
+    lockBodyScroll();   // 打开时
+    unlockBodyScroll(); // 关闭时
 
     drawerOpen = false;
 }
