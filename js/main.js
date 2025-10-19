@@ -8,48 +8,33 @@ const slugify = (s='') =>
     (s||'').toString().trim().toLowerCase()
         .replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-');
 
+
+function getScrollY(){
+    return window.pageYOffset
+        || document.scrollingElement?.scrollTop
+        || document.documentElement.scrollTop
+        || document.body.scrollTop
+        || 0;
+}
+
+
 /* ----------------- State ----------------- */
 let DATA = null;
 let stopNewsScroll = null;
 let stopPeopleScroll = null;
 let stopResearchScroll = null;
 let stopPubScroll = null;
+let _suppressUnlockRestoreOnce = false;   // 仅下一次 unlock 时不恢复 scrollY
 
-// function smoothScrollTo(targetEl, duration=900, easingFn=(t)=>1-(1-t)**5 ){ // easeOutQuint
-// //
-// //     惯性效果想更明显，就把 duration 加到 1400–1600；
-// // 想要不同的缓动，可把 easing 换成：1-(1-t)**5  easeOutQuint
-// // t*t（easeInQuad）、
-// // t*(2-t)（easeOutQuad）、
-// // 或者 t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2（easeInOutCubic）。
-//     const start = window.scrollY || document.documentElement.scrollTop;
-//     const rect = targetEl.getBoundingClientRect();
-//     const headerOffset = 0; // 若有吸顶高度，可填入比如 64
-//     const to = rect.top + start - headerOffset;
-//     const startTime = performance.now();
-//
-//     function step(now){
-//         const t = Math.min(1, (now - startTime) / duration);
-//         const eased = easingFn(t);
-//         window.scrollTo(0, start + (to - start) * eased);
-//         if (t < 1) requestAnimationFrame(step);
-//     }
-//     requestAnimationFrame(step);
-// }
 
-function smoothScrollTo(targetEl, duration=900, easingFn=(t)=>1-(1-t)**5 ){ // easeOutQuint
-    const start = window.scrollY || document.documentElement.scrollTop;
+
+function smoothScrollTo(targetEl, duration=900, easingFn=(t)=>1-(1-t)**5, startYOverride=null){
+    const start = (startYOverride != null) ? startYOverride : getScrollY();
     const rect = targetEl.getBoundingClientRect();
 
-    // --- 新增：根据粘性头部自动计算遮挡修正 ---
     const header = document.querySelector('header.site-header');
     let headerOffset = 0;
-    if (header) {
-        // 取 header 实际高度（含安全区）
-        headerOffset = Math.round(header.getBoundingClientRect().height);
-        // 给出一点呼吸空间，避免紧贴标题
-        headerOffset += 8;
-    }
+    if (header) headerOffset = Math.round(header.getBoundingClientRect().height) + 8;
 
     const to = rect.top + start - headerOffset;
     const startTime = performance.now();
@@ -64,28 +49,59 @@ function smoothScrollTo(targetEl, duration=900, easingFn=(t)=>1-(1-t)**5 ){ // e
 }
 
 
-
 /* ----------------- Hash Router (only for # links) ----------------- */
-function setActive(hash) {
+// function setActive(hash) {
+//     const id = (hash || '#home').replace('#','') || 'home';
+//     // 标记激活项（只针对 # 锚点链接）
+//     $$('a[data-link][href^="#"]').forEach(a => a.classList.toggle('active', a.getAttribute('href') === hash));
+//     const target = document.getElementById(id);
+//     // if (target && !prefersReduced) target.scrollIntoView({behavior:'smooth', block:'start'});
+//     if (target && !prefersReduced) smoothScrollTo(target, 100); // 1000ms 可自行调慢/调快
+//     history.replaceState(null, '', hash);
+// }
+
+
+function setActive(hash, { force = false, startFromY = null } = {}) {
     const id = (hash || '#home').replace('#','') || 'home';
-    // 标记激活项（只针对 # 锚点链接）
-    $$('a[data-link][href^="#"]').forEach(a => a.classList.toggle('active', a.getAttribute('href') === hash));
     const target = document.getElementById(id);
-    // if (target && !prefersReduced) target.scrollIntoView({behavior:'smooth', block:'start'});
-    if (target && !prefersReduced) smoothScrollTo(target, 100); // 1000ms 可自行调慢/调快
-    history.replaceState(null, '', hash);
+    const currentHash = location.hash || '#home';
+
+    $$('a[data-link][href^="#"]').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === hash);
+    });
+
+    if (target && !prefersReduced) {
+        // 把可靠的起点 Y 传进去（没有就用函数内部的 window.scrollY）
+        smoothScrollTo(target, 900, undefined, startFromY);
+    }
+
+    if (force || currentHash !== hash) {
+        history.replaceState(null, '', hash);
+    }
 }
-function wireHashRouter(){
-    // 只注册 href 以 # 开头的锚点；不会拦截独立页链接
-    $$('a[data-link][href^="#"]').forEach(a=>{
-        a.addEventListener('click', (e)=>{
+
+
+
+function wireHashRouter() {
+    $$('a[data-link][href^="#"]').forEach(a => {
+        a.addEventListener('click', (e) => {
             e.preventDefault();
-            setActive(a.getAttribute('href'));
-            closeMobileMenu(); // 点击后收起移动端菜单
+            const hash = a.getAttribute('href');
+            const go = (startY)=> setActive(hash, { force: true, startFromY: startY });
+
+            if (drawerOpen) {
+                closeMobileMenu(go);
+            } else {
+                go(getScrollY());
+            }
         });
     });
-    window.addEventListener('hashchange', ()=> setActive(location.hash || '#home'));
+
+    window.addEventListener('hashchange', () => {
+        setActive(location.hash || '#home', { force: true, startFromY: getScrollY() });
+    });
 }
+
 
 /* ----------------- Theme toggle (persist) ----------------- */
 function applySavedTheme(){
@@ -120,6 +136,8 @@ function lockBodyScroll() {
     const sw = window.innerWidth - document.documentElement.clientWidth;
     if (sw > 0) body.style.paddingRight = sw + 'px';
 }
+
+
 function unlockBodyScroll() {
     const body = document.body;
     const y = _savedScrollY || 0;
@@ -129,45 +147,108 @@ function unlockBodyScroll() {
     body.style.right = '';
     body.style.width = '';
     body.style.paddingRight = '';
-    window.scrollTo(0, y);
+    window.scrollTo(0, y);   // 这一步很关键，避免跳到顶部
 }
 
 
 /* ----------------- Mobile menu (drawer overlay) ----------------- */
 let drawerOpen = false;
+
+
+function navigateAfterDrawerClose(hash){
+    const drawer = $('#mobile-drawer');
+    if (!drawer) { setActive(hash); return; }
+
+    const run = ()=> {
+        setActive(hash); // 内部会用 smoothScrollTo，并计算 header 遮挡
+    };
+
+    // 若当前就没开抽屉，直接滚
+    if (!drawerOpen || !drawer.classList.contains('show')) {
+        run();
+        return;
+    }
+
+    // 抽屉关闭后再滚
+    const onEnd = ()=> {
+        drawer.removeEventListener('transitionend', onEnd);
+        run();
+    };
+    drawer.addEventListener('transitionend', onEnd, { once: true });
+    closeMobileMenu();
+}
+
+
+
 function openMobileMenu(){
     const drawer = $('#mobile-drawer');
     const overlay = $('#nav-overlay');
     const menuBtn = $('#menu');
     if (!drawer || !overlay) return;
+
+    lockBodyScroll();   // 打开时
+
     drawer.classList.add('show');
     overlay.classList.add('show');
     drawer.setAttribute('aria-hidden', 'false');
     overlay.setAttribute('aria-hidden', 'false');
     if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
 
-    lockBodyScroll();   // 打开时
-    unlockBodyScroll(); // 关闭时
+
 
     drawerOpen = true;
 }
 
-function closeMobileMenu(){
+
+function closeMobileMenu(afterUnlocked){  // afterUnlocked?: (startY:number)=>void
     const drawer = $('#mobile-drawer');
     const overlay = $('#nav-overlay');
     const menuBtn = $('#menu');
     if (!drawer || !overlay) return;
+
     drawer.classList.remove('show');
     overlay.classList.remove('show');
     drawer.setAttribute('aria-hidden', 'true');
     overlay.setAttribute('aria-hidden', 'true');
     if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
 
-    lockBodyScroll();   // 打开时
-    unlockBodyScroll(); // 关闭时
+
+    const onEnd = ()=>{
+        drawer.removeEventListener('transitionend', onEnd);
+
+        // ① 先把当前焦点移走，避免浏览器把焦点还给 #menu 时把页面卷到顶部
+        const active = document.activeElement;
+        if (active && typeof active.blur === 'function') {
+            active.blur();
+        }
+
+        // ② 恢复 body 滚动到打开抽屉前的位置
+        unlockBodyScroll();
+
+        if (typeof afterUnlocked === 'function') {
+            // ③ 双 rAF 等布局/滚动完全稳定后再读“真正的当前位置”
+            requestAnimationFrame(()=> {
+                requestAnimationFrame(()=> {
+                    const y = getScrollY();
+                    afterUnlocked(y);
+                });
+            });
+        }
+    };
+
+
+    const computed = getComputedStyle(drawer);
+    const dur = (parseFloat(computed.transitionDuration)||0) + (parseFloat(computed.transitionDelay)||0);
+    if (dur > 0) {
+        drawer.addEventListener('transitionend', onEnd, { once: true });
+    } else {
+        onEnd();
+    }
 
     drawerOpen = false;
 }
+
+
 
 // function openMobileMenu(){
 //     const drawer = $('#mobile-drawer');
