@@ -209,3 +209,91 @@ footer{padding:36px 0;color:var(--muted)}
         font-size: 0.9rem;
     }
 }
+
+
+/* --- Mobile-first header defaults (prevent FOUC) --- */
+@media (max-width: 720px) {
+    /* 隐藏桌面内联导航，首屏就不出现 */
+    .nav-links-inline { display: none !important; }
+
+    /* 显示汉堡按钮（如果上面已有同名规则可保留，这里是兜底） */
+    #menu { display: inline-flex !important; }
+
+    /* 品牌名不换行，避免被挤成两行 */
+    .brand span { white-space: nowrap; }
+
+    /* 头部间距在移动端稍微紧凑一点，避免挤压 */
+    .nav { gap: 10px; }
+}
+
+/* iOS 安全区增强：仅在有刘海设备上起作用，其他设备值为 0 */
+header.site-header {
+    padding-top: max(0px, env(safe-area-inset-top));
+}
+
+header.site-header .nav {
+    padding-left:  max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+}
+
+/* 你的 .controls 里已经处理了右侧；这里补齐左侧兜底（可选） */
+.controls {
+    padding-left: max(10px, env(safe-area-inset-left));
+}
+
+/* 移动端抽屉的内边距也跟随安全区（可选，手感更好） */
+.nav-drawer {
+    padding-left:  max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+    padding-top:   calc(16px + env(safe-area-inset-top, 0px));
+}
+
+/* 防滚动链路穿透：背景层不把滚动冒泡到页面 */
+html, body { overscroll-behavior: contain; }
+
+/* 抽屉 & 遮罩避免误触背景 */
+.nav-overlay { touch-action: none; }
+.nav-drawer  { overscroll-behavior: contain; }
+
+
+/* --- Publications: mobile layout fix --- */
+@media (max-width: 720px) {
+    /* 1) 卡片改为上下布局，按钮放到文字下面 */
+    .pub-item {
+        grid-template-columns: 1fr !important;
+        align-items: start;
+        gap: 10px;
+    }
+    .pub-actions {
+        justify-content: flex-start;
+    }
+
+    /* 2) 标题小一号且避免奇怪断字 */
+    #pub-list .pub-item .title,
+    #pub-all-list .pub-item .title {
+        font-size: 0.95rem !important;
+        line-height: 1.35;
+        word-break: keep-all;        /* 优先整词换行 */
+        overflow-wrap: anywhere;     /* 实在太长再强制换 */
+    }
+
+    /* 3) 按钮触控尺寸适配 */
+    .pub-actions .btn {
+        padding: 8px 10px;
+        border-radius: 10px;
+    }
+}
+
+/* --- Form controls: dark theme styling --- */
+input[type="search"],
+select {
+    background: var(--panel-2);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 10px;
+    outline: none;
+}
+input[type="search"]::placeholder { color: var(--muted); }
+input[type="search"]:focus,
+select:focus { outline: 2px solid var(--ring); outline-offset: 1px; }

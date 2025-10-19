@@ -78,29 +78,95 @@ function wireThemeToggle(){
 /* ----------------- Footer year ----------------- */
 function setYear(){ const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear(); }
 
+
+// --- Body-level scroll lock helpers ---
+let _savedScrollY = 0;
+function lockBodyScroll() {
+    const body = document.body;
+    _savedScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    body.style.position = 'fixed';
+    body.style.top = `-${_savedScrollY}px`;
+    body.style.left = '0';
+    body.style.right = '0';
+    body.style.width = '100%';
+    // 可选：补偿桌面端滚动条宽度，避免布局抖动
+    const sw = window.innerWidth - document.documentElement.clientWidth;
+    if (sw > 0) body.style.paddingRight = sw + 'px';
+}
+function unlockBodyScroll() {
+    const body = document.body;
+    const y = _savedScrollY || 0;
+    body.style.position = '';
+    body.style.top = '';
+    body.style.left = '';
+    body.style.right = '';
+    body.style.width = '';
+    body.style.paddingRight = '';
+    window.scrollTo(0, y);
+}
+
+
 /* ----------------- Mobile menu (drawer overlay) ----------------- */
 let drawerOpen = false;
 function openMobileMenu(){
     const drawer = $('#mobile-drawer');
     const overlay = $('#nav-overlay');
+    const menuBtn = $('#menu');
     if (!drawer || !overlay) return;
     drawer.classList.add('show');
     overlay.classList.add('show');
-    document.documentElement.style.overflow = 'hidden';
+    drawer.setAttribute('aria-hidden', 'false');
+    overlay.setAttribute('aria-hidden', 'false');
+    if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
+
+    lockBodyScroll();   // 打开时
+    // unlockBodyScroll(); // 关闭时
+
     drawerOpen = true;
 }
+
 function closeMobileMenu(){
     const drawer = $('#mobile-drawer');
     const overlay = $('#nav-overlay');
+    const menuBtn = $('#menu');
     if (!drawer || !overlay) return;
     drawer.classList.remove('show');
     overlay.classList.remove('show');
-    document.documentElement.style.overflow = '';
+    drawer.setAttribute('aria-hidden', 'true');
+    overlay.setAttribute('aria-hidden', 'true');
+    if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+
+    // lockBodyScroll();   // 打开时
+    unlockBodyScroll(); // 关闭时
+
     drawerOpen = false;
 }
+
+// function openMobileMenu(){
+//     const drawer = $('#mobile-drawer');
+//     const overlay = $('#nav-overlay');
+//     if (!drawer || !overlay) return;
+//     drawer.classList.add('show');
+//     overlay.classList.add('show');
+//     document.documentElement.style.overflow = 'hidden';
+//     drawerOpen = true;
+// }
+// function closeMobileMenu(){
+//     const drawer = $('#mobile-drawer');
+//     const overlay = $('#nav-overlay');
+//     if (!drawer || !overlay) return;
+//     drawer.classList.remove('show');
+//     overlay.classList.remove('show');
+//     document.documentElement.style.overflow = '';
+//     drawerOpen = false;
+// }
+
+
 function wireMobileMenu(){
     const menuBtn = document.getElementById('menu');
     const overlay = $('#nav-overlay');
+    const drawer  = $('#mobile-drawer');
+
     if (menuBtn){
         menuBtn.addEventListener('click', ()=>{
             drawerOpen ? closeMobileMenu() : openMobileMenu();
@@ -108,23 +174,49 @@ function wireMobileMenu(){
     }
     if (overlay){
         overlay.addEventListener('click', (e)=>{
-            // 点击遮罩任意位置关闭
             if (e.target === overlay) closeMobileMenu();
         });
     }
-    // Esc 关闭
-    document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape' && drawerOpen) closeMobileMenu(); });
+    document.addEventListener('keydown', (e)=>{
+        if (e.key === 'Escape' && drawerOpen) closeMobileMenu();
+    });
 
-    // 小屏显示 menu 按钮；宽屏显示常规导航
+    // 只在切回桌面端时收起抽屉；隐藏/显示内联导航交给 CSS。
     function handleResize(){
         const isSmall = window.innerWidth < 720;
-        const navInline = $('.nav-links-inline');
-        if (navInline) navInline.style.display = isSmall ? 'none' : '';
         if (!isSmall) closeMobileMenu();
     }
     window.addEventListener('resize', handleResize);
     handleResize();
 }
+
+// function wireMobileMenu(){
+//     const menuBtn = document.getElementById('menu');
+//     const overlay = $('#nav-overlay');
+//     if (menuBtn){
+//         menuBtn.addEventListener('click', ()=>{
+//             drawerOpen ? closeMobileMenu() : openMobileMenu();
+//         });
+//     }
+//     if (overlay){
+//         overlay.addEventListener('click', (e)=>{
+//             // 点击遮罩任意位置关闭
+//             if (e.target === overlay) closeMobileMenu();
+//         });
+//     }
+//     // Esc 关闭
+//     document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape' && drawerOpen) closeMobileMenu(); });
+//
+//     // 小屏显示 menu 按钮；宽屏显示常规导航
+//     function handleResize(){
+//         const isSmall = window.innerWidth < 720;
+//         const navInline = $('.nav-links-inline');
+//         if (navInline) navInline.style.display = isSmall ? 'none' : '';
+//         if (!isSmall) closeMobileMenu();
+//     }
+//     window.addEventListener('resize', handleResize);
+//     handleResize();
+// }
 
 /* ----------------- Image fallback helper ----------------- */
 function applyImageFallbacks(root=document){
