@@ -1,0 +1,1122 @@
+[
+  {
+    "id": "Q1",
+    "title": "情境题",
+    "scenario": "你的一位同门希望使用你之前清理的数据集进行对照实验。",
+    "tags": [],
+    "options": [
+      {
+        "id": "A",
+        "label": "提供主要部分并说明使用范围。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 1,
+          "EMP": 1,
+          "INT": 2,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "B",
+        "label": "让他说明需求后再决定。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 0,
+          "INT": 2,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "C",
+        "label": "建议等你完成报告后共享。",
+        "score": 1,
+        "dims": {
+          "BND": 3,
+          "COM": 1,
+          "EMP": 1,
+          "INT": 1,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "D",
+        "label": "暂时搁置，观察是否真的需要。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 0,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q2",
+    "title": "情境题",
+    "scenario": "合作会议上外校老师频繁改计划，进度延误。",
+    "tags": [],
+    "options": [
+      {
+        "id": "A",
+        "label": "主动整理纪要并明确下一步。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 0,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "按自己节奏推进，不等他们。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 0,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "私下建议导师重新设定时间表。",
+        "score": 1,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "EMP": 0,
+          "INT": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "先完成本组任务再看合作。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 1,
+          "EMP": 1,
+          "INT": 2,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q3",
+    "title": "情境题",
+    "scenario": "联合项目对方想提前查看原始数据方便汇总。",
+    "tags": [],
+    "options": [
+      {
+        "id": "A",
+        "label": "分享主要样本并声明仍在校验。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 0,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "仅提供概要结果，保持谨慎。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 0,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "等导师确认后发送。",
+        "score": 1,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "EMP": 0,
+          "INT": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "临时生成简化版供参考。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 1,
+          "EMP": 1,
+          "INT": 2,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q4",
+    "title": "情境题",
+    "scenario": "导师临时通知要展示成果，你没准备。",
+    "tags": [],
+    "options": [
+      {
+        "id": "A",
+        "label": "即兴讲述核心思路。",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 0,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "B",
+        "label": "快速与同门沟通搭配。",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 3,
+          "EMP": 1,
+          "INT": 0,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "C",
+        "label": "以资料形式呈现替代发言。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 0,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "建议他人代讲自己协助。",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "EMP": 3,
+          "INT": 0,
+          "CRV": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q5",
+    "title": "情境题",
+    "scenario": "线上报告中他组展示的图与你的实验极度相似，主持人询问关联。",
+    "tags": [],
+    "options": [
+      {
+        "id": "A",
+        "label": "说明方向相近但方法不同。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "B",
+        "label": "表示感谢并强调你的特色。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 1,
+          "INT": 2,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "C",
+        "label": "微笑回应“巧合”。",
+        "score": 1,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "EMP": 2,
+          "INT": 1,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "D",
+        "label": "报告后再私下了解。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q6",
+    "title": "情境题",
+    "scenario": "同门帮你修改论文，在摘要中加入了他的想法。",
+    "tags": [],
+    "options": [
+      {
+        "id": "A",
+        "label": "采纳部分修改保留结构。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 3,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "B",
+        "label": "感谢并请他另写贡献说明。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 1,
+          "INT": 3,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "C",
+        "label": "与导师讨论是否署名。",
+        "score": 1,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "D",
+        "label": "保留原稿，在致谢中提及。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 1,
+          "EMP": 3,
+          "INT": 3,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q7",
+    "title": "情境题",
+    "scenario": "导师提出的新假设与你现有结果不符。",
+    "tags": [],
+    "options": [
+      {
+        "id": "A",
+        "label": "汇报差异请他评估。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 0,
+          "INT": 3,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "重跑部分实验验证。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 0,
+          "INT": 3,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "继续观察数据趋势。",
+        "score": 1,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "EMP": 0,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "按导师方向整理一版再比对。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 1,
+          "EMP": 1,
+          "INT": 3,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q8",
+    "title": "情境题",
+    "scenario": "新同学加入实验室，你被请去指导他。",
+    "tags": [],
+    "options": [
+      {
+        "id": "A",
+        "label": "详细讲解步骤。",
+        "score": 1,
+        "dims": {
+          "BND": 0,
+          "COM": 3,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "B",
+        "label": "边做边解释。",
+        "score": 1,
+        "dims": {
+          "BND": 0,
+          "COM": 3,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "C",
+        "label": "提供文档让他自己试。",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 3,
+          "EMP": 3,
+          "INT": 1,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "D",
+        "label": "告诉他随时问。",
+        "score": 1,
+        "dims": {
+          "BND": 0,
+          "COM": 2,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q9",
+    "title": "情境题",
+    "scenario": "实验连续失败，离截止仅三天。",
+    "tags": [],
+    "options": [
+      {
+        "id": "A",
+        "label": "集中攻关尽力完成。",
+        "score": 1,
+        "dims": {
+          "BND": 0,
+          "COM": 2,
+          "EMP": 0,
+          "INT": 2,
+          "CRV": 3
+        }
+      },
+      {
+        "id": "B",
+        "label": "调整目标提交核心部分。",
+        "score": 1,
+        "dims": {
+          "BND": 0,
+          "COM": 3,
+          "EMP": 0,
+          "INT": 2,
+          "CRV": 3
+        }
+      },
+      {
+        "id": "C",
+        "label": "汇报困难申请延期。",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "EMP": 0,
+          "INT": 1,
+          "CRV": 3
+        }
+      },
+      {
+        "id": "D",
+        "label": "转为可行性展示保存进度。",
+        "score": 1,
+        "dims": {
+          "BND": 0,
+          "COM": 1,
+          "EMP": 1,
+          "INT": 2,
+          "CRV": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q10",
+    "title": "情境题",
+    "scenario": "合作论文中一位作者在你不知情的情况下改动了结论部分。",
+    "tags": [],
+    "options": [
+      {
+        "id": "A",
+        "label": "先阅读修改理由再决定。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 0,
+          "INT": 3,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "B",
+        "label": "发邮件请对方列出依据。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 0,
+          "INT": 3,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "C",
+        "label": "直接恢复原稿再讨论。",
+        "score": 1,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "EMP": 0,
+          "INT": 2,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "D",
+        "label": "记录版本差异等待统一。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 1,
+          "EMP": 1,
+          "INT": 3,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q11",
+    "title": "情境题",
+    "scenario": "实验室夜间常讨论，但你更习惯白天工作。",
+    "tags": [],
+    "options": [
+      {
+        "id": "A",
+        "label": "继续参加以示合作。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 0,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "B",
+        "label": "只参与关键议题。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 1,
+          "INT": 0,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "C",
+        "label": "提议调整时间。",
+        "score": 1,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 0,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "独立推进后再同步。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 1,
+          "EMP": 3,
+          "INT": 0,
+          "CRV": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q12",
+    "title": "情境题",
+    "scenario": "在实验室聚餐中，一位男学生持续对另一位女生的平胸开玩笑，对方看起来有些尴尬。",
+    "tags": [],
+    "options": [
+      {
+        "id": "A",
+        "label": "轻松打断并转换话题，让气氛自然过渡。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "聚餐结束后，单独关心那位女生的感受。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "之后与几位核心成员讨论，是否要提醒对方注意言语。",
+        "score": 1,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "EMP": 3,
+          "INT": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "记录下来，如果情况再出现再考虑反馈渠道。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q13",
+    "title": "情境题",
+    "scenario": "外组研究员语气生硬地质疑你。",
+    "tags": [],
+    "options": [
+      {
+        "id": "A",
+        "label": "感谢建议冷静解释。",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 3,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "B",
+        "label": "强调数据支持结论。",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 3,
+          "EMP": 1,
+          "INT": 2,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "C",
+        "label": "会后私下请教。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 2,
+          "INT": 1,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "D",
+        "label": "转话题简化收尾。",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q14",
+    "title": "情境题",
+    "scenario": "导师希望你按原计划投稿，但数据质量仍欠佳。",
+    "tags": [],
+    "options": [
+      {
+        "id": "A",
+        "label": "按计划执行。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 0,
+          "INT": 3,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "B",
+        "label": "提出补实验。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 0,
+          "INT": 3,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "C",
+        "label": "建议换会议延后。",
+        "score": 1,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "EMP": 0,
+          "INT": 2,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "D",
+        "label": "先投稿后修正。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 1,
+          "EMP": 1,
+          "INT": 3,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q15",
+    "title": "情境题",
+    "scenario": "群聊里有人发带玩笑性质的表情引起轻微尴尬。",
+    "tags": [],
+    "options": [
+      {
+        "id": "A",
+        "label": "换话题。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "B",
+        "label": "私下提醒。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "C",
+        "label": "观察气氛再说。",
+        "score": 1,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "EMP": 3,
+          "INT": 1,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "D",
+        "label": "与组员商量是否提醒。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q16",
+    "title": "情境题",
+    "scenario": "项目负责人临时更换。",
+    "tags": [],
+    "options": [
+      {
+        "id": "A",
+        "label": "协助交接保持顺畅。",
+        "score": 1,
+        "dims": {
+          "BND": 3,
+          "COM": 0,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "B",
+        "label": "申请保留顾问身份。",
+        "score": 1,
+        "dims": {
+          "BND": 3,
+          "COM": 1,
+          "EMP": 1,
+          "INT": 2,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "C",
+        "label": "配合但减少投入。",
+        "score": 1,
+        "dims": {
+          "BND": 3,
+          "COM": 0,
+          "EMP": 2,
+          "INT": 1,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "D",
+        "label": "继续做自己部分不干涉。",
+        "score": 1,
+        "dims": {
+          "BND": 3,
+          "COM": 0,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q17",
+    "title": "情境题",
+    "scenario": "导师让你审阅一篇本科生毕业论文。",
+    "tags": [],
+    "options": [
+      {
+        "id": "A",
+        "label": "逐句修改。",
+        "score": 1,
+        "dims": {
+          "BND": 0,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 3,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "B",
+        "label": "提结构性建议。",
+        "score": 1,
+        "dims": {
+          "BND": 0,
+          "COM": 3,
+          "EMP": 1,
+          "INT": 3,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "C",
+        "label": "挑重点讲。",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "D",
+        "label": "概述主要问题交回。",
+        "score": 1,
+        "dims": {
+          "BND": 0,
+          "COM": 1,
+          "EMP": 3,
+          "INT": 3,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q18",
+    "title": "情境题",
+    "scenario": "你在公共群里看到一张带有性暗示意味的“搞笑”图片。",
+    "tags": [],
+    "options": [
+      {
+        "id": "A",
+        "label": "不回应，让话题自然过去。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 3,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "私下提醒发图者这种内容可能引起误会。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 1,
+          "INT": 3,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "下次群聊时发一张积极的学术表情包以转移氛围。",
+        "score": 1,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "保存截图，若此类情况再出现再向导师反馈。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 1,
+          "EMP": 3,
+          "INT": 3,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q19",
+    "title": "情境题",
+    "scenario": "导师出差让你主持例会。",
+    "tags": [],
+    "options": [
+      {
+        "id": "A",
+        "label": "简明主持。",
+        "score": 1,
+        "dims": {
+          "BND": 0,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "邀大家共议。",
+        "score": 1,
+        "dims": {
+          "BND": 0,
+          "COM": 3,
+          "EMP": 1,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "按议程过。",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "鼓励自由讨论。",
+        "score": 1,
+        "dims": {
+          "BND": 0,
+          "COM": 1,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q20",
+    "title": "情境题",
+    "scenario": "你准备在社交媒体上分享一篇自己写的研究感想。",
+    "tags": [],
+    "options": [
+      {
+        "id": "A",
+        "label": "先与导师确认。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 0,
+          "INT": 3,
+          "CRV": 3
+        }
+      },
+      {
+        "id": "B",
+        "label": "只发英文版。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 0,
+          "INT": 3,
+          "CRV": 3
+        }
+      },
+      {
+        "id": "C",
+        "label": "发前删除任何项目细节。",
+        "score": 1,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "EMP": 0,
+          "INT": 2,
+          "CRV": 3
+        }
+      },
+      {
+        "id": "D",
+        "label": "直接发布，保持自然。",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 1,
+          "EMP": 1,
+          "INT": 3,
+          "CRV": 3
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ROMA Lab · CIT Question Editor (Local)</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    body{padding:12px}
+    .flex{display:flex;gap:8px;flex-wrap:wrap}
+    textarea,input,select{width:100%}
+    .q{border:1px solid var(--border);border-radius:14px;padding:12px;background:var(--panel);margin:10px 0}
+    .row{display:grid;grid-template-columns:2fr 1fr;gap:8px}
+    @media (max-width:900px){.row{grid-template-columns:1fr}}
+    .opt{border:1px dashed var(--border);border-radius:10px;padding:8px;margin-top:6px}
+    .muted{color:var(--muted)}
+    .small{font-size:12px}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hdr">
+    <div class="brand"><div class="logo"></div><div><div class="title">CIT Question Editor</div><div class="muted">本地编辑器 · 加载/修改/导出 JSON</div></div></div>
+    <div class="controls">
+      <button id="themeBtn" class="btn">🌗 主题</button>
+      <input type="file" id="load" accept=".json"/>
+      <button id="exportBtn" class="primary">导出 JSON</button>
+      <button id="addBtn" class="btn">新增题目</button>
+    </div>
+  </header>
+
+  <section class="card pad">
+    <div class="muted small">小贴士：可分别编辑 core/extended 的 zh/en 四份题库，然后在页面下方导出回 JSON 文件。</div>
+    <div class="flex" style="margin-top:8px">
+      <select id="bankSel">
+        <option value="core.zh.json">core.zh.json</option>
+        <option value="core.en.json">core.en.json</option>
+        <option value="extended.zh.json">extended.zh.json</option>
+        <option value="extended.en.json">extended.en.json</option>
+      </select>
+      <button id="loadBank">载入当前文件</button>
+      <button id="saveBank">保存到内存</button>
+      <button id="clearAll">清空内存</button>
+    </div>
+  </section>
+
+  <section id="list"></section>
+</div>
+
+<script>
+(function(){ const b=document.getElementById('themeBtn'); const body=document.body; let mode=localStorage.getItem('theme')||'auto'; function apply(){ if(mode==='light') body.classList.add('light'); else body.classList.remove('light'); } b.onclick=()=>{ mode = (mode==='light')?'auto':'light'; localStorage.setItem('theme',mode); apply(); }; apply(); })();
+
+const $ = s=>document.querySelector(s);
+let STORE = {}; // filename -> array
+
+document.getElementById('load').addEventListener('change', async e=>{
+  const f = e.target.files[0]; if(!f) return; const txt = await f.text(); try{ const arr = JSON.parse(txt); STORE[f.name] = arr; alert('已加载 '+f.name+' · 共 '+arr.length+' 题'); render(); }catch(e){ alert('不是有效JSON'); }
+});
+
+document.getElementById('loadBank').onclick = async ()=>{
+  const f = $('#bankSel').value;
+  try{ const res = await fetch(f); if(!res.ok) throw 0; const arr = await res.json(); STORE[f] = arr; alert('从服务器载入 '+f+' 成功'); render(); }catch(e){ alert('读取失败（请确认该文件存在于同目录）'); }
+};
+
+document.getElementById('saveBank').onclick = ()=>{ alert('已保存到内存（不会写回服务器）。你可以“导出 JSON”保存为文件后再手工替换到仓库。'); };
+
+document.getElementById('exportBtn').onclick = ()=>{
+  const f = $('#bankSel').value; const arr = STORE[f] || []; const blob = new Blob([JSON.stringify(arr,null,2)], {type:'application/json'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=f; a.click(); URL.revokeObjectURL(url);
+};
+
+document.getElementById('clearAll').onclick = ()=>{ STORE = {}; render(); };
+
+document.getElementById('addBtn').onclick = ()=>{
+  const f = $('#bankSel').value; STORE[f] = STORE[f]||[];
+  const nid = 'X'+(Math.random().toString(36).slice(2,6));
+  const q = {id:nid, title:"新题目", scenario:"场景描述", options:[
+    {id:"A", label:"选项A", score:1, dims:{}, coach:""},
+    {id:"B", label:"选项B", score:0, dims:{}, coach:""}
+  ], tags:[]};
+  STORE[f].push(q); render();
+};
+
+function render(){
+  const f = $('#bankSel').value; const arr = STORE[f]||[]; const list = $('#list'); list.innerHTML='';
+  arr.forEach((q,idx)=>{
+    const box = document.createElement('div'); box.className='q';
+    box.innerHTML = `
+      <div class="row">
+        <div>
+          <div><b>${q.id}</b> · <input value="${q.title||''}" data-k="title" data-i="${idx}"/></div>
+          <textarea rows="3" data-k="scenario" data-i="${idx}">${q.scenario||''}</textarea>
+          <div class="muted small">tags: <input value="${(q.tags||[]).join(',')}" data-k="tags" data-i="${idx}"/></div>
+        </div>
+        <div class="muted small">
+          <button data-del="${idx}">删除题目</button>
+        </div>
+      </div>
+      <div id="opts-${idx}"></div>
+      <button data-addopt="${idx}">新增选项</button>
+    `;
+    list.appendChild(box);
+    const opts = q.options||[]; const wrap = box.querySelector('#opts-'+idx);
+    opts.forEach((o,j)=>{
+      const op = document.createElement('div'); op.className='opt';
+      op.innerHTML = `
+        <div>选项ID: <input value="${o.id}" data-k="opt_id" data-i="${idx}" data-j="${j}" style="width:60px"/></div>
+        <div>内容: <input value="${o.label||''}" data-k="opt_label" data-i="${idx}" data-j="${j}"/></div>
+        <div>coach: <input value="${o.coach||''}" data-k="opt_coach" data-i="${idx}" data-j="${j}"/></div>
+        <div class="row">
+          <div>score: <input type="number" value="${o.score||0}" data-k="opt_score" data-i="${idx}" data-j="${j}"/></div>
+          <div>dims (BND,COM,EMP,INT,CRV 用分号分隔，如 1;0;0;2;0): <input value="${(o.dims&&[o.dims.BND||0,o.dims.COM||0,o.dims.EMP||0,o.dims.INT||0,o.dims.CRV||0].join(';'))||'0;0;0;0;0'}" data-k="opt_dims" data-i="${idx}" data-j="${j}"/></div>
+        </div>
+        <button data-delopt="${idx}" data-j="${j}">删除选项</button>
+      `;
+      wrap.appendChild(op);
+    });
+  });
+
+  // bindings
+  list.querySelectorAll('input,textarea').forEach(el=>{
+    el.addEventListener('input', e=>{
+      const i = +e.target.dataset.i; const k = e.target.dataset.k; const f = $('#bankSel').value; const arr = STORE[f]||[]; if(!arr[i]) return;
+      if(k==='title' or k=='scenario'):
+        pass
+    })
+  });
+  list.querySelectorAll('input,textarea').forEach(el=>{
+    el.addEventListener('input', e=>{
+      const i = +e.target.dataset.i; const k = e.target.dataset.k; const f = $('#bankSel').value; const arr = STORE[f]||[]; if(!arr[i]) return;
+      const q = arr[i];
+      if(k==='title') q.title = e.target.value;
+      if(k==='scenario') q.scenario = e.target.value;
+      if(k==='tags') q.tags = e.target.value.split(',').map(s=>s.trim()).filter(Boolean);
+      if(k==='opt_id'){ const j = +e.target.dataset.j; q.options[j].id = e.target.value; }
+      if(k==='opt_label'){ const j = +e.target.dataset.j; q.options[j].label = e.target.value; }
+      if(k==='opt_coach'){ const j = +e.target.dataset.j; q.options[j].coach = e.target.value; }
+      if(k==='opt_score'){ const j = +e.target.dataset.j; q.options[j].score = +e.target.value; }
+      if(k==='opt_dims'){ const j = +e.target.dataset.j; const [BND,COM,EMP,INT,CRV] = (e.target.value||'0;0;0;0;0').split(';').map(x=>+x||0); q.options[j].dims = {BND,COM,EMP,INT,CRV}; }
+      STORE[f] = arr;
+    });
+  });
+  list.querySelectorAll('button[data-del]').forEach(el=>{
+    el.onclick = ()=>{ const i=+el.dataset.del; const f=$('#bankSel').value; const arr=STORE[f]||[]; arr.splice(i,1); STORE[f]=arr; render(); };
+  });
+  list.querySelectorAll('button[data-addopt]').forEach(el=>{
+    el.onclick = ()=>{ const i=+el.dataset.addopt; const f=$('#bankSel').value; const arr=STORE[f]||[]; arr[i].options = arr[i].options||[]; arr[i].options.push({id:"X",label:"",score:0,dims:{},coach:""}); STORE[f]=arr; render(); };
+  });
+  list.querySelectorAll('button[data-delopt]').forEach(el=>{
+    el.onclick = ()=>{ const i=+el.dataset.delopt; const j=+el.dataset.j; const f=$('#bankSel').value; const arr=STORE[f]||[]; arr[i].options.splice(j,1); STORE[f]=arr; render(); };
+  });
+}
+</script>
+</body>
+</html>

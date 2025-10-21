@@ -1,0 +1,1652 @@
+[
+  {
+    "id": "Q21",
+    "title": "Scenario",
+    "scenario": "You’re running a large training job. A teammate asks to pause it briefly for a quick ablation they need for a deadline.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Check their timeline and negotiate a short pause with a clear window.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Decline—your run came first, they should wait their turn.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "EMP": 1,
+          "INT": 2,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "C",
+        "label": "Offer to help them run on a smaller subset or different node.",
+        "score": 3,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Let them pause it without setting any constraints.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "EMP": 2,
+          "INT": 1,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q22",
+    "title": "Scenario",
+    "scenario": "A company collaborator suggests adding a flashy KPI to the paper that doesn’t fit the scientific question.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Push back politely and explain why it misleads the narrative.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Include it in an appendix with clear caveats.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "C",
+        "label": "Agree if it helps the partnership—impact matters.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "INT": 1,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Ask the advisor to decide—stay neutral yourself.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q23",
+    "title": "Scenario",
+    "scenario": "Two students keep booking the only quiet meeting room for long personal calls, limiting others’ research discussions.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Suggest a shared booking rule and post it on the door.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Ask the admin to block personal calls from that room.",
+        "score": 2,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Leave it alone; you’ll find alternatives when needed.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 1,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "D",
+        "label": "Privately ask them to shorten calls at peak hours.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 2,
+          "EMP": 2,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q24",
+    "title": "Scenario",
+    "scenario": "A collaborator drafts a media post overstating your lab’s results before peer review.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Request edits to keep claims strictly aligned with the paper.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Ask to delay the post until the review process stabilizes.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Let it go—it’s good publicity for recruitment.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Share a toned-down version on your own channel as balance.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q25",
+    "title": "Scenario",
+    "scenario": "You find a convenient public dataset with unclear licensing; it perfectly fits your planned benchmark.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Track down the license or reach out to the maintainer first.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Use it for internal tests only and note the uncertainty.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "C",
+        "label": "Use it fully and deal with license later if needed.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Replace it with a smaller but properly licensed dataset.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q26",
+    "title": "Scenario",
+    "scenario": "Your teammate suggests rewriting evaluation code the night before submission; your version is slower but validated.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Stick to validated code; speed-ups can be follow-up work.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Adopt the rewrite and skip thorough checks to save time.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "C",
+        "label": "Run both on a small subset and choose based on correctness.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Ask the advisor to pick, then follow that call.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q27",
+    "title": "Scenario",
+    "scenario": "You discover minor inconsistencies between the written method and actual code in a co-author’s section.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Ping them politely with side-by-side notes to align both.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Fix it yourself in silence to avoid delays.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "C",
+        "label": "Flag it in the shared doc and wait for someone else to resolve.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "INT": 1,
+          "EMP": 1,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "D",
+        "label": "Bring it up at the next sync and propose a quick alignment step.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q28",
+    "title": "Scenario",
+    "scenario": "A lab mate casually shares screenshots of private Slack threads into a student forum.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Remind them that internal context shouldn’t be reposted without consent.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Ask them to anonymize and get consent before sharing.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Let it be—everyone shares things occasionally.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Inform the admin quietly to prevent future leaks.",
+        "score": 2,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q29",
+    "title": "Scenario",
+    "scenario": "Your replication of a popular paper fails; authors respond slowly to your questions.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Document your steps carefully and keep your tone neutral in follow-ups.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "B",
+        "label": "Publicly question the validity of their claims to get attention.",
+        "score": 0,
+        "dims": {
+          "BND": 0,
+          "COM": 2,
+          "INT": 0,
+          "EMP": 0,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "C",
+        "label": "Try a smaller replication first and share partial observations.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Drop it—replications are rarely appreciated.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q30",
+    "title": "Scenario",
+    "scenario": "An undergraduate mentee keeps missing weekly check-ins but pushes code directly to main.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Set a light process: short weekly sync + PR reviews before merge.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Lock the repo until they show up consistently.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 2,
+          "EMP": 0,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "C",
+        "label": "Pair them with a senior for two sprints to build habits.",
+        "score": 3,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "INT": 2,
+          "EMP": 3,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Let them keep pushing; you’ll fix issues later.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q31",
+    "title": "Scenario",
+    "scenario": "A collaborator asks you to front-run a dataset release so their team can claim ‘first’.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Decline and stick to agreed timelines for fair access.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Share a small teaser subset with a clear timestamp.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "C",
+        "label": "Agree—it helps the partnership.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "INT": 1,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Escalate to the advisor to avoid favoritism.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q32",
+    "title": "Scenario",
+    "scenario": "You realize your ablation table accidentally double-counted a subset, slightly inflating gains.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Fix it immediately and update all affected figures.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Note it in a footnote—impact is small.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "INT": 1,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Inform co-authors and re-run the critical rows first.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Wait until someone else notices before changing.",
+        "score": 0,
+        "dims": {
+          "BND": 0,
+          "COM": 1,
+          "INT": 0,
+          "EMP": 0,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q33",
+    "title": "Scenario",
+    "scenario": "An external student DMs you asking for a strong recommendation after a single short chat.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Decline kindly and suggest someone who knows their work better.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Agree if they draft the letter for you to sign.",
+        "score": 0,
+        "dims": {
+          "BND": 0,
+          "COM": 2,
+          "INT": 0,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Offer to write a neutral, factual note instead.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "INT": 2,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Ignore the message to avoid awkwardness.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q34",
+    "title": "Scenario",
+    "scenario": "Your group chat drifts toward mocking a rival lab’s failed demo.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Steer the chat back to technical takeaways, not people.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Stay silent—no harm in private jokes.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "C",
+        "label": "Drop a neutral discussion prompt about lessons learned.",
+        "score": 3,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Add a light joke to ease the tension.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "INT": 1,
+          "EMP": 1,
+          "CRV": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q35",
+    "title": "Scenario",
+    "scenario": "A peer offers to share reviewer identity rumors about your submission if you share yours.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Decline and keep the review process professional and anonymous.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Trade info if it helps you tailor the rebuttal.",
+        "score": 0,
+        "dims": {
+          "BND": 0,
+          "COM": 2,
+          "INT": 0,
+          "EMP": 0,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Redirect to discussing the technical points only.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 2,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Listen but don’t share anything yourself.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "INT": 1,
+          "EMP": 1,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q36",
+    "title": "Scenario",
+    "scenario": "You’re asked to mentor two interns with very different schedules and work styles.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Define clear goals and preferred async check-in cadence for each.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "B",
+        "label": "Treat both identically for fairness.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 1,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "C",
+        "label": "Hold one shared meeting per week and let them sort the rest.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Keep it loose and help only when they ping you.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q37",
+    "title": "Scenario",
+    "scenario": "A friend proposes to share a draft with a journalist to gain early coverage.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Decline; press should wait until results are stable and cleared.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Share a non-technical teaser without claims.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "C",
+        "label": "Agree—media buzz helps acceptance odds.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Ask the PI for media policy and proceed accordingly.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q38",
+    "title": "Scenario",
+    "scenario": "You notice a teammate cherry-picking examples in the appendix to make results look cleaner.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Ask to include the selection criteria and fuller samples.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Suggest moving the cherry-picked set to a supplemental link with a note.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "C",
+        "label": "Let it slide; the main tables are honest.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "D",
+        "label": "Privately flag it to the advisor for a clear policy call.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q39",
+    "title": "Scenario",
+    "scenario": "A co-author repeatedly delays promised runs and blames cluster issues.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Co-create a small milestone sheet with dates and owners.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Reassign those runs to yourself to save the schedule.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "INT": 2,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Escalate immediately to the PI.",
+        "score": 2,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Do nothing—deadlines tend to slip anyway.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q40",
+    "title": "Scenario",
+    "scenario": "You realize your repo’s README is unclear for newcomers, causing repeated onboarding questions.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Add a quick-start, common pitfalls, and example configs.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "B",
+        "label": "Record a short demo video instead of docs.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "INT": 2,
+          "EMP": 2,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "C",
+        "label": "Point newbies to past chat logs when they ask.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "D",
+        "label": "Leave it for later—docs are never perfect anyway.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q41",
+    "title": "Scenario",
+    "scenario": "A visiting scholar keeps asking a junior member to ‘grab coffee alone’ after meetings.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Suggest keeping chats in open, group-friendly spaces.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "EMP": 2,
+          "INT": 3,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Check in with the junior privately about comfort and options.",
+        "score": 3,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Quietly inform the advisor so expectations are clear to visitors.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 3,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Stay out—this might just be networking.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "EMP": 1,
+          "INT": 1,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q42",
+    "title": "Scenario",
+    "scenario": "Your lab’s Twitter/X account is asked to comment on a controversial AI policy thread.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Decline; the lab should avoid hot takes without consensus.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Share a high-level neutral stance linking to your peer-reviewed work.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "C",
+        "label": "Post a bold opinion to grow followers quickly.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Ask the PI for a media policy first.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q43",
+    "title": "Scenario",
+    "scenario": "A partner lab wants raw user data included in a shared repo for ‘convenience’.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Insist on proper anonymization and access control.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Share raw data internally with a warning label.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "INT": 1,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Provide synthetic or sampled data as a safe proxy.",
+        "score": 3,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Refuse to collaborate if they insist.",
+        "score": 2,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q44",
+    "title": "Scenario",
+    "scenario": "A senior asks you to rush-merge their branch without tests to meet a demo date.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Push back; require at least smoke tests before merging.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Merge it and fix problems afterward.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "INT": 1,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "C",
+        "label": "Add temporary guards and schedule a test pass post-demo.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Ask the PI to arbitrate quality vs. speed.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q45",
+    "title": "Scenario",
+    "scenario": "Your team is split between two baselines for comparison; both are reasonable.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Run both on a shared subset and decide with a pre-registered metric.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "B",
+        "label": "Pick the one that looks better for your method.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Defer to the most experienced author.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Document both but emphasize one in the main text.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q46",
+    "title": "Scenario",
+    "scenario": "You’re asked to draft the ethics statement; you’re unsure which risks are material.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Review similar papers and consult the PI for lab-specific norms.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Write a generic statement to save time.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "INT": 1,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "List potential risks and ask co-authors to fill gaps.",
+        "score": 3,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Skip it unless the chair requests it.",
+        "score": 0,
+        "dims": {
+          "BND": 0,
+          "COM": 1,
+          "INT": 0,
+          "EMP": 0,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q47",
+    "title": "Scenario",
+    "scenario": "A junior keeps DMing you late at night for help, assuming you’re always available.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Set friendly boundaries and propose office hours or a shared thread.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 2,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Ignore late messages; they’ll adjust over time.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "C",
+        "label": "Answer whenever you can—helpfulness comes first.",
+        "score": 2,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "INT": 2,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Loop in a second mentor to share the load.",
+        "score": 3,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "INT": 2,
+          "EMP": 3,
+          "CRV": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q48",
+    "title": "Scenario",
+    "scenario": "A colleague proposes adding a borderline joke in the talk to ‘warm up the room’.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Recommend a safe, inclusive opening instead.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Allow it if vetted by a few friends first.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "INT": 1,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "C",
+        "label": "Suggest humor that’s topic-focused, not personal.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Let them try; audiences are usually fine.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q49",
+    "title": "Scenario",
+    "scenario": "A co-author wants to remove a negative result because it ‘confuses readers’.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Keep it with a clear explanation—it improves transparency.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Move it to the appendix but keep it visible.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "C",
+        "label": "Agree to drop it to streamline the message.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Replace with a simulated analysis instead.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "INT": 1,
+          "EMP": 1,
+          "CRV": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q50",
+    "title": "Scenario",
+    "scenario": "Your teammate suggests publicly commenting on a rival’s newly released model before testing it.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Hold off until you’ve done fair tests and read the paper.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Post initial skepticism to set the tone early.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "C",
+        "label": "Share neutral questions and invite evidence-based discussion.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Share a spicy take to drive engagement, then test later.",
+        "score": 0,
+        "dims": {
+          "BND": 0,
+          "COM": 2,
+          "INT": 0,
+          "EMP": 0,
+          "CRV": 2
+        }
+      }
+    ]
+  }
+]

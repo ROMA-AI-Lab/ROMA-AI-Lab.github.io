@@ -1,0 +1,202 @@
+{
+  "version": "v4.3E",
+  "generated_at": "2025-10-21T10:26:52.717456Z",
+  "fit_weights": {
+    "BND": 0.22,
+    "COM": 0.22,
+    "INT": 0.28,
+    "EMP": 0.18,
+    "CRV": 0.1
+  },
+  "thresholds": {
+    "fit_warn": 55,
+    "fit_good": 75,
+    "risk_warn": 40,
+    "risk_bad": 70
+  },
+  "triggers": [
+    {
+      "key": "meme",
+      "affect": {
+        "publicityRisk": 5
+      }
+    },
+    {
+      "key": "joke",
+      "affect": {
+        "publicityRisk": 5
+      }
+    },
+    {
+      "key": "credit",
+      "affect": {
+        "integrityRisk": 6
+      }
+    },
+    {
+      "key": "license",
+      "affect": {
+        "integrityRisk": 6
+      }
+    },
+    {
+      "key": "raw data",
+      "affect": {
+        "integrityRisk": 10,
+        "publicityRisk": 8
+      }
+    },
+    {
+      "key": "media",
+      "affect": {
+        "publicityRisk": 8
+      }
+    },
+    {
+      "key": "twitter",
+      "affect": {
+        "publicityRisk": 8
+      }
+    },
+    {
+      "key": "gossip",
+      "affect": {
+        "publicityRisk": 6
+      }
+    },
+    {
+      "key": "NDA",
+      "affect": {
+        "integrityRisk": 8
+      }
+    },
+    {
+      "key": "anonymous",
+      "affect": {
+        "integrityRisk": 6
+      }
+    },
+    {
+      "key": "visitor",
+      "affect": {
+        "publicityRisk": 5
+      }
+    },
+    {
+      "key": "interruption",
+      "affect": {
+        "egoismRisk": 6
+      }
+    },
+    {
+      "key": "coffee alone",
+      "affect": {
+        "publicityRisk": 6
+      }
+    },
+    {
+      "key": "joking about body",
+      "affect": {
+        "publicityRisk": 8
+      }
+    },
+    {
+      "key": "negative result",
+      "affect": {
+        "integrityRisk": 6
+      }
+    },
+    {
+      "key": "replication",
+      "affect": {
+        "integrityRisk": 4
+      }
+    },
+    {
+      "key": "GPU",
+      "affect": {
+        "volatilityRisk": 4
+      }
+    },
+    {
+      "key": "deadline",
+      "affect": {
+        "volatilityRisk": 4
+      }
+    },
+    {
+      "key": "群聊",
+      "affect": {
+        "publicityRisk": 5
+      }
+    },
+    {
+      "key": "公开",
+      "affect": {
+        "publicityRisk": 8
+      }
+    },
+    {
+      "key": "社交媒体",
+      "affect": {
+        "publicityRisk": 12
+      }
+    },
+    {
+      "key": "数据丢失",
+      "affect": {
+        "integrityRisk": 12
+      }
+    },
+    {
+      "key": "预算超支",
+      "affect": {
+        "integrityRisk": 10
+      }
+    },
+    {
+      "key": "夸大结果",
+      "affect": {
+        "integrityRisk": 15
+      }
+    },
+    {
+      "key": "八卦",
+      "affect": {
+        "egoismRisk": 8
+      }
+    },
+    {
+      "key": "迟到",
+      "affect": {
+        "volatilityRisk": 6
+      }
+    },
+    {
+      "key": "不当",
+      "affect": {
+        "publicityRisk": 6
+      }
+    },
+    {
+      "key": "距离太近",
+      "affect": {
+        "publicityRisk": 5,
+        "egoismRisk": 4
+      }
+    },
+    {
+      "key": "暗示",
+      "affect": {
+        "publicityRisk": 6
+      }
+    },
+    {
+      "key": "赞美",
+      "affect": {
+        "publicityRisk": 4
+      }
+    }
+  ],
+  "notes": "Faculty analyzer consumes this file. No change to faculty.html needed. New items at Q12, Q18, Q23, Q34, Q41."
+}

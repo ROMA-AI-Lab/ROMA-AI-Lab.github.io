@@ -1,0 +1,1102 @@
+[
+  {
+    "id": "Q1",
+    "title": "Scenario",
+    "scenario": "During a casual lab dinner, one male student keeps making jokes about a female member’s body, and she looks embarrassed.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Lightly step in and shift the topic so everyone can move on naturally.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "After the dinner, quietly check in with her to see how she feels.",
+        "score": 3,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Later discuss with several core members whether to remind him about his words.",
+        "score": 2,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 3,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Take note of it for now and only bring it up if it happens again.",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 1,
+          "INT": 2,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q2",
+    "title": "Scenario",
+    "scenario": "You see someone post a meme with sexual undertones in your lab’s public chat group.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Ignore it and let the chat move on naturally.",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 3,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Privately remind the sender that such content might cause misunderstanding.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 2,
+          "INT": 3,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Share a light academic meme next time to shift the overall tone.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 1,
+          "INT": 2,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Keep a record, and if it happens again, consider informing the advisor.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 1,
+          "EMP": 1,
+          "INT": 3,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q3",
+    "title": "Scenario",
+    "scenario": "A female lab mate tells you that her collaborator often stands too close during one-on-one discussions, making her uncomfortable.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Encourage her to express her boundary in a calm, natural way.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Offer to accompany her to briefly mention this to the advisor.",
+        "score": 3,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 3,
+          "INT": 3,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Suggest keeping all future talks in open spaces.",
+        "score": 2,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Show understanding and share some relaxation or communication tips.",
+        "score": 2,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "EMP": 3,
+          "INT": 1,
+          "CRV": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q4",
+    "title": "Scenario",
+    "scenario": "A teammate didn’t cite your code contribution in a shared paper draft.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Calmly bring it up and ask whether it was an oversight.",
+        "score": 3,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Privately message the first author to discuss proper attribution.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Add a subtle footnote crediting your part in the next revision.",
+        "score": 1,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Say nothing—it’s the team’s collective output anyway.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 1,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q5",
+    "title": "Scenario",
+    "scenario": "Your advisor asks you to take the lead on a new sub-project that overlaps with another student’s work.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Talk to the other student first to clarify boundaries before starting.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Start working immediately and deal with any overlap later.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "C",
+        "label": "Ask the advisor to assign tasks more clearly between you two.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Propose merging both works into a collaborative version.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 3,
+          "INT": 1,
+          "CRV": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q6",
+    "title": "Scenario",
+    "scenario": "You notice that a small informal chat group in the lab is spreading gossip about another member’s personal life.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Gently remind everyone not to share unverified stories.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "B",
+        "label": "Suggest that the group admin post a note reminding everyone to stay respectful.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 3,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Privately check in with the person being discussed to make sure they’re aware.",
+        "score": 3,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Stay silent and assume the issue will fade by itself.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "EMP": 1,
+          "INT": 1,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q7",
+    "title": "Scenario",
+    "scenario": "A visitor from another university compliments a female student in your lab in an overly romantic way during a tour.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Smoothly redirect the topic back to research.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 3,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "B",
+        "label": "Check with the student afterward to see if she minded it.",
+        "score": 3,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Tell your advisor afterward so similar visits can be better managed.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 3,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Bring it up during the next group meeting as a reminder of etiquette.",
+        "score": 2,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q8",
+    "title": "Scenario",
+    "scenario": "You realize a teammate repeatedly claims credit for shared visualization work during presentations.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Privately talk to them to clarify the contribution and future attributions.",
+        "score": 3,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Raise the issue with the advisor to keep things transparent.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Add subtle notes in your slides showing who built what.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Let it go—it’s team work and not worth conflict.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 1,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q9",
+    "title": "Scenario",
+    "scenario": "Two lab members are arguing loudly over who should control the shared GPU node during a late-night session.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Calmly suggest creating a usage schedule for fair access.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Ignore it unless it directly delays your own work.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "C",
+        "label": "Tell your advisor the next morning to avoid escalation.",
+        "score": 2,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Step in and mediate by proposing they take turns this time.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q10",
+    "title": "Scenario",
+    "scenario": "You realize a junior student is struggling to reproduce your past experiment but hasn’t asked for help.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Ask if they’d like you to walk them through your code.",
+        "score": 3,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Leave them some hints in the repo without directly intervening.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "C",
+        "label": "Inform your advisor so that assistance can be reassigned.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 1,
+          "EMP": 2,
+          "INT": 3,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Let them find their own way—it’s a learning process.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "EMP": 1,
+          "INT": 1,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q11",
+    "title": "Scenario",
+    "scenario": "A lab friend shares some preliminary results with you and asks for feedback, but you notice several clear calculation errors.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Kindly point out the mistakes and suggest rechecking before showing others.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Give light feedback to avoid discouraging them.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 3,
+          "INT": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Say nothing and let them find the issue themselves.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "EMP": 1,
+          "INT": 1,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "D",
+        "label": "Privately tell another senior student to help review.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q12",
+    "title": "Scenario",
+    "scenario": "You suspect that another student is using lab data without formal permission for a side project.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Talk to them privately to confirm before making assumptions.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 2,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Directly notify the advisor since it may affect data policy.",
+        "score": 2,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Ask mutual friends whether they know about it.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "INT": 1,
+          "EMP": 1,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "D",
+        "label": "Wait and see if the issue affects you before reacting.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q13",
+    "title": "Scenario",
+    "scenario": "Your paper is rejected with harsh comments that seem emotionally biased.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Discuss the feedback calmly with your advisor to find what’s still useful.",
+        "score": 3,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "B",
+        "label": "Vent privately, then move on and resubmit to another venue.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "C",
+        "label": "Post your review experience online to gather sympathy.",
+        "score": 0,
+        "dims": {
+          "BND": 0,
+          "COM": 2,
+          "INT": 0,
+          "EMP": 0,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Complain to co-authors that the reviewers were unqualified.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q14",
+    "title": "Scenario",
+    "scenario": "You and a teammate disagree on how to visualize an experiment result.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Propose trying both versions and compare clarity objectively.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 2,
+          "EMP": 2,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "B",
+        "label": "Let them decide since it’s not critical to your part.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "INT": 1,
+          "EMP": 1,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "C",
+        "label": "Ask a neutral lab member to review both designs.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Push for your version since it aligns with your vision.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 0,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q15",
+    "title": "Scenario",
+    "scenario": "You notice a senior member frequently takes credit when presenting joint results with junior members.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Talk privately and express that shared credit matters for motivation.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "EMP": 2,
+          "INT": 3,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Raise it indirectly in a future lab meeting as a group concern.",
+        "score": 2,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Encourage the junior member to bring it up themselves.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Ignore it since hierarchy is normal in labs.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "EMP": 1,
+          "INT": 1,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q16",
+    "title": "Scenario",
+    "scenario": "A classmate outside your lab asks for internal code that’s under NDA with an industry partner.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Decline politely and explain it’s under a confidentiality agreement.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Share a simplified version without revealing details.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 2,
+          "INT": 1,
+          "EMP": 1,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "C",
+        "label": "Ask your advisor for permission before sharing anything.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Tell them to check online repositories instead.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "INT": 2,
+          "EMP": 1,
+          "CRV": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q17",
+    "title": "Scenario",
+    "scenario": "A collaborator uploads an unfinished draft to a shared drive visible to outsiders.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Privately remind them to check the sharing settings.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "INT": 3,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Immediately remove the access link if you can.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 2,
+          "INT": 3,
+          "EMP": 1,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Warn them in the group chat about the visibility issue.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "INT": 2,
+          "EMP": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Leave it alone since it’s their file, not yours.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "INT": 1,
+          "EMP": 1,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q18",
+    "title": "Scenario",
+    "scenario": "A new intern in the lab often speaks during group meetings but rarely listens to feedback.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Gently remind them to balance speaking and listening.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Ask your advisor to guide them in a private chat.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 2,
+          "EMP": 2,
+          "INT": 3,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Talk to them informally about lab meeting culture.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "D",
+        "label": "Stay silent—it’s not your responsibility.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "EMP": 1,
+          "INT": 1,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q19",
+    "title": "Scenario",
+    "scenario": "You notice a senior member constantly interrupts others during discussion.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Lightly interject with humor to redirect the floor.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 2
+        }
+      },
+      {
+        "id": "B",
+        "label": "Privately suggest to them to let others finish speaking.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "EMP": 3,
+          "INT": 2,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Mention in the next meeting that everyone should take turns.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 2,
+          "INT": 3,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "D",
+        "label": "Ignore it—it’s part of their personality.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "EMP": 1,
+          "INT": 1,
+          "CRV": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q20",
+    "title": "Scenario",
+    "scenario": "You realize that your own tone sounded harsh when replying to a junior in the chat group.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Apologize and clarify your intention to avoid misunderstanding.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "EMP": 3,
+          "INT": 3,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "B",
+        "label": "Message them privately to explain, without making it public.",
+        "score": 3,
+        "dims": {
+          "BND": 3,
+          "COM": 3,
+          "EMP": 2,
+          "INT": 3,
+          "CRV": 1
+        }
+      },
+      {
+        "id": "C",
+        "label": "Leave it alone—no one seemed offended.",
+        "score": 1,
+        "dims": {
+          "BND": 1,
+          "COM": 1,
+          "EMP": 1,
+          "INT": 1,
+          "CRV": 0
+        }
+      },
+      {
+        "id": "D",
+        "label": "Post something lighthearted later to smooth the atmosphere.",
+        "score": 2,
+        "dims": {
+          "BND": 2,
+          "COM": 3,
+          "EMP": 2,
+          "INT": 2,
+          "CRV": 2
+        }
+      }
+    ]
+  }
+]

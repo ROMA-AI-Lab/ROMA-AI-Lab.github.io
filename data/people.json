@@ -75,17 +75,6 @@
       "status": "ra"
     },
     {
-      "name": "Qunzhong Wang",
-      "slug": "qunzhong-wang",
-      "role": "Former RA / Undergraduate",
-      "email": "1155210998@link.cuhk.edu.hk",
-      "site": "https://qunzhongwang.github.io",
-      "avatar": "/assets/people/qunzhongwang.jpg",
-      "topics": ["Principles of AI Systems","RL on Large Models"],
-      "affiliation": "CUHK (Hong Kong)",
-      "status": "ra"
-    },
-    {
       "name": "Xinyan Yang",
       "slug": "xinyan-yang",
       "role": "Former RA / Master",
@@ -116,6 +105,28 @@
       "avatar": "/assets/people/wanghan.jpg",
       "topics": ["Graph Learning","Online Social Networks"],
       "affiliation": "Tencent",
+      "status": "ra"
+    },
+    {
+      "name": "Qunzhong Wang",
+      "slug": "qunzhong-wang",
+      "role": "Former RA / Undergraduate",
+      "email": "1155210998@link.cuhk.edu.hk",
+      "site": "https://qunzhongwang.github.io",
+      "avatar": "/assets/people/qunzhongwang.jpg",
+      "topics": ["Principles of AI Systems","RL on Large Models"],
+      "affiliation": "CUHK (Hong Kong)",
+      "status": "ra"
+    },
+    {
+      "name": "Yihan Wan",
+      "slug": "yihan-wan",
+      "role": "Former RA / Undergraduate",
+      "email": "yihanwan86@gmail.com",
+      "site": "",
+      "avatar": "/assets/people/yihanw.jpg",
+      "topics": ["Predictive Coding","NLP","Diffusion Models"],
+      "affiliation": "NJU",
       "status": "ra"
     },
     {

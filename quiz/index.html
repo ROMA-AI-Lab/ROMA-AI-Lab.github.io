@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ROMA Lab · Cultural Insight Test (CIT)</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    .pad{padding:16px}
+    .wrap{max-width:960px;margin:0 auto;padding:18px}
+    .muted{color:var(--muted)}
+    .h{font-size:clamp(22px,3vw,28px);font-weight:800;margin:6px 0 4px}
+    .sub{font-size:14px}
+    .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .pill{border:1px solid var(--border);border-radius:999px;padding:6px 10px;background:var(--panel-2)}
+    .progress{height:10px;background:color-mix(in oklab,var(--panel-2) 70%,transparent);border-radius:999px;overflow:hidden;margin:10px 0 4px}
+    .progress>div{height:100%;background:linear-gradient(90deg,var(--brand),var(--brand-2));width:0%}
+    .qtitle{font-weight:700;margin:6px 0}
+    .scenario{margin:6px 0;color:var(--muted)}
+    .opts{display:grid;gap:10px;margin-top:10px}
+    .opt{border:1px solid var(--border);background:var(--panel);border-radius:12px;padding:12px;cursor:pointer;transition:transform .08s ease}
+    .opt:hover{transform:translateY(-1px)}
+    .opt.selected{outline:2px solid var(--ring)}
+    .navs{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+    .center{display:flex;align-items:center;justify-content:center}
+    .hidden{display:none!important}
+    .charts{display:grid;gap:14px}
+    @media (min-width:860px){.charts{grid-template-columns:1fr 1fr 1fr}}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow)}
+    .hero{background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--border);border-radius:16px}
+    .right{margin-left:auto}
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:99}
+    .modal.show{display:flex}
+    .modal .box{background:var(--panel);border:1px solid var(--border);border-radius:16px;max-width:520px;padding:18px;text-align:center;box-shadow:var(--shadow)}
+    .confetti{position:fixed;inset:0;pointer-events:none;z-index:98}
+    .small{font-size:12px}
+    .chart svg{width:100%;height:auto}
+    .hint{font-size:12px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header class="row">
+      <div class="row">
+        <div class="pill">ROMA Lab · CIT</div>
+        <div id="modeTag" class="pill">Core</div>
+        <div id="langTag" class="pill">中文</div>
+      </div>
+      <div class="row right">
+        <button id="langBtn" class="btn">🌐 中文/English</button>
+        <button id="themeBtn" class="btn">🌗 主题</button>
+      </div>
+    </header>
+
+    <section id="setup" class="hero pad">
+      <div class="h" id="t_title">ROMA Lab Cultural Insight Test (CIT)</div>
+      <div class="sub" id="t_desc">version v3.1 选择一种模式开始作答。全程不收集任何个人数据，结果只保存在你的浏览器。</div>
+      <div class="row" style="margin-top:10px">
+          <button id="fullBtn" class="btn primary">Full · 50</button>
+          <button id="coreBtn" class="btn ">Core · 20</button>
+        <input id="nameInput" placeholder="你的报名邮箱 / Your Email" class="btn" style="min-width:240px"/>
+      </div>
+      <div class="hint" id="t_hint" style="margin-top:8px">Tips: 作答过程中可随时切换中英文；完成后可导出 JSON 与打印 PDF。</div>
+    </section>
+
+      <!-- 在 setup 区块后面、quiz 区块前面插入 -->
+      <section id="about" class="card pad" style="margin-top:12px">
+          <details id="aboutBox" open>
+              <summary style="cursor:pointer;font-weight:700" id="t_about_title">
+                  ROMA Lab · 五维科研气质评估模型（CIT）
+              </summary>
+              <div id="aboutContent" class="prose" style="margin-top:8px"></div>
+          </details>
+      </section>
+
+
+
+
+      <section id="quiz" class="card pad hidden">
+      <div class="progress"><div id="bar"></div></div>
+      <div class="row"><div class="muted" id="idx"></div><div class="right small" id="chapter"></div></div>
+      <div id="qtitle" class="qtitle"></div>
+      <div id="qsc" class="scenario"></div>
+      <div id="opts" class="opts"></div>
+      <div class="navs">
+        <button id="prevBtn" class="btn">←</button>
+        <button id="nextBtn" class="btn">→</button>
+        <div class="right"></div>
+      </div>
+    </section>
+
+    <section id="result" class="card pad hidden">
+      <div class="h" id="t_congrats">🎉 恭喜你完成答题！</div>
+      <div class="muted" id="t_next">现在你可以查看你的报告（仅保存在本地）。</div>
+      <div class="charts" style="margin-top:10px">
+        <div class="chart card pad"><div id="radarTitle" class="small">Radar</div><div id="radar"></div></div>
+        <div class="chart card pad"><div id="donutTitle" class="small">Donut</div><div id="donut"></div></div>
+        <div class="chart card pad"><div id="sparkTitle" class="small">Answer Rhythm</div><div id="spark"></div></div>
+      </div>
+      <div class="card pad" style="margin-top:12px">
+        <div class="h" id="t_coach">AI 助教寄语</div>
+        <ul id="coachList"></ul>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <button id="exportBtn" class="btn">⬇️ 导出 JSON</button>
+        <button id="printBtn" class="btn">🖨️ 打印 / PDF</button>
+        <button id="restartBtn" class="btn">↻ 重新开始</button>
+      </div>
+      <div class="hint" id="t_privacy" style="margin-top:8px">隐私说明：所有数据仅在你的浏览器端运行。</div>
+    </section>
+
+  </div>
+
+  <div class="modal" id="doneModal">
+    <div class="box">
+      <div style="font-size:22px;font-weight:800" id="t_modal_title">🎊 恭喜你完成答题！</div>
+      <div class="muted" id="t_modal_desc" style="margin:8px 0 12px">现在你可以查看你的报告啦～</div>
+      <div class="row center">
+        <button id="goReport" class="btn primary">查看报告</button>
+        <button id="stayBtn" class="btn">稍后再看</button>
+      </div>
+    </div>
+  </div>
+  <canvas id="confetti" class="confetti"></canvas>
+
+  <script src="app.js"></script>
+</body>
+</html>
