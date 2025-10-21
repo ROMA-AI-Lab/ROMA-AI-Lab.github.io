@@ -1,6 +1,6 @@
 /* ROMA Lab CIT – v3.1 runtime (vanilla JS) */
 const state = {
-    lang: 'en',
+    lang: 'zh',
     mode: 'full',
     name: '',
     bank: [],
