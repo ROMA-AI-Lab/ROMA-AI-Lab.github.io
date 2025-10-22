@@ -1,0 +1,126 @@
+
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ROMA Lab · CIT Faculty Analyzer (Private)</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    body{padding:12px}
+    .wrap{max-width:1100px;margin:0 auto}
+    .drop{border:2px dashed var(--border);border-radius:14px;padding:18px;text-align:center;background:var(--panel);}
+    .drop.drag{outline:2px solid var(--ring);}
+    .grid{display:grid;gap:12px}
+    @media (min-width:980px){.grid{grid-template-columns:2fr 1fr}}
+    .mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;white-space:pre-wrap}
+    .kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    @media (min-width:980px){.kpi{grid-template-columns:repeat(4,1fr)}}
+    .kpi .card{text-align:center}
+    .kpi b{font-size:18px}
+    .bar{height:8px;background:#e5e7eb22;border-radius:999px;overflow:hidden}
+    .bar>div{height:100%;background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+    .warn{color:#f59e0b}
+    .bad{color:#ef4444}
+    .good{color:#10b981}
+    .section-title{font-weight:700;margin-bottom:6px}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media (max-width:780px){.two{grid-template-columns:1fr}}
+    .btn-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    textarea{width:100%;min-height:160px;background:var(--panel-2);border:1px solid var(--border);border-radius:12px;padding:10px;color:var(--text)}
+    .mini-tl{width:100%;height:90px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hdr" style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px">
+      <div class="brand">
+        <div class="title">ROMA Lab · CIT Faculty Analyzer</div>
+        <div class="muted">私密页面 · 上传学生 JSON 报告以生成内部评估</div>
+      </div>
+      <div class="controls">
+        <button id="themeBtn" class="btn">🌗 主题</button>
+      </div>
+    </header>
+
+    <section class="card pad">
+      <div class="drop" id="drop">
+        <div>将学生导出的 <b>ROMA_CIT_*.json</b> 拖拽到此处，或点击选择</div>
+        <input id="file" type="file" accept="application/json" style="margin-top:8px"/>
+      </div>
+      <div id="meta" style="margin-top:12px" class="muted"></div>
+    </section>
+
+    <section class="grid">
+      <div class="left">
+        <div class="card pad">
+          <div class="section-title">五维画像 (标准化比率)</div>
+          <div id="bars"></div>
+        </div>
+
+        <div class="card pad" style="margin-top:12px">
+          <div class="section-title">综合分析报告（自动生成）</div>
+          <div id="summary" class="prose"></div>
+        </div>
+
+        <div class="card pad" style="margin-top:12px">
+          <div class="section-title">内部诊断（细节与证据）</div>
+          <ul id="diag" style="margin:0 0 0 18px;line-height:1.7"></ul>
+        </div>
+
+        <div class="card pad" style="margin-top:12px">
+          <div class="section-title">建议决策</div>
+          <div id="decision" class="mono"></div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="card pad">
+          <div class="section-title">关键信号 / KPI</div>
+          <div id="kpi" class="kpi"></div>
+        </div>
+
+        <div class="card pad" style="margin-top:12px">
+          <div class="section-title">作答导航时间线（navEvents）</div>
+          <canvas id="timeline" class="mini-tl"></canvas>
+          <div id="tlMeta" class="muted" style="margin-top:6px"></div>
+        </div>
+
+        <div class="card pad" style="margin-top:12px">
+          <div class="section-title">触发器命中</div>
+          <div id="trigs" class="mono"></div>
+        </div>
+
+        <div class="card pad" style="margin-top:12px">
+          <div class="section-title">一键生成两份系统提示词（System Prompts）</div>
+          <div class="two">
+            <div>
+              <div class="pill" style="margin-bottom:6px">用户版（温和夸奖、人文关怀）</div>
+              <textarea id="promptUser" placeholder="用户版提示词将自动生成…"></textarea>
+              <div class="btn-row">
+                <button id="copyUser" class="btn">复制用户版</button>
+                <button id="downloadUser" class="btn">下载用户版 .txt</button>
+              </div>
+            </div>
+            <div>
+              <div class="pill" style="margin-bottom:6px">导师版（内部洞察、证据链）</div>
+              <textarea id="promptLab" placeholder="导师版提示词将自动生成…"></textarea>
+              <div class="btn-row">
+                <button id="copyLab" class="btn">复制导师版</button>
+                <button id="downloadLab" class="btn">下载导师版 .txt</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card pad" style="margin-top:12px">
+          <div class="section-title">原始数据</div>
+          <div id="raw" class="mono"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+<script src="faculty.js"></script>
+</body>
+</html>

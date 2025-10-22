@@ -7,3 +7,46 @@ a{text-decoration:none;color:inherit}.btn{display:inline-flex;align-items:center
 .btn:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
 input.btn{border-radius:12px}
 .hidden{display:none!important}
+
+
+/* ---- Radar label contrast (dark & light) ---- */
+#radar svg text{
+    fill: var(--text);
+    font-weight: 600;
+    paint-order: stroke;            /* 先描边再填充，增强对比 */
+    stroke: rgba(0,0,0,.55);        /* 暗底下的描边（黑） */
+    stroke-width: .8px;
+    dominant-baseline: middle;
+}
+.light #radar svg text{
+    stroke: rgba(255,255,255,.6);   /* 亮底下的描边（白） */
+}
+
+/* 让雷达网格跟随主题色系（当前Color使用currentColor） */
+#radar svg polygon { color: var(--muted); }
+
+/* ---- Shared legend style for donut & spark ---- */
+.legend{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+    align-items: center;
+}
+.legend .item{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--panel);
+    font-size: 12px;
+    color: var(--text);
+}
+.legend .dot{
+    width: 10px; height: 10px; border-radius: 2px;
+}
+
+/* 说明文字（与页面现有 hint 统一） */
+.hintline{ font-size: 12px; color: var(--muted); margin-top: 6px; }

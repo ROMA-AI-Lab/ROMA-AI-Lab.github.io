@@ -3,77 +3,182 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>ROMA Lab · CIT Faculty Analyzer (Private)</title>
-  <link rel="stylesheet" href="styles.css"/>
+  <title>ROMA Lab · CIT Faculty Analyzer (Private v2.2)</title>
+  <link rel="stylesheet" href="faculty.css"/>
   <style>
-    body{padding:12px}
-    .drop{border:2px dashed var(--border);border-radius:14px;padding:18px;text-align:center;background:var(--panel);}
-    .drop.drag{outline:2px solid var(--ring);}
-    .grid{display:grid;gap:12px}
-    @media (min-width:900px){.grid{grid-template-columns:2fr 1fr}}
-    .mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;white-space:pre-wrap}
-    .kpi{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
-    .kpi .card{text-align:center}
-    .kpi b{font-size:18px}
-    .risk{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    @media (max-width:720px){.risk{grid-template-columns:1fr}}
-    .pill{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--border);padding:6px 10px;border-radius:999px;font-size:12px;background:var(--panel-2)}
-    .bar{height:8px;background:#e5e7eb22;border-radius:999px;overflow:hidden}
-    .bar>div{height:100%;background:linear-gradient(90deg,var(--brand),var(--brand-2))}
-    .warn{color:#f59e0b}
-    .bad{color:#ef4444}
-    .good{color:#10b981}
+    .tip{position:fixed;z-index:9999;pointer-events:none;background:rgba(15,23,42,.95);color:#e5e7eb;border:1px solid rgba(148,163,184,.35);border-radius:8px;padding:8px 10px;font-size:12px;box-shadow:0 6px 20px rgba(2,6,23,.35);transform:translate(-50%,-120%);opacity:0;transition:opacity .12s ease}
+    .tip.show{opacity:1}
+    .canvas{width:100%;height:120px;display:block;background:transparent}
+    .langBadge{font-size:12px;padding:4px 8px;border-radius:8px;background:var(--panel-2);border:1px solid var(--border);}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header class="hdr">
-      <div class="brand"><div class="logo"></div><div><div class="title">ROMA Lab · CIT Faculty Analyzer</div><div class="muted">私密页面 · 上传学生JSON报告以生成内部评估</div></div></div>
+  <div class="hdr">
+    <div class="wrap inner">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="title">ROMA Lab · CIT Faculty Analyzer</div>
+          <div class="subtle">私密页面 · 上传学生 JSON 报告以生成内部评估</div>
+        </div>
+      </div>
       <div class="controls">
-        <button id="themeBtn" class="btn">🌗 主题</button>
+        <span id="langBadge" class="langBadge">Bank: —</span>
+<!--        <button id="themeBtn" class="btn">🌗 主题</button>-->
       </div>
-    </header>
-
-    <section class="card pad">
-      <div class="drop" id="drop">
-        <div>将学生导出的 <b>CIT_*.json</b> 拖拽到此处，或点击选择</div>
-        <input id="file" type="file" accept="application/json" style="margin-top:8px"/>
-      </div>
-      <div id="meta" style="margin-top:12px" class="muted"></div>
-    </section>
-
-    <section class="grid">
-      <div class="left">
-        <div class="card pad">
-          <div style="font-weight:700;margin-bottom:6px">五维画像 (标准化比率)</div>
-          <div id="bars"></div>
-        </div>
-        <div class="card pad" style="margin-top:12px">
-          <div style="font-weight:700;margin-bottom:6px">内部诊断（仅供导师）</div>
-          <ul id="diag" style="margin:0 0 0 18px;line-height:1.7"></ul>
-        </div>
-        <div class="card pad" style="margin-top:12px">
-          <div style="font-weight:700;margin-bottom:6px">建议决策</div>
-          <div id="decision" class="mono"></div>
-        </div>
-      </div>
-      <div class="right">
-        <div class="card pad">
-          <div style="font-weight:700;margin-bottom:6px">关键信号</div>
-          <div id="kpi" class="kpi"></div>
-        </div>
-        <div class="card pad" style="margin-top:12px">
-          <div style="font-weight:700;margin-bottom:6px">触发器命中</div>
-          <div id="trigs" class="mono"></div>
-        </div>
-        <div class="card pad" style="margin-top:12px">
-          <div style="font-weight:700;margin-bottom:6px">原始数据</div>
-          <div id="raw" class="mono"></div>
-        </div>
-      </div>
-    </section>
+    </div>
   </div>
 
-<script src="faculty.js"></script>
+  <div class="wrap">
+    <div class="card">
+      <div class="body">
+        <div class="drop" id="drop">
+          <div>将学生导出的 <b>CIT_*.json</b> 拖拽到此处，或点击选择</div>
+          <input id="file" type="file" accept="application/json" style="margin-top:8px"/>
+          <div id="meta" class="subtle" style="margin-top:8px"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="left">
+        <div class="card">
+          <div class="head"><h3>五维画像</h3><div class="subtle">标准化比率</div></div>
+          <div class="body bars" id="bars"></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="head"><h3>综合分析报告</h3><div class="subtle">自动生成</div></div>
+          <div class="body"><div id="summary" class="mono"></div></div>
+        </div>
+
+<!--        <div class="card" style="margin-top:12px">-->
+<!--          <div class="head"><h3>证据样例（题目与作答）</h3><div class="subtle">自动抽样</div></div>-->
+<!--          <div class="body"><ol id="evidenceList" class="evidence"></ol></div>-->
+<!--        </div>-->
+
+<!--          <div class="card" style="margin-top:12px">-->
+<!--              <div class="head"><h3>证据样例（题目与作答）</h3><div class="subtle">自动抽样</div></div>-->
+<!--              <div class="body">-->
+<!--                  <ol id="evidenceList" class="evidence"></ol>-->
+<!--                  <div class="evidence-actions">-->
+<!--                      <button id="evidenceMore" class="btn small ghost">展开更多</button>-->
+<!--                  </div>-->
+<!--              </div>-->
+<!--          </div>-->
+
+          <div class="card" style="margin-top:12px">
+              <div class="head">
+                  <h3>证据样例（题目与作答）</h3>
+                  <div class="subtle">代表性优先 · 支持分页与导出</div>
+              </div>
+              <div class="body">
+                  <ol id="evidenceList" class="evidence"></ol>
+
+                  <!-- 分页 + 导出控件（JS 会复用/创建） -->
+                  <div class="evidence-controls">
+                      <div class="controls-left">
+                          <button id="evidencePrev" class="btn small ghost">上一页</button>
+                          <span id="evidencePage" class="page-indicator">1 / 1</span>
+                          <button id="evidenceNext" class="btn small ghost">下一页</button>
+                      </div>
+                      <div class="controls-right">
+                          <button id="evidenceExportMd" class="btn small">导出 MD</button>
+                          <button id="evidenceExportCsv" class="btn small">导出 CSV</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+
+          <div class="card" style="margin-top:12px">
+          <div class="head"><h3>内部诊断（仅供导师）</h3></div>
+          <div class="body"><ul id="diag" style="margin:0 0 0 18px;line-height:1.7"></ul></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="head"><h3>建议决策</h3></div>
+          <div class="body"><div id="decision" class="mono"></div></div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="card">
+          <div class="head"><h3>关键信号</h3></div>
+          <div class="body"><div id="kpi" class="kpi"></div></div>
+        </div>
+
+
+
+
+          <div class="card" style="margin-top:12px">
+          <div class="head"><h3>交互导航分析</h3><div class="subtle">跳转热力 / 回看比</div></div>
+          <div class="body">
+            <canvas id="navHeat" class="canvas" height="120"></canvas>
+            <div class="small subtle" style="margin-top:6px">深色代表作答耗时较长；下方为作答事件时间线（选项提交序列）。</div>
+            <canvas id="navTimeline" class="canvas" height="80" style="margin-top:10px"></canvas>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="head"><h3>滑动窗口 · 触发器 & 原始数据</h3></div>
+          <div class="body split">
+            <div class="window">
+              <header>触发器命中</header>
+              <div class="pane"><div id="trigs" class="mono"></div></div>
+            </div>
+            <div class="window">
+              <header>原始数据</header>
+              <div class="pane"><div id="raw" class="mono"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="head">
+            <h3>一键生成两份系统提示词（大模型专用）</h3>
+            <div class="subtle">上传 JSON 后自动填充</div>
+          </div>
+          <div class="body prompt-box">
+            <div>
+              <div class="small subtle" style="margin-bottom:6px">面向学生（复制后可直接投喂大模型）：</div>
+              <textarea id="promptUser" class="prompt" placeholder="上传 JSON 后自动填充"></textarea>
+              <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+<!--                <button id="copyUser" class="btn" onclick="navigator.clipboard.writeText(document.getElementById('promptUser').value)">复制学生版</button>-->
+                  <button id="copyUser" class="btn" onclick="copyWithToast('promptUser', this)">复制学生版</button>
+                  <button id="downloadUser" class="btn" onclick="downloadText('promptUser','CIT_prompt_user.txt')">下载学生版提示词</button>
+              </div>
+            </div>
+            <div>
+              <div class="small subtle" style="margin-bottom:6px">面向导师（复制后可直接投喂大模型）</div>
+              <textarea id="promptFacultyText" class="prompt" placeholder="上传 JSON 后自动填充"></textarea>
+              <div class="small subtle" style="margin:8px 0 4px">（可选）查看 JSON 版：</div>
+                <details id="facJSONBox">
+                <summary class="btn ghost small">显示 JSON</summary>
+                <textarea id="promptFacultyJSON" class="prompt" placeholder="JSON 版本（点击上方生成后出现）"></textarea>
+              </details>
+              <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+<!--                <button id="copyFacultyText" class="btn" onclick="navigator.clipboard.writeText(document.getElementById('promptFacultyText').value)">复制导师版（文本）</button>-->
+
+                  <button id="copyFacultyText" class="btn" onclick="copyWithToast('promptFacultyText', this)">复制导师版（文本）</button>
+
+<!--                  <button id="copyFacultyJSON" class="btn" onclick="navigator.clipboard.writeText(document.getElementById('promptFacultyJSON').value)">复制导师版（JSON）</button>-->
+
+                  <button id="copyFacultyJSON" class="btn" onclick="copyWithToast('promptFacultyJSON', this)">复制导师版（JSON）</button>
+                  <button id="downloadFacultyText" class="btn" onclick="downloadText('promptFacultyText','CIT_prompt_faculty.txt')">下载导师版（文本）</button>
+                <button id="downloadFacultyJSON" class="btn" onclick="downloadText('promptFacultyJSON','CIT_prompt_faculty.json')">下载导师版（JSON）</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer">© 2025 ROMA Lab — Responsible Online Media Analytics Lab.</div>
+  </div>
+
+  <div id="tip" class="tip"></div>
+  <script src="faculty.js"></script>
 </body>
 </html>

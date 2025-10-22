@@ -1,4 +1,4 @@
-/* ROMA Lab CIT – v3.1 runtime (vanilla JS) + minimal nav upgrade (auto-advance, answered-only arrows, navEvents) */
+/* ROMA Lab CIT – v3.1 runtime (vanilla JS) */
 const state = {
     lang: 'zh',
     mode: 'full',
@@ -11,14 +11,13 @@ const state = {
     max: {BND: 0, COM: 0, EMP: 0, INT: 0, CRV: 0},
     pace: {durations: {}, order: [], timestamps: []},
     _showTs: null,
-    _lastBankByLangMode: {},
-    // NEW: navigation analytics
-    navEvents: [] // {type:'auto'|'next'|'prev'|'blocked_next'|'blocked_prev', from,to, ts, reason?}
+    _lastBankByLangMode: {}
 };
 const BANK_URLS = (lang) => ({core: `core.${lang}.json`, extended: `extended.${lang}.json`});
 const T = {
     zh: {
         title: 'ROMA Lab Cultural Insight Test (version 4.3)',
+        // 在 T.zh 内增加：
         about_title: 'ROMA Lab · 五维科研气质评估模型（CIT）',
         about_html: `
 <p><b>ROMA Lab 自主研发</b>的轻量评估模型，帮助你了解自己的科研气质并与实验室文化做自我参照。</p>
@@ -31,6 +30,7 @@ const T = {
 <p>完成后将生成你的可视化画像与温和的助教寄语，供你自我评估是否与 ROMA Lab 的工作方式契合。</p>
 <p class="small muted">© 2025 ROMA Lab – Responsible Online Media Analytics Lab. All rights reserved.</p>
 `,
+
         desc: '选择一种模式开始作答（建议选择Full · 50 模式）。全程不收集任何个人数据，结果只保存在你的浏览器。',
         hint: 'Tips: 作答过程中可随时切换中英文；完成后可导出 JSON 与打印 PDF。',
         congrats: '🎉 恭喜你完成答题！',
@@ -62,6 +62,8 @@ const T = {
     },
     en: {
         title: 'ROMA Lab Cultural Insight Test (version 4.3)',
+
+// 在 T.en 内增加：
         about_title: 'ROMA Lab · 5-Dimension Research Disposition Model (CIT)',
         about_html: `
 <p>A <b>ROMA Lab in-house</b> lightweight model to help you understand your research disposition and how it aligns with our culture.</p>
@@ -74,7 +76,8 @@ const T = {
 <p>You’ll get a gentle, visual profile and an AI coach note for self-reflection and fit with ROMA Lab.</p>
 <p class="small muted">© 2025 ROMA Lab – Responsible Online Media Analytics Lab. All rights reserved.</p>
 `,
-        desc: 'Pick a mode to get started (Full · 50 recommended). We don’t collect any personal data. Everything stays in your browser.',
+
+        desc: 'Pick a mode to get started (Full . 50 would be better ). We don’t collect any personal data. Everything stays in your browser.',
         hint: 'Tips: You can switch languages anytime; export JSON or print PDF after finishing.',
         congrats: '🎉 Congrats on finishing!',
         next: 'Your report is ready (stored locally).',
@@ -93,7 +96,13 @@ const T = {
         tagCore: 'Core',
         tagFull: 'Full',
         tagLang: 'English',
-        labels: { BND: 'Boundary', COM: 'Communication', EMP: 'Empathy', INT: 'Integrity', CRV: 'Creativity & Resilience' },
+        labels: {
+            BND: 'Boundary',
+            COM: 'Communication',
+            EMP: 'Empathy',
+            INT: 'Integrity',
+            CRV: 'Creativity & Resilience'
+        },
         praises: {
             BND: 'You have a refined sense of boundaries—steady, respectful, and composed.',
             COM: 'Your communication is clear and considerate, moving things forward gracefully.',
@@ -107,16 +116,15 @@ const T = {
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
-function clamp(x, a, b) { return Math.max(a, Math.min(b, x)); }
-function palette(i) { const c = ['#60a5fa', '#22d3ee', '#a3e635', '#f59e0b', '#ef4444', '#c084fc', '#10b981']; return c[i % c.length]; }
+function clamp(x, a, b) {
+    return Math.max(a, Math.min(b, x));
+}
 
-/* ---------- tiny helpers for answered-only navigation ---------- */
-const isAnswered = (i, st=state)=>{ const q=st.bank[i]; return q && st.answers[q.id]; };
-function findPrevAnsweredIndex(curr, st=state){ for(let i=curr-1;i>=0;i--){ if(isAnswered(i,st)) return i; } return -1; }
-function findNextAnsweredIndex(curr, st=state){ for(let i=curr+1;i<st.bank.length;i++){ if(isAnswered(i,st)) return i; } return -1; }
-const allAnswered = (st=state)=> st.bank.every(q=> !!st.answers[q.id]);
+function palette(i) {
+    const c = ['#60a5fa', '#22d3ee', '#a3e635', '#f59e0b', '#ef4444', '#c084fc', '#10b981'];
+    return c[i % c.length];
+}
 
-/* ---------- charts ---------- */
 function radarSVG(p, labels) {
     const keys = ['BND', 'COM', 'EMP', 'INT', 'CRV'], N = keys.length, size = 260, r = 95, cx = 130, cy = 130;
     const grid = Array.from({length: 5}, (_, j) => {
@@ -141,12 +149,14 @@ function radarSVG(p, labels) {
     const dots = polyPts.map((pt, i) => `<circle cx="${pt[0]}" cy="${pt[1]}" r="3" fill="${palette(i)}" />`).join('');
     return `<svg viewBox="0 0 ${size} ${size}"><defs><linearGradient id="rg" x1="0" x2="1"><stop offset="0" stop-color="#22d3ee" stop-opacity="0.35"/><stop offset="1" stop-color="#a3e635" stop-opacity="0.35"/></linearGradient></defs>${grid}<polygon points="${poly}" fill="url(#rg)" stroke="currentColor" stroke-width="1.6" opacity="0.9"/>${dots}${labelsSVG}</svg>`;
 }
+
 function arcPath(R, r, a0, a1) {
     const x0 = R * Math.cos(a0), y0 = R * Math.sin(a0), x1 = R * Math.cos(a1), y1 = R * Math.sin(a1),
         xl = r * Math.cos(a0), yl = r * Math.sin(a0), xr = r * Math.cos(a1), yr = r * Math.sin(a1),
         large = (a1 - a0) > Math.PI ? 1 : 0;
     return `M ${x0} ${y0} A ${R} ${R} 0 ${large} 1 ${x1} ${y1} L ${xr} ${yr} A ${r} ${r} 0 ${large} 0 ${xl} ${yl} Z`;
 }
+
 function donutSVG(p, labels) {
     const keys = ['BND', 'COM', 'EMP', 'INT', 'CRV'];
     const total = keys.reduce((a, k) => a + (p[k] || 0), 0) || 1;
@@ -161,6 +171,7 @@ function donutSVG(p, labels) {
     });
     return `<svg viewBox="0 0 220 220"><g transform="translate(110,110)">${segs.join('')}</g></svg>`;
 }
+
 function sparkSVG(arr) {
     if (!arr.length) return '<svg viewBox="0 0 260 60"></svg>';
     const w = 260, h = 60, m = 10, step = (w - 2 * m) / Math.max(1, arr.length - 1);
@@ -210,7 +221,6 @@ async function applyLangMode(lang, mode, keepAnswers = true) {
     const prevAnswers = {...state.answers};
     const prevIdxQid = state.bank[state.idx]?.id;
     const prevPace = {...state.pace};
-    const prevNav  = [...state.navEvents];
     state.lang = lang;
     state.mode = mode;
     state.bank = await loadBank(lang, mode);
@@ -222,7 +232,6 @@ async function applyLangMode(lang, mode, keepAnswers = true) {
         if (validIds.has(qid)) newDur[qid] = prevPace.durations[qid]
     });
     state.pace = {durations: newDur, order: [], timestamps: []};
-    state.navEvents = prevNav;
     let newIdx = 0;
     if (prevIdxQid) {
         const i = state.bank.findIndex(q => q.id === prevIdxQid);
@@ -295,6 +304,7 @@ function renderHeader() {
     };
     $('#nameInput')?.addEventListener('input', e => state.name = e.target.value.trim());
 
+    // 注入“关于模型”文案（如果 about 卡片存在）
     const aboutTitleEl = document.getElementById('t_about_title');
     const aboutContentEl = document.getElementById('aboutContent');
     if (aboutTitleEl) aboutTitleEl.textContent = T[state.lang].about_title;
@@ -336,56 +346,31 @@ function renderQuestion() {
             $$('#opts .opt').forEach(x => x.classList.remove('selected'));
             d.classList.add('selected');
             computeScore();
-            renderProgress();
-
-            // NEW: auto-advance after pick
-            if (allAnswered()) {
-                onSubmit();
-                return;
-            }
-            const from = state.idx;
-            if (state.idx < state.bank.length - 1) {
-                state.idx = state.idx + 1;
-                state.navEvents.push({type:'auto', from, to: state.idx, ts: Date.now()});
-                renderQuestion();
-            }
+            renderProgress()
         };
         opts.appendChild(d)
     });
-
-    // NEW: answered-only arrow navigation
-    const prevBtn = $('#prevBtn'), nextBtn = $('#nextBtn');
-    const prevIdx = findPrevAnsweredIndex(state.idx);
-    const nextIdx = findNextAnsweredIndex(state.idx);
-
-    prevBtn.disabled = (prevIdx === -1);
-    nextBtn.disabled = (!state.answers[q.id]) || (nextIdx === -1);
-
-    prevBtn.onclick = () => {
-        if (prevIdx === -1) {
-            state.navEvents.push({type:'blocked_prev', from: state.idx, to: null, ts: Date.now(), reason:'no_prev_answered'});
-            return;
-        }
-        state.navEvents.push({type:'prev', from: state.idx, to: prevIdx, ts: Date.now()});
-        state.idx = prevIdx;
-        renderQuestion();
+    $('#prevBtn').onclick = () => {
+        state.idx = Math.max(0, state.idx - 1);
+        renderQuestion()
     };
-    nextBtn.onclick = () => {
-        if (!state.answers[q.id]) {
-            state.navEvents.push({type:'blocked_next', from: state.idx, to: null, ts: Date.now(), reason:'current_unanswered'});
-            return;
+    $('#nextBtn').onclick = () => {
+        if (state.idx >= state.bank.length - 1) {
+            const answered = Object.keys(state.answers).length;
+            if (answered === state.bank.length) {
+                onSubmit();
+                return;
+            }
+            state.idx = state.bank.length - 1;
+        } else {
+            state.idx = Math.min(state.bank.length - 1, state.idx + 1);
         }
-        if (nextIdx === -1) {
-            state.navEvents.push({type:'blocked_next', from: state.idx, to: null, ts: Date.now(), reason:'no_next_answered'});
-            return;
-        }
-        state.navEvents.push({type:'next', from: state.idx, to: nextIdx, ts: Date.now()});
-        state.idx = nextIdx;
-        renderQuestion();
+        renderQuestion()
     };
-
     const submitBtn = $('#submitBtn');
-    if (submitBtn) submitBtn.onclick = onSubmit;
+    if (submitBtn) {
+        submitBtn.onclick = onSubmit;
+    }
 }
 
 function onSubmit() {
@@ -429,46 +414,6 @@ function renderReport() {
     const maxd = Math.max(1, ...ds);
     const arr = ds.map(d => maxd ? (1 - d / maxd) : 0.5);
     $('#spark').innerHTML = sparkSVG(arr);
-
-
-
-
-
-    // === 在 renderReport() 里、设置完 #radar / #donut / #spark 后追加 ===
-    {
-        const labels = state.lang === 'zh' ? T.zh.labels : T.en.labels;
-        const keys = ['BND','COM','EMP','INT','CRV'];
-
-        // 维度占比图例（色块 + 维度名）
-        const dLeg = document.getElementById('donutLegend');
-        if (dLeg){
-            dLeg.innerHTML = keys.map((k,i)=>
-                `<span class="item"><span class="dot" style="background:${palette(i)}"></span>${labels[k]}</span>`
-            ).join('');
-        }
-
-        // 答题节奏图例与说明
-        const sLeg = document.getElementById('sparkLegend');
-        const sHint = document.getElementById('sparkHint');
-        if (sLeg){
-            // 用三段胶囊说明色彩与柱高语义（简明，不侵入SVG）
-            const txtColor = (state.lang==='zh') ? '颜色：按题目序号着色' : 'Color: by question index';
-            const txtHeight = (state.lang==='zh') ? '柱高：越高表示越快（相对时长归一化）' : 'Height: taller = faster (normalized duration)';
-            sLeg.innerHTML = [
-                `<span class="item"><span class="dot" style="background:${palette(0)}"></span>${txtColor}</span>`,
-                `<span class="item">${txtHeight}</span>`
-            ].join('');
-        }
-        if (sHint){
-            sHint.textContent = (state.lang==='zh')
-                ? '横轴：题目顺序（1→N）；数值按每题用时与全局最大用时归一（更快=更高）。'
-                : 'X-axis: question order (1→N); values are normalized by per-item duration (faster = higher height).';
-        }
-    }
-
-
-
-
     const coach = buildCoach(state.per, state.lang);
     const ul = $('#coachList');
     ul.innerHTML = '';
@@ -490,7 +435,7 @@ function exportJSON() {
     const answered = Object.keys(state.answers).length;
     const total = state.bank.length;
     const payload = {
-        version: 'v3.2-nav-min',
+        version: 'v3.1',
         lang: state.lang,
         mode: state.mode,
         name: state.name || '',
@@ -501,7 +446,6 @@ function exportJSON() {
         picked: state.pickedHistory,
         answers: state.answers,
         pace: state.pace,
-        navEvents: state.navEvents,
         timestamp: new Date().toISOString()
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], {type: 'application/json'});
@@ -551,7 +495,7 @@ function confettiBurst() {
 }
 
 async function initCIT() {
-    renderHeader();
+    renderHeader();/* do not auto-load banks until user picks mode? we will prefetch core zh to warm cache */
     await applyLangMode(state.lang, state.mode, true);
 }
 
