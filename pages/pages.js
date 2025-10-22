@@ -344,6 +344,7 @@ function mapBibToPub(typeRaw, key, f){
         image: f.image || '',
         abstract: f.abstract || '',
         featured,
+        ccf: f.ccf || f['ccf-rank'] || f.rank || '',   // ← 新增这一行
         bibtex: rebuildBibtex(typeRaw, key, f)
     };
 }
@@ -616,6 +617,7 @@ function pubHTML(p, idx){
     const authorsText = Array.isArray(p.authors) ? p.authors.join(', ')
         : (typeof p.authors === 'string' ? p.authors : '');
     const yearTag = p.year ? `<span class="tag">${p.year}</span>` : '';
+    const ccf = p.ccf ? `· <span class="tag">${p.ccf}</span>` : '';
     const abstract = p.abstract ? `<p class="pub-abstract">${p.abstract}</p>` : '';
 
     // PDF / Code 按钮始终出现（没值时 href 为空字符串）
@@ -627,7 +629,7 @@ function pubHTML(p, idx){
     <div class="pub-mid">
       <div class="title">${p.title}</div>
       <div class="authors">${authorsText}</div>
-      <div class="venue">${p.venue||''} · <span class="tag">${p.type||''}</span> · ${yearTag}</div>
+      <div class="venue">${p.venue||''} · <span class="tag">${p.type||''}</span> · ${yearTag}${ccf}</div>
       ${abstract}
       <pre class="bibtex" id="bib-${idx}" aria-hidden="true">${p.bibtex || ''}</pre>
     </div>
