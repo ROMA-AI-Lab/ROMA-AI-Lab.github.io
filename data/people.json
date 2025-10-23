@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "name": "Xiangguo Sun",
+      "name": "Dr. Xiangguo Sun",
       "slug": "xiangguo-sun",
       "role": "\uD83C\uDF1F Lab Lead / Postdoctoral Fellow",
       "email": "roma_lab@yeah.net",
@@ -22,14 +22,14 @@
       "placement": ["MSRA","Zhejiang Lab"]
     },
     {
-      "name": "Yicong Li",
+      "name": "Dr. Yicong Li",
       "slug": "yicong-li",
-      "role": "Partner / Associate Professor",
+      "role": "Former RA / Ph.D.",
       "email": "liyicong123@outlook.com",
       "site": "https://abigale001.github.io",
       "avatar": "/assets/people/liyicong.png",
       "topics": ["Explainability","Fairness","RecSys","Counterfactual","GNNs"],
-      "affiliation": "NUAA",
+      "affiliation": "UTS (Australia)",
       "status": "partner",
       "education": ["Ph.D. from University of Technology Sydney",
         "Master from National University of Defense Technology"
@@ -43,7 +43,7 @@
     {
       "name": "Zoey (Zhiyao) Shu",
       "slug": "zhiyao-shu",
-      "role": "Former RA / Ph.D.",
+      "role": "Former RA / Ph.D. Student",
       "email": "yaoshu0326@berkeley.edu",
       "site": "https://upsilonv0.vercel.app",
       "avatar": "/assets/people/zhiyaoshu.jpg",
@@ -66,7 +66,7 @@
     {
       "name": "Ping Wang",
       "slug": "ping-wang",
-      "role": "RA / Ph.D.",
+      "role": "RA / Ph.D. Student",
       "email": "",
       "site": "",
       "avatar": "/assets/people/pingwang.jpg",
@@ -132,12 +132,12 @@
     {
       "name": "Yanyi Pu",
       "slug": "yanyi-pu",
-      "role": "Former RA / Ph.D.",
+      "role": "Former RA / Ph.D. Student",
       "email": "",
       "site": "",
       "avatar": "",
       "topics": ["LLMs", "Agentic AI","Hallucinations in High-stakes Domains"],
-      "affiliation": "The University of Sheffield",
+      "affiliation": "The University of Sheffield (UK)",
       "status": "ra"
     },
     {
