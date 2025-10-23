@@ -194,7 +194,7 @@ function buildCoach(per, lang) {
 
     const items = ranked.map(line);
     const topDesc = (lang === 'zh') ? `在你的画像里，“${T[lang].labels[lead]}”与“${T[lang].labels[second]}”构成了你独特的亮点。` : `In your profile, “${T[lang].labels[lead]}” and “${T[lang].labels[second]}” stand out beautifully.`;
-    const close = (lang === 'zh') ? `愿你把这种气质带到更广阔的舞台：在专注里沉稳，在热爱里发光。每一步都算数。` : `Carry this energy forward—steady in focus, quietly radiant in passion. Every step counts.`;
+    const close = (lang === 'zh') ? `愿你把这种气质带到更广阔的舞台：在专注里沉稳，在热爱里发光，每一步都算数！(想获得更加深入的分析？发送你的json报告到ROMA Lab，我们为您进行更加深入的剖析)！` : `Carry this energy forward—steady in focus, quietly radiant in passion. Every step counts.`;
     return {items, summary: topDesc + ' ' + T[lang].praises.SUM + ' ' + close};
 }
 
