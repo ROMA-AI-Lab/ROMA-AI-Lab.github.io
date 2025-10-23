@@ -1,0 +1,48 @@
+ROMA-AI-Lab.github.io/
+│
+├── index.html                 # 网站首页，包含首页布局与主要入口（News, People, Projects等）
+├── css/                       # 全站 CSS 样式表目录
+│   └── styles.css             # 主样式文件（定义颜色、字体、布局、响应式）
+│
+├── js/                        # 全站通用 JS 脚本
+│   └── main.js                # 主脚本：负责加载JSON数据、页面导航、动态渲染逻辑
+│
+├── data/                      # 网站核心数据源（JSON 或 bib 文件）
+│   ├── people.json            # 成员信息（姓名、职称、头像、研究方向、链接）
+│   ├── projects.json          # 研究项目数据（标题、描述、年份、标签）
+│   ├── news.json              # 实验室新闻与动态（用于News & Highlights滚动）
+│   ├── gallery.json           # 图片墙或生活区展示素材
+│   ├── settings.json          # 网站全局配置项（如主题、站点信息）
+│   └── publications.bib       # BibTeX格式的论文列表（通过JS动态解析展示）
+│
+├── pages/                     # 各个独立的二级页面
+│   ├── people.html            # 成员页面（People）
+│   ├── person.html            # 单个成员详情页（与people.html链接）
+│   ├── projects.html          # 项目总览（Projects）
+│   ├── project.html           # 单个项目详情页
+│   ├── publications.html      # 论文发表页面（解析 data/publications.bib）
+│   ├── news.html              # 新闻页
+│   ├── life.html              # 照片墙 / 生活展示页（动态缩放功能）
+│   └── pages.js               # 这些页面的通用脚本逻辑（slug解析、数据加载、动态渲染）
+│
+├── quiz/                      # 在线测评子系统（ROMA Lab新生评估平台）
+│   ├── index.html             # 测评系统主入口
+│   ├── app.js                 # 核心逻辑（加载题库、记录作答、生成报告）
+│   ├── faculty.js             # 导师端脚本（分析学生答题结果）
+│   ├── faculty.html/css       # 导师端界面
+│   ├── core.zh.json / en.json # 核心题库（中英版）
+│   ├── extended.zh/en.json    # 扩展题库（中英版）
+│   ├── metadata.json          # 题库元数据定义
+│   ├── rules.weights.json     # 维度评分规则与权重文件
+│   └── styles.css             # Quiz专用样式文件
+│
+├── assets/                    # 静态资源目录
+│   ├── favicon.svg            # 网站图标
+│   ├── bilibili.png, redbook.png  # 社交媒体图标
+│   └── (图片、logo、装饰素材等)
+│
+├── manual/                    # 实验室手册或内部页面
+│   └── tmp.html               # 临时存放文档（可能为 Lab Manual）
+│
+│
+└── .git/ / .idea/             # Git版本控制与IDE配置文件（不影响网站运行）
