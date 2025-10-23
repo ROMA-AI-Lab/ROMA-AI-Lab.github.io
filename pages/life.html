@@ -14,6 +14,32 @@
         main{padding:32px 0}
         .filters-row{display:flex;gap:10px;flex-wrap:wrap}
         .filters-row select{padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--panel);color:var(--text)}
+
+        /* 关闭时彻底不渲染，避免撑高页面 */
+        dialog.lightbox { display: none; padding: 0; border: 0; background: transparent; }
+
+        /* 只有 [open] 时才显示，并用固定定位脱离文档流 */
+        dialog.lightbox[open] {
+            display: flex;
+            position: fixed;
+            inset: 0;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,.6);
+            z-index: 9999;
+        }
+
+        /* 图片最大化但不超出视口 */
+        dialog.lightbox[open] img {
+            max-width: 95vw;
+            max-height: 95vh;
+            box-shadow: 0 10px 30px rgba(0,0,0,.35);
+            border-radius: 8px;
+        }
+
+        /* 可选：遮罩（如果你用到了 ::backdrop） */
+        dialog.lightbox::backdrop { background: rgba(0,0,0,.25); }
+
     </style>
 </head>
 <body data-page="life">

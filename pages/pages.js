@@ -703,67 +703,55 @@ async function initPublicationsPage(){
 }
 
 /* -------------------- Life (gallery) -------------------- */
-// function wireLightbox(root){
-//     let dialog = $('dialog.lightbox');
-//     if (!dialog){
-//         dialog = document.createElement('dialog');
-//         dialog.className='lightbox';
-//         document.body.appendChild(dialog);
-//         dialog.addEventListener('click', e=>{
-//             const rect = dialog.getBoundingClientRect();
-//             const inBox = (e.clientY>=rect.top && e.clientY<=rect.bottom && e.clientX>=rect.left && e.clientX<=rect.right);
-//             if (!inBox) dialog.close();
-//         });
-//         document.addEventListener('keydown', e=>{ if (e.key === 'Escape' && dialog.open) dialog.close(); });
-//     }
-//     root.addEventListener('click', e=>{
-//         const img = e.target.closest('img');
-//         if (!img) return;
-//         dialog.innerHTML = `<img src="${img.getAttribute('src')}" alt="" />`;
-//         if (!dialog.open) dialog.showModal();
-//     });
-// }
-
 
 function wireLightbox(root){
+
+    // 确保全局只存在一个 lightbox dialog
     let dialog = document.querySelector('dialog.lightbox');
     if (!dialog){
         dialog = document.createElement('dialog');
         dialog.className = 'lightbox';
         document.body.appendChild(dialog);
 
-        // 点击背景（backdrop）：在 <dialog> 上触发，target === dialog
+        // 点击背景关闭
         dialog.addEventListener('click', (e)=>{
             if (e.target === dialog) dialog.close();
         });
 
-        // 点击大图也关闭（满足“再点一下回去”的习惯）
+        // 点击图片也关闭
         dialog.addEventListener('click', (e)=>{
             if (e.target && e.target.tagName === 'IMG') dialog.close();
         });
 
-        // 键盘 ESC 关闭
+        // ESC 键关闭
         document.addEventListener('keydown', (e)=>{
             if (e.key === 'Escape' && dialog.open) dialog.close();
         });
+
     }
+
+    // 防止重复绑定事件
+    // 给 root 元素添加标记，避免重复绑定
+    if (root.hasAttribute('data-lightbox-bound')) {
+        return; // 已经绑定过，直接返回
+    }
+
+    root.setAttribute('data-lightbox-bound', 'true');
 
     // 监听缩略图点击：填充大图并打开
     root.addEventListener('click', (e)=>{
         const img = e.target.closest('img');
         if (!img) return;
 
-        // 原图地址：优先 data-full，否则用当前 src
         const fullSrc = img.getAttribute('data-full') || img.getAttribute('src') || '';
         if (!fullSrc) return;
 
-        // 也可以同步 alt 方便无障碍
         const alt = img.getAttribute('alt') || '';
-
         dialog.innerHTML = `<img src="${fullSrc}" alt="${alt}">`;
         if (!dialog.open) dialog.showModal();
     });
 }
+
 
 
 async function initLifePage(){
@@ -801,10 +789,14 @@ async function initLifePage(){
         </article>`;
         }).join('');
         applyImageFallbacks(grid);
+        // ← 移除这里的 wireLightbox(grid) 调用
     }
+
     $('#life-year').onchange = draw;
     $('#life-tag').onchange = draw;
     draw();
+
+    // ← 只在这里调用一次
     wireLightbox(grid);
 }
 
