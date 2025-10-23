@@ -740,6 +740,7 @@ function mapBibToPub(typeRaw, key, f){
         abstract: f.abstract || '',
         featured,
         ccf: f.ccf || f['ccf-rank'] || f.rank || '',   // ← 新增这一行
+        note:f.note || '',
         bibtex: rebuildBibtex(typeRaw, key, f)
     };
 }
@@ -1057,6 +1058,7 @@ function renderPubs(){
             : (typeof p.authors === 'string' ? p.authors : '');
         const yearTag = p.year ? `<span class="tag">${p.year}</span>` : '';
         const ccf = p.ccf ? `· <span class="tag">${p.ccf}</span>` : '';
+        const note = p.note ? `· <span class="tag">${p.note}</span>` : '';
         const abstract = p.abstract ? `<p class="pub-abstract">${p.abstract}</p>` : '';
 
         // 注意：PDF / Code 始终渲染按钮，即便 href 为空字符串
@@ -1068,7 +1070,7 @@ function renderPubs(){
         <div class="pub-mid">
           <div class="title">${p.title}</div>
           <div class="authors">${authorsText}</div>
-          <div class="venue">${p.venue||''} · <span class="tag">${p.type||''}</span> · ${yearTag}${ccf}</div>
+          <div class="venue">${p.venue||''} · <span class="tag">${p.type||''}</span> · ${yearTag}${ccf}${note}</div>
           ${abstract}
           <pre class="bibtex" id="bib-${idx}" aria-hidden="true">${p.bibtex || ''}</pre>
         </div>
