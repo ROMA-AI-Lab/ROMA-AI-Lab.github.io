@@ -1653,3 +1653,106 @@ dialog.lightbox img{
     background: radial-gradient(220px 160px at var(--mx,50%) var(--my,40%), rgba(255,255,255,.08), transparent 60%);
 }
 
+
+/* ==== Accent CTA buttons (breathing glow + subtle shimmer) ==== */
+:root{
+    /* 统一参数，便于全站调节 */
+    --cta-radius: 12px;
+    --cta-glow1: color-mix(in oklab, var(--brand) 92%, white 0%);
+    --cta-glow2: color-mix(in oklab, var(--brand-2) 92%, white 0%);
+    --cta-bg: color-mix(in oklab, var(--panel) 88%, black 0%);
+    --cta-border: color-mix(in oklab, var(--border) 70%, transparent);
+    --cta-text: var(--text);
+}
+
+/* 基础态：在 ghost/solid 的基础上叠一层高亮，但不过分刺眼 */
+.btn.cta{
+    position: relative;
+    border-radius: var(--cta-radius);
+    border-color: var(--cta-border);
+    background:
+            linear-gradient(180deg, color-mix(in oklab, var(--panel-2) 70%, transparent), var(--panel));
+    color: var(--cta-text);
+    isolation: isolate;           /* 让伪元素的混合不影响外部 */
+    will-change: box-shadow, transform;
+    transition:
+            transform .18s ease,
+            box-shadow .25s ease,
+            border-color .25s ease,
+            background-color .25s ease;
+}
+
+/* 呼吸光（常态轻微、hover 加强） */
+.btn.cta{
+    animation: cta-breathe 2.6s ease-in-out infinite;
+    box-shadow:
+            0 0 0 0 rgba(0,0,0,0),
+            0 0 0 0 rgba(0,0,0,0),
+            0 0 0 0 rgba(0,0,0,0);
+}
+@keyframes cta-breathe{
+    0%,100%{
+        box-shadow:
+                0 0 0 0 rgba(0,0,0,0),
+                0 0 0 0 rgba(0,0,0,0),
+                0 0 0 0 rgba(0,0,0,0.0);
+    }
+    50%{
+        box-shadow:
+                0 0 0 0 rgba(0,0,0,0),
+                0 0 22px 6px color-mix(in oklab, var(--cta-glow1) 30%, transparent),
+                0 0 30px 10px color-mix(in oklab, var(--cta-glow2) 22%, transparent);
+    }
+}
+
+/* 轻微流光：仅在 hover 时沿按钮横向扫过一条柔光 */
+.btn.cta::after{
+    content: "";
+    position: absolute; inset: 1px;
+    border-radius: calc(var(--cta-radius) - 1px);
+    background:
+            linear-gradient(120deg,
+            transparent 0%,
+            color-mix(in oklab, white 30%, var(--cta-glow2)) 15%,
+            color-mix(in oklab, white 18%, var(--cta-glow1)) 25%,
+            transparent 40%);
+    background-size: 220% 100%;
+    mix-blend-mode: screen;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease, background-position .6s ease;
+}
+.btn.cta:hover::after{
+    opacity: .55;
+    background-position: -120% 0;
+}
+
+/* 悬停/聚焦的反馈（略微上抬 + 边界更清晰） */
+.btn.cta:hover{
+    transform: translateY(-1px);
+    border-color: color-mix(in oklab, var(--cta-glow1) 30%, var(--cta-border));
+}
+.btn.cta:focus-visible{
+    outline: 2px solid color-mix(in oklab, var(--cta-glow1) 55%, transparent);
+    outline-offset: 2px;
+}
+
+/* 亮色主题下做对比度保护，避免过曝 */
+.light .btn.cta{
+    --cta-bg: color-mix(in oklab, #ffffff 85%, var(--panel) 15%);
+    --cta-border: rgba(0,0,0,.08);
+}
+.light .btn.cta::after{ opacity: .45; }
+
+/* 动效可访问性：用户选择“减少动效”时，禁用动画但保留静态高亮 */
+@media (prefers-reduced-motion: reduce){
+    .btn.cta{ animation: none; }
+    .btn.cta::after{ transition: none; }
+}
+
+/* 让箭头/↗更有动感（可选） */
+.btn.cta:hover { letter-spacing: .1px; }
+.btn.cta:hover svg, .btn.cta:hover .arrow { transform: translateX(1px); }
+
+/* 保持你现有的尺寸一致性（文件里已有 min-height 规则会继承） */
+
