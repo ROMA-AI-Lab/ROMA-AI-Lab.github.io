@@ -783,7 +783,7 @@ async function initLifePage(){
           ${img}
           <div class="body">
             <div class="meta">${(g.tags||[]).map(x=>`<span class="tag">${x}</span>`).join(' ')}</div>
-            <h3 style="margin:.2rem 0 .3rem">${title}</h3>
+            <h3 style="margin:.2rem 0 .3rem" class="life-title">${title}</h3>
             ${date}
           </div>
         </article>`;

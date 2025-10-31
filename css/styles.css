@@ -1,3 +1,6 @@
+
+
+
 /* ----- Reset / Base ----- */
 *, *::before, *::after {
     box-sizing: border-box
@@ -37,7 +40,11 @@ a {
     --card: #0e1530;
     --shadow: 0 8px 24px rgba(2, 6, 23, .35);
     --border: #1f2a44;
-    --code: #0a0f1e
+    --code: #0a0f1e;
+    --bg-card: color-mix(in oklab, var(--panel) 72%, white 0%); /* 玻璃感基底 */
+    --border-color: color-mix(in oklab, var(--border) 90%, transparent);
+    --shadow-card: 0 4px 16px rgba(2,6,23,0.28);
+    --shadow-hover: 0 8px 28px rgba(20,40,120,0.40);
 }
 
 .light {
@@ -52,8 +59,22 @@ a {
     --card: #ffffff;
     --shadow: 0 8px 24px rgba(15, 23, 42, .12);
     --border: #e5e7eb;
-    --code: #0f172a
+    --code: #0f172a;
+    --bg-card: rgba(255,255,255,0.72);
+    --border-color: rgba(0,0,0,0.08);
+    --shadow-card: 0 4px 16px rgba(15,23,42,0.15);
+    --shadow-hover: 0 8px 24px rgba(15,23,42,0.22);
 }
+
+/* Smooth theme switching */
+html, body, .card, .video-card, #people-grid .card.people-card, .media-fx {
+    transition:
+            background-color .35s ease,
+            color .35s ease,
+            box-shadow .35s ease,
+            border-color .35s ease;
+}
+
 
 body {
     background: var(--bg);
@@ -1110,15 +1131,17 @@ dialog.lightbox img{
     50% { opacity: 1; transform: scale(1.1); }
 }
 
+/* Video card – theme-adaptive */
 .video-card {
-    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
-    background: rgba(30,30,40,0.6);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.08);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    background: var(--bg-card);
+    backdrop-filter: blur(20px) saturate(115%);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: var(--shadow-card);
+    transition: box-shadow .3s ease, transform .3s ease, background-color .3s ease, border-color .3s ease;
 }
 .video-card:hover {
-    box-shadow: 0 6px 20px rgba(80,120,255,0.4);
+    box-shadow: var(--shadow-hover);
     transform: translateY(-4px);
 }
 .video-title::after {
@@ -1187,4 +1210,446 @@ dialog.lightbox img{
     to { transform: scale(1); opacity: 1; }
 }
 
+
+/* ===== Global media effect (People first) ===== */
+/* Theme-adaptive media frame */
+.media-fx{
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--bg-card);
+    backdrop-filter: blur(16px) saturate(115%);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-card);
+    transform: translateZ(0);
+}
+.media-fx:hover { box-shadow: var(--shadow-hover); }
+
+
+
+
+
+
+.media-fx > img { /* 包裹后的 img 保留原裁切 */
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    transition: transform .45s cubic-bezier(.2,.8,.2,1), filter .45s ease;
+}
+.media-fx:hover > img{
+    transform: scale(1.035);
+    filter: contrast(1.04) saturate(1.02) brightness(1.02);
+}
+/* 柔光随鼠标移动（由 JS 设置 --mx/--my） */
+.media-fx::after{
+    content:"";
+    position:absolute; inset:-20%;
+    pointer-events:none;
+    background:
+            radial-gradient(120px 120px at var(--mx,50%) var(--my,50%),
+            color-mix(in oklab, var(--brand) 22%, transparent) 0%,
+            transparent 60%);
+    opacity:0; transition: opacity .35s ease;
+}
+.media-fx:hover::after{ opacity:.55; }
+
+
+/* ===== People text polish ===== */
+/* 姓名：更强层级 + 霓虹分割线（与 video-title 呼应） */
+.person-name{
+    font-weight: 800;
+    font-size: clamp(16px, 1.1rem, 18px);
+    letter-spacing: .2px;
+    line-height: 1.35;
+    position: relative;
+    display: inline-block;     /* 让下划线只占标题宽度 */
+    max-width: 100%;
+}
+.person-name::after{
+    content: "";
+    display: block;
+    height: 2px;
+    margin-top: 6px;
+    width: 46%;
+    background: linear-gradient(90deg, #00e0ff, transparent 70%);
+    opacity: .85;
+    border-radius: 2px;
+    box-shadow: 0 0 12px rgba(0,224,255,.35);
+    transition: width .35s ease, opacity .35s ease;
+}
+.card:hover .person-name::after{ width: 64%; opacity: 1; }
+
+/* 角色/单位：更精致的次级层级 */
+.person-meta{
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 13.5px;
+    letter-spacing: .1px;
+    display: block;            /* name 换行后更稳定 */
+    opacity: .88;
+}
+.person-role{
+    text-transform: none;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    color: color-mix(in oklab, var(--muted) 80%, white 20%);
+}
+.person-sep{ margin: 0 .4em; opacity: .5; }
+
+/* 卡片底部按钮/链接行与上方文字的节奏 */
+.card .body .actions{ margin-top: 10px; }
+
+/* 防止“柔光圈”遮挡文字点击（来自你之前的 image 效果容器） */
+.media-fx + .person-name,
+.media-fx + .person-name + .person-meta { position: relative; z-index: 1; }
+
+.card:hover .person-name{
+    text-shadow: 0 0 16px rgba(0,224,255,.18);
+}
+
+
+
+/* People card – same depth language as video */
+#people-grid .card.people-card{
+    position: relative;
+    background: var(--bg-card);
+    backdrop-filter: blur(12px) saturate(115%);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: var(--shadow-card);
+    transition:
+            transform .28s cubic-bezier(.2,.8,.2,1),
+            box-shadow .28s ease,
+            border-color .28s ease,
+            background-color .28s ease;
+    overflow: hidden;
+}
+#people-grid .card.people-card::before{
+    content:"";
+    position:absolute; inset:-1px;
+    border-radius: inherit;
+    background:
+            radial-gradient(240px 160px at 20% -10%, color-mix(in oklab, var(--brand) 18%, transparent) 0%, transparent 60%),
+            radial-gradient(200px 160px at 110% 10%, color-mix(in oklab, var(--brand-2) 14%, transparent) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity .35s ease;
+    pointer-events: none;
+}
+#people-grid .card.people-card:hover{
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: color-mix(in oklab, var(--border-color) 50%, var(--text) 10%);
+}
+#people-grid .card.people-card:hover::before{ opacity: 1; }
+#people-grid .card.people-card:focus-within{
+    outline: none;
+    box-shadow: var(--shadow-hover), 0 0 0 2px color-mix(in oklab, var(--brand) 45%, transparent);
+    transform: translateY(-3px);
+}
+@media (hover:hover){
+    #people-grid .card.people-card:active{ transform: translateY(-1px) scale(.995); }
+}
+#people-grid .card.people-card .body{ position: relative; z-index: 1; }
+
+/* Neon underline adapt for light theme */
+.light .video-title::after,
+.light .person-name::after {
+    background: linear-gradient(90deg, #0078a6, transparent 70%);
+    box-shadow: 0 0 8px rgba(0,120,166,.25);
+    opacity: .95;
+}
+
+/* Text colors follow theme tokens */
+.video-title, .person-name { color: var(--text); }
+.video-meta, .person-meta { color: var(--muted); }
+
+
+/* ===========================
+   Projects & Life — Card Effects
+   统一“玻璃 + 层次光影 + 悬浮上抬”
+   （与 video-card / people-card 视觉一致）
+   =========================== */
+
+/* 让 life 的 <a class="card"> 作为完整块级卡片展示 */
+#life-home-grid .card { display: block; }
+
+/* 玻璃卡片语言（与 video/people 保持一致） */
+#research-grid .card.project-card,
+#life-home-grid .card.life-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(16px) saturate(115%);
+    -webkit-backdrop-filter: blur(16px) saturate(115%);
+    overflow: hidden;
+    transition:
+            transform .28s cubic-bezier(.2,.8,.2,1),
+            box-shadow .28s ease,
+            border-color .28s ease,
+            background-color .28s ease;
+}
+
+/* 悬浮上抬 + 更强阴影 */
+#research-grid .card.project-card:hover,
+#life-home-grid .card.life-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: color-mix(in oklab, var(--border-color) 60%, var(--text) 12%);
+}
+
+/* Project 顶部柔光（贴近 people 的层次感，但更克制） */
+#research-grid .card.project-card::before{
+    content:"";
+    position:absolute; inset:-1px;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+            radial-gradient(220px 140px at 10% -10%, color-mix(in oklab, var(--brand) 12%, transparent) 0%, transparent 60%),
+            radial-gradient(180px 140px at 110% 10%, color-mix(in oklab, var(--brand-2) 10%, transparent) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity .35s ease;
+}
+#research-grid .card.project-card:hover::before{ opacity: .95; }
+
+/* ===== 标题霓虹分割线（扩展到 Project / Life 标题） ===== */
+.project-title,
+.life-title {
+    position: relative;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.35;
+}
+
+.project-title::after,
+.life-title::after {
+    content: "";
+    display: block;
+    height: 2px;
+    margin-top: 6px;
+    width: 40%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #00e0ff, transparent 70%);
+    box-shadow: 0 0 12px rgba(0,224,255,.35);
+    transition: width .35s ease, opacity .35s ease, background .3s ease, box-shadow .3s ease;
+}
+
+/* 悬浮时加长分割线（与 people 的交互保持一致） */
+#research-grid .card.project-card:hover .project-title::after,
+#life-home-grid .card.life-card:hover .life-title::after {
+    width: 64%;
+    opacity: 1;
+}
+
+/* 亮色主题下的可读性优化（沿用你现有 video/people 的逻辑） */
+.light .project-title::after,
+.light .life-title::after {
+    background: linear-gradient(90deg, #0078a6, transparent 70%);
+    box-shadow: 0 0 8px rgba(0,120,166,.25);
+    opacity: .95;
+}
+
+/* 次级文字（副标题/元信息）色板统一 */
+.project-meta,
+.life-meta {
+    color: var(--muted);
+    font-size: 13.5px;
+    letter-spacing: .1px;
+    margin-top: 6px;
+}
+
+
+
+
+
+/* ===========================
+   Subpages — Card Effects (Projects / Life / People)
+   让子页卡片获得与首页一致的“玻璃 + 层次光影”
+   =========================== */
+
+/* 某些子页使用 <a class="card">，确保表现为块级卡片 */
+#proj-all-grid .card,
+#life-grid .card,
+#people-all-grid .card { display: block; }
+
+/* 统一玻璃卡片语言 */
+#proj-all-grid .card.project-card,
+#life-grid .card.life-card,
+#people-all-grid .card.people-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(16px) saturate(115%);
+    -webkit-backdrop-filter: blur(16px) saturate(115%);
+    overflow: hidden;
+    transition:
+            transform .28s cubic-bezier(.2,.8,.2,1),
+            box-shadow .28s ease,
+            border-color .28s ease,
+            background-color .28s ease;
+}
+
+/* 悬浮上抬 + 强阴影 */
+#proj-all-grid .card.project-card:hover,
+#life-grid .card.life-card:hover,
+#people-all-grid .card.people-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: color-mix(in oklab, var(--border-color) 60%, var(--text) 12%);
+}
+
+/* Projects 顶部柔光（子页版，略弱） */
+#proj-all-grid .card.project-card::before {
+    content:"";
+    position:absolute; inset:-1px;
+    border-radius: inherit; pointer-events: none;
+    background:
+            radial-gradient(220px 140px at 10% -10%, color-mix(in oklab, var(--brand) 12%, transparent) 0%, transparent 60%),
+            radial-gradient(180px 140px at 110% 10%, color-mix(in oklab, var(--brand-2) 10%, transparent) 0%, transparent 60%);
+    opacity: 0; transition: opacity .35s ease;
+}
+#proj-all-grid .card.project-card:hover::before { opacity: .95; }
+
+/* People 顶部柔光（与首页一致） */
+#people-all-grid .card.people-card::before {
+    content:"";
+    position:absolute; inset:-1px;
+    border-radius:inherit; pointer-events:none;
+    background:
+            radial-gradient(240px 160px at 20% -10%, color-mix(in oklab, var(--brand) 18%, transparent) 0%, transparent 60%),
+            radial-gradient(200px 160px at 110% 10%, color-mix(in oklab, var(--brand-2) 14%, transparent) 0%, transparent 60%);
+    opacity:0; transition: opacity .35s ease;
+}
+#people-all-grid .card.people-card:hover::before { opacity: 1; }
+
+/* 霓虹标题线：扩展到子页 */
+:is(.project-title, .life-title, .person-name) {
+    position: relative;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.35;
+}
+:is(.project-title, .life-title, .person-name)::after {
+    content:"";
+    display:block;
+    height:2px; margin-top:6px; width:40%;
+    border-radius:2px;
+    background: linear-gradient(90deg, #00e0ff, transparent 70%);
+    box-shadow: 0 0 12px rgba(0,224,255,.35);
+    transition: width .35s ease, opacity .35s ease, background .3s ease, box-shadow .3s ease;
+}
+#proj-all-grid .card.project-card:hover .project-title::after,
+#people-all-grid .card.people-card:hover .person-name::after { width:64%; opacity:1; }
+
+.light :is(.project-title, .life-title, .person-name)::after {
+    background: linear-gradient(90deg, #0078a6, transparent 70%);
+    box-shadow: 0 0 8px rgba(0,120,166,.25);
+    opacity: .95;
+}
+
+/* 次级文字（统一色板） */
+:is(.project-meta, .life-meta, .person-meta) {
+    color: var(--muted);
+    font-size: 13.5px;
+    letter-spacing: .1px;
+    margin-top: 6px;
+}
+
+/* ===== Person page: avatar cinematic image effect (no card) ===== */
+#person-detail .media-fx{
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(12px) saturate(115%);
+    -webkit-backdrop-filter: blur(12px) saturate(115%);
+    transform: translateZ(0);
+    transition: box-shadow .35s ease, border-color .35s ease, background-color .35s ease;
+}
+
+/* 顶部柔光（更克制，避免喧宾夺主） */
+#person-detail .media-fx::before{
+    content:"";
+    position:absolute; inset:-1px; pointer-events:none; border-radius:inherit;
+    background:
+            radial-gradient(220px 140px at 10% -10%, color-mix(in oklab, var(--brand) 12%, transparent) 0%, transparent 60%),
+            radial-gradient(180px 140px at 110% 10%, color-mix(in oklab, var(--brand-2) 10%, transparent) 0%, transparent 60%);
+    opacity:.0; transition: opacity .35s ease;
+}
+#person-detail .media-fx:hover::before{ opacity:.95; }
+
+/* 视差高光：跟随鼠标位置的轻微光斑 */
+#person-detail .media-fx::after{
+    content:"";
+    position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+    background:
+            radial-gradient(220px 160px at var(--mx,50%) var(--my,40%),
+            rgba(255,255,255,.08), transparent 60%);
+    transition: opacity .25s ease;
+}
+
+/* 图片本体：轻微缩放+提亮，保留你原本的头像比例设置 */
+#person-detail .media-fx > img{
+    display:block; width:50%; height:auto; object-fit:cover;
+    transition: transform .35s ease, filter .35s ease;
+}
+#person-detail .media-fx:hover > img{
+    transform: scale(1.03) translateY(-2px);
+    filter: brightness(1.06);
+}
+
+/* ===== Person page avatar: make wrapper + img a perfect fit ===== */
+
+/* 头像原先可能自带边框/圆角，这里交给外层统一管理 */
+#person-detail img.avatar{
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+/* 外层包裹：与图片成为“一体”——不再被父容器拉伸 */
+#person-detail .media-fx.avatar-frame{
+    display: inline-block;                /* 让外层按内容收缩 */
+    width: min(50%, 500px);              /* 继承你个人页头像的 max-width 语义 */
+    border-radius: 12px;                  /* 与你页面设计一致 */
+    overflow: hidden;
+
+    /* 玻璃质感沿用之前的变量 */
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(12px) saturate(115%);
+    -webkit-backdrop-filter: blur(12px) saturate(115%);
+}
+
+/* 图片占满包裹（用包裹来控制最终尺寸） */
+#person-detail .media-fx.avatar-frame > img{
+    display: block;
+    width: 100%;
+    height: auto;                         /* 不拉伸纵横比 */
+    border-radius: inherit;
+}
+
+/* 悬浮柔光与视差仍然保留（如果你之前已加过，可保留或省略这段） */
+#person-detail .media-fx.avatar-frame::before{
+    content:"";
+    position:absolute; inset:-1px; border-radius:inherit; pointer-events:none;
+    background:
+            radial-gradient(220px 140px at 10% -10%, color-mix(in oklab, var(--brand) 12%, transparent) 0%, transparent 60%),
+            radial-gradient(180px 140px at 110% 10%, color-mix(in oklab, var(--brand-2) 10%, transparent) 0%, transparent 60%);
+    opacity:0; transition: opacity .35s ease;
+}
+#person-detail .media-fx.avatar-frame:hover::before{ opacity:.95; }
+
+#person-detail .media-fx.avatar-frame::after{
+    content:"";
+    position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+    background: radial-gradient(220px 160px at var(--mx,50%) var(--my,40%), rgba(255,255,255,.08), transparent 60%);
+}
 

@@ -13,7 +13,7 @@
         header.simple .brand{display:flex;align-items:center;gap:8px;font-weight:700}
         main{padding:32px 0}
         #person-detail{max-width:900px;margin:0 auto}
-        #person-detail .avatar{width:100%;max-width:680px;border:1px solid var(--border);border-radius:12px}
+        #person-detail .avatar{width:30%;max-width:680px;aspect-ratio: auto;border:1px solid var(--border);border-radius:12px}
         #person-detail h1{font-size:clamp(24px,3vw,32px)}
         #person-detail .tags{margin:10px 0}
         #person-detail .btn{padding:8px 12px;border-radius:10px}
@@ -73,6 +73,57 @@
 
 
 <script src="pages.js"></script>
+<script>
+    /* Person page — enhance avatar image only (no card) */
+    (function(){
+        const root = document.getElementById('person-detail-body');
+        if (!root) return;
+        const hasHover = matchMedia('(hover: hover)').matches;
+
+        function wrapMediaFx(img){
+            if(!img || img.closest('.media-fx')) return;
+            const box = document.createElement('div');
+            box.className = 'media-fx avatar-frame';
+            // 继承你原有的宽高/圆角由 CSS 控制，这里只做结构包裹
+            img.parentNode.insertBefore(box, img);
+            box.appendChild(img);
+
+            if (hasHover){
+                let raf = 0;
+                box.addEventListener('mousemove', (e)=>{
+                    const r = box.getBoundingClientRect();
+                    const mx = ((e.clientX - r.left)/r.width)*100;
+                    const my = ((e.clientY - r.top)/r.height)*100;
+                    cancelAnimationFrame(raf);
+                    raf = requestAnimationFrame(()=>{
+                        box.style.setProperty('--mx', mx + '%');
+                        box.style.setProperty('--my', my + '%');
+                    });
+                });
+                box.addEventListener('mouseleave', ()=>{
+                    box.style.removeProperty('--mx');
+                    box.style.removeProperty('--my');
+                });
+            }
+        }
+
+        function enhance(){
+            // pages.js 注入后常见结构：#person-detail .avatar img 或直接 <img class="avatar">
+            // 优先找 #person-detail 范围内的头像 img
+            const img = document.querySelector('#person-detail img.avatar, #person-detail .avatar img');
+            if (img) wrapMediaFx(img);
+        }
+
+        // 1) 立即尝试（有时注入已完成）
+        enhance();
+
+        // 2) 监听异步注入
+        new MutationObserver(()=>enhance())
+            .observe(root, {childList:true, subtree:true});
+    })();
+</script>
+
+
 <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 </script>

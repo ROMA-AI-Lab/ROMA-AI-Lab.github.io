@@ -1238,7 +1238,7 @@ function renderLifeHome(limit=6){
       <img class="project-cover" src="${it.src}" alt="${it.title || ''}" loading="lazy" />
       <div class="body">
         <div class="meta">${it.date || ''}</div>
-        <h3 style="margin:.2rem 0 .3rem">${it.title || ''}</h3>
+        <h3 style="margin:.2rem 0 .3rem" class="life-title">${it.title || ''}</h3>
         <div class="tags">${(it.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
       </div>
     </a>
