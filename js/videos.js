@@ -153,11 +153,11 @@
 
         // 软转化按钮区（存在则显示）
         const ctas = el('div', 'video-ctas');
-        // const extLink = el('a', 'btn ghost');
-        // extLink.textContent = 'Open on Platform ↗';
-        // extLink.target = '_blank'; extLink.rel = 'noopener';
-        // extLink.href = buildExternalLink(item);
-        // ctas.appendChild(extLink);
+        const extLink = el('a', 'btn ghost');
+        extLink.textContent = 'Open on Platform ↗';
+        extLink.target = '_blank'; extLink.rel = 'noopener';
+        extLink.href = buildExternalLink(item);
+        ctas.appendChild(extLink);
 
         if (item.links && item.links.project) {
             const a = el('a', 'btn ghost'); a.textContent = 'Project';
