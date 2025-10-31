@@ -1,0 +1,27 @@
+[
+  {
+    "id": "roma-intro-cn",
+    "title": "ROMA Lab · Intro (CN)",
+    "platform": "bilibili",
+    "src": "//player.bilibili.com/player.html?isOutside=true&aid=115371411509420&bvid=BV1iT4bzsEce&cid=33063306321&p=1",
+    "cover": "assets/videos/roma-intro-cn.jpg",
+    "duration": "03:01",
+    "year": 2025,
+    "tags": ["Highlight","CN"],
+    "series": "Highlights",
+    "pin": false,
+    "publishedAt": "2025-10-01"
+  },
+  {
+    "id": "non-int",
+    "title": "Nonlinear Intelligence",
+    "platform": "bilibili",
+    "src": "//player.bilibili.com/player.html?isOutside=true&aid=115463803706093&bvid=BV1cPyvBCEv5&cid=33536740876&p=1",
+    "cover": "assets/videos/non-int.jpg",
+    "duration": "05:33",
+    "year": 2025,
+    "tags": ["Research"],
+    "series": "Graph-of-Thought",
+    "pin": true
+  }
+]

@@ -14,6 +14,16 @@
     <meta property="og:url" content="https://roma-ai-lab.github.io/" />
     <link rel="icon" href="assets/favicon.svg" />
     <link rel="stylesheet" href="css/styles.css" />
+    <!-- Preconnect & DNS Prefetch for video CDNs -->
+    <link rel="preconnect" href="https://player.bilibili.com" crossorigin>
+    <link rel="dns-prefetch" href="//player.bilibili.com">
+    <link rel="preconnect" href="https://www.youtube.com" crossorigin>
+    <link rel="dns-prefetch" href="//www.youtube.com">
+    <link rel="preconnect" href="https://player.vimeo.com" crossorigin>
+    <link rel="dns-prefetch" href="//player.vimeo.com">
+    <link rel="preconnect" href="https://v.qq.com" crossorigin>
+    <link rel="dns-prefetch" href="//v.qq.com">
+
 </head>
 <body>
 <!-- Header / Nav -->
@@ -30,9 +40,10 @@
         <!-- primary nav (desktop inline) -->
         <nav id="primary-nav" class="nav-links-inline" aria-label="Primary" role="menubar">
             <a href="#home" data-link role="menuitem" class="active">HOME</a>
+            <a href="#videos" data-link role="menuitem">RESEARCH</a>
             <a href="#people" data-link role="menuitem">PEOPLE</a>
-            <a href="#research" data-link role="menuitem">RESEARCH</a>
             <a href="#publications" data-link role="menuitem">PUBLICATIONS</a>
+            <a href="#research" data-link role="menuitem">PROJECT</a>
             <a href="#life" data-link role="menuitem">LIFE</a>
             <a id="nav-manual" href="#" role="menuitem">LAB MANUAL</a>
         </nav>
@@ -61,9 +72,10 @@
 <aside id="mobile-drawer" class="nav-drawer" aria-label="Mobile navigation" aria-hidden="true">
     <div class="title">Menu</div>
     <a href="#home" data-link>Home</a>
+    <a href="#videos" data-link>Research</a>
     <a href="#people" data-link>People</a>
-    <a href="#research" data-link>Research</a>
     <a href="#publications" data-link>Publications</a>
+    <a href="#research" data-link>Project</a>
     <a href="#life" data-link>Life</a>
     <a id="drawer-manual" href="#">Lab Manual</a>
     <div class="spacer"></div>
@@ -116,6 +128,24 @@
     </div>
 </main>
 
+<section id="videos" aria-labelledby="videos-h" data-view="videos">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <h2 id="videos-h">Research</h2>
+<!--                <p class="section-desc"></p>-->
+            </div>
+<!--            <div class="filters" style="display:flex; gap:8px; align-items:center">-->
+<!--                &lt;!&ndash; 预留：未来可做筛选 chips &ndash;&gt;-->
+<!--            </div>-->
+        </div>
+        <div id="video-grid" class="grid videos" aria-live="polite"></div>
+        <noscript><p>Please enable JavaScript to view the video wall.</p></noscript>
+    </div>
+</section>
+
+
+
 
 <!-- ======== PEOPLE ======== -->
 <section id="people" aria-labelledby="people-h" data-view="people">
@@ -134,24 +164,6 @@
     </div>
 </section>
 
-<!-- ======== RESEARCH ======== -->
-<section id="research" aria-labelledby="research-h" data-view="research">
-    <div class="container">
-        <div class="section-head">
-            <div>
-                <h2 id="research-h">Research</h2>
-                <p class="section-desc">Core directions span graph-of-thought reasoning, graph prompting, multimodal token compression, and neural-symbolic knowledge systems.</p>
-            </div>
-            <div class="filters" style="display:flex; gap:8px; align-items:center">
-                <select id="research-area-filter" aria-label="Filter by area">
-                    <option value="">All areas</option>
-                </select>
-                <a class="btn ghost" href="pages/projects.html" target="_blank" rel="noopener">Full Projects →</a>
-            </div>
-        </div>
-        <div class="grid research v-scroll" id="research-grid" aria-live="polite"></div>
-    </div>
-</section>
 
 <!-- ======== PUBLICATIONS ======== -->
 <section id="publications" aria-labelledby="pub-h" data-view="publications">
@@ -184,6 +196,26 @@
 <!--        <div class="filters" style="display:flex; gap:8px; align-items:center">-->
 <!--        <a class="btn ghost" href="pages/publications.html" target="_blank" rel="noopener">Full Publications →</a>-->
 <!--        </div>-->
+    </div>
+</section>
+
+
+<!-- ======== RESEARCH ======== -->
+<section id="research" aria-labelledby="research-h" data-view="research">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <h2 id="research-h">Project</h2>
+                <p class="section-desc">Core directions span graph-of-thought reasoning, graph prompting, multimodal token compression, and neural-symbolic knowledge systems.</p>
+            </div>
+            <div class="filters" style="display:flex; gap:8px; align-items:center">
+                <select id="research-area-filter" aria-label="Filter by area">
+                    <option value="">All areas</option>
+                </select>
+                <a class="btn ghost" href="pages/projects.html" target="_blank" rel="noopener">Full Projects →</a>
+            </div>
+        </div>
+        <div class="grid research v-scroll" id="research-grid" aria-live="polite"></div>
     </div>
 </section>
 
@@ -242,6 +274,8 @@
 </footer>
 
 <script type="module" src="js/main.js"></script>
+<script defer src="js/videos.js"></script>
+<!--<script src="js/mediafx.js"></script>-->
 <script>
     // 抽屉里的“Lab Manual”和“Theme”按钮与主逻辑对齐
     document.addEventListener('DOMContentLoaded', () => {
@@ -260,5 +294,14 @@
         }
     });
 </script>
+
+<div id="cinematic-overlay">
+    <div class="cinematic-backdrop"></div>
+    <div class="cinematic-player">
+        <button class="cinematic-close" aria-label="Close video">&times;</button>
+        <iframe id="cinematic-iframe" allowfullscreen loading="lazy"></iframe>
+    </div>
+</div>
+
 </body>
 </html>
