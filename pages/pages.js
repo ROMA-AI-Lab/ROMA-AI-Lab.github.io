@@ -954,7 +954,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
         const btn = document.createElement('button');
         btn.id = 'to-top';
-        btn.className = 'btn ghost hidden';
+        btn.className = 'btn ghost hidden cta';
         btn.setAttribute('aria-label', 'Back to top');
         btn.title = 'Back to top';
         btn.textContent = '↑';
