@@ -1176,7 +1176,7 @@ dialog.lightbox img{
 .cinematic-player {
     position: relative;
     width: 90%;
-    max-width: 960px;
+    max-width: 500px;
     aspect-ratio: 16/9;
     border-radius: 16px;
     overflow: hidden;
