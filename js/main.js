@@ -765,7 +765,7 @@ async function loadData(){
         const people    = await load('data/people.json');
         const projects  = await load('data/projects.json');
         const pubs      = await load('data/publications.json');
-        const gallery   = await load('data/gallery.json');
+        const gallery   = await load('data/gallery_cover.json');
 
         if (news || people || projects || pubs){
             return {

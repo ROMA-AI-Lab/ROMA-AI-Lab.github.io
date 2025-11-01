@@ -1,0 +1,8 @@
+[
+  { "src": "/assets/gallery/cover_1.avif", "title": "Home Party", "date": "2025-09-12", "tags": ["party"] },
+  { "src": "/assets/gallery/cover_2.avif", "title": "Watching A Drama", "date": "2025-09-12", "tags": ["theater"] },
+  { "src": "/assets/gallery/cover_3.avif", "title": "Family Cooking", "date": "2025-09-12", "tags": ["party"] },
+  { "src": "/assets/gallery/cover_4.avif", "title": "Happy Birthday", "date": "2025-09-12", "tags": ["birthday"] },
+  { "src": "/assets/gallery/cover_5.avif", "title": "Ice Skating", "date": "2025-09-12", "tags": ["sports"] },
+  { "src": "/assets/gallery/cover_6.avif", "title": "Nametag Game", "date": "2025-09-12", "tags": ["sports"] }
+]

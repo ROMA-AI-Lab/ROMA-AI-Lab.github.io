@@ -1756,3 +1756,15 @@ dialog.lightbox img{
 
 /* 保持你现有的尺寸一致性（文件里已有 min-height 规则会继承） */
 
+/*.cinematic-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.75); display: none; align-items: center; justify-content: center; z-index: 70; }*/
+/*.cinematic-overlay.active { display: flex; }*/
+/*.cinematic-player { width: min(1200px, 92vw); aspect-ratio: 16/9; position: relative; background: #000; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.4); overflow: hidden; }*/
+/*.cinematic-close { position: absolute; top: 8px; right: 8px; z-index: 1; border: 1px solid rgba(255,255,255,.2); background: rgba(0,0,0,.4); color: #fff; border-radius: 10px; padding: 6px 10px; cursor: pointer; }*/
+/*.cinematic-iframe { width: 100%; height: 100%; border: 0; }*/
+
+/*.cinematic-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:70}*/
+/*.cinematic-overlay.active{display:flex}*/
+/*.cinematic-player{width:min(1200px,92vw);aspect-ratio:16/9;position:relative;background:#000;border-radius:14px;overflow:hidden}*/
+#cinematic-host{width:100%;height:100%}
+/*.cinematic-close{position:absolute;top:8px;right:8px;z-index:1;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.4);color:#fff;border-radius:10px;padding:6px 10px;cursor:pointer}*/
+/*.cinematic-iframe{width:100%;height:100%;border:0}*/

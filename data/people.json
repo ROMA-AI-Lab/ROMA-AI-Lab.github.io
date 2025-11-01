@@ -6,7 +6,7 @@
       "role": "\uD83C\uDF1F Lab Lead / Postdoctoral Fellow",
       "email": "roma_lab@yeah.net",
       "site": "https://xgsun.mysxl.cn",
-      "avatar": "/assets/people/xiangguo.jpeg",
+      "avatar": "/assets/people/xiangguo.avif",
       "topics": ["Data Mining","Social Intelligence","AI Theory for Non-linear Data"],
       "affiliation": "CUHK (Hong Kong)",
       "status": "lead",
@@ -27,7 +27,7 @@
       "role": "Former RA / Ph.D.",
       "email": "liyicong123@outlook.com",
       "site": "https://abigale001.github.io",
-      "avatar": "/assets/people/liyicong.png",
+      "avatar": "/assets/people/liyicong.avif",
       "topics": ["Explainability","Fairness","RecSys","Counterfactual","GNNs"],
       "affiliation": "UTS (Australia)",
       "status": "partner",
@@ -46,7 +46,7 @@
       "role": "Former RA / Ph.D. Student",
       "email": "yaoshu0326@berkeley.edu",
       "site": "https://upsilonv0.vercel.app",
-      "avatar": "/assets/people/zhiyaoshu.jpg",
+      "avatar": "/assets/people/zhiyaoshu.avif",
       "topics": ["Human-AI Collaboration","Computer Vision","LLM"],
       "affiliation": "UC Berkerly (USA)",
       "selected_publications": ["Zhiyao Shu, Xiangguo Sun, Hong Cheng. When LLM Meets Hypergraph: A Sociological Analysis on Personality via Online Social Networks. CIKM 2024."],
@@ -58,7 +58,7 @@
       "role": "Former RA / Undergraduate",
       "email": "",
       "site": "",
-      "avatar": "/assets/people/fangzhouge.jpg",
+      "avatar": "/assets/people/fangzhouge.avif",
       "topics": ["Hypergraph","LLMs","Graph Prompt"],
       "affiliation": "CUHK (Hong Kong)",
       "status": "ra"
@@ -69,7 +69,7 @@
       "role": "RA / Ph.D. Student",
       "email": "",
       "site": "",
-      "avatar": "/assets/people/pingwang.jpg",
+      "avatar": "/assets/people/pingwang.avif",
       "topics": ["LLM Reasoning","Trustworthy and Responsible LLMs"],
       "affiliation": "RUC",
       "status": "ra"
@@ -80,7 +80,7 @@
       "role": "Former RA / Master",
       "email": "",
       "site": "",
-      "avatar": "/assets/people/xinyanyang.png",
+      "avatar": "/assets/people/xinyanyang.avif",
       "topics": ["Rumor Detection","Online Social Networks"],
       "affiliation": "Tencent",
       "status": "ra"
@@ -91,7 +91,7 @@
       "role": "Former RA / Master",
       "email": "ansixu123@163.com",
       "site": "",
-      "avatar": "/assets/people/sixuan.png",
+      "avatar": "/assets/people/sixuan.avif",
       "topics": ["Personality","AI4Education","Visual Large Language Models"],
       "affiliation": "PolyU (Hong Kong)",
       "status": "ra"
@@ -102,7 +102,7 @@
       "role": "Former RA / Master",
       "email": "",
       "site": "",
-      "avatar": "/assets/people/wanghan.jpg",
+      "avatar": "/assets/people/wanghan.avif",
       "topics": ["Graph Learning","Online Social Networks"],
       "affiliation": "Tencent",
       "status": "ra"
@@ -113,7 +113,7 @@
       "role": "Former RA / Undergraduate",
       "email": "1155210998@link.cuhk.edu.hk",
       "site": "https://qunzhongwang.github.io",
-      "avatar": "/assets/people/qunzhongwang.jpg",
+      "avatar": "/assets/people/qunzhongwang.avif",
       "topics": ["Principles of AI Systems","RL on Large Models"],
       "affiliation": "CUHK (Hong Kong)",
       "status": "ra"
@@ -124,7 +124,7 @@
       "role": "Former RA / Undergraduate",
       "email": "yihanwan86@gmail.com",
       "site": "",
-      "avatar": "/assets/people/yihanw.jpg",
+      "avatar": "/assets/people/yihanw.avif",
       "topics": ["Predictive Coding","NLP","Diffusion Models"],
       "affiliation": "NJU",
       "status": "ra"
@@ -146,7 +146,7 @@
       "role": "🌟Steering Committee",
       "email": "hcheng@se.cuhk.edu.hk",
       "site": "https://www1.se.cuhk.edu.hk/~hcheng/",
-      "avatar": "/assets/people/hcheng.jpg",
+      "avatar": "/assets/people/hcheng.avif",
       "topics": ["Data Mining", "Machine Learning", "Database Systems"],
       "affiliation": "CUHK (Hong Kong)",
       "status": "sc"
@@ -157,7 +157,7 @@
       "role": "🌟Steering Committee",
       "email": "bliu@seu.edu.cn",
       "site": "https://cs.seu.edu.cn/bliu/main.htm",
-      "avatar": "/assets/people/boliu.png",
+      "avatar": "/assets/people/boliu.avif",
       "topics": ["Social Network Analysis", "AI Trustworthiness"],
       "affiliation": "SEU",
       "status": "sc"
@@ -168,7 +168,7 @@
       "role": "🌟Steering Committee",
       "email": "jx.cao@seu.edu.cn",
       "site": "https://cyber.seu.edu.cn/cjx1/list.htm",
-      "avatar": "/assets/people/jiuxincao.jpg",
+      "avatar": "/assets/people/jiuxincao.avif",
       "topics": ["Social Computing", "AI Security & Trustworthiness"],
       "affiliation": "SEU",
       "status": "sc"
@@ -179,7 +179,7 @@
       "role": "🌟Steering Committee",
       "email": "hongyang@zhejianglab.com",
       "site": "https://www.zhejianglab.org/lab/person?pid=290&id=379&bannerId=191",
-      "avatar": "/assets/people/hongyangchen.jpg",
+      "avatar": "/assets/people/hongyangchen.avif",
       "topics": ["Big Data & AI", "Graph Computing", "Machine Learning"],
       "affiliation": "Zhejiang Lab",
       "status": "sc"
@@ -190,7 +190,7 @@
       "role": "🌟Steering Committee",
       "email": "",
       "site": "https://sites.google.com/view/hongzhi-yin/home",
-      "avatar": "/assets/people/hongzhiyin.jpg",
+      "avatar": "/assets/people/hongzhiyin.avif",
       "topics": ["RecSys", "Graph Learning","Relational Machine Learning"],
       "affiliation": "UQ (Australia)",
       "status": "sc"
@@ -201,7 +201,7 @@
       "role": "🌟Steering Committee",
       "email": "gdxu@eduhk.hk",
       "site": "https://www.eduhk.hk/en/experts/professor-xu-guandong",
-      "avatar": "/assets/people/guandongxu.jpg",
+      "avatar": "/assets/people/guandongxu.avif",
       "topics": ["Artificial Intelligence", "Data Science","Recommendation Systems"],
       "affiliation": "EdUHK (Hong Kong)",
       "status": "sc"

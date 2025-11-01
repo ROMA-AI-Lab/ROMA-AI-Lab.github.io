@@ -6,7 +6,7 @@
       "area": "Graph AGI",
       "summary": "A library that supports supervised learning, pre-training and prompting/finetuning on graphs. ",
       "highlights": ["graph prompt","graph foundation model"],
-      "cover": "/assets/research/p1_1.png",
+      "cover": "/assets/research/p1_1.avif",
       "featured": true,
       "links": [{"label": "Report", "href": "https://arxiv.org/abs/2406.05346"},
         {"label": "Code", "href": "https://github.com/sheldonresearch/ProG"}]
@@ -17,7 +17,7 @@
       "area": "Personality",
       "summary": "A project that leverages LLMs and hypergraphs to provide a more profound analysis of user behavior and interactions within dynamic social flows.",
       "highlights": ["personality","computational psychology"],
-      "cover": "/assets/research/p2_1.png",
+      "cover": "/assets/research/p2_1.avif",
       "featured": true,
       "links": [{"label": "Report", "href": "https://arxiv.org/abs/2407.03568"},
         {"label": "Code", "href": "https://github.com/ZhiyaoShu/LLM-HGNN-MBTI"}]
