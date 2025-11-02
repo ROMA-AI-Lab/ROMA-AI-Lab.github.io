@@ -1,0 +1,710 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>About ROMA Lab</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="28afeec3-5b90-8181-a3b3-d3a7ffc23abb" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/gradients_4.png" style="object-position:center 90%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">💢</span></div><h1 class="page-title">About ROMA Lab</h1><p class="page-description"></p></header><div class="page-body"><p id="28afeec3-5b90-8175-8952-c67072e08ce7" class=""><em><mark class="highlight-gray">最后更新 </mark></em><em><mark class="highlight-gray"><time>@October 13, 2025</time></mark></em></p><p id="28bfeec3-5b90-8002-94e9-cdecdf25c3de" class="">
+</p><p id="28bfeec3-5b90-8037-9a7f-e1b4b3f6e804" class=""><code>本节目录</code></p><nav id="28afeec3-5b90-818c-b420-e12ca6905356" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-812b-a548-e899674b7d84">🎯 ROMA Lab：负责任在线媒体分析实验室</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-812d-9ba2-ca8e5f625b70">🏛️ ROMA Lab 的由来</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-8125-8e80-c9c85de79afe">🌟 我们的愿景：P.R.I.D.E. (2026-2035)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-813b-b653-fc40b2305763">🎭 我们的文化基调</a></div></nav><p id="28afeec3-5b90-814d-af2d-f365c0cba848" class="">
+</p><h1 id="28afeec3-5b90-812b-a548-e899674b7d84" class="block-color-blue_background">🎯 ROMA Lab：负责任在线媒体分析实验室</h1><h2 id="28afeec3-5b90-812d-9ba2-ca8e5f625b70" class="">🏛️ ROMA Lab 的由来</h2><p id="28afeec3-5b90-814b-a83d-d661aff97473" class=""><strong>ROMA Lab</strong>，全称为 <strong>Responsible Online Media Analytics Lab (负责任在线媒体分析实验室)</strong>。</p><blockquote id="28afeec3-5b90-81f6-8a77-dccf5118f9db" class="">&quot;ROMA&quot;一词，既指向<strong>古罗马的务实、法治与工程精神</strong>,也寓意着&quot;<em>条条大路通罗马</em>&quot;——我们尊重并支持每位成员探索属于自己的独特发展路径。我们致力于在人工智能与社会计算的交叉领域，以<mark class="highlight-yellow_background">负责任</mark>的态度，开展兼具<mark class="highlight-teal_background">理论深度</mark>与<mark class="highlight-blue_background">现实价值</mark>的研究。</blockquote><hr id="28afeec3-5b90-81da-b191-c05596e3194b"/><h2 id="28afeec3-5b90-8125-8e80-c9c85de79afe" class="">🌟 我们的愿景：P.R.I.D.E. (2026-2035)</h2><p id="28afeec3-5b90-8172-8a20-e291985abb18" class="">我们期望用十年左右的积累与探索,在以下五个维度取得标志性成就,这构成了 ROMA Lab 的集体荣誉与追求:</p><ul id="28afeec3-5b90-811e-a3b1-febff58e47a8" class="block-color-blue_background toggle"><li><details open=""><summary><strong>💡 Pioneering | 勇闯前沿</strong></summary><p id="28afeec3-5b90-81c7-beb4-f139452b8d1a" class=""><strong>🎯 目标:</strong></p><p id="28afeec3-5b90-813d-a0b4-eac8fac416a2" class="">在下一代社会智能网络的核心领域实现理论突破,成为国际学术界不可忽视的创新力量。</p><p id="28afeec3-5b90-8126-828d-eca73994ba95" class=""><strong>🛤️ 路径:</strong></p><ul id="28afeec3-5b90-8139-9d87-cbd70bebbcfa" class="bulleted-list"><li style="list-style-type:disc">持续产出高水平学术论文</li></ul><ul id="28afeec3-5b90-81e8-88c6-cb8b6ada74fd" class="bulleted-list"><li style="list-style-type:disc">追求最佳论文奖等顶级荣誉</li></ul><ul id="28afeec3-5b90-81c9-8f69-f0eda36c7484" class="bulleted-list"><li style="list-style-type:disc">力争提出被国际广泛认可的原创理论框架</li></ul></details></li></ul><ul id="28afeec3-5b90-81e3-bb32-dcb63198a8ac" class="block-color-teal_background toggle"><li><details open=""><summary><strong>📚 Resources | 厚积资源</strong></summary><p id="28afeec3-5b90-813a-bd2b-f2a27997a3a7" class=""><strong>🎯 目标:</strong></p><p id="28afeec3-5b90-8123-a585-db4526129014" class="">构建具有战略价值的知识产权生态。</p><p id="28afeec3-5b90-8111-9ab9-ccfb54e223fa" class=""><strong>🛤️ 路径:</strong></p><ul id="28afeec3-5b90-819b-ba53-c05ca44ce001" class="bulleted-list"><li style="list-style-type:disc">系统化布局高质量专利</li></ul><ul id="28afeec3-5b90-8193-a781-fbe791f0fede" class="bulleted-list"><li style="list-style-type:disc">编著专业教材与技术手册</li></ul><ul id="28afeec3-5b90-8123-9268-dd2bfffeb1f7" class="bulleted-list"><li style="list-style-type:disc">积极参与乃至主导行业技术标准的制定</li></ul></details></li></ul><ul id="28afeec3-5b90-817f-9217-c70a24369c5d" class="block-color-orange_background toggle"><li><details open=""><summary><strong>🏭 Industry | 赋能产业</strong></summary><p id="28afeec3-5b90-8154-9e57-fdf12be685f1" class=""><strong>🎯 目标:</strong></p><p id="28afeec3-5b90-81cf-bdea-ce97f3e86d4d" class="">成为前沿技术向现实生产力转化的核心枢纽。</p><p id="28afeec3-5b90-8141-ac15-c1e68d33bf72" class=""><strong>🛤️ 路径:</strong></p><ul id="28afeec3-5b90-81c6-a845-f5191b3f5669" class="bulleted-list"><li style="list-style-type:disc">与行业龙头建立深度战略合作</li></ul><ul id="28afeec3-5b90-8170-929b-f3d8155d435a" class="bulleted-list"><li style="list-style-type:disc">打造产业级人才梯队</li></ul><ul id="28afeec3-5b90-813e-a4e4-ce5a3c4cb243" class="bulleted-list"><li style="list-style-type:disc">构建技术转化中试平台</li></ul></details></li></ul><ul id="28afeec3-5b90-814c-8aa0-dddb6b43677c" class="block-color-purple_background toggle"><li><details open=""><summary><strong>🚀 Development | 驱动发展</strong></summary><p id="28afeec3-5b90-8194-98a3-dcecdbdf6974" class=""><strong>🎯 目标:</strong></p><p id="28afeec3-5b90-81e1-8be1-d7b5627e9b1f" class="">催化新一代科技企业和企业家的诞生。</p><p id="28afeec3-5b90-81a7-9dfe-f1b91ff86365" class=""><strong>🛤️ 路径:</strong></p><ul id="28afeec3-5b90-81fe-9a93-ddfdb53fd74d" class="bulleted-list"><li style="list-style-type:disc">实质性支持师生基于实验室成果进行创新创业</li></ul><ul id="28afeec3-5b90-810b-8bda-d929ce7cb467" class="bulleted-list"><li style="list-style-type:disc">赋能合作伙伴的技术创新</li></ul></details></li></ul><ul id="28afeec3-5b90-8111-b051-c5ef02c26b77" class="block-color-red_background toggle"><li><details open=""><summary><strong>❤️ Ethos | 塑造精神</strong></summary><p id="28afeec3-5b90-818f-b37f-dc38af0df74e" class=""><strong>🎯 目标:</strong></p><p id="28afeec3-5b90-8164-84df-ed97ff5c8cf2" class="">培养兼具顶尖专业技能、崇高家国情怀和强烈奉献精神的卓越人才。</p><p id="28afeec3-5b90-8172-8bdb-db97d063bf8f" class=""><strong>🛤️ 路径:</strong></p><ul id="28afeec3-5b90-81cd-952b-d5a4e9c0dd5c" class="bulleted-list"><li style="list-style-type:disc">强化&quot;科技报国&quot;的价值观教育</li></ul><ul id="28afeec3-5b90-81b0-bb52-fa8b909a499a" class="bulleted-list"><li style="list-style-type:disc">引导和支持优秀毕业生投身国家重点领域</li></ul><ul id="28afeec3-5b90-8155-82fa-e9f30bfc70c0" class="bulleted-list"><li style="list-style-type:disc">树立扎根奉献的榜样典型</li></ul></details></li></ul><hr id="28afeec3-5b90-8174-99ad-cd742657faab"/><h2 id="28afeec3-5b90-813b-b653-fc40b2305763" class="">🎭 我们的文化基调</h2><div id="28afeec3-5b90-81e2-ad0f-e7e56856fde8" class="column-list"><div id="28afeec3-5b90-81f7-bfe2-e639b1b0f8d9" style="width:100%" class="column"><figure class="block-color-blue_background callout" style="white-space:pre-wrap;display:flex" id="28afeec3-5b90-8156-b299-d18d1ab9eff3"><div style="width:100%"><strong>🗽 独立之精神</strong><p id="28afeec3-5b90-81d9-a7f2-fbb06925e51f" class=""><em>Independence</em></p><ul id="28afeec3-5b90-810f-9580-ec7e6c4f02f6" class="bulleted-list"><li style="list-style-type:disc">不搞&quot;造星&quot;、&quot;造神&quot;运动</li></ul><ul id="28afeec3-5b90-8125-87ff-ec3f0092738b" class="bulleted-list"><li style="list-style-type:disc">不经营&quot;学术偶像&quot;或流量媒体</li></ul><ul id="28afeec3-5b90-81f1-9311-d71ca9f914d7" class="bulleted-list"><li style="list-style-type:disc">信奉&quot;一份耕耘,一份收获&quot;</li></ul><ul id="28afeec3-5b90-8110-bfcf-e104f0451ffb" class="bulleted-list"><li style="list-style-type:disc">鼓励批判性思维与独立思考</li></ul><ul id="28afeec3-5b90-8122-8737-f4c0cc0c5aa1" class="bulleted-list"><li style="list-style-type:disc">支持在学术问题上进行理性、平等的辩论</li></ul></div></figure></div><div id="28afeec3-5b90-811b-b811-c19dff5392e8" style="width:100%" class="column"><figure class="block-color-teal_background callout" style="white-space:pre-wrap;display:flex" id="28afeec3-5b90-811d-a36a-f0fcc9258514"><div style="width:100%"><strong>🔨 务实之作风</strong><p id="28afeec3-5b90-8161-9fa8-e24cab4fb80f" class=""><em>Pragmatism</em></p><ul id="28afeec3-5b90-8163-8291-e93dc732556d" class="bulleted-list"><li style="list-style-type:disc">信奉&quot;做难事必有所得&quot;</li></ul><ul id="28afeec3-5b90-8159-aa43-f6f3a06f984e" class="bulleted-list"><li style="list-style-type:disc">追求解决真实问题</li></ul><ul id="28afeec3-5b90-816c-9548-daa27822efa4" class="bulleted-list"><li style="list-style-type:disc">不沉迷于空洞的指标</li></ul><ul id="28afeec3-5b90-81d1-b9d3-cf6ab957e0a8" class="bulleted-list"><li style="list-style-type:disc">保持低调,专注研究本身</li></ul><ul id="28afeec3-5b90-8171-b4ca-f7ad0d85b28e" class="bulleted-list"><li style="list-style-type:disc">重视小同行圈的认可</li></ul></div></figure></div></div><div id="28afeec3-5b90-81c0-a0c2-cb4a8fabdea0" class="column-list"><div id="28afeec3-5b90-81f9-839d-e9c2f34040ab" style="width:100%" class="column"><figure class="block-color-orange_background callout" style="white-space:pre-wrap;display:flex" id="28afeec3-5b90-81b8-bb4e-cddf81d84c8a"><div style="width:100%"><strong>🤝 尊重之氛围</strong><p id="28afeec3-5b90-81fd-a3d6-f87f0fd38f69" class=""><em>Respect</em></p><ul id="28afeec3-5b90-8159-bad1-d157e3e68d90" class="bulleted-list"><li style="list-style-type:disc"><strong>对人品的尊重</strong> &gt; 对出身的看重</li></ul><ul id="28afeec3-5b90-81e5-9b61-c810501b63b5" class="bulleted-list"><li style="list-style-type:disc">对考研与推免一视同仁</li></ul><ul id="28afeec3-5b90-8193-8feb-d957ef6f8b73" class="bulleted-list"><li style="list-style-type:disc">对名校与普校一视同仁</li></ul><ul id="28afeec3-5b90-81d2-be03-cccb1d721ea9" class="bulleted-list"><li style="list-style-type:disc"><strong>严格保护私人边界</strong></li></ul><ul id="28afeec3-5b90-81e8-96a4-ec3edbb95c86" class="bulleted-list"><li style="list-style-type:disc"><strong>包容与支持多元选择</strong></li></ul></div></figure></div><div id="28afeec3-5b90-81dc-b739-d6f2d4cea151" style="width:100%" class="column"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="28afeec3-5b90-8164-992f-c8d319c43b1f"><div style="width:100%"><strong>⭐ 卓越之追求</strong><p id="28afeec3-5b90-81c9-9baa-c1c07e437632" class=""><em>Excellence</em></p><ul id="28afeec3-5b90-81fa-936e-c9a9f7c36ee4" class="bulleted-list"><li style="list-style-type:disc">反对&quot;躺平&quot;和&quot;摆烂&quot;</li></ul><ul id="28afeec3-5b90-81ba-ad3c-c4c6ff22e8a6" class="bulleted-list"><li style="list-style-type:disc">对学术质量有高标准要求</li></ul><ul id="28afeec3-5b90-8186-abd9-dc50b8e8d176" class="bulleted-list"><li style="list-style-type:disc">把学生培养为优秀人才</li></ul><ul id="28afeec3-5b90-818c-ac17-d0d82f09d085" class="bulleted-list"><li style="list-style-type:disc">在选定道路上做到最好</li></ul><ul id="28afeec3-5b90-81cc-afcc-d4bdbcc29c90" class="bulleted-list"><li style="list-style-type:disc">追求有影响力的成果</li></ul></div></figure></div></div><hr id="28afeec3-5b90-81fe-ba42-d9155e70bdb1"/><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="28afeec3-5b90-8162-8e7b-e88abb15381c"><div style="width:100%"><strong>💬 核心理念</strong><blockquote id="28afeec3-5b90-81fe-bd2b-cb88a568fb02" class=""><em>&quot;我们相信,真正的学术荣耀来自于扎实的研究、对真理的追求,以及对社会的贡献。在 ROMA Lab,每个人都有机会找到属于自己的罗马大道。&quot;</em></blockquote></div></figure><p id="28bfeec3-5b90-8096-8d03-fc80dbc835b4" class="">
+</p><hr id="28bfeec3-5b90-8000-b7fa-cc69d7b1f212"/><div id="28bfeec3-5b90-80a3-9441-f4767205f648" class="column-list"><div id="28bfeec3-5b90-803b-b920-f337d6ec768d" style="width:100%" class="column"><p id="28bfeec3-5b90-8059-a8f4-f71198716215" class=""><a href="ROMA%20Lab%E6%8B%9B%E7%94%9F%E6%8C%87%E5%8D%97/%E5%A6%82%E4%BD%95%E8%81%94%E7%B3%BB%2028afeec35b908137a1c8c708debe835c.html">上一页</a></p></div><div id="28bfeec3-5b90-80f2-a5c8-cf94a928ef1c" style="width:100%" class="column"><p id="28bfeec3-5b90-800d-8cf4-cfa30c2ad725" class=""><a href="../ROMA%20Lab%E5%AE%9E%E9%AA%8C%E5%AE%A4%E6%89%8B%E5%86%8C%EF%BC%882025%E5%B9%B4%E7%89%88%EF%BC%89%2028afeec35b9080f98051d9690a2aa63e.html">回到上级</a></p></div><div id="28bfeec3-5b90-8096-a9b1-cd063efed736" style="width:100%" class="column"><p id="28bfeec3-5b90-805f-bc34-edc0a16d6096" class=""><a href="ROMA%20Lab%E7%9A%84%E5%AD%A6%E6%9C%AF%E7%90%86%E5%BF%B5%2028afeec35b90814784b5da22eb1c09b3.html">下一页</a></p></div></div><p id="28bfeec3-5b90-8024-9864-ddf0428d60db" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

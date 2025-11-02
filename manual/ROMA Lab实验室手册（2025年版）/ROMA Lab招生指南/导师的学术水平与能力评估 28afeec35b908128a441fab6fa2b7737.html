@@ -1,0 +1,723 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>导师的学术水平与能力评估</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="28afeec3-5b90-8128-a441-fab6fa2b7737" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/solid_blue.png" style="object-position:center 40%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🥋</span></div><h1 class="page-title">导师的学术水平与能力评估</h1><p class="page-description"></p></header><div class="page-body"><p id="28bfeec3-5b90-80cc-9449-e3ddd06459a9" class=""><em><mark class="highlight-gray">最后更新 </mark></em><em><mark class="highlight-gray"><time>@November 20, 2025</time></mark></em></p><p id="28bfeec3-5b90-8003-98ba-e5058ad9b183" class="">
+</p><p id="28bfeec3-5b90-8037-b96e-fe0d66fc1bf1" class=""><code>本节目录</code></p><nav id="28afeec3-5b90-81ca-8524-fe7aad68e281" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-814c-b82b-f3ca22164ecd">📚 导师学术水平与能力评估</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-81ab-b5f5-c553a0915061">👤 个人简介</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-8138-83c9-c74743a69c43">🏆 学术成就与影响力</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#28afeec3-5b90-810b-a01e-de68ee723b40">🥇 顶级学术荣誉</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#28afeec3-5b90-8101-8a1f-e1bf38fdef6e">📊 高影响力论文</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#28afeec3-5b90-8186-9479-d66e22abb9c8">🔬 理论成果落地</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#28afeec3-5b90-804a-bcec-e8b680a7e0e9">💼 技术应用与社会服务</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-81f2-b657-cc59341a0ebd">📝 代表性学术成果</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-81d2-b87d-e1c340b9df61">🎓 教育与科研经历</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-81ed-adca-ed3365688f77">🏅 获得的奖励与荣誉</a></div></nav><p id="28afeec3-5b90-817c-a922-c27be1ba2d62" class="">
+</p><h1 id="28afeec3-5b90-814c-b82b-f3ca22164ecd" class="block-color-blue_background">📚 导师学术水平与能力评估</h1><h2 id="28afeec3-5b90-81ab-b5f5-c553a0915061" class="">👤 个人简介</h2><p id="28afeec3-5b90-81eb-a001-c3494bc1b820" class="">孙相国博士现任<strong>东南大学计算机科学与工程学院（计软智学院）青年首席教授（Full Professor）</strong>，博士生导师。他的研究方向聚焦于<strong>数据挖掘、在线社交网络与社会计算</strong>，并致力于探索面向社会网络的<strong>下一代通用人工智能</strong>，其核心攻关方向为<strong>非线性数据通用智能模型</strong>。</p><hr id="28afeec3-5b90-81f3-803f-e4d7959c7768"/><h2 id="28afeec3-5b90-8138-83c9-c74743a69c43" class="">🏆 学术成就与影响力</h2><p id="28afeec3-5b90-814d-9bb3-dfc390247b96" class="">孙相国博士在学术研究上取得了显著的成就，其成果在国际上获得了广泛认可：</p><h3 id="28afeec3-5b90-810b-a01e-de68ee723b40" class="">🥇 顶级学术荣誉</h3><ul id="28afeec3-5b90-81f5-b77d-f8d176d07b85" class="bulleted-list"><li style="list-style-type:disc"><strong>KDD 2023 最佳研究论文奖</strong>：以第一作者身份荣获数据挖掘顶会KDD 2023&quot;最佳研究论文奖&quot;（全会仅评选1篇）。该会议被公认为计算机领域难度最高的国际顶尖会议之一，而此次获奖是<strong>该会议创立三十年以来，中国大陆及港澳地区学者首次获此殊荣</strong>。历史上以第一作者获此荣誉的学者还包括斯坦福大学Jure Leskovec教授、推荐系统奠基性学者Yehuda Koren、华盛顿大学Pedro Domingos教授等。</li></ul><ul id="28dfeec3-5b90-8041-b4c3-db3463535693" class="bulleted-list"><li style="list-style-type:disc">鉴于其在社会计算与社交网络方面的研究，他被中国人工智能学会（CAAI）社会计算专委会评选为“2023年度社会计算青年学者新星”，面向全球华人青年学者评选，同年度仅10人</li></ul><h3 id="28afeec3-5b90-8101-8a1f-e1bf38fdef6e" class="">📊 高影响力论文</h3><ul id="28afeec3-5b90-812a-bbda-d901ec0ee94d" class="bulleted-list"><li style="list-style-type:disc"><strong>最具影响力论文</strong>：多篇论文入选<strong>KDD、IJCAI等顶会的&quot;最具影响力论文&quot;榜单</strong></li></ul><ul id="28afeec3-5b90-8110-8bed-d3cd0af16eae" class="bulleted-list"><li style="list-style-type:disc"><strong>高被引论文</strong>：多篇论文进入<strong>KDD, WSDM, CIKM, IJCAI等会议Web of Science高被引前1%及前10%</strong></li></ul><ul id="28afeec3-5b90-81b0-bda8-dadd6399f72a" class="bulleted-list"><li style="list-style-type:disc"><strong>学术影响力</strong>：截至2025年10月，<strong>Google Scholar引用达2180多次，H-index为24</strong></li></ul><h3 id="28afeec3-5b90-8186-9479-d66e22abb9c8" class="">🔬 理论成果落地</h3><p id="28afeec3-5b90-81c4-a47e-f1a2ee23fd26" class="">他的研究兼具理论深度与实践价值：</p><ul id="28afeec3-5b90-81cf-9546-eeadc253fce0" class="bulleted-list"><li style="list-style-type:disc"><strong>异质超图模型</strong>：所提出的异质超图模型被知名开源图计算库<strong>EasyGraph采纳为标准算法</strong></li></ul><ul id="28afeec3-5b90-81e1-8a7d-def43c47c5dd" class="bulleted-list"><li style="list-style-type:disc"><strong>通用图提示范式</strong>：开创的&quot;<strong>通用图提示</strong>&quot;范式，在<strong>蛋白质结构预测</strong>中效果超越业界标杆<strong>AlphaFold-Multimer</strong>，展现出强大的跨领域潜力</li></ul><ul id="28afeec3-5b90-81a7-9d31-f08c843abf21" class="bulleted-list"><li style="list-style-type:disc"><strong>开源工具包ProG</strong>：主导开发的<strong>开源工具包ProG</strong>已成为该领域广泛采用的评测标准，获得<strong>GitHub Stars 560+</strong></li></ul><h3 id="28afeec3-5b90-804a-bcec-e8b680a7e0e9" class="">💼 技术应用与社会服务</h3><p id="28afeec3-5b90-8002-b8f6-c1a05961a0e3" class="">孙相国博士积极推动研究成果的转化与应用，并积极参与学术服务：</p><ul id="28afeec3-5b90-804d-8aa1-f462c7daa34f" class="bulleted-list"><li style="list-style-type:disc"><strong>技术应用实践</strong>：<ul id="28afeec3-5b90-8046-919c-dbaa0389553f" class="bulleted-list"><li style="list-style-type:circle">其核心算法作为<strong>智慧公安系统的核心组件</strong>，落地于南京及江苏省公安刑侦部门，用于大数据情报研判。</li></ul><ul id="28afeec3-5b90-8012-ac3b-dc37f110f6f2" class="bulleted-list"><li style="list-style-type:circle">在疫情期间，相关模型支撑了企业的<strong>网格化疫情分析系统</strong>，取得了显著的经济效益。</li></ul></li></ul><ul id="28afeec3-5b90-8012-93cd-da57c763d410" class="bulleted-list"><li style="list-style-type:disc"><strong>学术服务</strong>：他于2023年被中国人工智能学会(CAAI)社会计算与社会智能专业委员会遴选进入专委会，是当时专委会一百多位委员中唯一一个博士后。现担任专委会<strong>副秘书长</strong>和专委会第三届<strong>新星执委会主席。</strong></li></ul><ul id="28afeec3-5b90-809e-886b-ecd227b9d4e8" class="bulleted-list"><li style="list-style-type:disc">此外他还担任 <em>Information Processing &amp; Management</em>、<em>Big Data Mining and Analytics</em> 等国际知名期刊的编委，长期担任SIGKDD、NeurIPS、ICML等顶级会议的程序委员会委员或评审专家，并多次获评NeurIPS、KDD等顶尖会议的“杰出评审专家”。</li></ul><hr id="28afeec3-5b90-81ad-8428-cbd2a2a3c557"/><h2 id="28afeec3-5b90-81f2-b657-cc59341a0ebd" class="">📝 代表性学术成果</h2><blockquote id="28afeec3-5b90-8149-a89d-ec84d5f57b27" class="block-color-red_background"><strong>近年来以第一作者和通讯作者（指导学生的工作）在SIGKDD, VLDB, TKDE, NeurIPS, ICML, ICLR,  IJCAI, WWW, SIGIR等顶尖会议期刊上发表论文40余篇. 下面</strong>列举的主要是我过去指导的<strong>学生一作工作</strong>，以及一小部分我一作的工作。关于更多我指导的学生一作的论文、我为一作的论文，以及我的代表作论文，请访问我的<a href="https://xgsun.mysxl.cn">个人学术主页</a>获取更多信息。</blockquote><p id="28cfeec3-5b90-8000-af6d-c8f7238c6ac4" class="">
+</p><ul id="28afeec3-5b90-8174-b5ef-cd19a4fb4480" class="block-color-default_background toggle"><li><details open=""><summary><strong>[</strong><mark class="highlight-red"><strong>KDD 2023, CORE A*, CCF A</strong></mark><strong>] All in One: Multi-task Prompting for Graph Neural Networks. </strong></summary><blockquote id="28cfeec3-5b90-80f9-8d44-e756a6c4a3c4" class=""><mark class="highlight-gray">Best Paper Award, ranked as Top 3 Most Influential Papers by Paper Digest 2025-03, and TOP 1% Most Cited Papers by Web of Science 2025-06</mark></blockquote><p id="28cfeec3-5b90-806b-bcbc-f6d76ded2600" class="">
+</p></details></li></ul><ul id="28cfeec3-5b90-806d-b633-faeb224cf19f" class="block-color-default_background toggle"><li><details open=""><summary><strong>[</strong><mark class="highlight-red"><strong>ICML 2025, CORE A*, CCF A</strong></mark><strong>] Does Graph Prompt Work? A Data Operation Perspective with Theoretical Analysis. </strong></summary><blockquote id="28cfeec3-5b90-80e4-9276-c1379ad3c80d" class=""><mark class="highlight-gray">这篇硬核论文只有三位作者，一作是我指导的大一本科生，来自香港中文大学，我是这篇论文的唯一通讯和共一第二。这篇工作做完时，该生已经是大二了，我记得他第一次找我的时候，看着这个大一的小孩子，我其实是有一点顾虑的，担心他能否有韧性，便试探性地给了他几个非常简单的idea，也给了个非常容易出论文的idea，但让我吃惊的是，他直接拒绝了这些idea，他希望能做出一篇别人难以做出来的东西。为此，我不得不把我长期做的这个艰难的问题分享给他，提供了主要的思路和技术，让我开心的是，这是一个从一开始就具有卓越taste的本科生，凭借他扎实的数学功底，我们终于一步一步啃下了这块硬骨头，这也成为目前为止我最满意的一篇工作，虽然现在不怎么被人关注，但我相信十年之后人们会发现它的价值。</mark></blockquote><p id="28cfeec3-5b90-80ad-991c-d955930a19c5" class="">
+</p></details></li></ul><ul id="28cfeec3-5b90-8080-9406-f055221712cb" class="block-color-default_background toggle"><li><details open=""><summary><strong>[</strong><mark class="highlight-red"><strong>NeurIPS 2024, CORE A*, CCF A</strong></mark><strong>] ProG: A Graph Prompt Learning Benchmark.</strong></summary><blockquote id="28cfeec3-5b90-80c3-a3bb-f56bf6d09a0a" class=""><mark class="highlight-gray">一作是我协助指导的硕士研究生，我为通讯。目前已在香港科技大学（广州）读博。在这篇工作中，我独立领导研究生团队开发通用图提示工具箱ProG获得Github Stars 550+, 成为图提示方法的标准工具，被上海交大等多项同行研究使用，成为他们实验分析的重要工具。</mark></blockquote><p id="28cfeec3-5b90-8011-95fe-ed9639263037" class="">
+</p></details></li></ul><ul id="28cfeec3-5b90-805c-96ca-f54a7fe0dd5a" class="block-color-default_background toggle"><li><details open=""><summary><strong>[</strong><mark class="highlight-red"><strong>ICLR 2025, CORE A*, spotlight ac 5.1%</strong></mark><strong>] Graph Sparsification via Mixture of Graphs.</strong></summary><blockquote id="28cfeec3-5b90-80d2-a9cc-e1d726e9faad" class=""><mark class="highlight-gray">一作是我指导的本科生，来自同济大学，我为共一。2个月完成研究工作，目前已在新加坡国立大学读博</mark></blockquote><p id="28cfeec3-5b90-8003-93ea-efa1be7b5f9b" class="">
+</p></details></li></ul><ul id="28cfeec3-5b90-807f-90dd-ef4abe690733" class="block-color-default_background toggle"><li><details open=""><summary><strong>[</strong><mark class="highlight-red"><strong>TKDE 2023, CORE A*, CCF A</strong></mark><strong>] Self-supervised Hypergraph Representation Learning for Sociological Analysis.</strong></summary><blockquote id="28cfeec3-5b90-80cf-af65-f2706315bfa1" class=""><mark class="highlight-gray">论文研究正值疫情管控、博士毕业、工作尚未落实这三段奇幻交织的人生诡异时刻。那段在破旧出租屋里的岁月，疫情如浪，我于失业与捉襟见肘的交织窘迫中，在冒烟的键盘前写完了这篇自监督超图的论文初稿。它诞生于咳嗽与焦虑，失业与入不敷出中，也见证了师友的慷慨与扶持——在梦碎声四起的日子里，是这些温暖托住了我。</mark></blockquote><p id="28cfeec3-5b90-8044-a5a4-fcd7010fcbf8" class="">
+</p></details></li></ul><ul id="28cfeec3-5b90-8015-8e44-db1631f7c29f" class="block-color-default_background toggle"><li><details open=""><summary><strong>[</strong><mark class="highlight-red"><strong>TKDE 2024, CORE A*, CCF A</strong></mark><strong>] Counter-Empirical Attacking based on Adversarial Reinforcement Learning for Time-Relevant Scoring System.</strong></summary><blockquote id="28cfeec3-5b90-80fd-88bb-f0492f6ae71d" class=""><mark class="highlight-gray">在微软亚洲研究院，从一窍不通到论文完稿，全心投入，历时半年，从灵感到实验，每一行代码皆亲手铸就，它如初春北京未及道别的燕子，小众而真挚，虽暂未被广泛引用，却是我心中笃信的好作品。</mark></blockquote><p id="28cfeec3-5b90-8069-9420-dfcc06a3e584" class="">
+</p></details></li></ul><ul id="28cfeec3-5b90-80b7-a112-e207d53d55e7" class="block-color-default_background toggle"><li><details open=""><summary><strong>[</strong><mark class="highlight-red"><strong>TheWebConf 2021, CORE A*, CCF A</strong></mark><strong>] Multi-level Hyperedge Distillation for Social Linking Prediction on Sparsely Observed Networks.</strong></summary><blockquote id="28cfeec3-5b90-80e5-81a7-ef6cd2efc675" class=""><mark class="highlight-gray">孙老师学生时代的第一篇CCF A，课题组零的突破。</mark></blockquote><p id="28cfeec3-5b90-8044-8631-f4bd9ce264e9" class="">
+</p></details></li></ul><ul id="28cfeec3-5b90-80b1-9fd7-cad17236c0bf" class="block-color-default_background toggle"><li><details open=""><summary><strong>[</strong><mark class="highlight-red"><strong>TKDE 2024, CORE A*, CCF A</strong></mark><strong>] Attention Is Not the Only Choice: Counterfactual Reasoning for Path-Based Explainable Recommendation.</strong></summary><blockquote id="28cfeec3-5b90-8069-bb7e-fb9de4706737" class=""><mark class="highlight-gray">一作是我</mark><mark class="highlight-gray"><strong>长期</strong></mark><mark class="highlight-gray">协助指导的博士研究生，来自悉尼科技大学，我为通讯。她因为论文录用过于兴奋，扭折了脚踝，拄了一个多月的拐，该生目前已在重点大学任职（她担任副教授的时候，我还只是一个弱小的博后）。</mark></blockquote><p id="28cfeec3-5b90-8096-9926-da940fa3071d" class="">
+</p></details></li></ul><ul id="28cfeec3-5b90-805b-be01-f4f7942d1f45" class="block-color-default_background toggle"><li><details open=""><summary><strong>[</strong><mark class="highlight-red"><strong>SIGIR 2025, CORE A*, CCF A</strong></mark><strong>] Adaptive Coordinators and Prompts on Heterogeneous Graphs for Cross-Domain Recommendations.</strong></summary><blockquote id="28cfeec3-5b90-8083-a97e-d1ab982a6295" class=""><mark class="highlight-gray">一作是我协助指导的博士研究生，来自CUHK，我为通讯</mark></blockquote><p id="28cfeec3-5b90-8040-a3ff-f52574a33ace" class="">
+</p></details></li></ul><ul id="28cfeec3-5b90-8037-a29b-c5d53bd90e8c" class="block-color-default_background toggle"><li><details open=""><summary><strong>[</strong><mark class="highlight-red"><strong>KDD 2024, CORE A*, CCF A</strong></mark><strong>] All in One and One for All: A Simple yet Effective Method towards Cross-domain Graph Pretraining.</strong></summary><blockquote id="28cfeec3-5b90-80b5-915f-d1d29c19c8f5" class=""><mark class="highlight-gray">一作是我协助指导的博士研究生，来自香港科技大学（广州），我为通讯，ranked as the Most Influential Paper in KDD24 by Paper Digest 2025-03</mark></blockquote><p id="28cfeec3-5b90-8027-a07a-f846202bae67" class="">
+</p></details></li></ul><ul id="28cfeec3-5b90-8088-91e9-ff4d0d2f004d" class="block-color-default_background toggle"><li><details open=""><summary><strong>[</strong><mark class="highlight-red"><strong>CIKM 2024, CORE A, CCF B</strong></mark><strong>] When LLM Meets Hypergraph: A Sociological Analysis on Personality via Online Social Networks.</strong></summary><blockquote id="28cfeec3-5b90-8070-a2a9-c7c64c8cd5d9" class=""><mark class="highlight-gray">一作是我独立指导的硕士研究生，来自UC Berkeley，我为共一和唯一通讯。该生</mark><mark class="highlight-gray"><strong>非科班（艺术系），0基础3个月完成论文研究</strong></mark><mark class="highlight-gray">，目前已在美国知名大学攻读IT类博士。</mark></blockquote></details></li></ul><p id="28cfeec3-5b90-8045-8cd1-dde5b2d3bf61" class="">
+</p><p id="28cfeec3-5b90-8043-99ce-ce2d8fb51a17" class=""><mark class="highlight-red"><strong><a href="https://xgsun.mysxl.cn/">点击此处浏览我们更多顶尖会议期刊论文</a></strong></mark></p><p id="28cfeec3-5b90-804a-9fba-e98161da8f10" class="">
+</p><hr id="28afeec3-5b90-810c-a4e0-f82cfa8e399c"/><h2 id="28afeec3-5b90-81d2-b87d-e1c340b9df61" class="">🎓 教育与科研经历</h2><table id="28afeec3-5b90-81ed-844a-e464a92a6b1c" class="simple-table"><tbody><tr id="28afeec3-5b90-81bc-baba-f3dfa444ee2c"><td id="&gt;O@Z" class=""><strong>时间</strong></td><td id="B}[l" class=""><strong>单位</strong></td><td id="j@Wj" class=""><strong>职位/身份</strong></td></tr><tr id="28afeec3-5b90-8199-ae0c-e8482ac67c2b"><td id="&gt;O@Z" class=""><strong>2026年1月至今</strong></td><td id="B}[l" class="">东南大学</td><td id="j@Wj" class=""><strong>正教授（青年首席教授）</strong></td></tr><tr id="28afeec3-5b90-81d8-8858-f919bf56fff3"><td id="&gt;O@Z" class=""><strong>2022年4月-2025年12月</strong></td><td id="B}[l" class="">香港中文大学</td><td id="j@Wj" class=""><strong>博士后研究员</strong></td></tr><tr id="28afeec3-5b90-8181-bf22-cbf154954161"><td id="&gt;O@Z" class="">2022年4月-2022年5月</td><td id="B}[l" class="">之江实验室</td><td id="j@Wj" class="">访问研究员</td></tr><tr id="28afeec3-5b90-8150-92d6-d779440addc8"><td id="&gt;O@Z" class=""><strong>2018年3月-2022年3月</strong></td><td id="B}[l" class="">东南大学</td><td id="j@Wj" class=""><strong>博士研究生</strong></td></tr><tr id="28afeec3-5b90-81fc-88dd-f2ac0f9a73cf"><td id="&gt;O@Z" class="">2021年8月-2022年2月</td><td id="B}[l" class="">微软亚洲研究院</td><td id="j@Wj" class="">研究实习生</td></tr><tr id="28afeec3-5b90-81cb-8464-ed00ce84f2cf"><td id="&gt;O@Z" class="">2019年9月-2021年9月</td><td id="B}[l" class="">昆士兰大学</td><td id="j@Wj" class="">联合培养博士生</td></tr><tr id="28afeec3-5b90-81bc-8d8a-d9c8c5b7de6f"><td id="&gt;O@Z" class=""><strong>2016年9月-2018年3月</strong></td><td id="B}[l" class="">东南大学</td><td id="j@Wj" class=""><strong>硕士研究生</strong></td></tr><tr id="28afeec3-5b90-8167-b15a-ea845c1c1042"><td id="&gt;O@Z" class=""><strong>2012年9月-2016年6月</strong></td><td id="B}[l" class="">大连理工大学</td><td id="j@Wj" class=""><strong>本科生</strong></td></tr></tbody></table><hr id="28afeec3-5b90-81d3-87ba-c2232f17d334"/><h2 id="28afeec3-5b90-81ed-adca-ed3365688f77" class="">🏅 获得的奖励与荣誉</h2><p id="28dfeec3-5b90-80b2-9248-fb76c9bb8656" class=""><em><mark class="highlight-gray">按时间排序</mark></em></p><ul id="28afeec3-5b90-811a-8715-cba4953deacc" class="block-color-default_background bulleted-list"><li style="list-style-type:disc"><strong>🇨🇳 国家级青年人才（HY）</strong></li></ul><ul id="28afeec3-5b90-8188-942a-fdcf4df723f0" class="bulleted-list"><li style="list-style-type:disc"><strong>💑 娶到我老婆（全球仅1人）</strong></li></ul><ul id="28afeec3-5b90-8103-8d39-f8e05f48494e" class="block-color-default_background bulleted-list"><li style="list-style-type:disc"><strong>🌟 2023年度&quot;社会计算青年学者新星&quot;，</strong>CAAI中国人工智能学会-社会计算专委，面向全球华人青年学者评选，同年度仅10人</li></ul><ul id="28afeec3-5b90-81d5-a72e-e28032eb8923" class="block-color-default_background bulleted-list"><li style="list-style-type:disc"><strong>🥇 KDD 2023最佳研究论文奖</strong>：<strong>大陆和港澳范围内首次</strong></li></ul><ul id="28afeec3-5b90-812e-a726-cbec0a074bd0" class="bulleted-list"><li style="list-style-type:disc"><strong>🎯 人才引进计划</strong>：<ul id="28afeec3-5b90-8189-b572-dac7d574f61d" class="bulleted-list"><li style="list-style-type:circle">深圳市鹏城实验室&quot;鲲鹏人才引进计划-新锐人才&quot;（2023年，破格，年薪65万，相当于&quot;小青托&quot;，后主动放弃）</li></ul><ul id="28afeec3-5b90-81d5-8d96-f64e57f8ada7" class="bulleted-list"><li style="list-style-type:circle">上海市白玉兰人才计划青年人才（2024年，破格，75万，相当于&quot;小海优&quot;，后主动放弃）</li></ul></li></ul><ul id="28afeec3-5b90-81da-8fba-fbc2ca6f1245" class="block-color-default_background bulleted-list"><li style="list-style-type:disc"><strong>🏆 优秀博士论文奖</strong>：<ul id="28afeec3-5b90-81c6-a857-ffa6985b000e" class="bulleted-list"><li style="list-style-type:circle">江苏省计算机学会优秀博士论文奖（全省仅6人）</li></ul><ul id="28afeec3-5b90-81b8-8fa5-c813076fee8f" class="bulleted-list"><li style="list-style-type:circle">江苏省学位委员会优博论文奖（院系同专业仅1人）</li></ul></li></ul><ul id="28afeec3-5b90-81d7-ab8c-dfe980e0a469" class="bulleted-list"><li style="list-style-type:disc"><strong>⭐ Award of Excellence</strong>：微软亚洲研究院，Stars of Tomorrow Program（Top 10%）</li></ul><ul id="28afeec3-5b90-8169-b70d-f44cb8607836" class="bulleted-list"><li style="list-style-type:disc"><strong>🎓 研究生国家奖学金</strong>（院系仅3人）</li></ul><p id="28bfeec3-5b90-80c1-b285-e26d2757bc0a" class="">
+</p><hr id="28bfeec3-5b90-8013-8f1b-ca1ef6351373"/><div id="28bfeec3-5b90-80fd-9b17-cef5602f1fdd" class="column-list"><div id="28bfeec3-5b90-8044-886e-fd2e1e9f3974" style="width:100%" class="column"><p id="28bfeec3-5b90-800c-a45a-ca88b43af810" class=""><a href="%E6%8B%9B%E7%94%9F%E6%96%87%E6%A1%88%2028afeec35b90819ebf60f9c378092bdc.html">上一页</a></p></div><div id="28bfeec3-5b90-80f4-99d6-e2b9999b5e73" style="width:100%" class="column"><p id="28bfeec3-5b90-8079-9987-d81154efa564" class=""><a href="../ROMA%20Lab%E6%8B%9B%E7%94%9F%E6%8C%87%E5%8D%97%2028afeec35b90810fb98fd8227ac8628b.html">回到上级</a></p></div><div id="28bfeec3-5b90-8039-86e4-dc445c6899ae" style="width:100%" class="column"><p id="28bfeec3-5b90-806d-bee5-c1841a06d29e" class=""><a href="%E5%A6%82%E4%BD%95%E8%81%94%E7%B3%BB%2028afeec35b908137a1c8c708debe835c.html">下一页</a></p></div></div><p id="28bfeec3-5b90-80c3-a541-dd68ef02b3a1" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

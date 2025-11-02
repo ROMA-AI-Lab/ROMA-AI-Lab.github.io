@@ -1,0 +1,718 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>培养计划</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="28afeec3-5b90-817c-9813-c1c79ddb7cbd" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/met_henri_tl_1892.jpg" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🚉</span></div><h1 class="page-title">培养计划</h1><p class="page-description"></p></header><div class="page-body"><p id="28afeec3-5b90-814d-883f-db15d131958e" class=""><em><mark class="highlight-gray">最后更新 </mark></em><em><mark class="highlight-gray"><time>@October 13, 2025</time></mark></em></p><p id="28bfeec3-5b90-808f-9420-e0ee79569455" class="">
+</p><p id="28bfeec3-5b90-8022-9f6e-caaeaac301ec" class=""><code>本节目录</code></p><nav id="28afeec3-5b90-817f-8c01-cde474cf73b9" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28cfeec3-5b90-80dd-87f0-e03997e69718">硕士研究生</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28cfeec3-5b90-802a-a237-df658e159514">硕士一年级</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#28cfeec3-5b90-80c3-8191-e5536384c860">基本任务</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#28afeec3-5b90-810f-bff1-f987a68d58ff"><mark class="highlight-red"><mark class="highlight-teal_background"><strong>进阶任务</strong></mark></mark></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-81f5-a9d3-cfd9a2f9aee7">硕士二年级</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#28afeec3-5b90-81ff-b169-ec1f2d6a717d"><mark class="highlight-red"><mark class="highlight-purple_background"><strong>基本任务</strong></mark></mark></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#28afeec3-5b90-816d-8752-e641ec648e82"><mark class="highlight-red"><mark class="highlight-default_background"><strong>进阶任务</strong></mark></mark></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-816e-b88a-e3d839807779">硕士三年级</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#28afeec3-5b90-817a-a037-f50a8b296404"><mark class="highlight-red"><strong>基本任务</strong></mark></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#28afeec3-5b90-811a-a6b7-d232a068be1b"><mark class="highlight-red"><strong>进阶任务</strong></mark></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-8161-b87a-f4f05983c0b5">博士研究生</a></div></nav><p id="28cfeec3-5b90-80f0-a4be-e0978c5b09cc" class="">
+</p><figure class="block-color-teal_background callout" style="white-space:pre-wrap;display:flex" id="28cfeec3-5b90-80ed-a190-cd4ac5c476d0"><div style="width:100%"><p id="28cfeec3-5b90-805f-91bc-dbbe0c8dcb57" class=""><strong>学生培养重要时间节点，</strong>⭐为最有含金量且重要的工作</p></div></figure><h1 id="28cfeec3-5b90-80dd-87f0-e03997e69718" class="">硕士研究生</h1><h2 id="28cfeec3-5b90-802a-a237-df658e159514" class="">硕士一年级</h2><figure class="block-color-teal_background callout" style="white-space:pre-wrap;display:flex" id="28cfeec3-5b90-8013-9f28-e82d096849d1"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="28cfeec3-5b90-80eb-b88d-ecde49e78f77" class=""><strong>整个三年时间里，研一的压力比研二小，比研三大。</strong></p><blockquote id="290feec3-5b90-8088-9711-d28f958bedba" class="">我们会与每一位刚入学的学生协作，结合下面这些基本任务、进阶任务、实验室整体工作、以学生的发展规划，为学生指定一个分散到每个月的月度计划表，一人一议，帮助学生心无旁骛地奔向自己的目标。</blockquote></div></figure><h3 id="28cfeec3-5b90-80c3-8191-e5536384c860" class="">基本任务</h3><blockquote id="290feec3-5b90-809a-98a5-fe4ea7d5151b" class=""><mark class="highlight-default"><mark class="highlight-default_background">完成基本任务，意味着研一顺利达到了培养的预期，如果你是一个特别要强的人，当你和寝室其他老师的学生聊天后，你可能会偶尔发现别人似乎比你更“优秀”，如果是这样，请你不要焦虑，不要担忧，因为你已经很棒了！继续这样发展下去，你大概率能够快乐且充实地完成后续的研究生生活</mark></mark></blockquote><p id="28afeec3-5b90-8150-84c7-c42e98c28656" class="">
+</p><ul id="28afeec3-5b90-81fb-98bb-f7388c52b688" class="bulleted-list"><li style="list-style-type:disc">上课与学习<figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28afeec3-5b90-813d-bddb-f482e7529c6b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><ul id="28afeec3-5b90-81ce-a624-e06b5e2602af" class="bulleted-list"><li style="list-style-type:disc">我们倡导基于<strong>强大自学能力和有产出的快速学习</strong>，而不是本科阶段的应试学习和教材导向的系统性学习（这种学习模式已经不再适用于研究生阶段）。例如，你可以写写技术博客，做个哔哩哔哩科普主播，做个助教，或者在我们团队内主持一个seminar等等，总之有分享欲的学习会让你事半功倍。</li></ul><ul id="290feec3-5b90-802b-9236-fde93c553663" class="bulleted-list"><li style="list-style-type:disc">至于硕士一年级上研究生专业课这件事，我们不要求实验室的学生遵循传统，在当前AI变革的浪潮下，上课从不缺席的学生，未必是优秀的学生。<strong>你应该具备独立学习一门专业课的能力的方法</strong>（借助各种你能想到的AI大模型、教材资料、线上课程等等，而不仅仅依赖一两个小时教室里的老师）</li></ul></div></figure></li></ul><ul id="290feec3-5b90-8085-af61-f775c1ce92bc" class="bulleted-list"><li style="list-style-type:disc"><strong>⭐⭐⭐能够高水平地利用各种AI工具。构建从idea到论文完成，以及满足日常工作生活需求的与AI高效深度的协作。</strong><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="290feec3-5b90-80c3-81eb-cca5bdb61684"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="290feec3-5b90-8027-aadd-f330db9cd148" class="">作为新生刚进入实验室的一个<strong><span style="border-bottom:0.05em solid">实践类“破冰”项目</span></strong>，你可以尝试在导师的指导下，做一些结合AI的新颖的project、小的开源项目等等。</p></div></figure></li></ul><ul id="28afeec3-5b90-81d5-86b4-d158d7deda35" class="bulleted-list"><li style="list-style-type:disc">调研领域研究<figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="290feec3-5b90-80dc-8db0-cb1947d096c2"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="290feec3-5b90-80b2-90e3-dba88f60dcf8" class="">作为新生刚进入实验室的一个<strong><span style="border-bottom:0.05em solid">学术类“破冰”项目</span></strong>，你可以尝试在导师的指导下，写一篇题目和角度都非常新颖的survey paper，就算发表不出来，也可以用在很多地方。</p></div></figure></li></ul><ul id="28afeec3-5b90-8132-ae65-c431b064b021" class="bulleted-list"><li style="list-style-type:disc">确定研究方向</li></ul><ul id="290feec3-5b90-8011-aec4-ecb510189f25" class="bulleted-list"><li style="list-style-type:disc">准备开题答辩</li></ul><ul id="28afeec3-5b90-81f1-becd-c1fb2957d463" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-blue"><strong>【标志性成果】</strong></mark>研一下学期结束后，为全组做一次<mark class="highlight-red"><strong>两小时以上</strong></mark>的专题报告<figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28afeec3-5b90-817a-8ffe-ec042a73caae"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><ul id="28afeec3-5b90-8181-88bc-fe1319c38b42" class="bulleted-list"><li style="list-style-type:disc">我们期待你届时可以成为研究领域的一个小专家，能够自信满满，期待你的讲座内容能够给小组成员以启发，我们期待你技术了解深入、原理理解深刻、表达能力卓著、ppt制作专业规范。我们期待你干货满满，由浅入深，由表及里，有理论有实践有影响力。</li></ul><ul id="28afeec3-5b90-815a-8215-d6e85870fca5" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red"><strong>小组成员的面部表情将成为评价你报告质量的唯一标准</strong></mark></li></ul></div></figure></li></ul><p id="28afeec3-5b90-814d-a063-fef9cf660b02" class="">
+</p><h3 id="28afeec3-5b90-810f-bff1-f987a68d58ff" class=""><mark class="highlight-red"><mark class="highlight-teal_background"><strong>进阶任务</strong></mark></mark></h3><blockquote id="290feec3-5b90-80a5-9df2-d19ee2c44405" class=""><mark class="highlight-default"><mark class="highlight-default_background">完成进阶任务，意味着你在研一期间表现优异，实验室未来将重点培养并资源倾斜，你可以大大方方地给自己一个赞👍，你大概率也不会羡慕寝室里其他老师的学生进度比你快了</mark></mark></blockquote><ul id="28afeec3-5b90-8125-9cdc-e9a51759dd05" class="bulleted-list"><li style="list-style-type:disc"><strong>A1: </strong>完成一篇学术论文练练手（我们不投水刊水会，我们是有底线的）⭐<ul id="290feec3-5b90-808f-94c4-f1b041828a58" class="bulleted-list"><li style="list-style-type:circle">这篇学术论文指的不是前文提到的那个破冰项目survey，而是一篇新论文</li></ul></li></ul><ul id="28afeec3-5b90-81be-8cb6-ccb99ef4c238" class="bulleted-list"><li style="list-style-type:disc"><strong>A2: </strong>辅助实验室师兄师姐的高水平论文研究⭐</li></ul><ul id="28afeec3-5b90-815c-af84-e10cae08bcec" class="bulleted-list"><li style="list-style-type:disc"><strong>A3: </strong>承担与学术研究、学习教育、工程实践等相关的实验室任务⭐</li></ul><ul id="28afeec3-5b90-814b-8cea-d785e3f123d4" class="bulleted-list"><li style="list-style-type:disc"><strong>A4: </strong>研一有两次申请硕博连读的机会，有意向的学生可以提前留意一下</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28afeec3-5b90-8169-989a-ecbed746978a"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><ul id="28afeec3-5b90-8182-95a7-df7c0ffad350" class="bulleted-list"><li style="list-style-type:disc"><strong>如果你对代码编程等基础薄弱或者有心理阴影，可能你需要在入学前就提前补习一些这方面的短板，或者自己拿出更多时间补短板</strong></li></ul><ul id="290feec3-5b90-80c4-8d09-faa7da2cf29f" class="bulleted-list"><li style="list-style-type:disc"><strong>代码编程方面的提升，没有写进研一的基本任务和进阶任务里，因为我们认为这是贯穿实验室学生整个培养周期的基本功。</strong></li></ul><ul id="290feec3-5b90-806f-b7ba-d1625e5e3974" class="bulleted-list"><li style="list-style-type:disc"><strong>我们认为在代码编程这里，你至少需要从两个方面做准备：一是学会利用AI辅助编程，二是锻炼不依赖于AI的独立编程能力；这两者相辅相成，每一个都不可或缺。</strong></li></ul></div></figure><hr id="28afeec3-5b90-8165-99c2-daa4fc175d09"/><h2 id="28afeec3-5b90-81f5-a9d3-cfd9a2f9aee7" class="">硕士二年级</h2><figure class="block-color-teal_background callout" style="white-space:pre-wrap;display:flex" id="28cfeec3-5b90-8058-bc49-ed1ffb991b01"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="28cfeec3-5b90-8035-86fe-ee68fbaf8bb2" class=""><strong>整个三年时间里，研二的压力是最大的，也是成长最为显著的阶段</strong></p></div></figure><h3 id="28afeec3-5b90-81ff-b169-ec1f2d6a717d" class=""><mark class="highlight-red"><mark class="highlight-purple_background"><strong>基本任务</strong></mark></mark></h3><p id="28cfeec3-5b90-8062-96dc-cd5542dfa5c6" class=""><mark class="highlight-red"><mark class="highlight-yellow_background"><strong>完成基本任务，意味着研二顺利达到了培养的预期，你已经成为实验室一哥一姐了！你的心智会更加成熟，优异的你可能此时也已经收获了众多迷弟迷妹们的崇拜，你具备了毕业进入社会后的必要的基本素质和心理准备，能够独当一面挑大梁，你大概率能够快乐毕业，顺利且舒服地实现你的毕业目标</strong></mark></mark></p><ul id="28afeec3-5b90-81a5-9b2e-fdf896ae56aa" class="bulleted-list"><li style="list-style-type:disc">完成一篇高水平论文研究⭐</li></ul><ul id="28afeec3-5b90-81fc-bff3-fc7f3630b671" class="bulleted-list"><li style="list-style-type:disc">承担与学术研究、学习教育、工程实践等相关的实验室任务⭐</li></ul><ul id="28afeec3-5b90-8107-baa2-e972e3031ddf" class="bulleted-list"><li style="list-style-type:disc">完成开题答辩⭐（一般在研一下学期或研二上学期）</li></ul><ul id="28afeec3-5b90-813f-8d37-c3a7f48b5314" class="bulleted-list"><li style="list-style-type:disc">撰写毕业论文</li></ul><ul id="28afeec3-5b90-81f9-a946-fb580e58683e" class="bulleted-list"><li style="list-style-type:disc">研二下学期结束后，以模拟答辩的形式，为全组做一次毕业论文学术报告（30分钟左右），并接受全组成员的挑剔和问题（大家来找茬，问到你崩溃）</li></ul><p id="28afeec3-5b90-8189-8994-de6787401f89" class="">
+</p><h3 id="28afeec3-5b90-816d-8752-e641ec648e82" class=""><mark class="highlight-red"><mark class="highlight-default_background"><strong>进阶任务</strong></mark></mark></h3><p id="28cfeec3-5b90-80f3-9928-d470f1f33ca8" class=""><mark class="highlight-red"><mark class="highlight-teal_background"><strong>完成进阶任务，意味着你已经超额完成了硕士的几乎全部能做的事情，你可以大大方方地给自己一个赞👍</strong></mark></mark></p><ul id="28afeec3-5b90-81b4-b576-e9d50b6cdb46" class="bulleted-list"><li style="list-style-type:disc">出国导向的学生，需要在研二开始准备以及完成雅思GRE等考试</li></ul><ul id="28afeec3-5b90-81aa-acbc-dd5bdf6b2540" class="bulleted-list"><li style="list-style-type:disc">硕博连读导向的学生，需要办理入博手续，研一没来得及申请硕博连读的，研二亦可以申请</li></ul><ul id="28afeec3-5b90-816c-8476-e62c156cc6a8" class="bulleted-list"><li style="list-style-type:disc">公务员、选调生导向的学生，需要在研二开始准备相关资格考试</li></ul><ul id="28afeec3-5b90-81c1-8ce5-c5f350e9e5d7" class="bulleted-list"><li style="list-style-type:disc">就业导向的学生，需要在研二开始准备刷题、竞赛、以及完善简历</li></ul><ul id="28afeec3-5b90-8148-90f4-d68d33a76c91" class="bulleted-list"><li style="list-style-type:disc">谨慎且高质量地物色合适的实习机会（必要时实验室愿意提供推荐机会）</li></ul><ul id="28afeec3-5b90-81a6-9d45-e3e7f14d7b58" class="bulleted-list"><li style="list-style-type:disc">创业导向的学生，可与导师具体讨论，一事一议</li></ul><p id="28afeec3-5b90-81f8-9d1f-f42b22c83102" class="">
+</p><hr id="28afeec3-5b90-814c-82a2-c277f05734dd"/><h2 id="28afeec3-5b90-816e-b88a-e3d839807779" class="">硕士三年级</h2><figure class="block-color-teal_background callout" style="white-space:pre-wrap;display:flex" id="28cfeec3-5b90-8075-9497-f362d38fa62b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="28cfeec3-5b90-8009-bcd1-d84fca832985" class=""><strong>整个三年时间里，研三的压力是最小的，当然前提是前两年你确实没荒废，否则前两年的压力会传导到这里，你将崩溃</strong></p></div></figure><h3 id="28afeec3-5b90-817a-a037-f50a8b296404" class=""><mark class="highlight-red"><strong>基本任务</strong></mark></h3><ul id="28afeec3-5b90-814e-8ace-f2bbcecda03c" class="bulleted-list"><li style="list-style-type:disc">完成毕业答辩</li></ul><ul id="28afeec3-5b90-8154-ab97-ccb278c08478" class="bulleted-list"><li style="list-style-type:disc">做好毕业交接工作</li></ul><ul id="28afeec3-5b90-817e-a870-c2a9161d12bf" class="bulleted-list"><li style="list-style-type:disc">⭐就业有着落</li></ul><ul id="28afeec3-5b90-81d6-9254-c09e73514776" class="bulleted-list"><li style="list-style-type:disc">⭐承担与学术研究、学习教育、工程实践等相关的实验室任务（主要负责指导师弟师妹）</li></ul><p id="28afeec3-5b90-813f-a66f-e1b8ee1dd30d" class="">
+</p><h3 id="28afeec3-5b90-811a-a6b7-d232a068be1b" class=""><mark class="highlight-red"><strong>进阶任务</strong></mark></h3><ul id="28afeec3-5b90-8197-9310-c19956a33100" class="bulleted-list"><li style="list-style-type:disc">完成一篇高水平论文研究⭐</li></ul><ul id="28afeec3-5b90-81da-aa60-e10db644d465" class="bulleted-list"><li style="list-style-type:disc">开启第二段实习<figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28afeec3-5b90-8182-bf65-e35d68f6ce18"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="28afeec3-5b90-8157-9c97-ceb223c38ab4" class="">实验室有一些战略合作发展方向，你若感兴趣，我们也欢迎你代表实验室参与合作交流，叠加实验室补贴和对方单位津贴</p></div></figure></li></ul><ul id="28afeec3-5b90-8140-a480-f8a8c41711c6" class="bulleted-list"><li style="list-style-type:disc">积极参加团建，多和师弟师妹们玩耍，多感受一下校园的生活</li></ul><ul id="28afeec3-5b90-81a4-9de3-c27a5ff9608a" class="bulleted-list"><li style="list-style-type:disc">也许你可以带带师弟师妹打打比赛，搞搞论文，拿几个奖项</li></ul><ul id="28afeec3-5b90-8173-9e41-c0183b81a171" class="bulleted-list"><li style="list-style-type:disc">也许你可以写本书，总结一下你的研究生三年的得与失，经验，诀窍，资源等，这将是实验室培养的宝贵财富，也许你可以在毕业前为小组成员做一次励志演说</li></ul><p id="28afeec3-5b90-81f8-af80-ed97a3ba4222" class="">
+</p><hr id="28afeec3-5b90-81e7-8bac-d6754b817cfb"/><h1 id="28afeec3-5b90-8161-b87a-f4f05983c0b5" class="">博士研究生</h1><figure class="block-color-red_background callout" style="white-space:pre-wrap;display:flex" id="29ffeec3-5b90-802f-affd-ca7bfbf2d531"><div style="width:100%"><p id="29ffeec3-5b90-80e9-89a5-ff895e704605" class=""><strong>我们对博士生的培养理念：</strong></p><p id="29ffeec3-5b90-80d3-bc4b-f30f29d30bbe" class="">从当前大模型时代下，大学科研生态来看，我们认为未来在计算机领域，特别是AI领域的研究中，大学实验室和企业的边界正在消失，因此我们鼓励你提早进入头部研究型企业，在企业的团队中进行以发表论文为主要目的的高水平科学研究。我们鼓励每位博士研究生在整个博士求学期间都应该至少有一段以下经历之一：</p><ul id="29ffeec3-5b90-8044-82e4-e0709394cac2" class="bulleted-list"><li style="list-style-type:disc">研究型企业团队实习3-6个月并以第一作者身份发表论文</li></ul><ul id="29ffeec3-5b90-8082-b5e8-df4af9144891" class="bulleted-list"><li style="list-style-type:disc">高水平国家级实验室（紫金山实验室、鹏程实验室、之江实验、上海人工智能实验室、大湾区实验室IDEA等）访问研究3-6个月并以第一作者身份发表论文</li></ul><ul id="29ffeec3-5b90-8017-8106-c3e124b3ec6c" class="bulleted-list"><li style="list-style-type:disc">CSC资助下的海外联合培养（1-2年）并以第一作者身份以每年不低于2篇论文的研究速度发表论文（有志于毕业后去海外继续进行博士后研究的同学，请慎重考虑此选项！如果一定要去，四年制博士尽量在博三前回国，五年制直博生尽量在博四之前回国，以免影响以后的人才申报）</li></ul></div></figure><p id="28afeec3-5b90-8131-8bf7-e1fe71fe96c1" class="">
+</p><table id="28afeec3-5b90-8168-b972-d5a939e2e69d" class="simple-table"><tbody><tr id="28afeec3-5b90-815b-9ccc-eb566344d315"><td id="]ywc" class="" style="width:133.328125px"></td><td id="XCmg" class="" style="width:236.33333333333334px"><strong>普通博士研究生（四年制）以及硕博连读博士阶段（四年制）</strong></td><td id="i\Iv" class="" style="width:236.33333333333334px"><strong>直博生（五年制）</strong></td></tr><tr id="28afeec3-5b90-819f-8d5d-f5dac56809c0"><td id="]ywc" class="" style="width:133.328125px">博一</td><td id="XCmg" class="" style="width:236.33333333333334px">A1: 确定研究方向<br/>A2: 开题答辩<br/>A3: 完成一篇高水平论文研究<br/><strong>A4: </strong>科研实习(需满足实习条件）</td><td id="i\Iv" class="" style="width:236.33333333333334px"><mark class="highlight-red"><strong>A1: 确定研究方向</strong></mark><br/><mark class="highlight-red"><strong>A2: 开题答辩</strong></mark><br/><mark class="highlight-red"><strong>A3: 完成一篇高水平论文研究</strong></mark><br/><strong>A4: </strong>科研实习(需满足实习条件）</td></tr><tr id="28afeec3-5b90-813d-aeff-d5c4821990bf"><td id="]ywc" class="" style="width:133.328125px">博二</td><td id="XCmg" class="" style="width:236.33333333333334px">A1: 完成1-2篇高水平论文研究<br/><strong>A2: </strong>科研实习(需满足实习条件）<br/><strong>A3: </strong>CSC访问交流（可选）</td><td id="i\Iv" class="" style="width:236.33333333333334px"><mark class="highlight-red"><strong>A1: 完成1-2篇高水平论文研究</strong></mark><br/><strong>A2: </strong>CSC访问交流（可选）<br/><mark class="highlight-red"><strong>A3: 准备中期答辩检查</strong></mark><br/><strong>A4:</strong> 科研实习(需满足实习条件）</td></tr><tr id="28afeec3-5b90-81df-8094-ecbf83c31667"><td id="]ywc" class="" style="width:133.328125px">博三</td><td id="XCmg" class="" style="width:236.33333333333334px">A1: 完成1-2篇高水平论文研究<br/>A2: 科研实习(需满足实习条件）<br/><strong>A3: 不建议此时申请</strong>CSC公派出国（这可能会影响你的毕业进程）</td><td id="i\Iv" class="" style="width:236.33333333333334px"><mark class="highlight-red"><strong>A1: 完成1-2篇高水平论文研究</strong></mark><br/><strong>A2: </strong>CSC公派出国一年（可选）<br/><strong>A3:</strong> 科研实习(需满足实习条件）</td></tr><tr id="28afeec3-5b90-81d6-ac46-f31fa64abe92"><td id="]ywc" class="" style="width:133.328125px">博四</td><td id="XCmg" class="" style="width:236.33333333333334px">A1: 完成1篇高水平论文研究<br/>A2: 撰写博士论文<br/>A3: 毕业答辩</td><td id="i\Iv" class="" style="width:236.33333333333334px"><mark class="highlight-red"><strong>A1: 完成1-2篇高水平论文研究</strong></mark><br/>A2: 科研实习(需满足实习条件）<br/><strong>A3: 不建议此时申请</strong>CSC公派出国（这可能会影响你的毕业进程）</td></tr><tr id="28afeec3-5b90-8134-a643-e8ce968a3e79"><td id="]ywc" class="" style="width:133.328125px">博五</td><td id="XCmg" class="" style="width:236.33333333333334px"></td><td id="i\Iv" class="" style="width:236.33333333333334px"><mark class="highlight-red"><strong>A1: 撰写博士论文<br/>A2: 毕业答辩<br/>A3: 落实工作去向（实验室亦会为博士生提供一切资源和协助）</strong></mark></td></tr></tbody></table><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28afeec3-5b90-81af-8ec9-d0b813e00347"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="28afeec3-5b90-815d-961a-d454a3c94087" class=""><strong>无论是直博生（五年制）还是普通博士生（四年制），只要你成果优异，达到实验室毕业条件，</strong><mark class="highlight-red"><strong>实验室都鼓励你提前毕业（四年制博士三年毕业，五年制直博生四年毕业）</strong></mark><strong>。学校亦有提前毕业的相关政策，需要提前办理相关手续，致力于提前毕业的学生，可能需要定制化的培养方案，实验室将与相关学生具体商议，确认具体的时间节点。</strong></p><p id="28afeec3-5b90-817f-ba91-f29f1312838b" class="">提前毕业的博士生，在实验室主页上将会被重点标注，如：</p><blockquote id="28afeec3-5b90-81f4-a3bb-e1ecef31a985" class="">张三 (homepage)，26级博士研究生，2026.3-2029.3（<strong>提前一年毕业</strong>）<br/>毕业去向：香港中文博士后，毕业论文：《张三的开挂生活》<br/>奖励荣誉：CCF优博，国家奖学金（一等），ICML最佳研究论文</blockquote></div></figure><p id="28bfeec3-5b90-8054-9e89-de5b595c794c" class="">
+</p><p id="28bfeec3-5b90-80cd-abf5-d8362692d0ba" class="">
+</p><hr id="28bfeec3-5b90-809c-aedf-f32d23414edd"/><div id="28bfeec3-5b90-80c1-b8dc-e70d8d13705b" class="column-list"><div id="28bfeec3-5b90-80ca-b06a-ffe4057f74dd" style="width:100%" class="column"><p id="28bfeec3-5b90-80d9-b3ff-fcd2596f1703" class=""><a href="%E6%AF%95%E4%B8%9A%E8%A6%81%E6%B1%82%2028afeec35b908176bfe2e167da30d2b7.html">上一页</a></p></div><div id="28bfeec3-5b90-803c-8d1b-fcec822c96f4" style="width:100%" class="column"><p id="28bfeec3-5b90-80d4-b6a5-e736ff99ee8e" class=""><a href="../ROMA%20Lab%E5%AE%9E%E9%AA%8C%E5%AE%A4%E6%89%8B%E5%86%8C%EF%BC%882025%E5%B9%B4%E7%89%88%EF%BC%89%2028afeec35b9080f98051d9690a2aa63e.html">回到上级</a></p></div><div id="28bfeec3-5b90-807d-99f3-e00edd1e5596" style="width:100%" class="column"><p id="28bfeec3-5b90-8053-89c8-ebed8859002d" class=""><a href="ROMA%20Lab%E5%85%B3%E4%BA%8E%E8%AE%BA%E6%96%87%E7%BD%B2%E5%90%8D%E4%B8%8E%E6%8A%95%E7%A8%BF%E7%9A%84%E6%8C%87%E5%AF%BC%E5%8E%9F%E5%88%99%2028afeec35b908110af0acf924807c2f7.html">下一页</a></p></div></div><p id="28bfeec3-5b90-80b0-bb8b-f24348115ed2" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
