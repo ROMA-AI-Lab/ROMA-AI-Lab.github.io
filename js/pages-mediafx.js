@@ -96,10 +96,43 @@
             .observe(grid, {childList:true, subtree:true});
     }
 
+    function polishReputation(){
+        const home = document.querySelector('#repute-list');
+        const full = document.querySelector('#repute-all-grid');
+        [home, full].forEach(grid=>{
+            if (!grid) return;
+
+            // 统一卡体类名（与 people/life 一致的“抛光感”）
+            grid.querySelectorAll('.repute-card').forEach(card=>{
+                card.classList.add('card','fx'); // 整卡 hover 抛光
+                // 头像媒体区：确保被 media-fx 包裹
+                const media = card.querySelector('.repute-media');
+                if (media && !media.classList.contains('media-fx')){
+                    media.classList.add('media-fx');
+                }
+                // 标题/副标题语义类名（统一字号与字重）
+                const name = card.querySelector('.repute-name');
+                if (name && !name.classList.contains('people-title')){
+                    name.classList.add('people-title');
+                }
+                const meta = card.querySelector('.repute-meta');
+                if (meta && !meta.classList.contains('people-meta')){
+                    meta.classList.add('people-meta');
+                }
+            });
+
+            // 监听动态插入，保持自动抛光
+            new MutationObserver(()=>polishReputation())
+                .observe(grid, {childList:true, subtree:true});
+        });
+    }
+
+
     function init(){
         polishProjects();
         polishLife();
         polishPeople();
+        polishReputation();
     }
 
     if (document.readyState === 'loading'){

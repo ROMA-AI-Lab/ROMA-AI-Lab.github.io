@@ -1,40 +1,5 @@
-/*!
- * ROMA Lab – styles.css
- * -----------------------------------------------------------------------------
- * Purpose: Main site stylesheet for ROMA-AI-Lab.github.io
- * Author: (kept as original project authors)
- *
- * Maintainability Notes (non-functional changes only):
- * 1) We do NOT change selectors, property values, or cascade order.
- * 2) We keep existing visual effects 100% intact.
- * 3) We add clear section banners and an index for quick navigation.
- * 4) We normalize minor whitespace and ensure consistent indentation.
- * 5) We avoid @layer / @import or any splitting that could affect cascade.
- *
- * Quick Index (search with your editor):
- * [RESET].............. Base reset & typography
- * [THEME].............. Theme tokens (dark/light) & smooth switching
- * [LAYOUT]............. Container, sections, grids
- * [GLASS].............. Glass–matte tokens & placeholders
- * [MEDIA].............. Avatar / project cover
- * [HEADER]............. Sticky header / nav / drawer
- * [HERO]............... Hero section
- * [BUTTON]............. Buttons / chips / controls
- * [CARDS].............. Cards & metrics
- * [PUB]................ Publications list
- * [SCROLL]............. Vertical scroll containers (news, etc.)
- * [FOOTER]............. Footer
- * [RESPONSIVE]......... Media queries
- *
- * Z-Index reference:
- *   60  - mobile drawer
- *   59  - drawer overlay
- *   50  - sticky header
- *
- * Breakpoints reference:
- *   ≤1100px, ≤900px, ≤780px, ≤720px, ≤520px
- * -----------------------------------------------------------------------------
- */
+
+
 
 /* ----- Reset / Base ----- */
 *, *::before, *::after {
@@ -78,8 +43,8 @@ a {
     --code: #0a0f1e;
     --bg-card: color-mix(in oklab, var(--panel) 72%, white 0%); /* 玻璃感基底 */
     --border-color: color-mix(in oklab, var(--border) 90%, transparent);
-    --shadow-card: 0 4px 16px rgba(2, 6, 23, 0.28);
-    --shadow-hover: 0 8px 28px rgba(20, 40, 120, 0.40);
+    --shadow-card: 0 4px 16px rgba(2,6,23,0.28);
+    --shadow-hover: 0 8px 28px rgba(20,40,120,0.40);
 }
 
 .light {
@@ -95,19 +60,21 @@ a {
     --shadow: 0 8px 24px rgba(15, 23, 42, .12);
     --border: #e5e7eb;
     --code: #0f172a;
-    --bg-card: rgba(255, 255, 255, 0.72);
-    --border-color: rgba(0, 0, 0, 0.08);
-    --shadow-card: 0 4px 16px rgba(15, 23, 42, 0.15);
-    --shadow-hover: 0 8px 24px rgba(15, 23, 42, 0.22);
+    --bg-card: rgba(255,255,255,0.72);
+    --border-color: rgba(0,0,0,0.08);
+    --shadow-card: 0 4px 16px rgba(15,23,42,0.15);
+    --shadow-hover: 0 8px 24px rgba(15,23,42,0.22);
 }
 
 /* Smooth theme switching */
 html, body, .card, .video-card, #people-grid .card.people-card, .media-fx {
-    transition: background-color .35s ease,
-    color .35s ease,
-    box-shadow .35s ease,
-    border-color .35s ease;
+    transition:
+            background-color .35s ease,
+            color .35s ease,
+            box-shadow .35s ease,
+            border-color .35s ease;
 }
+
 
 body {
     background: var(--bg);
@@ -304,7 +271,7 @@ header.site-header {
     bottom: 0;
     height: 100vh;
     width: 56%;
-    max-width: 380px; /* 保持桌面端不太宽 */
+    max-width: 380px;             /* 保持桌面端不太宽 */
     /*width: min(86vw, 360px);*/
     box-shadow: var(--shadow-lg);
     background: var(--panel);
@@ -318,6 +285,9 @@ header.site-header {
     padding: 16px;
     border-radius: 12px 0 0 12px; /* 小圆角更像原生抽屉 */
 }
+
+
+
 
 .nav-drawer .title {
     font-weight: 700;
@@ -754,6 +724,7 @@ footer {
     margin: 1em 0
 }
 
+
 /* 标签容器与胶囊样式 */
 .tags {
     display: flex;
@@ -786,11 +757,13 @@ footer {
     font-size: 1rem;
 }
 
+
 @media (max-width: 768px) {
     .pub-item .title {
         font-size: 0.9rem;
     }
 }
+
 
 /* --- Mobile-first header defaults (prevent FOUC) --- */
 @media (max-width: 720px) {
@@ -851,6 +824,7 @@ html, body {
     overscroll-behavior: contain;
 }
 
+
 /* --- Publications: mobile layout fix --- */
 @media (max-width: 720px) {
     /* 1) 卡片改为上下布局，按钮放到文字下面 */
@@ -900,6 +874,7 @@ select:focus {
     outline: 2px solid var(--ring);
     outline-offset: 1px;
 }
+
 
 @media (max-width: 720px) {
     .filters-mobile summary {
@@ -1006,13 +981,13 @@ header.site-header .nav {
 }
 
 /* ---- Back-to-top (mobile + desktop) ---- */
-#to-top {
+#to-top{
     position: fixed;
     right: clamp(16px, 2vw, 28px);
     bottom: clamp(18px, 3vh, 32px);
-    z-index: 1000; /* 略高一点，避免被内容覆盖 */
+    z-index: 1000;                   /* 略高一点，避免被内容覆盖 */
     box-shadow: var(--shadow);
-    min-width: 44px; /* 更好的命中面积 */
+    min-width: 44px;               /* 更好的命中面积 */
     min-height: 44px;
     padding: 0 12px;
     display: inline-flex;
@@ -1022,18 +997,16 @@ header.site-header .nav {
     opacity: .95;
     transition: transform .15s ease, opacity .15s ease;
 }
-
-#to-top:hover {
-    transform: translateY(-1px);
-}
+#to-top:hover{ transform: translateY(-1px); }
 
 /* 手机端保持更靠内的边距（避免和手势冲突） */
-@media (max-width: 720px) {
-    #to-top {
+@media (max-width: 720px){
+    #to-top{
         right: 16px;
         bottom: 18px;
     }
 }
+
 
 /*!* ---- Back-to-top (mobile only) ---- *!*/
 /*#to-top {*/
@@ -1052,8 +1025,9 @@ header.site-header .nav {
 /*    !* 仅手机显示 *!*/
 /*}*/
 
+
 /* ===== Lightbox (dialog) ===== */
-dialog.lightbox {
+dialog.lightbox{
     padding: 0;
     border: 0;
     /* 让 dialog 自身全屏，只做容器；用 flex 居中承载图片 */
@@ -1068,24 +1042,23 @@ dialog.lightbox {
 }
 
 /* 背景蒙层 */
-dialog.lightbox::backdrop {
-    background: rgba(0, 0, 0, .72);
+dialog.lightbox::backdrop{
+    background: rgba(0,0,0,.72);
     backdrop-filter: blur(2px);
 }
 
 /* 预览大图：桌面不再真正“满屏”，给出边距方便点击关闭 */
-dialog.lightbox img {
+dialog.lightbox img{
     max-width: min(96vw, 1600px);
     max-height: 92vh;
     border-radius: 12px;
-    box-shadow: 0 12px 36px rgba(0, 0, 0, .45);
+    box-shadow: 0 12px 36px rgba(0,0,0,.45);
     cursor: zoom-out; /* 告诉用户“再点一下就缩回” */
 }
 
 /* 缩略图可选：提示可放大 */
-#life-grid img.project-cover {
-    cursor: zoom-in;
-}
+#life-grid img.project-cover{ cursor: zoom-in; }
+
 
 /* ======== Video Wall ======== */
 .grid.videos {
@@ -1093,48 +1066,16 @@ dialog.lightbox img {
     gap: 16px;
     grid-template-columns: repeat(3, 1fr);
 }
+@media (max-width: 1100px) { .grid.videos { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px)  { .grid.videos { grid-template-columns: 1fr; } }
 
-@media (max-width: 1100px) {
-    .grid.videos {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 640px) {
-    .grid.videos {
-        grid-template-columns: 1fr;
-    }
-}
-
-.video-card .body {
-    padding: 12px 14px;
-}
-
-.video-title {
-    font-weight: 700;
-    line-height: 1.35;
-}
-
-.video-meta {
-    margin-top: 6px;
-    font-size: 12px;
-    color: var(--muted);
-}
-
-.video-ctas {
-    margin-top: 8px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
+.video-card .body { padding: 12px 14px; }
+.video-title { font-weight: 700; line-height: 1.35; }
+.video-meta { margin-top: 6px; font-size: 12px; color: var(--muted); }
+.video-ctas { margin-top: 8px; display:flex; flex-wrap: wrap; gap:8px; }
 
 /* 16:9 封面占位 + 玻璃磨砂背景 */
-.video-embed {
-    background: var(--panel-2);
-    border-bottom: 1px solid var(--border);
-    position: relative;
-}
-
+.video-embed { background: var(--panel-2); border-bottom: 1px solid var(--border); position: relative; }
 .video-cover {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -1148,52 +1089,23 @@ dialog.lightbox img {
 
 /* Play 按钮（圆形，居中） */
 .video-play {
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    width: 60px;
-    height: 60px;
-    border-radius: 9999px;
-    border: 0;
+    position: absolute; inset: 0;
+    margin: auto; width: 60px; height: 60px;
+    border-radius: 9999px; border: 0;
     background: color-mix(in oklab, var(--panel) 70%, black 10%);
-    display: grid;
-    place-items: center;
-    cursor: pointer;
+    display: grid; place-items: center; cursor: pointer;
     box-shadow: var(--shadow);
 }
-
-.video-play svg {
-    fill: white;
-}
-
-.video-play:focus-visible {
-    outline: 2px solid var(--primary);
-    outline-offset: 2px;
-}
-
-.video-card:hover .video-play {
-    transform: scale(1.05);
-    transition: transform .15s ease;
-}
+.video-play svg { fill: white; }
+.video-play:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.video-card:hover .video-play { transform: scale(1.05); transition: transform .15s ease; }
 
 /* 真正的 iframe：保持 16:9 */
-.video-iframe {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    height: auto;
-    display: block;
-    border: 0;
-}
+.video-iframe { width: 100%; aspect-ratio: 16 / 9; height: auto; display: block; border: 0; }
 
 /* 降级提示 */
-.video-fallback {
-    padding: 16px;
-    text-align: center;
-}
-
-.video-fallback p {
-    margin: 0 0 8px;
-}
+.video-fallback { padding: 16px; text-align: center; }
+.video-fallback p { margin: 0 0 8px; }
 
 /* 悬浮反馈 */
 .video-card:hover {
@@ -1203,10 +1115,7 @@ dialog.lightbox img {
 }
 
 /* sentinel（增量渲染用，占位很小） */
-.video-sentinel {
-    height: 1px;
-    visibility: hidden;
-}
+.video-sentinel { height: 1px; visibility: hidden; }
 
 .video-cover:hover {
     transform: scale(1.03) translateY(-2px);
@@ -1217,16 +1126,9 @@ dialog.lightbox img {
 .video-play svg {
     animation: pulse 2s infinite ease-in-out;
 }
-
 @keyframes pulse {
-    0%, 100% {
-        opacity: 0.8;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.1);
-    }
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
 }
 
 /* Video card – theme-adaptive */
@@ -1238,12 +1140,10 @@ dialog.lightbox img {
     box-shadow: var(--shadow-card);
     transition: box-shadow .3s ease, transform .3s ease, background-color .3s ease, border-color .3s ease;
 }
-
 .video-card:hover {
     box-shadow: var(--shadow-hover);
     transform: translateY(-4px);
 }
-
 .video-title::after {
     content: '';
     display: block;
@@ -1252,6 +1152,7 @@ dialog.lightbox img {
     margin-top: 6px;
     background: linear-gradient(90deg, #00e0ff, transparent);
 }
+
 
 /* === Cinematic View === */
 #cinematic-overlay {
@@ -1262,7 +1163,7 @@ dialog.lightbox img {
     justify-content: center;
     z-index: 999;
     backdrop-filter: blur(12px);
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0,0,0,0.7);
     transition: opacity 0.4s ease;
     opacity: 0;
 }
@@ -1279,7 +1180,7 @@ dialog.lightbox img {
     aspect-ratio: 16/9;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.6);
     animation: zoomIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1302,25 +1203,17 @@ dialog.lightbox img {
     z-index: 1001;
     transition: transform 0.2s ease;
 }
-
-.cinematic-close:hover {
-    transform: scale(1.2);
-}
+.cinematic-close:hover { transform: scale(1.2); }
 
 @keyframes zoomIn {
-    from {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
+
 
 /* ===== Global media effect (People first) ===== */
 /* Theme-adaptive media frame */
-.media-fx {
+.media-fx{
     position: relative;
     border-radius: 16px;
     overflow: hidden;
@@ -1330,54 +1223,50 @@ dialog.lightbox img {
     box-shadow: var(--shadow-card);
     transform: translateZ(0);
 }
+.media-fx:hover { box-shadow: var(--shadow-hover); }
 
-.media-fx:hover {
-    box-shadow: var(--shadow-hover);
-}
+
+
+
+
 
 .media-fx > img { /* 包裹后的 img 保留原裁切 */
-    display: block;
-    width: 100%;
-    height: 100%;
+    display:block;
+    width:100%;
+    height:100%;
     object-fit: cover;
-    transition: transform .45s cubic-bezier(.2, .8, .2, 1), filter .45s ease;
+    transition: transform .45s cubic-bezier(.2,.8,.2,1), filter .45s ease;
 }
-
-.media-fx:hover > img {
+.media-fx:hover > img{
     transform: scale(1.035);
     filter: contrast(1.04) saturate(1.02) brightness(1.02);
 }
-
 /* 柔光随鼠标移动（由 JS 设置 --mx/--my） */
-.media-fx::after {
-    content: "";
-    position: absolute;
-    inset: -20%;
-    pointer-events: none;
-    background: radial-gradient(120px 120px at var(--mx, 50%) var(--my, 50%),
-    color-mix(in oklab, var(--brand) 22%, transparent) 0%,
-    transparent 60%);
-    opacity: 0;
-    transition: opacity .35s ease;
+.media-fx::after{
+    content:"";
+    position:absolute; inset:-20%;
+    pointer-events:none;
+    background:
+            radial-gradient(120px 120px at var(--mx,50%) var(--my,50%),
+            color-mix(in oklab, var(--brand) 22%, transparent) 0%,
+            transparent 60%);
+    opacity:0; transition: opacity .35s ease;
 }
+.media-fx:hover::after{ opacity:.55; }
 
-.media-fx:hover::after {
-    opacity: .55;
-}
 
 /* ===== People text polish ===== */
 /* 姓名：更强层级 + 霓虹分割线（与 video-title 呼应） */
-.person-name {
+.person-name{
     font-weight: 800;
     font-size: clamp(16px, 1.1rem, 18px);
     letter-spacing: .2px;
     line-height: 1.35;
     position: relative;
-    display: inline-block; /* 让下划线只占标题宽度 */
+    display: inline-block;     /* 让下划线只占标题宽度 */
     max-width: 100%;
 }
-
-.person-name::after {
+.person-name::after{
     content: "";
     display: block;
     height: 2px;
@@ -1386,123 +1275,95 @@ dialog.lightbox img {
     background: linear-gradient(90deg, #00e0ff, transparent 70%);
     opacity: .85;
     border-radius: 2px;
-    box-shadow: 0 0 12px rgba(0, 224, 255, .35);
+    box-shadow: 0 0 12px rgba(0,224,255,.35);
     transition: width .35s ease, opacity .35s ease;
 }
-
-.card:hover .person-name::after {
-    width: 64%;
-    opacity: 1;
-}
+.card:hover .person-name::after{ width: 64%; opacity: 1; }
 
 /* 角色/单位：更精致的次级层级 */
-.person-meta {
+.person-meta{
     margin-top: 6px;
     color: var(--muted);
     font-size: 13.5px;
     letter-spacing: .1px;
-    display: block; /* name 换行后更稳定 */
+    display: block;            /* name 换行后更稳定 */
     opacity: .88;
 }
-
-.person-role {
+.person-role{
     text-transform: none;
     font-variant-numeric: tabular-nums;
     font-weight: 600;
     color: color-mix(in oklab, var(--muted) 80%, white 20%);
 }
-
-.person-sep {
-    margin: 0 .4em;
-    opacity: .5;
-}
+.person-sep{ margin: 0 .4em; opacity: .5; }
 
 /* 卡片底部按钮/链接行与上方文字的节奏 */
-.card .body .actions {
-    margin-top: 10px;
-}
+.card .body .actions{ margin-top: 10px; }
 
 /* 防止“柔光圈”遮挡文字点击（来自你之前的 image 效果容器） */
 .media-fx + .person-name,
-.media-fx + .person-name + .person-meta {
-    position: relative;
-    z-index: 1;
+.media-fx + .person-name + .person-meta { position: relative; z-index: 1; }
+
+.card:hover .person-name{
+    text-shadow: 0 0 16px rgba(0,224,255,.18);
 }
 
-.card:hover .person-name {
-    text-shadow: 0 0 16px rgba(0, 224, 255, .18);
-}
+
 
 /* People card – same depth language as video */
-#people-grid .card.people-card {
+#people-grid .card.people-card{
     position: relative;
     background: var(--bg-card);
     backdrop-filter: blur(12px) saturate(115%);
     border: 1px solid var(--border-color);
     border-radius: 16px;
     box-shadow: var(--shadow-card);
-    transition: transform .28s cubic-bezier(.2, .8, .2, 1),
-    box-shadow .28s ease,
-    border-color .28s ease,
-    background-color .28s ease;
+    transition:
+            transform .28s cubic-bezier(.2,.8,.2,1),
+            box-shadow .28s ease,
+            border-color .28s ease,
+            background-color .28s ease;
     overflow: hidden;
 }
-
-#people-grid .card.people-card::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
+#people-grid .card.people-card::before{
+    content:"";
+    position:absolute; inset:-1px;
     border-radius: inherit;
-    background: radial-gradient(240px 160px at 20% -10%, color-mix(in oklab, var(--brand) 18%, transparent) 0%, transparent 60%),
-    radial-gradient(200px 160px at 110% 10%, color-mix(in oklab, var(--brand-2) 14%, transparent) 0%, transparent 60%);
+    background:
+            radial-gradient(240px 160px at 20% -10%, color-mix(in oklab, var(--brand) 18%, transparent) 0%, transparent 60%),
+            radial-gradient(200px 160px at 110% 10%, color-mix(in oklab, var(--brand-2) 14%, transparent) 0%, transparent 60%);
     opacity: 0;
     transition: opacity .35s ease;
     pointer-events: none;
 }
-
-#people-grid .card.people-card:hover {
+#people-grid .card.people-card:hover{
     transform: translateY(-4px);
     box-shadow: var(--shadow-hover);
     border-color: color-mix(in oklab, var(--border-color) 50%, var(--text) 10%);
 }
-
-#people-grid .card.people-card:hover::before {
-    opacity: 1;
-}
-
-#people-grid .card.people-card:focus-within {
+#people-grid .card.people-card:hover::before{ opacity: 1; }
+#people-grid .card.people-card:focus-within{
     outline: none;
     box-shadow: var(--shadow-hover), 0 0 0 2px color-mix(in oklab, var(--brand) 45%, transparent);
     transform: translateY(-3px);
 }
-
-@media (hover: hover) {
-    #people-grid .card.people-card:active {
-        transform: translateY(-1px) scale(.995);
-    }
+@media (hover:hover){
+    #people-grid .card.people-card:active{ transform: translateY(-1px) scale(.995); }
 }
-
-#people-grid .card.people-card .body {
-    position: relative;
-    z-index: 1;
-}
+#people-grid .card.people-card .body{ position: relative; z-index: 1; }
 
 /* Neon underline adapt for light theme */
 .light .video-title::after,
 .light .person-name::after {
     background: linear-gradient(90deg, #0078a6, transparent 70%);
-    box-shadow: 0 0 8px rgba(0, 120, 166, .25);
+    box-shadow: 0 0 8px rgba(0,120,166,.25);
     opacity: .95;
 }
 
 /* Text colors follow theme tokens */
-.video-title, .person-name {
-    color: var(--text);
-}
+.video-title, .person-name { color: var(--text); }
+.video-meta, .person-meta { color: var(--muted); }
 
-.video-meta, .person-meta {
-    color: var(--muted);
-}
 
 /* ===========================
    Projects & Life — Card Effects
@@ -1511,9 +1372,7 @@ dialog.lightbox img {
    =========================== */
 
 /* 让 life 的 <a class="card"> 作为完整块级卡片展示 */
-#life-home-grid .card {
-    display: block;
-}
+#life-home-grid .card { display: block; }
 
 /* 玻璃卡片语言（与 video/people 保持一致） */
 #research-grid .card.project-card,
@@ -1526,10 +1385,11 @@ dialog.lightbox img {
     backdrop-filter: blur(16px) saturate(115%);
     -webkit-backdrop-filter: blur(16px) saturate(115%);
     overflow: hidden;
-    transition: transform .28s cubic-bezier(.2, .8, .2, 1),
-    box-shadow .28s ease,
-    border-color .28s ease,
-    background-color .28s ease;
+    transition:
+            transform .28s cubic-bezier(.2,.8,.2,1),
+            box-shadow .28s ease,
+            border-color .28s ease,
+            background-color .28s ease;
 }
 
 /* 悬浮上抬 + 更强阴影 */
@@ -1541,21 +1401,18 @@ dialog.lightbox img {
 }
 
 /* Project 顶部柔光（贴近 people 的层次感，但更克制） */
-#research-grid .card.project-card::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
+#research-grid .card.project-card::before{
+    content:"";
+    position:absolute; inset:-1px;
     border-radius: inherit;
     pointer-events: none;
-    background: radial-gradient(220px 140px at 10% -10%, color-mix(in oklab, var(--brand) 12%, transparent) 0%, transparent 60%),
-    radial-gradient(180px 140px at 110% 10%, color-mix(in oklab, var(--brand-2) 10%, transparent) 0%, transparent 60%);
+    background:
+            radial-gradient(220px 140px at 10% -10%, color-mix(in oklab, var(--brand) 12%, transparent) 0%, transparent 60%),
+            radial-gradient(180px 140px at 110% 10%, color-mix(in oklab, var(--brand-2) 10%, transparent) 0%, transparent 60%);
     opacity: 0;
     transition: opacity .35s ease;
 }
-
-#research-grid .card.project-card:hover::before {
-    opacity: .95;
-}
+#research-grid .card.project-card:hover::before{ opacity: .95; }
 
 /* ===== 标题霓虹分割线（扩展到 Project / Life 标题） ===== */
 .project-title,
@@ -1575,7 +1432,7 @@ dialog.lightbox img {
     width: 40%;
     border-radius: 2px;
     background: linear-gradient(90deg, #00e0ff, transparent 70%);
-    box-shadow: 0 0 12px rgba(0, 224, 255, .35);
+    box-shadow: 0 0 12px rgba(0,224,255,.35);
     transition: width .35s ease, opacity .35s ease, background .3s ease, box-shadow .3s ease;
 }
 
@@ -1590,7 +1447,7 @@ dialog.lightbox img {
 .light .project-title::after,
 .light .life-title::after {
     background: linear-gradient(90deg, #0078a6, transparent 70%);
-    box-shadow: 0 0 8px rgba(0, 120, 166, .25);
+    box-shadow: 0 0 8px rgba(0,120,166,.25);
     opacity: .95;
 }
 
@@ -1603,6 +1460,10 @@ dialog.lightbox img {
     margin-top: 6px;
 }
 
+
+
+
+
 /* ===========================
    Subpages — Card Effects (Projects / Life / People)
    让子页卡片获得与首页一致的“玻璃 + 层次光影”
@@ -1611,9 +1472,7 @@ dialog.lightbox img {
 /* 某些子页使用 <a class="card">，确保表现为块级卡片 */
 #proj-all-grid .card,
 #life-grid .card,
-#people-all-grid .card {
-    display: block;
-}
+#people-all-grid .card { display: block; }
 
 /* 统一玻璃卡片语言 */
 #proj-all-grid .card.project-card,
@@ -1627,10 +1486,11 @@ dialog.lightbox img {
     backdrop-filter: blur(16px) saturate(115%);
     -webkit-backdrop-filter: blur(16px) saturate(115%);
     overflow: hidden;
-    transition: transform .28s cubic-bezier(.2, .8, .2, 1),
-    box-shadow .28s ease,
-    border-color .28s ease,
-    background-color .28s ease;
+    transition:
+            transform .28s cubic-bezier(.2,.8,.2,1),
+            box-shadow .28s ease,
+            border-color .28s ease,
+            background-color .28s ease;
 }
 
 /* 悬浮上抬 + 强阴影 */
@@ -1644,37 +1504,27 @@ dialog.lightbox img {
 
 /* Projects 顶部柔光（子页版，略弱） */
 #proj-all-grid .card.project-card::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    pointer-events: none;
-    background: radial-gradient(220px 140px at 10% -10%, color-mix(in oklab, var(--brand) 12%, transparent) 0%, transparent 60%),
-    radial-gradient(180px 140px at 110% 10%, color-mix(in oklab, var(--brand-2) 10%, transparent) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity .35s ease;
+    content:"";
+    position:absolute; inset:-1px;
+    border-radius: inherit; pointer-events: none;
+    background:
+            radial-gradient(220px 140px at 10% -10%, color-mix(in oklab, var(--brand) 12%, transparent) 0%, transparent 60%),
+            radial-gradient(180px 140px at 110% 10%, color-mix(in oklab, var(--brand-2) 10%, transparent) 0%, transparent 60%);
+    opacity: 0; transition: opacity .35s ease;
 }
-
-#proj-all-grid .card.project-card:hover::before {
-    opacity: .95;
-}
+#proj-all-grid .card.project-card:hover::before { opacity: .95; }
 
 /* People 顶部柔光（与首页一致） */
 #people-all-grid .card.people-card::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    pointer-events: none;
-    background: radial-gradient(240px 160px at 20% -10%, color-mix(in oklab, var(--brand) 18%, transparent) 0%, transparent 60%),
-    radial-gradient(200px 160px at 110% 10%, color-mix(in oklab, var(--brand-2) 14%, transparent) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity .35s ease;
+    content:"";
+    position:absolute; inset:-1px;
+    border-radius:inherit; pointer-events:none;
+    background:
+            radial-gradient(240px 160px at 20% -10%, color-mix(in oklab, var(--brand) 18%, transparent) 0%, transparent 60%),
+            radial-gradient(200px 160px at 110% 10%, color-mix(in oklab, var(--brand-2) 14%, transparent) 0%, transparent 60%);
+    opacity:0; transition: opacity .35s ease;
 }
-
-#people-all-grid .card.people-card:hover::before {
-    opacity: 1;
-}
+#people-all-grid .card.people-card:hover::before { opacity: 1; }
 
 /* 霓虹标题线：扩展到子页 */
 :is(.project-title, .life-title, .person-name) {
@@ -1683,28 +1533,21 @@ dialog.lightbox img {
     color: var(--text);
     line-height: 1.35;
 }
-
 :is(.project-title, .life-title, .person-name)::after {
-    content: "";
-    display: block;
-    height: 2px;
-    margin-top: 6px;
-    width: 40%;
-    border-radius: 2px;
+    content:"";
+    display:block;
+    height:2px; margin-top:6px; width:40%;
+    border-radius:2px;
     background: linear-gradient(90deg, #00e0ff, transparent 70%);
-    box-shadow: 0 0 12px rgba(0, 224, 255, .35);
+    box-shadow: 0 0 12px rgba(0,224,255,.35);
     transition: width .35s ease, opacity .35s ease, background .3s ease, box-shadow .3s ease;
 }
-
 #proj-all-grid .card.project-card:hover .project-title::after,
-#people-all-grid .card.people-card:hover .person-name::after {
-    width: 64%;
-    opacity: 1;
-}
+#people-all-grid .card.people-card:hover .person-name::after { width:64%; opacity:1; }
 
 .light :is(.project-title, .life-title, .person-name)::after {
     background: linear-gradient(90deg, #0078a6, transparent 70%);
-    box-shadow: 0 0 8px rgba(0, 120, 166, .25);
+    box-shadow: 0 0 8px rgba(0,120,166,.25);
     opacity: .95;
 }
 
@@ -1717,7 +1560,7 @@ dialog.lightbox img {
 }
 
 /* ===== Person page: avatar cinematic image effect (no card) ===== */
-#person-detail .media-fx {
+#person-detail .media-fx{
     position: relative;
     border-radius: 12px;
     overflow: hidden;
@@ -1731,44 +1574,32 @@ dialog.lightbox img {
 }
 
 /* 顶部柔光（更克制，避免喧宾夺主） */
-#person-detail .media-fx::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    pointer-events: none;
-    border-radius: inherit;
-    background: radial-gradient(220px 140px at 10% -10%, color-mix(in oklab, var(--brand) 12%, transparent) 0%, transparent 60%),
-    radial-gradient(180px 140px at 110% 10%, color-mix(in oklab, var(--brand-2) 10%, transparent) 0%, transparent 60%);
-    opacity: .0;
-    transition: opacity .35s ease;
+#person-detail .media-fx::before{
+    content:"";
+    position:absolute; inset:-1px; pointer-events:none; border-radius:inherit;
+    background:
+            radial-gradient(220px 140px at 10% -10%, color-mix(in oklab, var(--brand) 12%, transparent) 0%, transparent 60%),
+            radial-gradient(180px 140px at 110% 10%, color-mix(in oklab, var(--brand-2) 10%, transparent) 0%, transparent 60%);
+    opacity:.0; transition: opacity .35s ease;
 }
-
-#person-detail .media-fx:hover::before {
-    opacity: .95;
-}
+#person-detail .media-fx:hover::before{ opacity:.95; }
 
 /* 视差高光：跟随鼠标位置的轻微光斑 */
-#person-detail .media-fx::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    border-radius: inherit;
-    background: radial-gradient(220px 160px at var(--mx, 50%) var(--my, 40%),
-    rgba(255, 255, 255, .08), transparent 60%);
+#person-detail .media-fx::after{
+    content:"";
+    position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+    background:
+            radial-gradient(220px 160px at var(--mx,50%) var(--my,40%),
+            rgba(255,255,255,.08), transparent 60%);
     transition: opacity .25s ease;
 }
 
 /* 图片本体：轻微缩放+提亮，保留你原本的头像比例设置 */
-#person-detail .media-fx > img {
-    display: block;
-    width: 50%;
-    height: auto;
-    object-fit: cover;
+#person-detail .media-fx > img{
+    display:block; width:50%; height:auto; object-fit:cover;
     transition: transform .35s ease, filter .35s ease;
 }
-
-#person-detail .media-fx:hover > img {
+#person-detail .media-fx:hover > img{
     transform: scale(1.03) translateY(-2px);
     filter: brightness(1.06);
 }
@@ -1776,17 +1607,17 @@ dialog.lightbox img {
 /* ===== Person page avatar: make wrapper + img a perfect fit ===== */
 
 /* 头像原先可能自带边框/圆角，这里交给外层统一管理 */
-#person-detail img.avatar {
+#person-detail img.avatar{
     border: none !important;
     border-radius: 0 !important;
     box-shadow: none !important;
 }
 
 /* 外层包裹：与图片成为“一体”——不再被父容器拉伸 */
-#person-detail .media-fx.avatar-frame {
-    display: inline-block; /* 让外层按内容收缩 */
-    width: min(50%, 500px); /* 继承你个人页头像的 max-width 语义 */
-    border-radius: 12px; /* 与你页面设计一致 */
+#person-detail .media-fx.avatar-frame{
+    display: inline-block;                /* 让外层按内容收缩 */
+    width: min(50%, 500px);              /* 继承你个人页头像的 max-width 语义 */
+    border-radius: 12px;                  /* 与你页面设计一致 */
     overflow: hidden;
 
     /* 玻璃质感沿用之前的变量 */
@@ -1798,41 +1629,33 @@ dialog.lightbox img {
 }
 
 /* 图片占满包裹（用包裹来控制最终尺寸） */
-#person-detail .media-fx.avatar-frame > img {
+#person-detail .media-fx.avatar-frame > img{
     display: block;
     width: 100%;
-    height: auto; /* 不拉伸纵横比 */
+    height: auto;                         /* 不拉伸纵横比 */
     border-radius: inherit;
 }
 
 /* 悬浮柔光与视差仍然保留（如果你之前已加过，可保留或省略这段） */
-#person-detail .media-fx.avatar-frame::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    pointer-events: none;
-    background: radial-gradient(220px 140px at 10% -10%, color-mix(in oklab, var(--brand) 12%, transparent) 0%, transparent 60%),
-    radial-gradient(180px 140px at 110% 10%, color-mix(in oklab, var(--brand-2) 10%, transparent) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity .35s ease;
+#person-detail .media-fx.avatar-frame::before{
+    content:"";
+    position:absolute; inset:-1px; border-radius:inherit; pointer-events:none;
+    background:
+            radial-gradient(220px 140px at 10% -10%, color-mix(in oklab, var(--brand) 12%, transparent) 0%, transparent 60%),
+            radial-gradient(180px 140px at 110% 10%, color-mix(in oklab, var(--brand-2) 10%, transparent) 0%, transparent 60%);
+    opacity:0; transition: opacity .35s ease;
+}
+#person-detail .media-fx.avatar-frame:hover::before{ opacity:.95; }
+
+#person-detail .media-fx.avatar-frame::after{
+    content:"";
+    position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+    background: radial-gradient(220px 160px at var(--mx,50%) var(--my,40%), rgba(255,255,255,.08), transparent 60%);
 }
 
-#person-detail .media-fx.avatar-frame:hover::before {
-    opacity: .95;
-}
-
-#person-detail .media-fx.avatar-frame::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    border-radius: inherit;
-    background: radial-gradient(220px 160px at var(--mx, 50%) var(--my, 40%), rgba(255, 255, 255, .08), transparent 60%);
-}
 
 /* ==== Accent CTA buttons (breathing glow + subtle shimmer) ==== */
-:root {
+:root{
     /* 统一参数，便于全站调节 */
     --cta-radius: 12px;
     --cta-glow1: color-mix(in oklab, var(--brand) 92%, white 0%);
@@ -1843,104 +1666,93 @@ dialog.lightbox img {
 }
 
 /* 基础态：在 ghost/solid 的基础上叠一层高亮，但不过分刺眼 */
-.btn.cta {
+.btn.cta{
     position: relative;
     border-radius: var(--cta-radius);
     border-color: var(--cta-border);
-    background: linear-gradient(180deg, color-mix(in oklab, var(--panel-2) 70%, transparent), var(--panel));
+    background:
+            linear-gradient(180deg, color-mix(in oklab, var(--panel-2) 70%, transparent), var(--panel));
     color: var(--cta-text);
-    isolation: isolate; /* 让伪元素的混合不影响外部 */
+    isolation: isolate;           /* 让伪元素的混合不影响外部 */
     will-change: box-shadow, transform;
-    transition: transform .18s ease,
-    box-shadow .25s ease,
-    border-color .25s ease,
-    background-color .25s ease;
+    transition:
+            transform .18s ease,
+            box-shadow .25s ease,
+            border-color .25s ease,
+            background-color .25s ease;
 }
 
 /* 呼吸光（常态轻微、hover 加强） */
-.btn.cta {
+.btn.cta{
     animation: cta-breathe 2.6s ease-in-out infinite;
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0),
-    0 0 0 0 rgba(0, 0, 0, 0),
-    0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow:
+            0 0 0 0 rgba(0,0,0,0),
+            0 0 0 0 rgba(0,0,0,0),
+            0 0 0 0 rgba(0,0,0,0);
 }
-
-@keyframes cta-breathe {
-    0%, 100% {
-        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0),
-        0 0 0 0 rgba(0, 0, 0, 0),
-        0 0 0 0 rgba(0, 0, 0, 0.0);
+@keyframes cta-breathe{
+    0%,100%{
+        box-shadow:
+                0 0 0 0 rgba(0,0,0,0),
+                0 0 0 0 rgba(0,0,0,0),
+                0 0 0 0 rgba(0,0,0,0.0);
     }
-    50% {
-        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0),
-        0 0 22px 6px color-mix(in oklab, var(--cta-glow1) 30%, transparent),
-        0 0 30px 10px color-mix(in oklab, var(--cta-glow2) 22%, transparent);
+    50%{
+        box-shadow:
+                0 0 0 0 rgba(0,0,0,0),
+                0 0 22px 6px color-mix(in oklab, var(--cta-glow1) 30%, transparent),
+                0 0 30px 10px color-mix(in oklab, var(--cta-glow2) 22%, transparent);
     }
 }
 
 /* 轻微流光：仅在 hover 时沿按钮横向扫过一条柔光 */
-.btn.cta::after {
+.btn.cta::after{
     content: "";
-    position: absolute;
-    inset: 1px;
+    position: absolute; inset: 1px;
     border-radius: calc(var(--cta-radius) - 1px);
-    background: linear-gradient(120deg,
-    transparent 0%,
-    color-mix(in oklab, white 30%, var(--cta-glow2)) 15%,
-    color-mix(in oklab, white 18%, var(--cta-glow1)) 25%,
-    transparent 40%);
+    background:
+            linear-gradient(120deg,
+            transparent 0%,
+            color-mix(in oklab, white 30%, var(--cta-glow2)) 15%,
+            color-mix(in oklab, white 18%, var(--cta-glow1)) 25%,
+            transparent 40%);
     background-size: 220% 100%;
     mix-blend-mode: screen;
     opacity: 0;
     pointer-events: none;
     transition: opacity .25s ease, background-position .6s ease;
 }
-
-.btn.cta:hover::after {
+.btn.cta:hover::after{
     opacity: .55;
     background-position: -120% 0;
 }
 
 /* 悬停/聚焦的反馈（略微上抬 + 边界更清晰） */
-.btn.cta:hover {
+.btn.cta:hover{
     transform: translateY(-1px);
     border-color: color-mix(in oklab, var(--cta-glow1) 30%, var(--cta-border));
 }
-
-.btn.cta:focus-visible {
+.btn.cta:focus-visible{
     outline: 2px solid color-mix(in oklab, var(--cta-glow1) 55%, transparent);
     outline-offset: 2px;
 }
 
 /* 亮色主题下做对比度保护，避免过曝 */
-.light .btn.cta {
+.light .btn.cta{
     --cta-bg: color-mix(in oklab, #ffffff 85%, var(--panel) 15%);
-    --cta-border: rgba(0, 0, 0, .08);
+    --cta-border: rgba(0,0,0,.08);
 }
-
-.light .btn.cta::after {
-    opacity: .45;
-}
+.light .btn.cta::after{ opacity: .45; }
 
 /* 动效可访问性：用户选择“减少动效”时，禁用动画但保留静态高亮 */
-@media (prefers-reduced-motion: reduce) {
-    .btn.cta {
-        animation: none;
-    }
-
-    .btn.cta::after {
-        transition: none;
-    }
+@media (prefers-reduced-motion: reduce){
+    .btn.cta{ animation: none; }
+    .btn.cta::after{ transition: none; }
 }
 
 /* 让箭头/↗更有动感（可选） */
-.btn.cta:hover {
-    letter-spacing: .1px;
-}
-
-.btn.cta:hover svg, .btn.cta:hover .arrow {
-    transform: translateX(1px);
-}
+.btn.cta:hover { letter-spacing: .1px; }
+.btn.cta:hover svg, .btn.cta:hover .arrow { transform: translateX(1px); }
 
 /* 保持你现有的尺寸一致性（文件里已有 min-height 规则会继承） */
 
@@ -1953,24 +1765,13 @@ dialog.lightbox img {
 /*.cinematic-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:70}*/
 /*.cinematic-overlay.active{display:flex}*/
 /*.cinematic-player{width:min(1200px,92vw);aspect-ratio:16/9;position:relative;background:#000;border-radius:14px;overflow:hidden}*/
-#cinematic-host {
-    width: 100%;
-    height: 100%
-}
-
+#cinematic-host{width:100%;height:100%}
 /*.cinematic-close{position:absolute;top:8px;right:8px;z-index:1;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.4);color:#fff;border-radius:10px;padding:6px 10px;cursor:pointer}*/
 /*.cinematic-iframe{width:100%;height:100%;border:0}*/
 
 /* ===== Peer Recognition micro-tweaks ===== */
-#repute-list .prose {
-    margin: 0;
-}
-
-#repute-list .prose sup a {
-    text-decoration: none;
-    opacity: .9;
-}
-
+#repute-list .prose { margin: 0; }
+#repute-list .prose sup a { text-decoration: none; opacity: .9; }
 #repute-list .prose mark {
     padding: 0 .2em;
     border-radius: 4px;
@@ -1999,7 +1800,7 @@ dialog.lightbox img {
 /* 整卡抛光：与 video/people/life 同感受（轻浮、提亮） */
 .repute-card:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-lg, 0 8px 24px rgba(0, 0, 0, .12));
+    box-shadow: var(--shadow-lg, 0 8px 24px rgba(0,0,0,.12));
     border-color: color-mix(in oklab, var(--brand) 24%, var(--border));
 }
 
@@ -2013,149 +1814,110 @@ dialog.lightbox img {
     border: 1px solid var(--border);
     position: relative;
 }
-
-.repute-media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
+.repute-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* 右侧主体 */
-.repute-body {
-    min-width: 0;
-}
-
+.repute-body { min-width: 0; }
 .repute-topline {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 12px;
-    align-items: baseline;
+    display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline;
     margin-bottom: 6px;
 }
-
-.repute-name {
-    font-weight: 800;
-    line-height: 1.15;
-}
-
-.repute-meta {
-    color: var(--muted);
-    font-size: 13px;
-}
+.repute-name { font-weight: 800; line-height: 1.15; }
+.repute-meta { color: var(--muted); font-size: 13px; }
 
 /* 评价正文（富文本） */
-.repute-quote.prose {
-    margin: 0;
-}
-
-.repute-quote.prose p {
-    margin: .45em 0;
-}
-
-.repute-quote.prose sup a {
-    text-decoration: none;
-    opacity: .9;
-}
-
+.repute-quote.prose { margin: 0; }
+.repute-quote.prose p { margin: .45em 0; }
+.repute-quote.prose sup a { text-decoration: none; opacity: .9; }
 .repute-quote.prose mark {
-    padding: 0 .22em;
-    border-radius: 4px;
+    padding: 0 .22em; border-radius: 4px;
     background: color-mix(in oklab, var(--brand) 22%, transparent);
 }
 
 /* 小屏策略：头像更小，仍保持左右布局；特别窄时改为上下堆叠 */
-@media (max-width: 720px) {
-    .repute-card {
-        --repute-avatar: 64px;
-    }
+@media (max-width: 720px){
+    .repute-card { --repute-avatar: 64px; }
 }
-
-@media (max-width: 520px) {
+@media (max-width: 520px){
     .repute-card {
         grid-template-columns: 1fr;
         padding: 12px;
     }
-
     .repute-media {
-        width: 56px;
-        height: 56px;
-        margin-bottom: 8px;
+        width: 56px; height: 56px; margin-bottom: 8px;
     }
 }
-
 /* END PATCH */
 
 /* BEGIN PATCH: Wider Peer Recognition card */
-.repute-card {
+.repute-card{
     /* 新增一个可控的最大宽度变量 */
-    --repute-maxw: 840px; /* 之前是 720px，扩大到 840px */
-    --repute-avatar: 80px; /* 头像微增 76 → 80，更协调 */
+    --repute-maxw: 840px;             /* 之前是 720px，扩大到 840px */
+    --repute-avatar: 80px;            /* 头像微增 76 → 80，更协调 */
     width: min(var(--repute-maxw), 100%);
-    margin-inline: auto; /* 居中 */
+    margin-inline: auto;              /* 居中 */
 }
 
 /* 超大屏再放大一点，让文字更舒展 */
-@media (min-width: 1440px) {
-    .repute-card {
-        --repute-maxw: 900px;
-    }
+@media (min-width: 1440px){
+    .repute-card{ --repute-maxw: 900px; }
 }
 
 /* 极窄时仍按之前策略堆叠（已在你现有 media query 中处理，这里不重复） */
 /* END PATCH */
 
 /* BEGIN PATCH: Dark theme mark highlight stronger */
-.repute-quote.prose mark {
+.repute-quote.prose mark{
     /* 明暗通用的基础：增加内边距和圆角，你已有可保留 */
     padding: 0 .26em;
     border-radius: 5px;
 }
 
 /* 1) 系统暗色偏好 */
-@media (prefers-color-scheme: dark) {
-    .repute-quote.prose mark {
+@media (prefers-color-scheme: dark){
+    .repute-quote.prose mark{
         /* 更高的对比度：使用较亮的底色 + 轻微发光边 */
         background: color-mix(in oklab, #ffffff 24%, var(--brand));
         color: inherit; /* 不改文字色，避免反差过度 */
         box-shadow: inset 0 0 0 1px color-mix(in oklab, #ffffff 30%, transparent),
-        0 0 0 2px rgba(255, 255, 255, .04); /* 微弱描边与外晕，提升边界感 */
+        0 0 0 2px rgba(255,255,255,.04); /* 微弱描边与外晕，提升边界感 */
     }
 }
 
 /* 2) 站点自有的暗色 data-attr（若你有切换按钮） */
-:root[data-theme="dark"] .repute-quote.prose mark {
+:root[data-theme="dark"] .repute-quote.prose mark{
     background: color-mix(in oklab, #ffffff 24%, var(--brand));
     color: inherit;
     box-shadow: inset 0 0 0 1px color-mix(in oklab, #ffffff 30%, transparent),
-    0 0 0 2px rgba(255, 255, 255, .04);
+    0 0 0 2px rgba(255,255,255,.04);
 }
 
 /* 加强脚注上标可点性：略提升可见度 */
-.repute-quote.prose sup a {
+.repute-quote.prose sup a{
     opacity: .95;
     text-decoration: none;
     border-bottom: 1px dashed currentColor;
 }
-
 /* END PATCH */
+
 
 /* === PATCH 1: Dark 模式下 <mark> 高亮更显眼（提升优先级+兜底） === */
 /* 先统一基础：让 reputation 两个容器里的 mark 都走这一套 */
 #repute-list .repute-quote.prose mark,
-#repute-all-grid .repute-quote.prose mark {
+#repute-all-grid .repute-quote.prose mark{
     padding: 0 .28em;
     border-radius: 5px;
 }
 
 /* A) 系统暗色偏好 */
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark){
     #repute-list .repute-quote.prose mark,
-    #repute-all-grid .repute-quote.prose mark {
+    #repute-all-grid .repute-quote.prose mark{
         /* 使用更亮的底色 + 轻描边，提高对比度 */
         background-color: color-mix(in oklab, #fff 28%, var(--brand)) !important;
-        box-shadow: inset 0 0 0 1px color-mix(in oklab, #fff 32%, transparent),
-        0 0 0 2px rgba(255, 255, 255, .05);
+        box-shadow:
+                inset 0 0 0 1px color-mix(in oklab, #fff 32%, transparent),
+                0 0 0 2px rgba(255,255,255,.05);
     }
 }
 
@@ -2165,24 +1927,25 @@ dialog.lightbox img {
 html.dark #repute-list .repute-quote.prose mark,
 html.dark #repute-all-grid .repute-quote.prose mark,
 body.dark #repute-list .repute-quote.prose mark,
-body.dark #repute-all-grid .repute-quote.prose mark {
+body.dark #repute-all-grid .repute-quote.prose mark{
     background-color: color-mix(in oklab, #fff 28%, var(--brand)) !important;
-    box-shadow: inset 0 0 0 1px color-mix(in oklab, #fff 32%, transparent),
-    0 0 0 2px rgba(255, 255, 255, .05);
+    box-shadow:
+            inset 0 0 0 1px color-mix(in oklab, #fff 32%, transparent),
+            0 0 0 2px rgba(255,255,255,.05);
 }
 
 /* 如需更醒目，把 28% 再调高到 32% 即可 */
 
+
 /* === PATCH 2: 手机端头像被拉伸→强制正圆 & 不被栅格撑开 === */
-.repute-media {
+.repute-media{
     /* 防止被 grid 拉伸 */
     align-self: start;
     justify-self: start;
     /* 双保险：固定正方形比例 */
     aspect-ratio: 1 / 1;
 }
-
-.repute-media img {
+.repute-media img{
     /* 覆盖全局 img { height:auto } 等规则，避免椭圆 */
     width: 100% !important;
     height: 100% !important;
@@ -2193,8 +1956,8 @@ body.dark #repute-all-grid .repute-quote.prose mark {
 }
 
 /* 窄屏下我们以前设置了 56x56，如果有别的样式覆盖，也用强制等宽高兜底 */
-@media (max-width: 520px) {
-    .repute-media {
+@media (max-width: 520px){
+    .repute-media{
         width: 56px !important;
         height: 56px !important;
     }
@@ -2203,68 +1966,65 @@ body.dark #repute-all-grid .repute-quote.prose mark {
 /* === Peer Recognition：强力兜底（放在 styles.css 末尾） === */
 
 /* 1) 卡片更宽：桌面端更舒展 */
-.repute-card {
-    --repute-maxw: 900px; /* 你之前是 720/840，这里再加一档 */
+.repute-card{
+    --repute-maxw: 900px;      /* 你之前是 720/840，这里再加一档 */
     --repute-avatar: 80px;
     width: min(var(--repute-maxw), 100%);
     margin-inline: auto;
 }
 
 /* 2) 手机端头像绝不变形：容器与图片都强制 1:1 */
-.repute-media {
+.repute-media{
     align-self: start;
     justify-self: start;
     width: var(--repute-avatar);
     height: var(--repute-avatar);
-    aspect-ratio: 1 / 1; /* 关键：锁定正方形 */
+    aspect-ratio: 1 / 1;       /* 关键：锁定正方形 */
     border-radius: 50%;
     overflow: hidden;
 }
-
-.repute-media img {
-    width: 100% !important; /* 覆盖全局 img 高度/宽度规则 */
+.repute-media img{
+    width: 100% !important;    /* 覆盖全局 img 高度/宽度规则 */
     height: 100% !important;
     aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: 50%;
     display: block;
 }
-
-@media (max-width: 520px) {
-    .repute-media {
-        width: 56px !important;
-        height: 56px !important;
-    }
+@media (max-width: 520px){
+    .repute-media{ width:56px !important; height:56px !important; }
 }
 
 /* 3) 暗色（站内）高亮更显眼：
    你站内的深色= body没有.light 类；不要只依赖 prefers-color-scheme */
 #repute-list .repute-quote.prose mark,
-#repute-all-grid .repute-quote.prose mark {
+#repute-all-grid .repute-quote.prose mark{
     padding: 0 .28em;
     border-radius: 5px;
 }
 
 /* 站内暗色模式（默认态）：用 body:not(.light) 覆盖，且加 !important 兜底 */
 body:not(.light) #repute-list .repute-quote.prose mark,
-body:not(.light) #repute-all-grid .repute-quote.prose mark {
+body:not(.light) #repute-all-grid .repute-quote.prose mark{
     background-color: color-mix(in oklab, #fff 30%, var(--brand)) !important;
-    box-shadow: inset 0 0 0 1px color-mix(in oklab, #fff 32%, transparent),
-    0 0 0 2px rgba(255, 255, 255, .05);
+    box-shadow:
+            inset 0 0 0 1px color-mix(in oklab, #fff 32%, transparent),
+            0 0 0 2px rgba(255,255,255,.05);
 }
 
 /* 如果你也希望系统暗色偏好生效，可以保留这组（可选） */
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark){
     #repute-list .repute-quote.prose mark,
-    #repute-all-grid .repute-quote.prose mark {
+    #repute-all-grid .repute-quote.prose mark{
         background-color: color-mix(in oklab, #fff 28%, var(--brand)) !important;
-        box-shadow: inset 0 0 0 1px color-mix(in oklab, #fff 32%, transparent),
-        0 0 0 2px rgba(255, 255, 255, .05);
+        box-shadow:
+                inset 0 0 0 1px color-mix(in oklab, #fff 32%, transparent),
+                0 0 0 2px rgba(255,255,255,.05);
     }
 }
 
 /* 脚注上标点击感（保留） */
-.repute-quote.prose sup a {
+.repute-quote.prose sup a{
     opacity: .95;
     text-decoration: none;
     border-bottom: 1px dashed currentColor;
@@ -2274,20 +2034,20 @@ body:not(.light) #repute-all-grid .repute-quote.prose mark {
 
 /* 1) 任何屏宽都把容器锁成正方形，禁止 Grid 拉伸 */
 #repute-list .repute-card .repute-media,
-#repute-all-grid .repute-card .repute-media {
-    align-self: start !important; /* 别被 align-items: stretch 拉长 */
+#repute-all-grid .repute-card .repute-media{
+    align-self: start !important;      /* 别被 align-items: stretch 拉长 */
     justify-self: start !important;
     width: var(--repute-avatar) !important;
     height: var(--repute-avatar) !important;
-    aspect-ratio: 1 / 1 !important; /* 容器强制正方 */
+    aspect-ratio: 1 / 1 !important;    /* 容器强制正方 */
     border-radius: 50% !important;
     overflow: hidden !important;
-    display: inline-flex !important; /* 防止块级元素在单列下被拉宽 */
+    display: inline-flex !important;   /* 防止块级元素在单列下被拉宽 */
 }
 
 /* 2) 头像图片 1:1 填充容器；覆盖 .media-fx / 全局 img 的宽高规则 */
 #repute-list .repute-card .repute-media img,
-#repute-all-grid .repute-card .repute-media img {
+#repute-all-grid .repute-card .repute-media img{
     width: 100% !important;
     height: 100% !important;
     aspect-ratio: 1 / 1 !important;
@@ -2297,25 +2057,26 @@ body:not(.light) #repute-all-grid .repute-quote.prose mark {
 }
 
 /* 3) 超小屏的尺寸（数值可按需调） */
-@media (max-width: 520px) {
+@media (max-width: 520px){
     #repute-list .repute-card .repute-media,
-    #repute-all-grid .repute-card .repute-media {
+    #repute-all-grid .repute-card .repute-media{
         width: 56px !important;
         height: 56px !important;
     }
 }
 
 /* 4) 单列断点时，卡片自身也不要把子项撑开 */
-@media (max-width: 520px) {
+@media (max-width: 520px){
     #repute-list .repute-card,
-    #repute-all-grid .repute-card {
-        align-items: start !important; /* 禁止内部纵向拉伸 */
+    #repute-all-grid .repute-card{
+        align-items: start !important;   /* 禁止内部纵向拉伸 */
         justify-items: start !important; /* 禁止内部横向拉伸 */
     }
 }
 
+
 /* === Peer Recognition：头像正圆兜底（覆盖全局 4:3） === */
-.repute-media {
+.repute-media{
     /* 防止被 grid 拉伸；锁定为正方形 */
     align-self: start;
     justify-self: start;
@@ -2326,7 +2087,7 @@ body:not(.light) #repute-all-grid .repute-quote.prose mark {
     overflow: hidden;
 }
 
-.repute-media img {
+.repute-media img{
     /* 覆盖全局 img/avatar 的 height:auto 与 4:3 */
     width: 100% !important;
     height: 100% !important;
@@ -2337,31 +2098,29 @@ body:not(.light) #repute-all-grid .repute-quote.prose mark {
 }
 
 /* 窄屏更小的圆形尺寸（可按需调整） */
-@media (max-width: 520px) {
-    .repute-media {
-        width: 56px !important;
-        height: 56px !important;
-    }
+@media (max-width: 520px){
+    .repute-media{ width: 56px !important; height: 56px !important; }
 }
+
 
 /* Fix: Peer Recognition avatar becomes oval on mobile */
 
 /* 1) 禁止单列栅格把头像容器拉伸；容器与图片都锁定 1:1 */
 #repute-list .repute-card .repute-media,
-#repute-all-grid .repute-card .repute-media {
+#repute-all-grid .repute-card .repute-media{
     align-self: start !important;
-    justify-self: start !important; /* 关键：不随列宽拉伸 */
+    justify-self: start !important;    /* 关键：不随列宽拉伸 */
     width: var(--repute-avatar) !important;
     height: var(--repute-avatar) !important;
-    aspect-ratio: 1 / 1 !important; /* 容器强制正方形 */
+    aspect-ratio: 1 / 1 !important;    /* 容器强制正方形 */
     border-radius: 50% !important;
     overflow: hidden !important;
-    display: inline-flex !important; /* 进一步避免拉宽 */
+    display: inline-flex !important;   /* 进一步避免拉宽 */
 }
 
 /* 2) 图片填充容器，并覆盖全局 img 的宽高/比例规则 */
 #repute-list .repute-card .repute-media img,
-#repute-all-grid .repute-card .repute-media img {
+#repute-all-grid .repute-card .repute-media img{
     width: 100% !important;
     height: 100% !important;
     aspect-ratio: 1 / 1 !important;
@@ -2371,83 +2130,79 @@ body:not(.light) #repute-all-grid .repute-quote.prose mark {
 }
 
 /* 3) 单列断点下，整卡也不要把子项拉伸 */
-@media (max-width: 520px) {
+@media (max-width: 520px){
     #repute-list .repute-card,
-    #repute-all-grid .repute-card {
+    #repute-all-grid .repute-card{
         align-items: start !important;
         justify-items: start !important;
     }
-
     /* 若你想统一手机尺寸： */
     #repute-list .repute-card .repute-media,
-    #repute-all-grid .repute-card .repute-media {
+    #repute-all-grid .repute-card .repute-media{
         width: 56px !important;
         height: 56px !important;
     }
 }
 
+
 /* === Peer Recognition: 更宽的卡片 & 5行后滚动 === */
 
 /* 1) Home 与子页的 Peer Recognition 容器：强制 2 列（>=1100px），中小屏降为 1 列 */
 #repute-list.grid.people,
-#repute-all-grid.grid.people {
+#repute-all-grid.grid.people{
     grid-template-columns: repeat(1, minmax(460px, 1fr)) !important; /* 两列、每列最小 460px，卡更宽 */
     gap: 18px;
 }
 
 /* <= 1100px：一列展示，更易读 */
-@media (max-width: 1100px) {
+@media (max-width: 1100px){
     #repute-list.grid.people,
-    #repute-all-grid.grid.people {
+    #repute-all-grid.grid.people{
         grid-template-columns: 1fr !important;
     }
 }
 
 /* 2) 卡片内正文区域：超过约 5 行后出现滚动条，保证同一行卡片等高 */
-.repute-quote.prose {
+.repute-quote.prose{
     line-height: 1.55;
-    max-height: 7.75em; /* 约5行（5 × 1.55em） */
+    max-height: 7.75em;                /* 约5行（5 × 1.55em） */
     overflow: auto;
-    padding-right: 4px; /* 给滚动条留点空间，避免遮字 */
+    padding-right: 4px;               /* 给滚动条留点空间，避免遮字 */
     scrollbar-gutter: stable both-edges;
 }
 
 /* 让小段落之间紧凑些，减少“稀疏感” */
-.repute-quote.prose p {
-    margin: .4em 0;
-}
+.repute-quote.prose p{ margin: .4em 0; }
 
 /* 可选：滚动条美化（支持的浏览器会生效） */
-.repute-quote.prose::-webkit-scrollbar {
-    width: 8px;
-}
-
-.repute-quote.prose::-webkit-scrollbar-thumb {
+.repute-quote.prose::-webkit-scrollbar{ width: 8px; }
+.repute-quote.prose::-webkit-scrollbar-thumb{
     background: color-mix(in oklab, var(--text) 15%, transparent);
     border-radius: 8px;
 }
 
+
 /* Peer Recognition：修正手机端头像被拉伸变椭圆的问题 */
 
 /* 1) 关闭整卡的默认拉伸，子项不再被横向撑宽 */
-.repute-card {
+.repute-card{
     justify-items: start !important;
     align-items: start !important;
 }
 
 /* 2) 头像容器强制正方形，并禁止被 Grid 拉宽 */
-.repute-card .repute-media {
+.repute-card .repute-media{
     width: var(--repute-avatar) !important;
     height: var(--repute-avatar) !important;
     aspect-ratio: 1 / 1 !important;
     border-radius: 50% !important;
     overflow: hidden !important;
-    justify-self: start !important; /* 关键：不要 stretch */
+    justify-self: start !important;  /* 关键：不要 stretch */
     align-self: start !important;
 }
 
 /* 3) 覆盖 .media-fx > img 的通用拉伸，锁定 1:1 填充 */
-.repute-card .repute-media > img {
+.repute-card .repute-media > img{
     width: 100% !important;
     height: 100% !important;
     aspect-ratio: 1 / 1 !important;
@@ -2457,33 +2212,34 @@ body:not(.light) #repute-all-grid .repute-quote.prose mark {
 }
 
 /* 4) 极窄断点下的头像尺寸（你已有 56px，这里沿用并兜底） */
-@media (max-width: 520px) {
-    .repute-card .repute-media {
+@media (max-width: 520px){
+    .repute-card .repute-media{
         width: 56px !important;
         height: 56px !important;
     }
 }
 
 /* ----- Peer Recognition: honors chips (new) ----- */
-.repute-honors {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+.repute-honors{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
     margin: 2px 0 6px;
-    padding: 0;
-    list-style: none;
+    padding:0;
+    list-style:none;
 }
 
-.repute-honors .chip--honor {
-    display: inline-flex;
-    align-items: center;
-    border-radius: 999px;
-    border: 1px solid var(--border);
+.repute-honors .chip--honor{
+    display:inline-flex;
+    align-items:center;
+    border-radius:999px;
+    border:1px solid var(--border);
     background: var(--panel);
     color: var(--muted);
-    padding: 6px 8px;
-    font-size: 12px;
-    line-height: 1;
-    white-space: nowrap;
+    padding:6px 8px;
+    font-size:12px;
+    line-height:1;
+    white-space:nowrap;
 }
+
 

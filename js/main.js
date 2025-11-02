@@ -491,6 +491,77 @@ function lazyAppend(container, htmlList, {
 
 
 
+/* BEGIN PATCH: main.js (loadReputationHome) */
+async function loadReputationHome(){
+    const mount = document.getElementById('repute-list');
+    if (!mount) return;
+
+    // 拉数据
+    let rep = { settings: { home_limit: 6 }, items: [] };
+    try {
+        const r = await fetch('data/reputation.json', { cache: 'no-store' });
+        if (r.ok) rep = await r.json();
+    } catch(e){ console.warn('[repute] load failed', e); }
+
+    const K = Number(rep.settings?.home_limit || 6);
+    const items = (rep.items || [])
+        .slice()
+        .sort((a,b)=>(b.year||0)-(a.year||0))
+        .slice(0, K);
+
+    // 生成“左图右文”的宽卡，整卡抛光（与 people/life 一致的感觉）
+    const cards = items.map(it => {
+        const avatar = it.avatar
+            ? `<img src="${it.avatar}" alt="${it.name}" data-fallback="avatar">`
+            : `<div class="avatar placeholder" aria-label="${it.name||'Peer'}"></div>`;
+
+        // const meta = [it.role||'', it.year||''].filter(Boolean).join(' · ');
+        const meta = [it.role || '', (it.year ?? '')].filter(Boolean).join(' · ');
+        // honor chips: 有就显示，没有就空
+        const honorChips = Array.isArray(it.honor) && it.honor.length
+            ? `<ul class="repute-honors">${it.honor.map(h => `<li class="chip chip--honor">${h}</li>`).join('')}</ul>`
+            : '';
+        return `
+      <article class="repute-card card fx" role="listitem">
+        <div class="repute-media media-fx">
+          ${avatar}
+        </div>
+        <div class="repute-body">
+          <div class="repute-topline">
+          <span class="repute-name">${it.name||''}</span>
+          <span class="repute-meta">${meta}</span>
+          </div>${honorChips}
+          <div class="repute-quote prose">${it.quote_html||''}</div>
+        </div>
+      </article>`;
+    });
+
+    // 插入 + 占位头像 + 纵向自动步进滚动
+    const lazy = lazyAppend(mount, cards, {
+        batchMobile: 3,
+        batchDesktop: 9999,
+        selectorLast: ':scope > .repute-card',
+        rootMargin: '200px',
+        appendCallback: ()=>{
+            applyImageFallbacks(mount);
+            // 媒体抛光在 pages-mediafx.js 中基于 .media-fx 自动处理
+            if (window.innerWidth >= 721 && typeof setupStepScroll === 'function'){
+                if (!window.__reputeScrollStop){
+                    window.__reputeScrollStop = setupStepScroll(mount, {
+                        axis: 'y', pause: 2400, duration: 650, selector: ':scope > .repute-card'
+                    });
+                }
+            }
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', loadReputationHome);
+/* END PATCH */
+
+
+
+
 
 
 
@@ -1389,6 +1460,7 @@ async function init(){
 
 
 document.addEventListener('DOMContentLoaded', init);
+
 
 /* ---- helpers for news height ---- */
 

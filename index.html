@@ -1,93 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="format-detection" content="telephone=no, email=no"> <!-- 避免 iOS 误识别 -->
-    <meta name="color-scheme" content="dark light">                  <!-- 表示双主题可用 -->
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+    <meta content="telephone=no, email=no" name="format-detection"> <!-- 避免 iOS 误识别 -->
+    <meta content="dark light" name="color-scheme">                  <!-- 表示双主题可用 -->
     <title>ROMA Lab | Next-Generation AI for Social Science</title>
-    <meta name="description" content="ROMA Lab — AI research on graph learning, multimodal reasoning, and neural-symbolic systems." />
-    <meta name="theme-color" content="#0f172a" />
-    <meta property="og:title" content="ROMA Lab" />
-    <meta property="og:description" content="AI research on gr knowledge systems." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://roma-ai-lab.github.io/" />
-    <link rel="icon" href="assets/favicon.svg" />
-    <link rel="stylesheet" href="css/styles.css" />
+    <meta content="ROMA Lab — AI research on graph learning, multimodal reasoning, and neural-symbolic systems."
+          name="description"/>
+    <meta content="#0f172a" name="theme-color"/>
+    <meta content="ROMA Lab" property="og:title"/>
+    <meta content="AI research on gr knowledge systems." property="og:description"/>
+    <meta content="website" property="og:type"/>
+    <meta content="https://roma-ai-lab.github.io/" property="og:url"/>
+    <link href="assets/favicon.svg" rel="icon"/>
+    <link href="css/styles.css" rel="stylesheet"/>
     <!-- Preconnect & DNS Prefetch for video CDNs -->
-    <link rel="preconnect" href="https://player.bilibili.com" crossorigin>
-    <link rel="preconnect" href="https://static.hdslb.com" crossorigin>
-    <link rel="dns-prefetch" href="//player.bilibili.com">
-<!--    <link rel="preconnect" href="https://www.youtube.com" crossorigin>-->
-<!--    <link rel="dns-prefetch" href="//www.youtube.com">-->
-<!--    <link rel="preconnect" href="https://player.vimeo.com" crossorigin>-->
-<!--    <link rel="dns-prefetch" href="//player.vimeo.com">-->
-<!--    <link rel="preconnect" href="https://v.qq.com" crossorigin>-->
-<!--    <link rel="dns-prefetch" href="//v.qq.com">-->
+    <link crossorigin href="https://player.bilibili.com" rel="preconnect">
+    <link crossorigin href="https://static.hdslb.com" rel="preconnect">
+    <link href="//player.bilibili.com" rel="dns-prefetch">
 
 </head>
 <body>
 <!-- Header / Nav -->
 <header class="site-header" role="banner">
     <div class="container nav">
-        <a class="brand" href="#home" aria-label="ROMA Lab - Home" data-link>
-            <svg viewBox="0 0 64 64" aria-hidden="true">
-                <rect x="6" y="6" width="52" height="52" rx="12" fill="currentColor" opacity=".12"></rect>
-                <path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round"></path>
+        <a aria-label="ROMA Lab - Home" class="brand" data-link href="#home">
+            <svg aria-hidden="true" viewBox="0 0 64 64">
+                <rect fill="currentColor" height="52" opacity=".12" rx="12" width="52" x="6" y="6"></rect>
+                <path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46" fill="none" stroke="currentColor" stroke-linecap="round"
+                      stroke-width="4"></path>
             </svg>
             <span>ROMA Lab</span>
         </a>
 
         <!-- primary nav (desktop inline) -->
-        <nav id="primary-nav" class="nav-links-inline" aria-label="Primary" role="menubar">
-            <a href="#home" data-link role="menuitem" class="active">HOME</a>
-            <a href="#videos" data-link role="menuitem">RESEARCH</a>
-            <a href="#people" data-link role="menuitem">PEOPLE</a>
-            <a href="#publications" data-link role="menuitem">PUBLICATIONS</a>
-            <a href="#research" data-link role="menuitem">PROJECT</a>
-            <a href="#life" data-link role="menuitem">LIFE</a>
-            <a id="nav-manual" href="#" role="menuitem">LAB MANUAL</a>
+        <nav aria-label="Primary" class="nav-links-inline" id="primary-nav" role="menubar">
+            <a class="active" data-link href="#home" role="menuitem">HOME</a>
+            <a data-link href="#videos" role="menuitem">RESEARCH</a>
+            <a data-link href="#people" role="menuitem">PEOPLE</a>
+            <a data-link href="#publications" role="menuitem">PUBLICATIONS</a>
+            <a data-link href="#research" role="menuitem">PROJECT</a>
+            <a data-link href="#life" role="menuitem">LIFE</a>
+            <a data-link href="#reputation" role="menuitem">REPUTATION</a>
         </nav>
 
         <!-- controls -->
         <div class="controls">
-            <button id="theme-toggle" class="btn ghost" aria-label="Toggle theme" title="Toggle light/dark">
+            <button aria-label="Toggle theme" class="btn ghost" id="theme-toggle" title="Toggle light/dark">
                 <span aria-hidden="true">🌓</span><span class="sr-only">Toggle theme</span>
             </button>
-<!--            <a class="btn primary" href="https://github.com/ROMA-AI-Lab" target="_blank" rel="noopener">GitHub</a>-->
-
-            <!-- mobile menu trigger -->
             <button
-                    id="menu"
-                    class="btn ghost"
-                    aria-label="Menu"
-                    title="Menu"
                     aria-controls="mobile-drawer"
-                    aria-expanded="false">☰</button>
+                    aria-expanded="false"
+                    aria-label="Menu"
+                    class="btn ghost"
+                    id="menu"
+                    title="Menu">☰
+            </button>
         </div>
     </div>
 </header>
 
 <!-- Mobile drawer & overlay (for small screens) -->
-<div id="nav-overlay" class="nav-overlay" aria-hidden="true"></div>
-<aside id="mobile-drawer" class="nav-drawer" aria-label="Mobile navigation" aria-hidden="true">
+<div aria-hidden="true" class="nav-overlay" id="nav-overlay"></div>
+<aside aria-hidden="true" aria-label="Mobile navigation" class="nav-drawer" id="mobile-drawer">
     <div class="title">Menu</div>
-    <a href="#home" data-link>Home</a>
-    <a href="#videos" data-link>Research</a>
-    <a href="#people" data-link>People</a>
-    <a href="#publications" data-link>Publications</a>
-    <a href="#research" data-link>Project</a>
-    <a href="#life" data-link>Life</a>
-    <a id="drawer-manual" href="#">Lab Manual</a>
+    <a data-link href="#home">Home</a>
+    <a data-link href="#videos">Research</a>
+    <a data-link href="#people">People</a>
+    <a data-link href="#publications">Publications</a>
+    <a data-link href="#research">Project</a>
+    <a data-link href="#life">Life</a>
+    <a data-link href="#reputation" role="menuitem">Reputation</a>
     <div class="spacer"></div>
     <div class="footer">
-        <button id="drawer-theme" class="btn ghost">🌓</button>
-        <a class="btn" href="https://github.com/ROMA-AI-Lab" target="_blank" rel="noopener">GitHub</a>
+        <button class="btn ghost" id="drawer-theme">🌓</button>
+        <a class="btn" href="https://github.com/ROMA-AI-Lab" rel="noopener" target="_blank">GitHub</a>
     </div>
 </aside>
 
 <!-- ======== HOME (Overview + News & Highlights) ======== -->
-<main id="home" class="hero" role="main" data-view="home">
+<main class="hero" data-view="home" id="home" role="main">
     <div class="container hero-wrap">
         <div>
             <span class="badge">AI Theory · Social Intelligence · Nonlinear Data Mining</span>
@@ -96,78 +90,81 @@
                 <strong>ROMA Lab (Responsible Online Media Analytics Lab)</strong> explores the frontier between
                 <strong>AI</strong> and <strong>Social Media</strong>, aiming to build <strong>Next-Generation AI
                 for Social Science</strong>. Guided by the principles of being <strong>Green</strong>,
-                <strong>Human-Centric</strong>, and <strong>Trustworthy</strong>, we pursue research that is theoretically profound with real-world impact
+                <strong>Human-Centric</strong>, and <strong>Trustworthy</strong>, we pursue research that is
+                theoretically profound with real-world impact
                 — empowering AI to truly understand and serve human society.
             </p>
             <div class="hero-actions">
-                <a id="call2students" class="btn ghost" href="#"><strong>🔥Lab Manual</strong></a>
-<!--                <a class="btn" href="https://www.bilibili.com/video/BV1iT4bzsEce/?share_source=copy_web&vd_source=dc2c6946b0127024c2225b0e695d9a83" target="_blank"><img src="/assets/bilibili.svg" height="20"></a>-->
-<!--                <a class="btn" href="https://xhslink.com/m/cZO7eAkIYO" target="_blank"><img src="/assets/redbook.png" height="25"></a>-->
-<!--                <a class="btn" href="#research" data-link>Explore Research</a>-->
-<!--                <a class="btn ghost" href="#people" data-link>Meet the Team</a>-->
-                <a class="btn" href="quiz/index.html" target="_blank" ><strong>🔥CIT @ ROMA Lab</strong></a>
+                <a class="btn ghost cta" href="#" id="call2students"><strong>🔥Lab Manual</strong></a>
+                <a class="btn ghost" href="quiz/index.html" target="_blank"><strong>🔥CIT @ ROMA Lab</strong></a>
                 <a class="btn ghost" href="mailto:roma_lab@yeah.net"><strong>📩 Email</strong></a>
             </div>
             <br>
 
             <div class="hero-card">
                 <div class="hero-grid">
-                    <div class="metric"><div class="k" id="metric-pubs">—</div><div class="meta" >Publications </div></div>
-                    <div class="metric"><div class="k" id="metric-projects">—</div><div class="meta">Active Projects</div></div>
-                    <div class="metric"><div class="k" id="metric-members">—</div><div class="meta">Lab Members</div></div>
+                    <div class="metric">
+                        <div class="k" id="metric-pubs">—</div>
+                        <div class="meta">Publications</div>
+                    </div>
+                    <div class="metric">
+                        <div class="k" id="metric-projects">—</div>
+                        <div class="meta">Active Projects</div>
+                    </div>
+                    <div class="metric">
+                        <div class="k" id="metric-members">—</div>
+                        <div class="meta">Lab Members</div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <aside class="hero-card" aria-labelledby="news-head">
+        <aside aria-labelledby="news-head" class="hero-card">
             <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
-                <h2 id="news-head" class="news-head" style="margin:0">News & Highlights</h2>
-                <a class="btn ghost" href="pages/news.html" target="_blank" rel="noopener" aria-label="View all news">All News →</a>
+                <h2 class="news-head" id="news-head" style="margin:0">News & Highlights</h2>
+                <a aria-label="View all news" class="btn ghost" href="pages/news.html" rel="noopener" >All
+                    News →</a>
             </div>
-            <ul id="news-list" class="v-scroll" aria-live="polite"></ul>
+            <ul aria-live="polite" class="v-scroll" id="news-list"></ul>
         </aside>
     </div>
 </main>
 
-<section id="videos" aria-labelledby="videos-h" data-view="videos">
+<section aria-labelledby="videos-h" data-view="videos" id="videos">
     <div class="container">
         <div class="section-head">
             <div>
                 <h2 id="videos-h">Research</h2>
-<!--                <p class="section-desc"></p>-->
             </div>
-<!--            <div class="filters" style="display:flex; gap:8px; align-items:center">-->
-<!--                &lt;!&ndash; 预留：未来可做筛选 chips &ndash;&gt;-->
-<!--            </div>-->
         </div>
-        <div id="video-grid" class="grid videos" aria-live="polite"></div>
+        <div aria-live="polite" class="grid videos" id="video-grid"></div>
         <noscript><p>Please enable JavaScript to view the video wall.</p></noscript>
     </div>
 </section>
 
 
-
-
 <!-- ======== PEOPLE ======== -->
-<section id="people" aria-labelledby="people-h" data-view="people">
+<section aria-labelledby="people-h" data-view="people" id="people">
     <div class="container">
         <div class="section-head">
             <div>
                 <h2 id="people-h">People</h2>
-                <p class="section-desc">We are a collaborative team of faculty, postdocs, students, and research engineers.</p>
+                <p class="section-desc">We are a collaborative team of faculty, postdocs, students, and research
+                    engineers.</p>
             </div>
             <div class="filters" style="display:flex; gap:8px; align-items:center">
-                <input type="search" id="people-search" placeholder="Search people (name, role, topic)…" aria-label="Search people" />
-                <a class="btn ghost cta" href="pages/people.html" target="_blank" rel="noopener">All People →</a>
+                <input aria-label="Search people" id="people-search" placeholder="Search people (name, role, topic)…"
+                       type="search"/>
+                <a class="btn ghost" href="pages/people.html" rel="noopener">Full List</a>
             </div>
         </div>
-        <div class="grid people v-scroll" id="people-grid" aria-live="polite"></div>
+        <div aria-live="polite" class="grid people v-scroll" id="people-grid"></div>
     </div>
 </section>
 
 
 <!-- ======== PUBLICATIONS ======== -->
-<section id="publications" aria-labelledby="pub-h" data-view="publications">
+<section aria-labelledby="pub-h" data-view="publications" id="publications">
     <div class="container">
         <div class="section-head">
             <div>
@@ -176,12 +173,14 @@
             </div>
             <div class="filters" style="display:flex; gap:8px; align-items:center">
                 <!-- 把三控件包在 details 里 -->
-                <details id="pub-filters" class="filters-mobile">
+                <details class="filters-mobile" id="pub-filters">
                     <summary>Filters</summary>
-                    <!-- 原来的 input + select 三件套 -->
-                    <input type="search" id="pub-search" placeholder="Search title/author/venue…" aria-label="Search publications" />
-                    <select id="pub-year" aria-label="Filter by year"><option value="">All years</option></select>
-                    <select id="pub-type" aria-label="Filter by type">
+                    <input aria-label="Search publications" id="pub-search" placeholder="Search title/author/venue…"
+                           type="search"/>
+                    <select aria-label="Filter by year" id="pub-year">
+                        <option value="">All years</option>
+                    </select>
+                    <select aria-label="Filter by type" id="pub-type">
                         <option value="">All types</option>
                         <option>Conference</option>
                         <option>Journal</option>
@@ -189,39 +188,37 @@
                     </select>
                 </details>
 
-                <a class="btn ghost cta" href="pages/publications.html" target="_blank" rel="noopener">Full Publications →</a>
+                <a class="btn ghost" href="pages/publications.html" rel="noopener">Full List</a>
             </div>
         </div>
         <div class="count"><span id="pub-count">—</span> results</div>
-        <div class="grid pub v-scroll" id="pub-list" aria-live="polite"></div>
-<!--        <div class="filters" style="display:flex; gap:8px; align-items:center">-->
-<!--        <a class="btn ghost" href="pages/publications.html" target="_blank" rel="noopener">Full Publications →</a>-->
-<!--        </div>-->
+        <div aria-live="polite" class="grid pub v-scroll" id="pub-list"></div>
     </div>
 </section>
 
 
 <!-- ======== RESEARCH ======== -->
-<section id="research" aria-labelledby="research-h" data-view="research">
+<section aria-labelledby="research-h" data-view="research" id="research">
     <div class="container">
         <div class="section-head">
             <div>
                 <h2 id="research-h">Project</h2>
-                <p class="section-desc">Core directions span graph-of-thought reasoning, graph prompting, multimodal token compression, and neural-symbolic knowledge systems.</p>
+                <p class="section-desc">Core directions span graph-of-thought reasoning, graph prompting, multimodal
+                    token compression, and neural-symbolic knowledge systems.</p>
             </div>
             <div class="filters" style="display:flex; gap:8px; align-items:center">
-                <select id="research-area-filter" aria-label="Filter by area">
+                <select aria-label="Filter by area" id="research-area-filter">
                     <option value="">All areas</option>
                 </select>
-                <a class="btn ghost cta" href="pages/projects.html" target="_blank" rel="noopener">Full Projects →</a>
+                <a class="btn ghost" href="pages/projects.html" rel="noopener">Full List</a>
             </div>
         </div>
-        <div class="grid research v-scroll" id="research-grid" aria-live="polite"></div>
+        <div aria-live="polite" class="grid research v-scroll" id="research-grid"></div>
     </div>
 </section>
 
 <!-- ======== LIFE (Home preview) ======== -->
-<section id="life" aria-labelledby="life-h">
+<section aria-labelledby="life-h" id="life">
     <div class="container">
         <div class="section-head">
             <div>
@@ -229,82 +226,104 @@
                 <p class="section-desc">Snapshots from our lab life. Click to view larger.</p>
             </div>
             <div>
-                <a id="life-all-btn" class="btn ghost cta" href="pages/life.html" target="_blank" rel="noopener">All Photos →</a>
+                <a class="btn ghost" href="pages/life.html" id="life-all-btn" rel="noopener">Full List</a>
             </div>
         </div>
-        <div id="life-home-grid" class="grid"></div>
+        <div class="grid" id="life-home-grid"></div>
     </div>
 </section>
 
-<!-- ======== LAB MANUAL ======== -->
-<section id="manual" aria-labelledby="manual-h" data-view="manual">
+
+<!-- ======== PEER RECOGNITION ======== -->
+<section aria-labelledby="reputation-h" data-view="reputation" id="reputation">
     <div class="container">
         <div class="section-head">
             <div>
-                <h2 id="manual-h">Lab Manual</h2>
-                <p class="section-desc">Our official lab manual is hosted externally. Open it in a new tab below.</p>
+                <h2 id="reputation-h">Peer Recognition</h2>
+                <p class="section-desc">Selected quotes from international peers about our research.</p>
             </div>
-            <div>
-                <a id="manual-cta" class="btn cta" href="#" target="_blank" rel="noopener">Open Lab Manual ↗</a>
+            <div class="filters" style="display:flex; gap:8px; align-items:center">
+                <a class="btn ghost" href="pages/reputations.html" rel="noopener">Full List</a>
             </div>
         </div>
+        <div aria-live="polite" class="grid people v-scroll" id="repute-list"></div>
     </div>
 </section>
+
+
+<!--&lt;!&ndash; ======== LAB MANUAL ======== &ndash;&gt;-->
+<!--<section id="manual" aria-labelledby="manual-h" data-view="manual">-->
+<!--    <div class="container">-->
+<!--        <div class="section-head">-->
+<!--            <div>-->
+<!--                <h2 id="manual-h">Lab Manual</h2>-->
+<!--                <p class="section-desc">Our official lab manual is hosted externally. Open it in a new tab below.</p>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <a id="manual-cta" class="btn cta" href="#" target="_blank" rel="noopener">Open Lab Manual ↗</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
 
 <!-- Footer -->
 <footer role="contentinfo">
     <div class="container foot">
         <div class="foot-left">
-            <svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+            <svg aria-hidden="true" height="22" viewBox="0 0 64 64" width="22">
+                <path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46" fill="none" stroke="currentColor" stroke-linecap="round"
+                      stroke-width="5"/>
+            </svg>
             <small>© <span id="year"></span> ROMA Lab. All rights reserved.</small>
         </div>
         <div class="foot-links">
-            <a class="chip" href="https://www.bilibili.com/video/BV1iT4bzsEce/?share_source=copy_web&vd_source=dc2c6946b0127024c2225b0e695d9a83" target="_blank"><img src="/assets/bilibili.png" height="25"></a>
-            <a class="chip" href="https://xhslink.com/m/cZO7eAkIYO" target="_blank"><img src="/assets/redbook.png" height="25"></a>
+            <a class="chip"
+               href="https://www.bilibili.com/video/BV1iT4bzsEce/?share_source=copy_web&vd_source=dc2c6946b0127024c2225b0e695d9a83"
+               target="_blank"><img height="25" src="/assets/bilibili.png"></a>
+            <a class="chip" href="https://xhslink.com/m/cZO7eAkIYO" target="_blank"><img height="25"
+                                                                                         src="/assets/redbook.png"></a>
             <a class="chip" href="mailto:roma_lab@yeah.net">📩</a>
-            <a class="btn primary" href="https://github.com/ROMA-AI-Lab" target="_blank" rel="noopener">GitHub</a>
-<!--            <a class="chip" href="https://github.com/ROMA-AI-Lab" target="_blank" rel="noopener">GitHub</a>-->
-<!--            <a class="chip" href="#home" data-link>Back to top ↑</a>-->
+            <a class="btn primary" href="https://github.com/ROMA-AI-Lab" rel="noopener" target="_blank">GitHub</a>
         </div>
     </div>
 
     <!-- Back-to-top (mobile only) -->
-    <button id="to-top" class="btn ghost hidden cta" aria-label="Back to top" title="Back to top">↑</button>
+    <button aria-label="Back to top" class="btn ghost hidden cta" id="to-top" title="Back to top">↑</button>
 
 
 </footer>
 
-<script type="module" src="js/main.js"></script>
+<script src="js/main.js" type="module"></script>
 <script defer src="js/videos.js"></script>
 <!--<script src="js/mediafx.js"></script>-->
 <script>
     /* Enhance: People avatars + text polish */
-    (function(){
+    (function () {
         const grid = document.getElementById('people-grid');
-        if(!grid) return;
+        if (!grid) return;
 
         // =========（已有）图片包裹与视差 =========
-        function wrapOnce(img){
-            if(!img || img.closest('.media-fx')) return;
-            if(img.dataset && img.dataset.plain === '1') return;
+        function wrapOnce(img) {
+            if (!img || img.closest('.media-fx')) return;
+            if (img.dataset && img.dataset.plain === '1') return;
             const box = document.createElement('div');
             box.className = 'media-fx';
             const p = img.parentNode;
             p.insertBefore(box, img);
             box.appendChild(img);
-            if (matchMedia('(hover: hover)').matches){
+            if (matchMedia('(hover: hover)').matches) {
                 let raf = 0;
-                box.addEventListener('mousemove', (e)=>{
+                box.addEventListener('mousemove', (e) => {
                     const r = box.getBoundingClientRect();
-                    const mx = ((e.clientX - r.left)/r.width)*100;
-                    const my = ((e.clientY - r.top)/r.height)*100;
+                    const mx = ((e.clientX - r.left) / r.width) * 100;
+                    const my = ((e.clientY - r.top) / r.height) * 100;
                     cancelAnimationFrame(raf);
-                    raf = requestAnimationFrame(()=>{
+                    raf = requestAnimationFrame(() => {
                         box.style.setProperty('--mx', mx + '%');
                         box.style.setProperty('--my', my + '%');
                     });
                 });
-                box.addEventListener('mouseleave', ()=>{
+                box.addEventListener('mouseleave', () => {
                     box.style.removeProperty('--mx');
                     box.style.removeProperty('--my');
                 });
@@ -312,11 +331,11 @@
         }
 
         // === NEW: 文本美化（为姓名/角色加上统一类名） ===
-        function polishText(card){
-            if(!card) return;
+        function polishText(card) {
+            if (!card) return;
 
             // NEW: 给 People 卡打上 people-card 类，用于应用层次光影
-            if(!card.classList.contains('people-card')){
+            if (!card.classList.contains('people-card')) {
                 card.classList.add('people-card');
             }
 
@@ -325,28 +344,28 @@
             // 1) 猜测“姓名”元素：常见是 h3/h4 或包含 name/title 的类名
             let nameEl = body.querySelector('.person-name, .name, .title, .card-title, h3, h4, h5');
             // 如果没找到，但 body 的第一个元素是纯文本，也包一层
-            if(!nameEl){
-                const firstEl = [...body.children].find(n=>n.textContent && n.textContent.trim().length>0);
-                if(firstEl && !firstEl.querySelector('*')) nameEl = firstEl; // 容错
+            if (!nameEl) {
+                const firstEl = [...body.children].find(n => n.textContent && n.textContent.trim().length > 0);
+                if (firstEl && !firstEl.querySelector('*')) nameEl = firstEl; // 容错
             }
-            if(nameEl && !nameEl.classList.contains('person-name')){
+            if (nameEl && !nameEl.classList.contains('person-name')) {
                 nameEl.classList.add('person-name');
             }
 
             // 2) 角色/单位：常见放在 .meta 里
             const meta = body.querySelector('.person-meta') || body.querySelector('.meta');
-            if(meta && !meta.classList.contains('person-meta')){
+            if (meta && !meta.classList.contains('person-meta')) {
                 meta.classList.add('person-meta');
                 // 可选：把角色加粗一点（如果你的人物 meta 是“Role · Affiliation”）
                 // 尝试把第一个分段用 span 包一下
                 const txt = meta.textContent.trim();
-                if(txt && !meta.querySelector('.person-role')){
+                if (txt && !meta.querySelector('.person-role')) {
                     // 简易切分：遇到 · 或 | 或 , 分隔
                     const m = txt.split(/[\u00B7·\|,]/);
-                    if(m.length > 1){
+                    if (m.length > 1) {
                         meta.innerHTML =
-                            `<span class="person-role">${m[0].trim()}</span><span class="person-sep"> · </span>${txt.slice(m[0].length+1).trim()}`;
-                    }else{
+                            `<span class="person-role">${m[0].trim()}</span><span class="person-sep"> · </span>${txt.slice(m[0].length + 1).trim()}`;
+                    } else {
                         // 只有一个字段时也给它包一下
                         meta.innerHTML = `<span class="person-role">${txt}</span>`;
                     }
@@ -355,20 +374,20 @@
         }
 
         // === NEW: 扫描每张卡片，应用文本美化 ===
-        function scanCards(){
+        function scanCards() {
             grid.querySelectorAll('.card').forEach(polishText);
         }
 
         // 初次渲染后的全量扫描：图片 + 文本
-        function scanNow(){
+        function scanNow() {
             grid.querySelectorAll('img').forEach(wrapOnce);
             scanCards();
         }
 
-        const mo = new MutationObserver(()=> scanNow());
-        mo.observe(grid, {childList:true, subtree:true});
+        const mo = new MutationObserver(() => scanNow());
+        mo.observe(grid, {childList: true, subtree: true});
 
-        if(document.readyState === 'loading'){
+        if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', scanNow);
         } else {
             scanNow();
@@ -378,82 +397,84 @@
 </script>
 <script>
     /* Enhance: Projects (#research-grid) & Life (#life-home-grid) */
-    (function(){
+    (function () {
         const projGrid = document.getElementById('research-grid');
         const lifeGrid = document.getElementById('life-home-grid');
-        if(!projGrid && !lifeGrid) return;
+        if (!projGrid && !lifeGrid) return;
 
         const hasHover = matchMedia('(hover: hover)').matches;
 
-        function wrapMediaFx(img){
-            if(!img || img.closest('.media-fx')) return;
-            if(img.dataset && img.dataset.plain === '1') return;
+        function wrapMediaFx(img) {
+            if (!img || img.closest('.media-fx')) return;
+            if (img.dataset && img.dataset.plain === '1') return;
             const box = document.createElement('div');
             box.className = 'media-fx';
             const p = img.parentNode;
             p.insertBefore(box, img);
             box.appendChild(img);
-            if (hasHover){
+            if (hasHover) {
                 let raf = 0;
-                box.addEventListener('mousemove', (e)=>{
+                box.addEventListener('mousemove', (e) => {
                     const r = box.getBoundingClientRect();
-                    const mx = ((e.clientX - r.left)/r.width)*100;
-                    const my = ((e.clientY - r.top)/r.height)*100;
+                    const mx = ((e.clientX - r.left) / r.width) * 100;
+                    const my = ((e.clientY - r.top) / r.height) * 100;
                     cancelAnimationFrame(raf);
-                    raf = requestAnimationFrame(()=>{
+                    raf = requestAnimationFrame(() => {
                         box.style.setProperty('--mx', mx + '%');
                         box.style.setProperty('--my', my + '%');
                     });
                 });
-                box.addEventListener('mouseleave', ()=>{
-                    box.style.removeProperty('--mx'); box.style.removeProperty('--my');
+                box.addEventListener('mouseleave', () => {
+                    box.style.removeProperty('--mx');
+                    box.style.removeProperty('--my');
                 });
             }
         }
 
-        function polishProjectCard(card){
-            if(!card) return;
+        function polishProjectCard(card) {
+            if (!card) return;
             card.classList.add('project-card'); // 吃到玻璃卡片样式
             const body = card.querySelector('.body') || card;
 
             // 标题
             let title = body.querySelector('.project-title, .title, h3, h4, h5');
-            if(title && !title.classList.contains('project-title')){
+            if (title && !title.classList.contains('project-title')) {
                 title.classList.add('project-title');
             }
             // 元信息/副标题（如果有）
             let meta = body.querySelector('.project-meta, .meta, .subtitle, .desc, p');
-            if(meta && !meta.classList.contains('project-meta')){
+            if (meta && !meta.classList.contains('project-meta')) {
                 meta.classList.add('project-meta');
             }
             // 图片包裹
             card.querySelectorAll('img').forEach(wrapMediaFx);
         }
 
-        function polishLifeCard(card){
-            if(!card) return;
+        function polishLifeCard(card) {
+            if (!card) return;
             card.classList.add('life-card'); // 统一卡片语言
             const body = card.querySelector('.body') || card;
 
             // Life 可能是纯图片卡，也可能有 caption
             let title = body.querySelector('.life-title, .title, figcaption, h4, h5');
-            if(title && !title.classList.contains('life-title')){
+            if (title && !title.classList.contains('life-title')) {
                 title.classList.add('life-title');
             }
             let meta = body.querySelector('.life-meta, .meta, .subtitle, p');
-            if(meta && !meta.classList.contains('life-meta')){
+            if (meta && !meta.classList.contains('life-meta')) {
                 meta.classList.add('life-meta');
             }
             // 图片包裹
             card.querySelectorAll('img').forEach(wrapMediaFx);
         }
 
-        function scanProjects(){
-            if(!projGrid) return;
+        function scanProjects() {
+            if (!projGrid) return;
             projGrid.querySelectorAll('.card').forEach(polishProjectCard);
         }
-        function scanLife(){
-            if(!lifeGrid) return;
+
+        function scanLife() {
+            if (!lifeGrid) return;
             lifeGrid.querySelectorAll('.card, figure, .photo').forEach(polishLifeCard);
         }
 
@@ -461,13 +482,13 @@
         const moProj = projGrid ? new MutationObserver(scanProjects) : null;
         const moLife = lifeGrid ? new MutationObserver(scanLife) : null;
 
-        if(projGrid){
+        if (projGrid) {
             scanProjects();
-            moProj.observe(projGrid, {childList:true, subtree:true});
+            moProj.observe(projGrid, {childList: true, subtree: true});
         }
-        if(lifeGrid){
+        if (lifeGrid) {
             scanLife();
-            moLife.observe(lifeGrid, {childList:true, subtree:true});
+            moLife.observe(lifeGrid, {childList: true, subtree: true});
         }
     })();
 </script>
@@ -477,7 +498,7 @@
         const drawerManual = document.getElementById('drawer-manual');
         const navManual = document.getElementById('nav-manual');
         if (drawerManual && navManual) {
-            drawerManual.addEventListener('click', (e)=>{
+            drawerManual.addEventListener('click', (e) => {
                 e.preventDefault();
                 navManual.click(); // 触发 main.js 中 wireManualLink 的逻辑
             });
@@ -485,7 +506,7 @@
         const drawerTheme = document.getElementById('drawer-theme');
         const themeToggle = document.getElementById('theme-toggle');
         if (drawerTheme && themeToggle) {
-            drawerTheme.addEventListener('click', ()=> themeToggle.click());
+            drawerTheme.addEventListener('click', () => themeToggle.click());
         }
     });
 </script>
@@ -493,8 +514,8 @@
 <div id="cinematic-overlay">
     <div class="cinematic-backdrop"></div>
     <div class="cinematic-player">
-        <button class="cinematic-close" aria-label="Close video">&times;</button>
-        <iframe id="cinematic-iframe" allowfullscreen loading="lazy"></iframe>
+        <button aria-label="Close video" class="cinematic-close">&times;</button>
+        <iframe allowfullscreen id="cinematic-iframe" loading="lazy"></iframe>
     </div>
 </div>
 

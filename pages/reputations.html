@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Recognition | ROMA Lab</title>
+    <meta name="description" content="All collected quotes from international peers."/>
+    <link rel="icon" href="../assets/favicon.svg"/>
+    <link rel="stylesheet" href="../css/styles.css"/>
+    <style>
+        header.simple {position:sticky;top:0;z-index:40;background:var(--panel);border-bottom:1px solid var(--border)}
+        header.simple .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
+        header.simple .brand{display:flex;align-items:center;gap:8px;font-weight:700}
+        main{padding:32px 0}
+        .filters-row{display:flex;gap:10px;flex-wrap:wrap}
+        .filters-row input,.filters-row select{padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--panel);color:var(--text)}
+    </style>
+</head>
+<body>
+<!-- 轻量页头 -->
+<header class="simple">
+    <div class="container bar">
+        <div class="left">
+            <a class="brand" href="../index.html#home">
+                <svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true">
+                    <path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46"
+                          stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/>
+                </svg>
+                <span>ROMA Lab</span>
+            </a>
+            <span class="meta">All Recognition</span>
+        </div>
+        <div class="right">
+            <button id="theme-toggle" class="btn ghost" title="Toggle theme">🌓</button>
+            <a class="btn" href="../index.html#reputation">Back to Home</a>
+        </div>
+    </div>
+</header>
+<main class="container" style="padding-top:32px">
+    <div class="section-head">
+        <div>
+            <h2>Peer Recognition</h2>
+            <p class="section-desc">All collected quotes from international peers.</p>
+        </div>
+    </div>
+
+    <div id="repute-all-grid" class="grid people" aria-live="polite"></div>
+</main>
+
+<!-- Footer -->
+<footer role="contentinfo">
+    <div class="container foot">
+        <div class="foot-left">
+            <svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+            <small>© <span id="year"></span> ROMA Lab. All rights reserved.</small>
+        </div>
+        <div class="foot-links">
+            <a class="chip" href="https://www.bilibili.com/video/BV1iT4bzsEce/?share_source=copy_web&vd_source=dc2c6946b0127024c2225b0e695d9a83" target="_blank"><img src="/assets/bilibili.png" height="25"></a>
+            <a class="chip" href="https://xhslink.com/m/cZO7eAkIYO" target="_blank"><img src="/assets/redbook.png" height="25"></a>
+            <a class="chip" href="mailto:roma_lab@yeah.net">📩</a>
+            <a class="btn primary" href="https://github.com/ROMA-AI-Lab" target="_blank" rel="noopener">GitHub</a>
+            <!--            <a class="chip" href="https://github.com/ROMA-AI-Lab" target="_blank" rel="noopener">GitHub</a>-->
+            <!--            <a class="chip" href="#home" data-link>Back to top ↑</a>-->
+        </div>
+    </div>
+
+
+</footer>
+
+<script defer src="../js/main.js"></script>
+<script src="pages.js"></script>
+<script src="../js/pages-mediafx.js"></script>
+<!-- BEGIN PATCH: render script in pages/reputation(s).html -->
+<script>
+    (async function(){
+        const mount = document.getElementById('repute-all-grid');
+        try{
+            const r = await fetch('../data/reputation.json', { cache: 'no-store' });
+            const j = r.ok ? await r.json() : { items: [] };
+
+
+
+          //   const items = (j.items||[]).slice().sort((a,b)=>(b.year||0)-(a.year||0));
+          //
+          //   const html = items.map(it => {
+          //       const meta = [it.role||'', it.year||''].filter(Boolean).join(' · ');
+          //       const avatar = it.avatar
+          //           ? `<img src="${it.avatar}" alt="${it.name}" data-fallback="avatar">`
+          //           : `<div class="avatar placeholder" aria-label="${it.name||'Peer'}"></div>`;
+          //       return `
+          // <article class="repute-card card fx">
+          //   <div class="repute-media media-fx">${avatar}</div>
+          //   <div class="repute-body">
+          //     <div class="repute-topline">
+          //       <span class="repute-name">${it.name||''}</span>
+          //       <span class="repute-meta">${meta}</span>
+          //     </div>
+          //     <div class="repute-quote prose">${it.quote_html||''}</div>
+          //   </div>
+          // </article>`;
+          //   }).join('');
+
+
+            const items = (j.items || []).slice().sort((a,b)=>(b.year||0)-(a.year||0));
+
+            const html = items.map(it => {
+                const meta = [it.role || '', (it.year ?? '')].filter(Boolean).join(' · ');
+                const honors = Array.isArray(it.honor) && it.honor.length
+                    ? `<ul class="repute-honors">${it.honor.map(h=>`<li class="chip chip--honor">${h}</li>`).join('')}</ul>`
+                    : '';
+                const avatar = it.avatar
+                    ? `<img src="${it.avatar}" alt="${it.name}" data-fallback="avatar">`
+                    : `<div class="avatar placeholder" aria-label="${it.name||'Peer'}"></div>`;
+
+                return `
+    <article class="repute-card card fx">
+      <div class="repute-media media-fx">${avatar}</div>
+      <div class="repute-body">
+        <div class="repute-topline">
+          <span class="repute-name">${it.name||''}</span>
+          <span class="repute-meta">${meta}</span>
+        </div>
+        ${honors}
+        <div class="repute-quote prose">${it.quote_html||''}</div>
+      </div>
+    </article>`;
+            }).join('');
+
+
+
+
+
+
+            mount.innerHTML = html;
+
+            // ① 图片占位：使用 main.js 中的工具
+            if (typeof applyImageFallbacks === 'function') {
+                applyImageFallbacks(mount);
+            }
+
+            // ② 整卡抛光：pages-mediafx.js 已在 init() 里自动调用 polishReputation()
+            // 若用户极少场景禁用了自动 init，可手动再触发一次（幂等）：
+            if (typeof polishReputation === 'function') {
+                polishReputation();
+            }
+
+        }catch(e){
+            mount.innerHTML = `<p class="section-desc">Failed to load reputation data.</p>`;
+            console.warn('[reputation list] load error:', e);
+        }
+    })();
+</script>
+<!-- END PATCH -->
+
+
+</body>
+</html>
