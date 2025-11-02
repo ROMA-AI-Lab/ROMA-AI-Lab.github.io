@@ -1,0 +1,61 @@
+{
+  "settings": {
+    "home_limit": 5
+  },
+  "items": [
+    {
+      "name": "Prof. Alexandra Smith",
+      "role": "Institute of Advanced Studies",
+      "honor": [
+        "IEEE Fellow",
+        "AAAI Fellow",
+        "ACM Fellow"
+      ],
+      "avatar": "/assets/peers/xiangguo.jpeg",
+      "quote_html": "This project demonstrates <mark>exceptional depth</mark> in combining <u>graph learning</u> with <b>human-centric AI</b>. The emphasis on <em>responsible intelligence</em> and interpretable models is particularly inspiring<sup><a href='https://example.com/ref1'>[1]</a></sup>, setting a new benchmark for social computing research.<br>This project demonstrates <mark>exceptional depth</mark> in combining <u>graph learning</u> with <b>human-centric AI</b>. The emphasis on <em>responsible intelligence</em> and interpretable models is particularly inspiring<sup><a href='https://example.com/ref1'>[1]</a></sup>, setting a new benchmark for social computing research. <br>(<em>quoted in their TKDE paper \"Does Graph Prompt Work? A Data Operation Perspective with Theoretical Analysis. ICML 2025\"</em>)",
+      "year": 2025
+    },
+    {
+      "name": "Dr. Michael Tan",
+      "role": "University of Data Science",
+      "honor": [
+        "Outstanding Young Researcher"
+      ],
+      "avatar": "/assets/peers/michael.jpg",
+      "quote_html": "An elegant approach to non-linear data intelligence that connects theory and practice seamlessly.",
+      "year": 2024
+    },
+    {
+      "name": "Prof. Li Wei",
+      "role": "Tsinghua University",
+      "avatar": "/assets/peers/liwei.jpg",
+      "quote_html": "A solid contribution in responsible AI evaluation, offering both algorithmic and ethical insights."
+    },
+    {
+      "name": "Dr. Emma Johnson",
+      "role": "MIT Media Lab",
+      "honor": [
+        "ACM Distinguished Member"
+      ],
+      "avatar": "/assets/peers/emma.jpg",
+      "quote_html": "Impressive interdisciplinary work bridging cognitive modeling and large-scale data reasoning.",
+      "year": 2023
+    },
+    {
+      "name": "Prof. Carlos Mendes",
+      "role": "University of Lisbon",
+      "avatar": "/assets/peers/carlos.jpg",
+      "quote_html": "The study offers an inspiring perspective on collective intelligence and emergent behavior.",
+      "year": 2025
+    },
+    {
+      "name": "Dr. Julia Chen",
+      "role": "HKUST",
+      "honor": [
+        "IEEE Senior Member"
+      ],
+      "avatar": "/assets/peers/julia.jpg",
+      "quote_html": "Innovative methodology that broadens our understanding of multimodal reasoning."
+    }
+  ]
+}

@@ -4,58 +4,333 @@
   },
   "items": [
     {
-      "name": "Prof. Alexandra Smith",
-      "role": "Institute of Advanced Studies",
+      "name": "Prof. Pietro Liò",
+      "role": "University of Cambridge",
+      "honor": [
+        "Academia Europaea"
+      ],
+      "star": true,
+      "avatar": "/assets/peers/pietro.avif",
+      "quote_html": "Our quantifications of <u>social equivalence</u> and <u>social conformity</u> are <mark>more accurate</mark> for modeling complex interactions; introducing <b>group entropy</b> is <em>noteworthy</em> and <em>effectively</em> augments message-passing views<sup><a href=\\\"#\\\">[1]</a></sup>. (<em>HNNs through the Lens of Message Passing</em>, arXiv + supplement)",
+      "year": 2024
+    },
+    {
+      "name": "Prof. Nitesh V. Chawla",
+      "role": "University of Notre Dame",
+      "honor": ["ACM Fellow", "IEEE Fellow"],
+      "star": true,
+      "avatar": "/assets/peers/nitesh.avif",
+      "quote_html": "Graph prompt learning is recognized as a <mark>new paradigm</mark> in heterogeneous graph neural networks; the <em>theoretical analysis</em> by the authors is highlighted as the <b>core motivation</b> of this work, proving its <u>feasibility</u> and <u>significance</u> while <em>emulating impactful reasoning</em><sup><a href=\\\"#\\\">[1]</a></sup>. (<em>HetGPT: Harnessing the Power of Prompt Tuning in Pre-Trained Heterogeneous Graph Neural Networks</em>, WWW 2024)",
+      "year": 2024
+    },
+    {
+      "name": "Prof. Philip S. Yu",
+      "role": "University of Illinois Chicago",
+      "honor": [
+        "ACM Fellow",
+        "IEEE Fellow"
+      ],
+      "star": true,
+      "avatar": "/assets/peers/philip.avif",
+      "quote_html": "<mark>Extends</mark> hypergraph learning to enrich semantics in behavior modeling, delivering <b>better</b> user modeling and <em>significant improvement</em> in recommendation; our methods also served as <u>satisfactory</u> baselines and inspire <em>future directions</em><sup><a href=\\\"#\\\">[1]</a></sup>. (ICDM'21, CIKM'21, BigData'22, WWW'22, IEEE TKDE, arXiv survey on graph FMs)",
+      "year": 2022
+    },
+    {
+      "name": "Prof. Guanrong Chen",
+      "role": "City University of Hong Kong",
+      "honor": [
+        "Academia Europaea",
+        "IEEE Fellow"
+      ],
+      "star": true,
+      "avatar": "/assets/peers/guanrong.avif",
+      "quote_html": "Unsupervised adversarial-attack defense on graphs <mark>outperformed</mark> prior methods; hypergraph models show <em>particularly encouraging</em> link-classification performance<sup><a href=\\\"#\\\">[1]</a></sup>. (IEEE TCSS; IEEE TNSE)",
+      "year": 2023
+    },
+    {
+      "name": "Prof. Jiawei Han",
+      "role": "University of Illinois Urbana-Champaign",
+      "honor": [
+        "ACM Fellow",
+        "IEEE Fellow"
+      ],
+      "star": true,
+      "avatar": "/assets/peers/jiaweihan.avif",
+      "quote_html": "Adopting our <em>complex hypergraph relation construction</em> yields <mark>leading performance</mark> for spatiotemporal analysis in dynamic hypergraph networks<sup><a href=\\\"#\\\">[1]</a></sup>. (<em>THINK: Temporal Hypergraph Hyperbolic Network</em>, ICDM)",
+      "year": 2022
+    },
+    {
+      "name": "Prof. Test Demo",
+      "role": "This is A Test",
       "honor": [
         "IEEE Fellow",
         "AAAI Fellow",
         "ACM Fellow"
       ],
-      "avatar": "/assets/peers/xiangguo.jpeg",
-      "quote_html": "This project demonstrates <mark>exceptional depth</mark> in combining <u>graph learning</u> with <b>human-centric AI</b>. The emphasis on <em>responsible intelligence</em> and interpretable models is particularly inspiring<sup><a href='https://example.com/ref1'>[1]</a></sup>, setting a new benchmark for social computing research.<br>This project demonstrates <mark>exceptional depth</mark> in combining <u>graph learning</u> with <b>human-centric AI</b>. The emphasis on <em>responsible intelligence</em> and interpretable models is particularly inspiring<sup><a href='https://example.com/ref1'>[1]</a></sup>, setting a new benchmark for social computing research. <br>(<em>quoted in their TKDE paper \"Does Graph Prompt Work? A Data Operation Perspective with Theoretical Analysis. ICML 2025\"</em>)",
-      "year": 2025
+      "avatar": "/assets/peers/xiangguo.avif",
+      "quote_html": "This project demonstrates <mark>exceptional depth</mark> in combining <u>graph learning</u> with <b>human-centric AI</b>. The emphasis on <em>responsible intelligence</em> and interpretable models is particularly inspiring<sup><a href='https://example.com/ref1'>[1]</a></sup>, setting a new benchmark for social computing research.<br>This project demonstrates <mark>exceptional depth</mark> in combining <u>graph learning</u> with <b>human-centric AI</b>. The emphasis on <em>responsible intelligence</em> and interpretable models is particularly inspiring<sup><a href='https://example.com/ref1'>[1]</a></sup>, setting a new benchmark for social computing research. <br>(<em>quoted in their TKDE paper \"Does Graph Prompt Work? A Data Operation Perspective with Theoretical Analysis. ICML 2025\"</em>)"
     },
     {
-      "name": "Dr. Michael Tan",
-      "role": "University of Data Science",
+      "name": "Prof. Christian S. Jensen",
+      "role": "Aalborg University",
       "honor": [
-        "Outstanding Young Researcher"
+        "ACM Fellow",
+        "IEEE Fellow",
+        "Academia Europaea"
       ],
-      "avatar": "/assets/peers/michael.jpg",
-      "quote_html": "An elegant approach to non-linear data intelligence that connects theory and practice seamlessly.",
+      "star": false,
+      "avatar": "",
+      "quote_html": "The proposed <u>heterogeneous hypergraph wavelet</u> model represents <mark>state-of-the-art solutions</mark> and addresses <b>many</b> challenging problems in hypergraph learning<sup><a href=\\\"#\\\">[1]</a></sup>. (<em>CHGNN: A Semi-Supervised Contrastive Hypergraph Learning Network</em>, arXiv)",
+      "year": 2023
+    },
+
+    {
+      "name": "Prof. Usman Naseem",
+      "role": "Macquarie University",
+      "honor": [],
+      "avatar": "",
+      "quote_html": "Our propagation-structure-aware rumor detection is <mark>novel</mark>, ranked among the <b>best two baselines</b>, and <em>broadens the scope</em> of rumor detection research<sup><a href=\\\"#\\\">[1]</a></sup>. (<em>Rumor Detection With Hierarchical Representation on Bipartite Ad Hoc Event Trees</em>, IEEE TNNLS)",
       "year": 2024
     },
     {
-      "name": "Prof. Li Wei",
-      "role": "Tsinghua University",
-      "avatar": "/assets/peers/liwei.jpg",
-      "quote_html": "A solid contribution in responsible AI evaluation, offering both algorithmic and ethical insights."
-    },
-    {
-      "name": "Dr. Emma Johnson",
-      "role": "MIT Media Lab",
+      "name": "Prof. Kim-Kwang Raymond Choo",
+      "role": "University of Texas at San Antonio",
       "honor": [
-        "ACM Distinguished Member"
+        "Academia Europaea"
       ],
-      "avatar": "/assets/peers/emma.jpg",
-      "quote_html": "Impressive interdisciplinary work bridging cognitive modeling and large-scale data reasoning.",
+      "avatar": "",
+      "quote_html": "The proposed attack-defense methods achieve <mark>comparable performance</mark> and support <b>various</b> downstream tasks in GNN privacy-security contexts<sup><a href=\\\"#\\\">[1]</a></sup>. (<em>Graph neural networks: links between privacy and security</em>, <em>Artificial Intelligence Review</em>)",
       "year": 2023
     },
     {
-      "name": "Prof. Carlos Mendes",
-      "role": "University of Lisbon",
-      "avatar": "/assets/peers/carlos.jpg",
-      "quote_html": "The study offers an inspiring perspective on collective intelligence and emergent behavior.",
-      "year": 2025
+      "name": "Prof. Jeffrey Xu Yu",
+      "role": "The Chinese University of Hong Kong",
+      "honor": [],
+      "avatar": "",
+      "quote_html": "Our graph prompting models are recognized as <mark>well-known graph transfer models</mark> for cross-dataset zero-shot studies<sup><a href=\\\"#\\\">[1]</a></sup>. (<em>ZeroG: Investigating Cross-dataset Zero-shot Transferability in Graphs</em>, KDD)",
+      "year": 2024
     },
     {
-      "name": "Dr. Julia Chen",
-      "role": "HKUST",
+      "name": "Prof. Chuan Shi",
+      "role": "Beijing University of Posts and Telecommunications",
+      "honor": [],
+      "avatar": "",
+      "quote_html": "Graph prompting makes a <mark>notable contribution</mark> that <em>bridges the gap</em> between graph pre-training and downstream tasks; it is a <b>new paradigm</b> alleviating few-shot limits<sup><a href=\\\"#\\\">[1]</a></sup>. (ArXiv survey 2024; WWW 2024 <em>GraphTranslator</em>)",
+      "year": 2024
+    },
+    {
+      "name": "Prof. Silang Tang",
+      "role": "Zhejiang University",
+      "honor": [],
+      "avatar": "",
+      "quote_html": "Integrating our graph prompts <mark>mitigates data sparsity</mark> and <em>enhances downstream performance</em>, reaching <b>comparable</b> results to full-shot in few-shot scenarios<sup><a href=\\\"#\\\">[1]</a></sup>. (<em>GraphControl</em>, TheWebConf)",
+      "year": 2024
+    },
+    {
+      "name": "Dr. Dawei Yin",
+      "role": "Baidu Research",
+      "honor": [],
+      "avatar": "",
+      "quote_html": "Following our multi-task alignment, prompt tuning <mark>effectively</mark> transfers graph knowledge; structure-based prompts show <b>remarkable performance</b> on few-shot graph tasks<sup><a href=\\\"#\\\">[1]</a></sup>. (ArXiv 2023: Multi-View GCL; Structure-Based Prompt)",
+      "year": 2023
+    },
+    {
+      "name": "Prof. Chao Huang",
+      "role": "The University of Hong Kong",
+      "honor": [],
+      "avatar": "",
+      "quote_html": "Graph prompting <mark>improves</mark> multi-task learning in graphs and emerges as an <em>innovative</em> direction for recommendation foundation models<sup><a href=\\\"#\\\">[1]</a></sup>. (<em>GraphGPT</em>, SIGIR 2024; <em>GraphPro</em>, WWW 2024)",
+      "year": 2024
+    },
+    {
+      "name": "Prof. Xinming Zhang",
+      "role": "University of Science and Technology of China",
+      "honor": [],
+      "avatar": "",
+      "quote_html": "Graph prompts enable <mark>better</mark> task transfer and extend beyond nodes to <u>edges</u> and <u>subgraphs</u>; a unified prompting view supports cross-task learning<sup><a href=\\\"#\\\">[1]</a></sup>. (AAAI 2024 <em>HGPrompt</em>; arXiv 2024/2023 surveys)",
+      "year": 2024
+    },
+    {
+      "name": "Prof. Dacheng Tao",
+      "role": "University of Sydney",
       "honor": [
-        "IEEE Senior Member"
+        "Academia Europaea",
+        "Australian Academy of Science",
+        "ACM Fellow"
       ],
-      "avatar": "/assets/peers/julia.jpg",
-      "quote_html": "Innovative methodology that broadens our understanding of multimodal reasoning."
+      "avatar": "",
+      "quote_html": "Multi-task <u>graph prompt learning</u> is <mark>innovative</mark> and informs training <b>one model for all</b> classification tasks<sup><a href=\\\"#\\\">[1]</a></sup>. (ICLR <em>One for All</em>)",
+      "year": 2024
+    },
+    {
+      "name": "Prof. Yanfang (Fanny) Ye",
+      "role": "University of Notre Dame",
+      "honor": [],
+      "avatar": "",
+      "quote_html": "Graph prompting <mark>enhances</mark> transfer under label sparsity and is <em>generalizable</em> across tasks, motivating new acceleration methods<sup><a href=\\\"#\\\">[1]</a></sup>. (arXiv 2024: negative transfer; MLPs on graphs)",
+      "year": 2024
+    },
+    {
+      "name": "Prof. Jürgen Kurths",
+      "role": "University of Potsdam",
+      "honor": [
+        "Academia Europaea"
+      ],
+      "avatar": "",
+      "quote_html": "Work on structured rumor/anomaly detection has <mark>tremendous impact</mark> on socio-economic stability and public trust<sup><a href=\\\"#\\\">[1]</a></sup>. (IEEE TNNLS <em>Diffusion Source Inference…</em>)",
+      "year": 2023
+    },
+    {
+      "name": "Prof. Jian Pei",
+      "role": "Duke University (formerly Huawei Chief Scientist)",
+      "honor": [
+        "Royal Society of Canada",
+        "Canadian Academy of Engineering",
+        "ACM Fellow",
+        "IEEE Fellow"
+      ],
+      "avatar": "",
+      "quote_html": "Complex social-relation mining achieves <mark>superior performance</mark> in social network prediction and robustness studies<sup><a href=\\\"#\\\">[1]</a></sup>. (WWW 2022 <em>R-S<sup>3</sup>GNN</em>)",
+      "year": 2022
+    },
+    {
+      "name": "Prof. Xiaofang Zhou",
+      "role": "The Hong Kong University of Science and Technology",
+      "honor": [
+        "IEEE Fellow"
+      ],
+      "avatar": "",
+      "quote_html": "Research delivers <mark>superior</mark> personality prediction; multi-level hypergraphs <em>bring great opportunities</em> for behavior understanding and better recommendation; Federated Rec analysis <u>focuses</u> on non-IID issues<sup><a href=\\\"#\\\">[1]</a></sup>. (WWW'21; VLDB'22; arXiv'23)",
+      "year": 2023
+    },
+    {
+      "name": "Prof. Weijia Jia",
+      "role": "Beijing Normal University",
+      "honor": [
+        "IEEE Fellow"
+      ],
+      "avatar": "",
+      "quote_html": "Graph contrastive learning and scalable alignment are assessed as <mark>mainstream</mark> and <em>state-of-the-art</em>; multi-scale hypergraphs provide a <em>scalable</em> cross-network framework<sup><a href=\\\"#\\\">[1]</a></sup>. (PACMMOD; CIKM 2021; ICDE 2024)",
+      "year": 2024
+    },
+    {
+      "name": "Prof. Hanghang Tong",
+      "role": "University of Illinois Urbana-Champaign",
+      "honor": [
+        "IEEE Fellow"
+      ],
+      "avatar": "",
+      "quote_html": "Hypergraph-relation learning captures <mark>prevalent</mark> social ties in real networks and informs context-aware hyperedge prediction<sup><a href=\\\"#\\\">[1]</a></sup>. (arXiv 2023)",
+      "year": 2023
+    },
+    {
+      "name": "Prof. Lei Chen",
+      "role": "The Hong Kong University of Science and Technology",
+      "honor": [
+        "IEEE Fellow"
+      ],
+      "avatar": "",
+      "quote_html": "Dynamic meta-path reasoning for explainable behaviors <mark>focuses</mark> on inference and is <em>able</em> to provide explanations in trustworthy recommendation<sup><a href=\\\"#\\\">[1]</a></sup>. (arXiv 2022 survey)",
+      "year": 2022
+    },
+    {
+      "name": "Prof. Liang Wang",
+      "role": "University of Chinese Academy of Sciences",
+      "honor": [
+        "IEEE Fellow"
+      ],
+      "avatar": "",
+      "quote_html": "Hypergraph-based fake-news detection is a <mark>further</mark> advance over traditional graph methods via evidence-aware debiasing<sup><a href=\\\"#\\\">[1]</a></sup>. (arXiv 2023)",
+      "year": 2023
+    },
+    {
+      "name": "Prof. Yuhui Shi & Prof. Hongzhi Yin",
+      "role": "Southern University of Science and Technology; The University of Queensland",
+      "honor": [
+        "IEEE Fellow",
+        "ARC Future Fellow"
+      ],
+      "avatar": "",
+      "quote_html": "Heterogeneous hypergraph networks show <mark>promising performance</mark> in node classification; elastic embedding is an <em>effective technique</em> for filtering irrelevant signals<sup><a href=\\\"#\\\">[1]</a></sup>. (KDD 2021; IEEE TKDE)",
+      "year": 2021
+    },
+    {
+      "name": "Dr. Ajay Divakaran",
+      "role": "SRI International",
+      "honor": [
+        "IEEE Fellow"
+      ],
+      "avatar": "",
+      "quote_html": "Adopts our graph-relation construction to validate information-pathway prediction, confirming the model’s <mark>effectiveness</mark><sup><a href=\\\"#\\\">[1]</a></sup>. (KDD 2023 <em>Predicting Information Pathways…</em>)",
+      "year": 2023
+    },
+    {
+      "name": "Prof. Qing Li",
+      "role": "The Hong Kong Polytechnic University",
+      "honor": [
+        "IEEE Fellow"
+      ],
+      "avatar": "",
+      "quote_html": "Negative-sampling strategy helps reveal users’ <mark>actual preferences</mark> in long-term sequential recommendation<sup><a href=\\\"#\\\">[1]</a></sup>. (SIGIR 2023 <em>LinRec</em>)",
+      "year": 2023
+    },
+    {
+      "name": "Prof. Jiliang Tang",
+      "role": "Michigan State University",
+      "honor": [],
+      "avatar": "",
+      "quote_html": "In graph foundation models, graph prompting for multi-task alignment shows <mark>significant</mark> effects and informs unified training<sup><a href=\\\"#\\\">[1]</a></sup>. (arXiv 2024 survey)",
+      "year": 2024
+    },
+    {
+      "name": "Prof. Shirui Pan & Prof. Hongyang Chen",
+      "role": "Griffith University; Zhejiang Lab",
+      "honor": [
+        "ARC Future Fellow"
+      ],
+      "avatar": "",
+      "quote_html": "Multi-scale hypergraphs are a <mark>popular</mark> processing tool; security work distinguishes training-data-misuse attacks from <em>stealthy</em> contrastive-learning threats<sup><a href=\\\"#\\\">[1]</a></sup>. (WWW 2023 <em>CurvDrop</em>; NDSS 2024 <em>GraphGuard</em>)",
+      "year": 2024
+    },
+    {
+      "name": "Prof. Yuan-Fang Li",
+      "role": "Monash University",
+      "honor": [],
+      "avatar": "",
+      "quote_html": "Hypergraph modeling inspired by this line of work is <mark>flexible</mark> and <b>general</b>, enabling one-stage message passing for node representations<sup><a href=\\\"#\\\">[1]</a></sup>. (arXiv 2023)",
+      "year": 2023
+    },
+    {
+      "name": "Prof. Dingqi Yang",
+      "role": "University of Macau",
+      "honor": [],
+      "avatar": "",
+      "quote_html": "Hypergraph structure-mining approaches are <mark>popular</mark> and influential across representation-learning surveys<sup><a href=\\\"#\\\">[1]</a></sup>. (ACM Computing Surveys)",
+      "year": 2023
+    },
+    {
+      "name": "Prof. Paul D. Yoo",
+      "role": "University of London",
+      "honor": [],
+      "avatar": "",
+      "quote_html": "Sociology-aware hypergraph learning is <mark>key</mark> to building <em>sophisticated</em> and <em>precise</em> recommender systems, enabling <u>deeper</u> analysis of interactions<sup><a href=\\\"#\\\">[1]</a></sup>. (arXiv 2024 survey)",
+      "year": 2024
+    },
+    {
+      "name": "Prof. Feiping Nie et al.",
+      "role": "Northwestern Polytechnical University",
+      "honor": [],
+      "avatar": "",
+      "quote_html": "Graph prompting and sociology-based hypergraph analysis are a <mark>promising approach</mark> to heterogeneous graph learning<sup><a href=\\\"#\\\">[1]</a></sup>. (ICLR 2024 survey)",
+      "year": 2024
+    },
+    {
+      "name": "Prof. Xiao Wang",
+      "role": "Beihang University",
+      "honor": [],
+      "avatar": "",
+      "quote_html": "The graph-prompt framework is <mark>novel</mark> and <em>effectively</em> bridges task-transfer gaps in GRL via generative unification<sup><a href=\\\"#\\\">[1]</a></sup>. (KDD 2024)",
+      "year": 2024
     }
   ]
 }
