@@ -333,6 +333,13 @@ header.site-header {
     margin-bottom: 8px
 }
 
+.nav-drawer a.active {
+    font-weight: 600;
+    border-color: var(--border);
+    background: var(--panel-3);
+}
+
+
 .nav-drawer .spacer {
     flex: 1
 }
@@ -1283,11 +1290,45 @@ dialog.lightbox img {
     animation: zoomIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+
+/* iframe 本身 */
 #cinematic-iframe {
+    position: relative;
+    z-index: 1;           /* 在 loading 下面 */
     width: 100%;
     height: 100%;
     border: none;
     background: #000;
+    transition: opacity 0.2s ease;
+}
+
+/* 覆盖在 iframe 上的提示层 */
+.cinematic-loading {
+    position: absolute;
+    inset: 0;
+    z-index: 2;           /* 明确压在 iframe 上 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #e5e7eb;
+    background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 55%);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+/* overlay 处于 loading 状态时：显示提示，略压低 iframe 亮度 */
+#cinematic-overlay.loading .cinematic-loading {
+    opacity: 1;
+}
+
+#cinematic-overlay.loading #cinematic-iframe {
+    opacity: 0.25;
 }
 
 .cinematic-close {
@@ -2487,3 +2528,11 @@ body:not(.light) #repute-all-grid .repute-quote.prose mark {
     white-space: nowrap;
 }
 
+.loading-hint {
+    font-size: 13px;
+    color: var(--muted);
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px dashed var(--border);
+    background: color-mix(in oklab, var(--panel) 80%, transparent);
+}

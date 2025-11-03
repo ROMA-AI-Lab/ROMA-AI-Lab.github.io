@@ -497,6 +497,9 @@ async function loadReputationHome(){
     const mount = document.getElementById('repute-list');
     if (!mount) return;
 
+    // 清掉 HTML 里预置的 loading 提示
+    mount.innerHTML = '';
+
     // 拉数据
     let rep = { settings: { home_limit: 6 }, items: [] };
     try {

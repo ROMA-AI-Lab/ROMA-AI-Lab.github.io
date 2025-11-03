@@ -21,26 +21,62 @@
     const el = (tag, cls) => { const x = document.createElement(tag); if (cls) x.className = cls; return x; };
 
     function buildEmbedSrc(item) {
-        if (item.src) return item.src; // 允许完全自定
-        switch ((item.platform || '').toLowerCase()) {
-            case 'bilibili': {
-                const params = new URLSearchParams({ isOutside: 'true' });
-                if (item.bvid) params.set('bvid', item.bvid);
-                if (item.aid) params.set('aid', item.aid);
-                if (item.cid) params.set('cid', item.cid);
-                return `//player.bilibili.com/player.html?${params.toString()}`;
-            }
+        const platform = (item.platform || '').toLowerCase();
+
+        // 1. 先处理 B 站：统一走我们这套“禁止自动播放”的逻辑
+        if (platform === 'bilibili') {
+            const params = new URLSearchParams({
+                isOutside: 'true',
+                autoplay: '0'  // 显式禁止自动播放
+            });
+            if (item.bvid) params.set('bvid', item.bvid);
+            if (item.aid) params.set('aid', item.aid);
+            if (item.cid) params.set('cid', item.cid);
+            return `https://player.bilibili.com/player.html?${params.toString()}`;
+        }
+
+        // 2. 再兜底：非 B 站才尊重 item.src（例如你手动写的特殊 iframe）
+        if (item.src) return item.src;
+
+        // 3. 其它平台的默认逻辑不变
+        switch (platform) {
             case 'youtube':
                 return `https://www.youtube.com/embed/${item.youtubeId}?rel=0`;
             case 'vimeo':
                 return `https://player.vimeo.com/video/${item.vimeoId}`;
             case 'tencent':
-                // 经典腾讯播放器
                 return `https://v.qq.com/txp/iframe/player.html?vid=${item.tencentVid}`;
             default:
                 return '';
         }
     }
+
+
+    // function buildEmbedSrc(item) {
+    //     if (item.src) return item.src; // 允许完全自定
+    //     switch ((item.platform || '').toLowerCase()) {
+    //         case 'bilibili': {
+    //             // const params = new URLSearchParams({ isOutside: 'true' });
+    //             const params = new URLSearchParams({
+    //                 isOutside: 'true',
+    //                 autoplay: '0'
+    //             });
+    //             if (item.bvid) params.set('bvid', item.bvid);
+    //             if (item.aid) params.set('aid', item.aid);
+    //             if (item.cid) params.set('cid', item.cid);
+    //             return `https://player.bilibili.com/player.html?${params.toString()}`;
+    //         }
+    //         case 'youtube':
+    //             return `https://www.youtube.com/embed/${item.youtubeId}?rel=0`;
+    //         case 'vimeo':
+    //             return `https://player.vimeo.com/video/${item.vimeoId}`;
+    //         case 'tencent':
+    //             // 经典腾讯播放器
+    //             return `https://v.qq.com/txp/iframe/player.html?vid=${item.tencentVid}`;
+    //         default:
+    //             return '';
+    //     }
+    // }
 
     function buildExternalLink(item) {
         switch ((item.platform || '').toLowerCase()) {
@@ -92,23 +128,62 @@
         wrap.appendChild(ifr);
     }
 
-
     function openCinematic(src, title) {
         const overlay = document.getElementById('cinematic-overlay');
-        const iframe = document.getElementById('cinematic-iframe');
-        iframe.src = src;
-        iframe.title = title || 'ROMA Lab Video';
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden'; // 禁止背景滚动
+        const iframe  = document.getElementById('cinematic-iframe');
+
+        if (!overlay || !iframe) return;
+
+        // 1. 先激活 overlay + loading 状态，然后再设置 src
+        overlay.classList.add('active', 'loading');
+        document.body.style.overflow = 'hidden';
+
+        // 先清掉旧的 onload，避免多次绑定
+        iframe.onload = null;
+        iframe.src = '';  // 重置，确保每次都会触发 onload
+
+        // 2. 下一帧再真正设置 src（给 Safari 一帧时间先把 UI 画出来）
+        requestAnimationFrame(() => {
+            iframe.onload = () => {
+                // 一旦 iframe 加载完成，移除 loading 状态
+                overlay.classList.remove('loading');
+            };
+
+            iframe.title = title || 'ROMA Lab Video';
+            iframe.src   = src;
+        });
     }
 
     function closeCinematic() {
         const overlay = document.getElementById('cinematic-overlay');
-        const iframe = document.getElementById('cinematic-iframe');
-        overlay.classList.remove('active');
-        iframe.src = ''; // 停止播放
+        const iframe  = document.getElementById('cinematic-iframe');
+
+        if (!overlay || !iframe) return;
+
+        overlay.classList.remove('active', 'loading');
+        iframe.onload = null;
+        iframe.src = '';          // 停止播放，下次重新触发 onload
         document.body.style.overflow = '';
     }
+
+
+
+    // function openCinematic(src, title) {
+    //     const overlay = document.getElementById('cinematic-overlay');
+    //     const iframe = document.getElementById('cinematic-iframe');
+    //     iframe.src = src;
+    //     iframe.title = title || 'ROMA Lab Video';
+    //     overlay.classList.add('active');
+    //     document.body.style.overflow = 'hidden'; // 禁止背景滚动
+    // }
+    //
+    // function closeCinematic() {
+    //     const overlay = document.getElementById('cinematic-overlay');
+    //     const iframe = document.getElementById('cinematic-iframe');
+    //     overlay.classList.remove('active');
+    //     iframe.src = ''; // 停止播放
+    //     document.body.style.overflow = '';
+    // }
 
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('cinematic-close') ||
@@ -271,6 +346,9 @@
         const sec = q(`#${SECTION_ID}`);
         const grid = q(`#${GRID_ID}`);
         if (!sec || !grid) return;
+
+        // 清掉 HTML 里预置的 loading 提示
+        grid.innerHTML = '';
 
         try {
             const data = await fetchData();
