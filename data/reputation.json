@@ -1,6 +1,6 @@
 {
   "settings": {
-    "home_limit": 5
+    "home_limit": 10
   },
   "items": [
     {
@@ -34,6 +34,15 @@
       "avatar": "/assets/peers/philip.avif",
       "quote_html": "<mark>Extends</mark> hypergraph learning to enrich semantics in behavior modeling, delivering <b>better</b> user modeling and <em>significant improvement</em> in recommendation; our methods also served as <u>satisfactory</u> baselines and inspire <em>future directions</em><sup><a href=\\\"#\\\">[1]</a></sup>. (ICDM'21, CIKM'21, BigData'22, WWW'22, IEEE TKDE, arXiv survey on graph FMs)",
       "year": 2022
+    },
+    {
+      "name": "Prof. Changjun Jiang（蔣昌俊)",
+      "role": "Tongji University",
+      "honor": ["CAE Academician/中国工程院院士"],
+      "avatar": "/assets/peers/changjun.avif",
+      "star": true,
+      "quote_html": "In their paper <em>Cross-Paradigm Graph Backdoor Attacks with Promptable Subgraph Triggers (arXiv 2025)</em><sup><a href=\\\"https://arxiv.org/pdf/2510.22555\\\">[1]</a></sup>, our <mark>ICML 2025 theoretical results</mark> on graph prompting are directly adopted as the <b>theoretical foundation</b> of their study, with an entire section (Section IV, Part D) devoted to our framework<sup><a href=\\\"https://arxiv.org/pdf/2410.01635\\\">[2]</a></sup>. ",
+      "year": 2025
     },
     {
       "name": "Prof. Guanrong Chen",
