@@ -1983,6 +1983,22 @@ dialog.lightbox img {
     transform: translateX(1px);
 }
 
+
+/* === Fix: Light theme CTA text contrast === */
+.light .btn.cta {
+    --cta-text: var(--text); /* 或直接用 var(--text) 以保持主题一致 */
+    color: var(--cta-text);
+}
+
+/* 若与 ghost 一起使用（如 .btn.ghost.cta），可加更强对比的边框与背景 */
+.light .btn.ghost.cta {
+    --cta-text: #0f172a;
+    color: var(--cta-text);
+    border-color: rgba(0, 0, 0, 0.1);
+    background: color-mix(in oklab, #ffffff 92%, var(--panel) 8%);
+}
+
+
 /* 保持你现有的尺寸一致性（文件里已有 min-height 规则会继承） */
 
 /*.cinematic-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.75); display: none; align-items: center; justify-content: center; z-index: 70; }*/
