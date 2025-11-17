@@ -22,125 +22,6 @@
       "placement": ["MSRA","Zhejiang Lab"]
     },
     {
-      "name": "Dr. Yicong Li",
-      "slug": "yicong-li",
-      "role": "Former RA / Ph.D.",
-      "email": "liyicong123@outlook.com",
-      "site": "https://abigale001.github.io",
-      "avatar": "/assets/people/liyicong.avif",
-      "topics": ["Explainability","Fairness","RecSys","Counterfactual","GNNs"],
-      "affiliation": "UTS (Australia)",
-      "status": "partner",
-      "education": ["Ph.D. from University of Technology Sydney",
-        "Master from National University of Defense Technology"
-      ],
-      "placement": [
-        "Apr. 2024- Present: Associate Professor at the Nanjing University of Aeronautics and Astronautics",
-        "Sep. 2022 - Apr. 2024: Visiting student at The Hong Kong Polytechnic University"],
-      "selected_publications": [],
-      "awards": []
-    },
-    {
-      "name": "Zoey (Zhiyao) Shu",
-      "slug": "zhiyao-shu",
-      "role": "Former RA / Ph.D. Student",
-      "email": "yaoshu0326@berkeley.edu",
-      "site": "https://upsilonv0.vercel.app",
-      "avatar": "/assets/people/zhiyaoshu.avif",
-      "topics": ["Human-AI Collaboration","Computer Vision","LLM"],
-      "affiliation": "UC Berkerly (USA)",
-      "selected_publications": ["Zhiyao Shu, Xiangguo Sun, Hong Cheng. When LLM Meets Hypergraph: A Sociological Analysis on Personality via Online Social Networks. CIKM 2024."],
-      "status": "ra"
-    },
-    {
-      "name": "Fangzhou Ge",
-      "slug": "fangzhou-ge",
-      "role": "Former RA / Undergraduate",
-      "email": "",
-      "site": "",
-      "avatar": "/assets/people/fangzhouge.avif",
-      "topics": ["Hypergraph","LLMs","Graph Prompt"],
-      "affiliation": "CUHK (Hong Kong)",
-      "status": "ra"
-    },
-    {
-      "name": "Ping Wang",
-      "slug": "ping-wang",
-      "role": "RA / Ph.D. Student",
-      "email": "",
-      "site": "",
-      "avatar": "/assets/people/pingwang.avif",
-      "topics": ["LLM Reasoning","Trustworthy and Responsible LLMs"],
-      "affiliation": "RUC",
-      "status": "ra"
-    },
-    {
-      "name": "Xinyan Yang",
-      "slug": "xinyan-yang",
-      "role": "Former RA / Master",
-      "email": "",
-      "site": "",
-      "avatar": "/assets/people/xinyanyang.avif",
-      "topics": ["Rumor Detection","Online Social Networks"],
-      "affiliation": "Tencent",
-      "status": "ra"
-    },
-    {
-      "name": "Sixu An",
-      "slug": "sixu-an",
-      "role": "Former RA / Master",
-      "email": "ansixu123@163.com",
-      "site": "",
-      "avatar": "/assets/people/sixuan.avif",
-      "topics": ["Personality","AI4Education","Visual Large Language Models"],
-      "affiliation": "PolyU (Hong Kong)",
-      "status": "ra"
-    },
-    {
-      "name": "Wang Han",
-      "slug": "wang-han",
-      "role": "Former RA / Master",
-      "email": "",
-      "site": "",
-      "avatar": "/assets/people/wanghan.avif",
-      "topics": ["Graph Learning","Online Social Networks"],
-      "affiliation": "Tencent",
-      "status": "ra"
-    },
-    {
-      "name": "Qunzhong Wang",
-      "slug": "qunzhong-wang",
-      "role": "Former RA / Undergraduate",
-      "email": "1155210998@link.cuhk.edu.hk",
-      "site": "https://qunzhongwang.github.io",
-      "avatar": "/assets/people/qunzhongwang.avif",
-      "topics": ["Principles of AI Systems","RL on Large Models"],
-      "affiliation": "CUHK (Hong Kong)",
-      "status": "ra"
-    },
-    {
-      "name": "Yihan Wan",
-      "slug": "yihan-wan",
-      "role": "Former RA / Undergraduate",
-      "email": "yihanwan86@gmail.com",
-      "site": "",
-      "avatar": "/assets/people/yihanw.avif",
-      "topics": ["Predictive Coding","NLP","Diffusion Models"],
-      "affiliation": "NJU",
-      "status": "ra"
-    },
-    {
-      "name": "Yanyi Pu",
-      "slug": "yanyi-pu",
-      "role": "Former RA / Ph.D. Student",
-      "email": "",
-      "site": "",
-      "avatar": "/assets/people/yanyip.avif",
-      "topics": ["LLMs", "Agentic AI","Hallucinations in High-stakes Domains"],
-      "affiliation": "The University of Sheffield (UK)",
-      "status": "ra"
-    },
-    {
       "name": "Prof. Hong Cheng",
       "slug": "hong-cheng",
       "role": "🌟Steering Committee",
@@ -205,6 +86,125 @@
       "topics": ["Artificial Intelligence", "Data Science","Recommendation Systems"],
       "affiliation": "EdUHK (Hong Kong)",
       "status": "sc"
+    },
+    {
+      "name": "Dr. Yicong Li",
+      "slug": "yicong-li",
+      "role": "Former RA / Ph.D.",
+      "email": "liyicong123@outlook.com",
+      "site": "https://abigale001.github.io",
+      "avatar": "/assets/people/liyicong.avif",
+      "topics": ["Explainability","Fairness","RecSys","Counterfactual","GNNs"],
+      "affiliation": "UTS (Australia)",
+      "status": "partner",
+      "education": ["Ph.D. from University of Technology Sydney",
+        "Master from National University of Defense Technology"
+      ],
+      "placement": [
+        "Apr. 2024- Present: Associate Professor at the Nanjing University of Aeronautics and Astronautics",
+        "Sep. 2022 - Apr. 2024: Visiting student at The Hong Kong Polytechnic University"],
+      "selected_publications": [],
+      "awards": []
+    },
+    {
+      "name": "Zoey (Zhiyao) Shu",
+      "slug": "zhiyao-shu",
+      "role": "Former RA / Ph.D. Student",
+      "email": "yaoshu0326@berkeley.edu",
+      "site": "https://upsilonv0.vercel.app",
+      "avatar": "/assets/people/zhiyaoshu.avif",
+      "topics": ["Human-AI Collaboration","Computer Vision","LLM"],
+      "affiliation": "UC Berkerly (USA)",
+      "selected_publications": ["Zhiyao Shu, Xiangguo Sun, Hong Cheng. When LLM Meets Hypergraph: A Sociological Analysis on Personality via Online Social Networks. CIKM 2024."],
+      "status": "ra"
+    },
+    {
+      "name": "Fangzhou Ge",
+      "slug": "fangzhou-ge",
+      "role": "Former RA / Undergraduate",
+      "email": "",
+      "site": "",
+      "avatar": "/assets/people/fangzhouge.avif",
+      "topics": ["Hypergraph","LLMs","Graph Prompt"],
+      "affiliation": "CUHK (Hong Kong)",
+      "status": "ra"
+    },
+    {
+      "name": "Ping Wang",
+      "slug": "ping-wang",
+      "role": "RA / Ph.D. Student",
+      "email": "",
+      "site": "",
+      "avatar": "/assets/people/pingwang.avif",
+      "topics": ["LLM Reasoning","Trustworthy and Responsible LLMs"],
+      "affiliation": "RUC",
+      "status": "ra"
+    },
+    {
+      "name": "Xinyan Yang",
+      "slug": "xinyan-yang",
+      "role": "Research Engineer / Master",
+      "email": "",
+      "site": "",
+      "avatar": "/assets/people/xinyanyang.avif",
+      "topics": ["Rumor Detection","Online Social Networks"],
+      "affiliation": "Tencent",
+      "status": "ra"
+    },
+    {
+      "name": "Sixu An",
+      "slug": "sixu-an",
+      "role": "Former RA / Master",
+      "email": "ansixu123@163.com",
+      "site": "",
+      "avatar": "/assets/people/sixuan.avif",
+      "topics": ["Personality","AI4Education","Visual Large Language Models"],
+      "affiliation": "PolyU (Hong Kong)",
+      "status": "ra"
+    },
+    {
+      "name": "Wang Han",
+      "slug": "wang-han",
+      "role": "Research Engineer / Master",
+      "email": "",
+      "site": "",
+      "avatar": "/assets/people/wanghan.avif",
+      "topics": ["Graph Learning","Online Social Networks"],
+      "affiliation": "Tencent",
+      "status": "ra"
+    },
+    {
+      "name": "Qunzhong Wang",
+      "slug": "qunzhong-wang",
+      "role": "Former RA / Undergraduate",
+      "email": "1155210998@link.cuhk.edu.hk",
+      "site": "https://qunzhongwang.github.io",
+      "avatar": "/assets/people/qunzhongwang.avif",
+      "topics": ["Principles of AI Systems","RL on Large Models"],
+      "affiliation": "CUHK (Hong Kong)",
+      "status": "ra"
+    },
+    {
+      "name": "Yihan Wan",
+      "slug": "yihan-wan",
+      "role": "Former RA / Undergraduate",
+      "email": "yihanwan86@gmail.com",
+      "site": "",
+      "avatar": "/assets/people/yihanw.avif",
+      "topics": ["Predictive Coding","NLP","Diffusion Models"],
+      "affiliation": "NJU",
+      "status": "ra"
+    },
+    {
+      "name": "Yanyi Pu",
+      "slug": "yanyi-pu",
+      "role": "Former RA / Ph.D. Student",
+      "email": "",
+      "site": "",
+      "avatar": "/assets/people/yanyip.avif",
+      "topics": ["LLMs", "Agentic AI","Hallucinations in High-stakes Domains"],
+      "affiliation": "The University of Sheffield (UK)",
+      "status": "ra"
     }
   ]
 }
