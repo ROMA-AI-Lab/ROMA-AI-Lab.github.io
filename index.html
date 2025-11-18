@@ -90,6 +90,36 @@
 <!--        </div>-->
 
         <!-- controls -->
+<!--        <div class="controls">-->
+<!--            &lt;!&ndash; 主题切换 &ndash;&gt;-->
+<!--            <button aria-label="Toggle theme" class="btn ghost" id="theme-toggle" title="Toggle light/dark">-->
+<!--                <span aria-hidden="true">🌓</span><span class="sr-only">Toggle theme</span>-->
+<!--            </button>-->
+
+<!--            &lt;!&ndash; 访问线路切换按钮 &ndash;&gt;-->
+<!--            <button-->
+<!--                    type="button"-->
+<!--                    class="btn ghost route-switch"-->
+<!--                    title="选择访问线路">-->
+<!--        <span class="route-label">-->
+<!--            <span class="route-part route-cn">中国大陆</span>-->
+<!--            <span class="route-slash">/</span>-->
+<!--            <span class="route-part route-global">International</span>-->
+<!--        </span>-->
+<!--            </button>-->
+
+<!--            &lt;!&ndash; 移动端菜单 &ndash;&gt;-->
+<!--            <button-->
+<!--                    aria-controls="mobile-drawer"-->
+<!--                    aria-expanded="false"-->
+<!--                    aria-label="Menu"-->
+<!--                    class="btn ghost"-->
+<!--                    id="menu"-->
+<!--                    title="Menu">☰-->
+<!--            </button>-->
+<!--        </div>-->
+
+        <!-- controls -->
         <div class="controls">
             <!-- 主题切换 -->
             <button aria-label="Toggle theme" class="btn ghost" id="theme-toggle" title="Toggle light/dark">
@@ -100,12 +130,15 @@
             <button
                     type="button"
                     class="btn ghost route-switch"
-                    title="选择访问线路">
+                    title="选择访问线路"
+                    aria-haspopup="true"
+                    aria-expanded="false">
         <span class="route-label">
-            <span class="route-part route-cn">CN</span>
-            <span class="route-slash">/</span>
-            <span class="route-part route-global">Global</span>
+            <span class="route-icon" aria-hidden="true">🌐</span>
+<!--            <span class="route-text">Routes</span>-->
+<!--            <span class="route-caret" aria-hidden="true">▼</span>-->
         </span>
+                <span class="sr-only">选择访问线路</span>
             </button>
 
             <!-- 移动端菜单 -->
@@ -466,23 +499,90 @@
 <!--    });-->
 <!--</script>-->
 
+<!--<script>-->
+<!--    document.addEventListener("DOMContentLoaded", () => {-->
+<!--        const switcher = document.querySelector(".route-switch");-->
+<!--        if (!switcher) return;-->
+
+<!--        const host = window.location.hostname;-->
+<!--        const cnPart = switcher.querySelector(".route-cn");-->
+<!--        const globalPart = switcher.querySelector(".route-global");-->
+
+<!--        // 1. 根据当前域名高亮 CN 或 Global-->
+<!--        if (host === "roma-ai-lab.site" || host.endsWith(".roma-ai-lab.site")) {-->
+<!--            cnPart && cnPart.classList.add("active");-->
+<!--        } else if (host === "roma-ai-lab.github.io") {-->
+<!--            globalPart && globalPart.classList.add("active");-->
+<!--        } else {-->
+<!--            // 其他情况（本地预览等）：不高亮任何一侧，或者你想的话也可以默认高亮 Global-->
+<!--            globalPart && globalPart.classList.add("active");-->
+<!--        }-->
+
+<!--        // 2. 创建下拉弹窗 DOM-->
+<!--        const popup = document.createElement("div");-->
+<!--        popup.className = "route-popup";-->
+<!--        popup.innerHTML = `-->
+<!--        <a href="https://roma-ai-lab.site"-->
+<!--           class="route-item"-->
+<!--           data-host="roma-ai-lab.site">-->
+<!--            中国大陆入口（roma-ai-lab.site）-->
+<!--        </a>-->
+<!--        <a href="https://roma-ai-lab.github.io"-->
+<!--           class="route-item"-->
+<!--           data-host="roma-ai-lab.github.io">-->
+<!--            Global（roma-ai-lab.github.io）-->
+<!--        </a>-->
+<!--    `;-->
+<!--        document.body.appendChild(popup);-->
+
+<!--        // 3. 点击按钮：切换弹窗显示/隐藏，并定位到按钮旁边-->
+<!--        switcher.addEventListener("click", (e) => {-->
+<!--            e.stopPropagation();-->
+<!--            popup.classList.toggle("show");-->
+
+<!--            if (popup.classList.contains("show")) {-->
+<!--                const rect = switcher.getBoundingClientRect();-->
+<!--                const x = rect.right - 180; // 稍微往左偏一点-->
+<!--                const y = rect.bottom + 6 + window.scrollY;-->
+
+<!--                popup.style.left = x + "px";-->
+<!--                popup.style.top = y + "px";-->
+<!--            }-->
+<!--        });-->
+
+<!--        // 4. 点击菜单项：带当前路径跳转到目标域名-->
+<!--        popup.addEventListener("click", (e) => {-->
+<!--            const item = e.target.closest(".route-item");-->
+<!--            if (!item) return;-->
+
+<!--            e.preventDefault();-->
+<!--            const targetHost = item.getAttribute("data-host");-->
+<!--            if (!targetHost) return;-->
+
+<!--            const url = new URL(window.location.href);-->
+<!--            url.hostname = targetHost; // 保留 pathname、search、hash-->
+<!--            window.location.href = url.toString();-->
+<!--        });-->
+
+<!--        // 5. 点击页面其他地方收起弹窗-->
+<!--        document.addEventListener("click", () => {-->
+<!--            popup.classList.remove("show");-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const switcher = document.querySelector(".route-switch");
         if (!switcher) return;
 
         const host = window.location.hostname;
-        const cnPart = switcher.querySelector(".route-cn");
-        const globalPart = switcher.querySelector(".route-global");
+        const icon = switcher.querySelector(".route-icon");
 
-        // 1. 根据当前域名高亮 CN 或 Global
+        // 1. 根据当前域名给图标添加轻微色彩偏向
+        // 在 .site 上高亮，.github.io 保持中性
         if (host === "roma-ai-lab.site" || host.endsWith(".roma-ai-lab.site")) {
-            cnPart && cnPart.classList.add("active");
-        } else if (host === "roma-ai-lab.github.io") {
-            globalPart && globalPart.classList.add("active");
-        } else {
-            // 其他情况（本地预览等）：不高亮任何一侧，或者你想的话也可以默认高亮 Global
-            globalPart && globalPart.classList.add("active");
+            switcher.classList.add("cn-active");
         }
 
         // 2. 创建下拉弹窗 DOM
@@ -502,14 +602,15 @@
     `;
         document.body.appendChild(popup);
 
-        // 3. 点击按钮：切换弹窗显示/隐藏，并定位到按钮旁边
+        // 3. 点击按钮：显示/隐藏弹窗，并定位到按钮旁边
         switcher.addEventListener("click", (e) => {
             e.stopPropagation();
-            popup.classList.toggle("show");
+            const isOpen = popup.classList.toggle("show");
+            switcher.setAttribute("aria-expanded", isOpen ? "true" : "false");
 
-            if (popup.classList.contains("show")) {
+            if (isOpen) {
                 const rect = switcher.getBoundingClientRect();
-                const x = rect.right - 180; // 稍微往左偏一点
+                const x = rect.right - 230; // 稍微往左，避免右侧出屏
                 const y = rect.bottom + 6 + window.scrollY;
 
                 popup.style.left = x + "px";
@@ -527,13 +628,14 @@
             if (!targetHost) return;
 
             const url = new URL(window.location.href);
-            url.hostname = targetHost; // 保留 pathname、search、hash
+            url.hostname = targetHost;  // 保留 pathname、search、hash
             window.location.href = url.toString();
         });
 
-        // 5. 点击页面其他地方收起弹窗
+        // 5. 点击页面其他位置收起弹窗
         document.addEventListener("click", () => {
             popup.classList.remove("show");
+            switcher.setAttribute("aria-expanded", "false");
         });
     });
 </script>

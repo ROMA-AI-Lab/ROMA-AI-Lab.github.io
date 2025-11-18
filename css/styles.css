@@ -2555,12 +2555,14 @@ body:not(.light) #repute-all-grid .repute-quote.prose mark {
 
 
 /* ===== 访问线路切换按钮 ===== */
+
 .btn.route-switch {
     font-size: 0.9rem;
     padding-inline: 10px;
-    opacity: 0.85;
     border-radius: 999px;
+    opacity: 0.85;
 }
+
 
 .btn.route-switch:hover {
     opacity: 1;
@@ -2639,6 +2641,76 @@ body:not(.light) #repute-all-grid .repute-quote.prose mark {
     border-radius: 10px;
     padding: 6px 0;
     width: 210px;
+    display: none;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    z-index: 10000;
+}
+
+.route-popup.show {
+    display: block;
+}
+
+.route-item {
+    display: block;
+    padding: 6px 14px;
+    font-size: 0.88rem;
+    text-decoration: none;
+    color: var(--text);
+    white-space: nowrap;
+}
+
+.route-item:hover {
+    background: var(--panel-2);
+}
+
+/* ===== Routes 按钮（Header） ===== */
+.btn.route-switch {
+    font-size: 0.9rem;
+    padding-inline: 10px;
+    border-radius: 999px;
+    opacity: 0.85;
+}
+
+.btn.route-switch:hover {
+    opacity: 1;
+}
+
+.route-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.route-icon {
+    font-size: 0.95em;
+    opacity: 0.85;
+    transition: color 0.2s ease, text-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.route-text {
+    font-size: 0.9rem;
+}
+
+.route-caret {
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+/* 在 .site 上：图标轻微偏红 / 更醒目 */
+.route-switch.cn-active .route-icon {
+    transform: translateY(-0.5px);
+    text-shadow: 0 0 6px color-mix(in oklab, #ff4d4f 60%, transparent);
+    color: color-mix(in oklab, #ff4d4f 60%, var(--text));
+}
+
+/* ===== 弹出菜单 ===== */
+.route-popup {
+    position: absolute;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 6px 0;
+    width: 230px;
     display: none;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
     z-index: 10000;
