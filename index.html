@@ -52,10 +52,33 @@
         </nav>
 
         <!-- controls -->
+<!--        <div class="controls">-->
+<!--            <button aria-label="Toggle theme" class="btn ghost" id="theme-toggle" title="Toggle light/dark">-->
+<!--                <span aria-hidden="true">🌓</span><span class="sr-only">Toggle theme</span>-->
+<!--            </button>-->
+<!--            <button-->
+<!--                    aria-controls="mobile-drawer"-->
+<!--                    aria-expanded="false"-->
+<!--                    aria-label="Menu"-->
+<!--                    class="btn ghost"-->
+<!--                    id="menu"-->
+<!--                    title="Menu">☰-->
+<!--            </button>-->
+<!--        </div>-->
+        <!-- controls -->
         <div class="controls">
             <button aria-label="Toggle theme" class="btn ghost" id="theme-toggle" title="Toggle light/dark">
                 <span aria-hidden="true">🌓</span><span class="sr-only">Toggle theme</span>
             </button>
+
+            <!-- 访问线路切换按钮 -->
+            <button
+                    type="button"
+                    class="btn ghost route-switch"
+                    title="选择访问线路">
+                <span>CN / Global</span>
+            </button>
+
             <button
                     aria-controls="mobile-drawer"
                     aria-expanded="false"
@@ -65,6 +88,7 @@
                     title="Menu">☰
             </button>
         </div>
+
     </div>
 </header>
 
@@ -315,7 +339,14 @@
                 <path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46" fill="none" stroke="currentColor" stroke-linecap="round"
                       stroke-width="5"/>
             </svg>
-            <small>© <span id="year"></span> ROMA Lab. All rights reserved.</small>
+
+            <small>
+                © <span id="year"></span> ROMA Lab. All rights reserved.
+                <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">
+                    粤ICP备2025495736号
+                </a>
+            </small>
+
         </div>
         <div class="foot-links">
             <a class="chip"
@@ -354,6 +385,56 @@
     </div>
 </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const switcher = document.querySelector(".route-switch");
+        if (!switcher) return;
+
+        // --- 1. 自动根据当前域名设置按钮文字 ---
+        const labelSpan = switcher.querySelector("span") || switcher;
+        const host = window.location.hostname;
+
+        if (host === "roma-ai-lab.site" || host.endsWith(".roma-ai-lab.site")) {
+            labelSpan.textContent = "CN（当前）";
+        } else if (host === "roma-ai-lab.github.io") {
+            labelSpan.textContent = "Global（当前）";
+        } else {
+            // 其他情况（比如本地调试）
+            labelSpan.textContent = "CN / Global";
+        }
+
+        // --- 2. 创建下拉弹窗 DOM ---
+        const popup = document.createElement("div");
+        popup.className = "route-popup";
+        popup.innerHTML = `
+        <a href="https://roma-ai-lab.site" class="route-item">
+            中国大陆入口（roma-ai-lab.site）
+        </a>
+        <a href="https://roma-ai-lab.github.io" class="route-item">
+            Global（roma-ai-lab.github.io）
+        </a>
+    `;
+        document.body.appendChild(popup);
+
+        // --- 3. 点击按钮：切换弹窗显示/隐藏，并定位到按钮旁边 ---
+        switcher.addEventListener("click", (e) => {
+            e.stopPropagation();
+            popup.classList.toggle("show");
+
+            if (popup.classList.contains("show")) {
+                const rect = switcher.getBoundingClientRect();
+                // 让弹窗出现在按钮右下方，适当向左偏一点
+                popup.style.left = (rect.right - 160) + "px";
+                popup.style.top = (rect.bottom + 6 + window.scrollY) + "px";
+            }
+        });
+
+        // --- 4. 点击页面其他地方收起弹窗 ---
+        document.addEventListener("click", () => {
+            popup.classList.remove("show");
+        });
+    });
+</script>
 
 
 </body>

@@ -22,72 +22,6 @@
       "placement": ["MSRA","Zhejiang Lab"]
     },
     {
-      "name": "Prof. Hong Cheng",
-      "slug": "hong-cheng",
-      "role": "🌟Steering Committee",
-      "email": "hcheng@se.cuhk.edu.hk",
-      "site": "https://www1.se.cuhk.edu.hk/~hcheng/",
-      "avatar": "/assets/people/hcheng.avif",
-      "topics": ["Data Mining", "Machine Learning", "Database Systems"],
-      "affiliation": "CUHK (Hong Kong)",
-      "status": "sc"
-    },
-    {
-      "name": "Prof. Bo Liu",
-      "slug": "bo-liu",
-      "role": "🌟Steering Committee",
-      "email": "bliu@seu.edu.cn",
-      "site": "https://cs.seu.edu.cn/bliu/main.htm",
-      "avatar": "/assets/people/boliu.avif",
-      "topics": ["Social Network Analysis", "AI Trustworthiness"],
-      "affiliation": "SEU",
-      "status": "sc"
-    },
-    {
-      "name": "Prof. Jiuxin Cao",
-      "slug": "jiuxin-cao",
-      "role": "🌟Steering Committee",
-      "email": "jx.cao@seu.edu.cn",
-      "site": "https://cyber.seu.edu.cn/cjx1/list.htm",
-      "avatar": "/assets/people/jiuxincao.avif",
-      "topics": ["Social Computing", "AI Security & Trustworthiness"],
-      "affiliation": "SEU",
-      "status": "sc"
-    },
-    {
-      "name": "Prof. Hongyang Chen",
-      "slug": "hongyang-chen",
-      "role": "🌟Steering Committee",
-      "email": "hongyang@zhejianglab.com",
-      "site": "https://www.zhejianglab.org/lab/person?pid=290&id=379&bannerId=191",
-      "avatar": "/assets/people/hongyangchen.avif",
-      "topics": ["Big Data & AI", "Graph Computing", "Machine Learning"],
-      "affiliation": "Zhejiang Lab",
-      "status": "sc"
-    },
-    {
-      "name": "Prof. Hongzhi Yin",
-      "slug": "hongzhi-yin",
-      "role": "🌟Steering Committee",
-      "email": "",
-      "site": "https://sites.google.com/view/hongzhi-yin/home",
-      "avatar": "/assets/people/hongzhiyin.avif",
-      "topics": ["RecSys", "Graph Learning","Relational Machine Learning"],
-      "affiliation": "UQ (Australia)",
-      "status": "sc"
-    },
-    {
-      "name": "Chair Prof. Guandong Xu",
-      "slug": "guandong-xu",
-      "role": "🌟Steering Committee",
-      "email": "gdxu@eduhk.hk",
-      "site": "https://www.eduhk.hk/en/experts/professor-xu-guandong",
-      "avatar": "/assets/people/guandongxu.avif",
-      "topics": ["Artificial Intelligence", "Data Science","Recommendation Systems"],
-      "affiliation": "EdUHK (Hong Kong)",
-      "status": "sc"
-    },
-    {
       "name": "Dr. Yicong Li",
       "slug": "yicong-li",
       "role": "Former RA / Ph.D.",
@@ -205,6 +139,72 @@
       "topics": ["LLMs", "Agentic AI","Hallucinations in High-stakes Domains"],
       "affiliation": "The University of Sheffield (UK)",
       "status": "ra"
+    },
+    {
+      "name": "Prof. Hong Cheng",
+      "slug": "hong-cheng",
+      "role": "🌟Steering Committee",
+      "email": "hcheng@se.cuhk.edu.hk",
+      "site": "https://www1.se.cuhk.edu.hk/~hcheng/",
+      "avatar": "/assets/people/hcheng.avif",
+      "topics": ["Data Mining", "Machine Learning", "Database Systems"],
+      "affiliation": "CUHK (Hong Kong)",
+      "status": "sc"
+    },
+    {
+      "name": "Prof. Bo Liu",
+      "slug": "bo-liu",
+      "role": "🌟Steering Committee",
+      "email": "bliu@seu.edu.cn",
+      "site": "https://cs.seu.edu.cn/bliu/main.htm",
+      "avatar": "/assets/people/boliu.avif",
+      "topics": ["Social Network Analysis", "AI Trustworthiness"],
+      "affiliation": "SEU",
+      "status": "sc"
+    },
+    {
+      "name": "Prof. Jiuxin Cao",
+      "slug": "jiuxin-cao",
+      "role": "🌟Steering Committee",
+      "email": "jx.cao@seu.edu.cn",
+      "site": "https://cyber.seu.edu.cn/cjx1/list.htm",
+      "avatar": "/assets/people/jiuxincao.avif",
+      "topics": ["Social Computing", "AI Security & Trustworthiness"],
+      "affiliation": "SEU",
+      "status": "sc"
+    },
+    {
+      "name": "Prof. Hongyang Chen",
+      "slug": "hongyang-chen",
+      "role": "🌟Steering Committee",
+      "email": "hongyang@zhejianglab.com",
+      "site": "https://www.zhejianglab.org/lab/person?pid=290&id=379&bannerId=191",
+      "avatar": "/assets/people/hongyangchen.avif",
+      "topics": ["Big Data & AI", "Graph Computing", "Machine Learning"],
+      "affiliation": "Zhejiang Lab",
+      "status": "sc"
+    },
+    {
+      "name": "Prof. Hongzhi Yin",
+      "slug": "hongzhi-yin",
+      "role": "🌟Steering Committee",
+      "email": "",
+      "site": "https://sites.google.com/view/hongzhi-yin/home",
+      "avatar": "/assets/people/hongzhiyin.avif",
+      "topics": ["RecSys", "Graph Learning","Relational Machine Learning"],
+      "affiliation": "UQ (Australia)",
+      "status": "sc"
+    },
+    {
+      "name": "Chair Prof. Guandong Xu",
+      "slug": "guandong-xu",
+      "role": "🌟Steering Committee",
+      "email": "gdxu@eduhk.hk",
+      "site": "https://www.eduhk.hk/en/experts/professor-xu-guandong",
+      "avatar": "/assets/people/guandongxu.avif",
+      "topics": ["Artificial Intelligence", "Data Science","Recommendation Systems"],
+      "affiliation": "EdUHK (Hong Kong)",
+      "status": "sc"
     }
   ]
 }
