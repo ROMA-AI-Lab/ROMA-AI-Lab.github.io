@@ -667,6 +667,21 @@ footer {
     flex-wrap: wrap
 }
 
+/* Footer 备案图标：缩成“表情包”大小并与文字对齐 */
+footer .foot-left small {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+footer .foot-left small img {
+    width: 1.1em;     /* 和文字高度接近 */
+    height: 1.1em;
+    object-fit: contain;
+    vertical-align: middle;
+}
+
+
 /* ----- Utilities ----- */
 :focus-visible {
     outline: 2px solid var(--ring);
@@ -695,6 +710,107 @@ footer {
     margin-top: 16px;
     line-height: 1.7;
 }
+
+/* ---------- Person detail markdown enhancement ---------- */
+
+/* 整体宽度 & 居中：正文更像一篇优雅的个人页面 */
+#person-detail-body .person-prose {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+/* 顶部大标题（👤 Dr. ...）稍微拉开一点气口 */
+#person-detail-body .person-prose h1 {
+    margin-top: 0;
+    margin-bottom: 0.4em;
+}
+
+/* H2 标题（带 emoji），做一条很轻的底线，方便扫读各 section */
+#person-detail-body .person-prose h2 {
+    margin-top: 1.6em;
+    margin-bottom: 0.6em;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
+}
+
+/* H3 稍微紧凑一点，用于 “Influence Highlights” 这类副标题 */
+#person-detail-body .person-prose h3 {
+    margin-top: 1.2em;
+    margin-bottom: 0.4em;
+}
+
+/* 顶部第一段简介稍微收一点颜色和字号，看起来像 intro */
+#person-detail-body .person-prose > p:first-of-type {
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+/* 列表更紧凑，但保持良好可读性 */
+#person-detail-body .person-prose ul,
+#person-detail-body .person-prose ol {
+    margin: 0.4em 0 0.8em;
+    padding-left: 1.2em;
+}
+
+/* 小圆点列表清晰一点 */
+#person-detail-body .person-prose ul {
+    list-style: disc;
+}
+
+/* Awards 那首小诗的区块样式 */
+#person-detail-body .person-prose blockquote {
+    margin: 1.2em 0;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border-left: 3px solid var(--brand);
+    background: color-mix(in oklab, var(--panel-2) 85%, transparent);
+    color: var(--muted);
+}
+
+/* 亮色主题下稍微抬一点亮度，保持轻盈 */
+.light #person-detail-body .person-prose blockquote {
+    background: color-mix(in oklab, var(--panel-2) 70%, white 15%);
+}
+
+/* 引用里的多行文本（带 <br/>）更紧凑一点 */
+#person-detail-body .person-prose blockquote p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* 引用里第一行（🍇 Awards and Honors）稍微加一点权重 */
+#person-detail-body .person-prose blockquote p br + text {
+    font-weight: 600;
+}
+
+/* 分隔线（---）在个人页收窄一点 */
+#person-detail-body .person-prose hr {
+    margin: 1.2em 0;
+    border-top-style: dashed;
+}
+
+/* 链接下划线稍微柔一点 */
+#person-detail-body .person-prose a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+#person-detail-body .person-prose blockquote {
+    position: relative;
+}
+
+#person-detail-body .person-prose blockquote::after {
+
+    position: absolute;
+    right: 12px;
+    bottom: 8px;
+    font-size: 0.75rem;
+    color: var(--muted);
+    opacity: 0.8;
+    font-style: italic;
+}
+
+
 
 .prose h1, .prose h2, .prose h3, .prose h4 {
     margin: 1.2em 0 .5em;

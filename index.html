@@ -398,34 +398,18 @@
 <footer role="contentinfo">
     <div class="container foot">
         <div class="foot-left">
-            <svg aria-hidden="true" height="22" viewBox="0 0 64 64" width="22">
-                <path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46" fill="none" stroke="currentColor" stroke-linecap="round"
-                      stroke-width="5"/>
-            </svg>
-
+            <svg aria-hidden="true" height="22" viewBox="0 0 64 64" width="22"><path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46" fill="none" stroke="currentColor" stroke-linecap="round"
+                      stroke-width="5"/></svg>
             <small>
                 © <span id="year"></span> ROMA Lab. All rights reserved.
-                <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">
-                    粤ICP备2025495736号
-                </a>
+                备案号：<a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">粤ICP备2025495736号</a>
+
+                <img src="/assets/beian.png" height="40" width="36"/>
+                <a href="https://beian.mps.gov.cn/#/query/webSearch?code=44030002008688" rel="noreferrer" target="_blank">粤公网安备44030002008688号</a>
             </small>
-
         </div>
-<!--        <div class="foot-links">-->
-<!--            <a class="chip"-->
-<!--               href="https://www.bilibili.com/video/BV1iT4bzsEce/?share_source=copy_web&vd_source=dc2c6946b0127024c2225b0e695d9a83"-->
-<!--               target="_blank"><img height="25" src="/assets/bilibili.png"></a>-->
-<!--            <a class="chip" href="https://xhslink.com/m/cZO7eAkIYO" target="_blank"><img height="25"-->
-<!--                                                                                         src="/assets/redbook.png"></a>-->
-<!--            <a class="chip" href="mailto:roma_lab@yeah.net">📩</a>-->
-<!--            <a class="btn primary" href="https://github.com/ROMA-AI-Lab" rel="noopener" target="_blank">GitHub</a>-->
-<!--        </div>-->
     </div>
-
-    <!-- Back-to-top (mobile only) -->
     <button aria-label="Back to top" class="btn ghost hidden cta" id="to-top" title="Back to top">↑</button>
-
-
 </footer>
 
 <script src="js/main.js" type="module"></script>
@@ -447,129 +431,6 @@
         <iframe allowfullscreen id="cinematic-iframe" loading="lazy"></iframe>
     </div>
 </div>
-
-<!--<script>-->
-<!--    document.addEventListener("DOMContentLoaded", () => {-->
-<!--        const switcher = document.querySelector(".route-switch");-->
-<!--        if (!switcher) return;-->
-
-<!--        // -&#45;&#45; 1. 自动根据当前域名设置按钮文字 -&#45;&#45;-->
-<!--        const labelSpan = switcher.querySelector("span") || switcher;-->
-<!--        const host = window.location.hostname;-->
-
-<!--        if (host === "roma-ai-lab.site" || host.endsWith(".roma-ai-lab.site")) {-->
-<!--            labelSpan.textContent = "CN（当前）";-->
-<!--        } else if (host === "roma-ai-lab.github.io") {-->
-<!--            labelSpan.textContent = "Global（当前）";-->
-<!--        } else {-->
-<!--            // 其他情况（比如本地调试）-->
-<!--            labelSpan.textContent = "CN / Global";-->
-<!--        }-->
-
-<!--        // -&#45;&#45; 2. 创建下拉弹窗 DOM -&#45;&#45;-->
-<!--        const popup = document.createElement("div");-->
-<!--        popup.className = "route-popup";-->
-<!--        popup.innerHTML = `-->
-<!--        <a href="https://roma-ai-lab.site" class="route-item">-->
-<!--            中国大陆入口（roma-ai-lab.site）-->
-<!--        </a>-->
-<!--        <a href="https://roma-ai-lab.github.io" class="route-item">-->
-<!--            Global（roma-ai-lab.github.io）-->
-<!--        </a>-->
-<!--    `;-->
-<!--        document.body.appendChild(popup);-->
-
-<!--        // -&#45;&#45; 3. 点击按钮：切换弹窗显示/隐藏，并定位到按钮旁边 -&#45;&#45;-->
-<!--        switcher.addEventListener("click", (e) => {-->
-<!--            e.stopPropagation();-->
-<!--            popup.classList.toggle("show");-->
-
-<!--            if (popup.classList.contains("show")) {-->
-<!--                const rect = switcher.getBoundingClientRect();-->
-<!--                // 让弹窗出现在按钮右下方，适当向左偏一点-->
-<!--                popup.style.left = (rect.right - 160) + "px";-->
-<!--                popup.style.top = (rect.bottom + 6 + window.scrollY) + "px";-->
-<!--            }-->
-<!--        });-->
-
-<!--        // -&#45;&#45; 4. 点击页面其他地方收起弹窗 -&#45;&#45;-->
-<!--        document.addEventListener("click", () => {-->
-<!--            popup.classList.remove("show");-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
-
-<!--<script>-->
-<!--    document.addEventListener("DOMContentLoaded", () => {-->
-<!--        const switcher = document.querySelector(".route-switch");-->
-<!--        if (!switcher) return;-->
-
-<!--        const host = window.location.hostname;-->
-<!--        const cnPart = switcher.querySelector(".route-cn");-->
-<!--        const globalPart = switcher.querySelector(".route-global");-->
-
-<!--        // 1. 根据当前域名高亮 CN 或 Global-->
-<!--        if (host === "roma-ai-lab.site" || host.endsWith(".roma-ai-lab.site")) {-->
-<!--            cnPart && cnPart.classList.add("active");-->
-<!--        } else if (host === "roma-ai-lab.github.io") {-->
-<!--            globalPart && globalPart.classList.add("active");-->
-<!--        } else {-->
-<!--            // 其他情况（本地预览等）：不高亮任何一侧，或者你想的话也可以默认高亮 Global-->
-<!--            globalPart && globalPart.classList.add("active");-->
-<!--        }-->
-
-<!--        // 2. 创建下拉弹窗 DOM-->
-<!--        const popup = document.createElement("div");-->
-<!--        popup.className = "route-popup";-->
-<!--        popup.innerHTML = `-->
-<!--        <a href="https://roma-ai-lab.site"-->
-<!--           class="route-item"-->
-<!--           data-host="roma-ai-lab.site">-->
-<!--            中国大陆入口（roma-ai-lab.site）-->
-<!--        </a>-->
-<!--        <a href="https://roma-ai-lab.github.io"-->
-<!--           class="route-item"-->
-<!--           data-host="roma-ai-lab.github.io">-->
-<!--            Global（roma-ai-lab.github.io）-->
-<!--        </a>-->
-<!--    `;-->
-<!--        document.body.appendChild(popup);-->
-
-<!--        // 3. 点击按钮：切换弹窗显示/隐藏，并定位到按钮旁边-->
-<!--        switcher.addEventListener("click", (e) => {-->
-<!--            e.stopPropagation();-->
-<!--            popup.classList.toggle("show");-->
-
-<!--            if (popup.classList.contains("show")) {-->
-<!--                const rect = switcher.getBoundingClientRect();-->
-<!--                const x = rect.right - 180; // 稍微往左偏一点-->
-<!--                const y = rect.bottom + 6 + window.scrollY;-->
-
-<!--                popup.style.left = x + "px";-->
-<!--                popup.style.top = y + "px";-->
-<!--            }-->
-<!--        });-->
-
-<!--        // 4. 点击菜单项：带当前路径跳转到目标域名-->
-<!--        popup.addEventListener("click", (e) => {-->
-<!--            const item = e.target.closest(".route-item");-->
-<!--            if (!item) return;-->
-
-<!--            e.preventDefault();-->
-<!--            const targetHost = item.getAttribute("data-host");-->
-<!--            if (!targetHost) return;-->
-
-<!--            const url = new URL(window.location.href);-->
-<!--            url.hostname = targetHost; // 保留 pathname、search、hash-->
-<!--            window.location.href = url.toString();-->
-<!--        });-->
-
-<!--        // 5. 点击页面其他地方收起弹窗-->
-<!--        document.addEventListener("click", () => {-->
-<!--            popup.classList.remove("show");-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {

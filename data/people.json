@@ -10,16 +10,10 @@
       "topics": ["Data Mining","Social Intelligence","AI Theory for Non-linear Data"],
       "affiliation": "CUHK (Hong Kong)",
       "status": "lead",
-      "education": [
-        "Ph.D. from Southeast University",
-        "B.S. from Dalian University of Technology "
-      ],
-      "selected_publications": [
-        "All in One: Multi-Task Prompting for GNNs (KDD'23)",
-        "Graph Prompt — Theoretical Analysis (ICML'25)"
-      ],
-      "awards": ["KDD'23 Best Research Paper"],
-      "placement": ["MSRA","Zhejiang Lab"]
+      "education": [],
+      "selected_publications": [],
+      "awards": [],
+      "placement": []
     },
     {
       "name": "Dr. Yicong Li",

@@ -443,49 +443,270 @@ function renderMarkdown(mdText){
     return markdownToHTML(mdText);
 }
 
+// // 轻量 Markdown → HTML（安全：先整体转义，再做白名单替换）
+// function markdownToHTML(mdRaw){
+//     if (!mdRaw) return '';
+//     let s = mdRaw.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+//
+//     // code block
+//     s = s.replace(/```([\s\S]*?)```/g, (_, code) => `<pre class="code"><code>${code.replace(/\n$/,'')}</code></pre>`);
+//     // inline code
+//     s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+//     // images
+//     s = s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img alt="$1" src="$2" />');
+//     // links
+//     s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+//     // bold / italic
+//     s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+//     s = s.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+//     // headings
+//     s = s.replace(/^\s*######\s*(.+)$/gm, '<h6>$1</h6>');
+//     s = s.replace(/^\s*#####\s*(.+)$/gm, '<h5>$1</h5>');
+//     s = s.replace(/^\s*####\s*(.+)$/gm, '<h4>$1</h4>');
+//     s = s.replace(/^\s*###\s*(.+)$/gm, '<h3>$1</h3>');
+//     s = s.replace(/^\s*##\s*(.+)$/gm, '<h2>$1</h2>');
+//     s = s.replace(/^\s*#\s*(.+)$/gm, '<h1>$1</h1>');
+//     // unordered list
+//     s = s.replace(/(?:^(?:\s*[-*+]\s.+)\n?)+/gm, block=>{
+//         const lis = block.trim().split('\n').map(line => line.replace(/^\s*[-*+]\s(.+)$/, '<li>$1</li>')).join('');
+//         return `<ul>${lis}</ul>`;
+//     });
+//     // ordered list
+//     s = s.replace(/(?:^(?:\s*\d+\.\s.+)\n?)+/gm, block=>{
+//         const lis = block.trim().split('\n').map(line => line.replace(/^\s*\d+\.\s(.+)$/, '<li>$1</li>')).join('');
+//         return `<ol>${lis}</ol>`;
+//     });
+//     // hr
+//     s = s.replace(/^\s*(?:---|\*\*\*|___)\s*$/gm, '<hr/>');
+//
+//     // paragraph wrap
+//     const lines = s.split(/\n{2,}/).map(chunk=>{
+//         if (/^\s*<(h\d|ul|ol|li|pre|img|hr)/i.test(chunk.trim())) return chunk;
+//         return `<p>${chunk.trim().replace(/\n+/g,'<br/>')}</p>`;
+//     });
+//     return lines.join('\n');
+// }
+
+
 // 轻量 Markdown → HTML（安全：先整体转义，再做白名单替换）
-function markdownToHTML(mdRaw){
+// 支持：标题、粗体/斜体、链接、图片、行内代码、代码块、
+// 有序/无序列表（含缩进多级）、分割线、引用块、段落换行
+function markdownToHTML(mdRaw) {
     if (!mdRaw) return '';
-    let s = mdRaw.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
-    // code block
-    s = s.replace(/```([\s\S]*?)```/g, (_, code) => `<pre class="code"><code>${code.replace(/\n$/,'')}</code></pre>`);
-    // inline code
-    s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
-    // images
-    s = s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img alt="$1" src="$2" />');
-    // links
-    s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-    // bold / italic
-    s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-    s = s.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-    // headings
-    s = s.replace(/^\s*######\s*(.+)$/gm, '<h6>$1</h6>');
-    s = s.replace(/^\s*#####\s*(.+)$/gm, '<h5>$1</h5>');
-    s = s.replace(/^\s*####\s*(.+)$/gm, '<h4>$1</h4>');
-    s = s.replace(/^\s*###\s*(.+)$/gm, '<h3>$1</h3>');
-    s = s.replace(/^\s*##\s*(.+)$/gm, '<h2>$1</h2>');
-    s = s.replace(/^\s*#\s*(.+)$/gm, '<h1>$1</h1>');
-    // unordered list
-    s = s.replace(/(?:^(?:\s*[-*+]\s.+)\n?)+/gm, block=>{
-        const lis = block.trim().split('\n').map(line => line.replace(/^\s*[-*+]\s(.+)$/, '<li>$1</li>')).join('');
-        return `<ul>${lis}</ul>`;
-    });
-    // ordered list
-    s = s.replace(/(?:^(?:\s*\d+\.\s.+)\n?)+/gm, block=>{
-        const lis = block.trim().split('\n').map(line => line.replace(/^\s*\d+\.\s(.+)$/, '<li>$1</li>')).join('');
-        return `<ol>${lis}</ol>`;
-    });
-    // hr
-    s = s.replace(/^\s*(?:---|\*\*\*|___)\s*$/gm, '<hr/>');
+    // 1) 全局转义，防止注入
+    let src = mdRaw
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
 
-    // paragraph wrap
-    const lines = s.split(/\n{2,}/).map(chunk=>{
-        if (/^\s*<(h\d|ul|ol|li|pre|img|hr)/i.test(chunk.trim())) return chunk;
-        return `<p>${chunk.trim().replace(/\n+/g,'<br/>')}</p>`;
-    });
-    return lines.join('\n');
+    const lines = src.split(/\r?\n/);
+
+    const html = [];
+
+    // 状态机
+    let inCodeBlock = false;
+    let codeBuffer = [];
+
+    let listStack = []; // 栈：['ul','ol',...]
+    let liOpen = false;
+
+    let paraBuffer = [];
+
+    function applyInline(text) {
+        if (!text) return '';
+
+        // 行内代码
+        text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+        // 图片
+        text = text.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img alt="$1" src="$2" />');
+
+        // 链接
+        text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+
+        // 粗体 / 斜体
+        text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+        text = text.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+        return text;
+    }
+
+    function closeAllLists() {
+        if (liOpen) {
+            html.push('</li>');
+            liOpen = false;
+        }
+        while (listStack.length) {
+            const type = listStack.pop();
+            html.push(`</${type}>`);
+        }
+    }
+
+    function flushParagraph() {
+        if (!paraBuffer.length) return;
+        const text = paraBuffer.join('<br/>');
+        html.push(`<p>${text}</p>`);
+        paraBuffer = [];
+    }
+
+    for (let i = 0; i < lines.length; i++) {
+        let line = lines[i];
+
+        const trimmed = line.trim();
+
+        // 2) fenced code block：``` 开始/结束
+        if (trimmed.startsWith('```')) {
+            if (!inCodeBlock) {
+                // 进入代码块前，收尾段落和列表
+                flushParagraph();
+                closeAllLists();
+                inCodeBlock = true;
+                codeBuffer = [];
+            } else {
+                // 结束代码块
+                inCodeBlock = false;
+                const codeHtml = codeBuffer.join('\n');
+                html.push(`<pre class="code"><code>${codeHtml}</code></pre>`);
+                codeBuffer = [];
+            }
+            continue;
+        }
+
+        if (inCodeBlock) {
+            // 代码块内部：原样输出（已整体转义过）
+            codeBuffer.push(line);
+            continue;
+        }
+
+        // 空行：结束当前段落 & 列表
+        if (trimmed === '') {
+            flushParagraph();
+            closeAllLists();
+            continue;
+        }
+
+        // 分割线
+        if (/^(\*\*\*|---|___)\s*$/.test(trimmed)) {
+            flushParagraph();
+            closeAllLists();
+            html.push('<hr/>');
+            continue;
+        }
+
+        // ✅ 引用块：连续以 ">" 开头的行
+        if (trimmed.startsWith('&gt;')) {
+            flushParagraph();
+            closeAllLists();
+
+            let quoteLines = [];
+            let j = i;
+            while (j < lines.length) {
+                let t = lines[j].trim();
+                if (!t.startsWith('&gt;')) break;
+                // 去掉转义后的 &gt; 和紧随其后的空格
+                let q = t.replace(/^&gt;\s?/, '');
+                quoteLines.push(applyInline(q));
+                j++;
+            }
+
+            const quoteHtml = quoteLines.join('<br/>');
+            html.push(`<blockquote><p>${quoteHtml}</p></blockquote>`);
+
+            i = j - 1; // 跳过已处理行
+            continue;
+        }
+
+        // 标题 # ~ ######
+        let m;
+        if ((m = trimmed.match(/^(#{1,6})\s+(.*)$/))) {
+            const level = m[1].length;
+            const text = applyInline(m[2].trim());
+            flushParagraph();
+            closeAllLists();
+            html.push(`<h${level}>${text}</h${level}>`);
+            continue;
+        }
+
+        // 列表项（支持缩进）
+        if ((m = line.match(/^(\s*)([-*+]|\d+\.)\s+(.+)$/))) {
+            const indent = m[1] || '';
+            const marker = m[2];
+            const contentRaw = m[3];
+
+            const level = Math.floor(indent.replace(/\t/g, '    ').length / 2); // 每 2 空格一个层级
+            const type = /^\d+\.$/.test(marker) ? 'ol' : 'ul';
+            const content = applyInline(contentRaw.trim());
+
+            // 列表之前，结束段落
+            flushParagraph();
+
+            // 调整 listStack 至目标层级
+            let currentLevel = listStack.length - 1;
+
+            if (level > currentLevel) {
+                // 向内缩进：打开新 ul/ol
+                for (let lv = currentLevel + 1; lv <= level; lv++) {
+                    html.push(`<${type}>`);
+                    listStack.push(type);
+                    liOpen = false;
+                }
+            } else if (level < currentLevel) {
+                // 向外缩进：关闭多余层级
+                if (liOpen) {
+                    html.push('</li>');
+                    liOpen = false;
+                }
+                for (let lv = currentLevel; lv > level; lv--) {
+                    const t = listStack.pop();
+                    html.push(`</${t}>`);
+                }
+            }
+
+            // 当前层级类型不一致时（ul ↔ ol），替换列表容器
+            const nowLevel = listStack.length - 1;
+            if (nowLevel < 0 || listStack[nowLevel] !== type) {
+                if (liOpen) {
+                    html.push('</li>');
+                    liOpen = false;
+                }
+                if (nowLevel >= 0) {
+                    const old = listStack.pop();
+                    html.push(`</${old}>`);
+                }
+                html.push(`<${type}>`);
+                listStack.push(type);
+            }
+
+            // 关闭上一条 li
+            if (liOpen) {
+                html.push('</li>');
+                liOpen = false;
+            }
+
+            // 打开新 li
+            html.push(`<li>${content}`);
+            liOpen = true;
+
+            continue;
+        }
+
+        // 普通文本：加入当前段落
+        paraBuffer.push(applyInline(trimmed));
+    }
+
+    // 收尾
+    if (inCodeBlock) {
+        const codeHtml = codeBuffer.join('\n');
+        html.push(`<pre class="code"><code>${codeHtml}</code></pre>`);
+    }
+
+    flushParagraph();
+    closeAllLists();
+
+    return html.join('\n');
 }
+
 
 /* -------------------- All News -------------------- */
 async function initNewsPage(){
@@ -843,7 +1064,7 @@ async function initPersonDetail(){
         const html = renderMarkdown(md);
         const wrap = document.createElement('section');
         wrap.className = 'prose';
-        wrap.innerHTML = `${html}`;
+        wrap.innerHTML = `<div class="prose person-prose">${html}</div>`;
         body.appendChild(wrap);
     }
 }
