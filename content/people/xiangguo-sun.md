@@ -1,11 +1,11 @@
 Dr. Xiangguo Sun is a Postdoctoral Research Fellow at The Chinese University of Hong Kong, supervised by Prof. Hong Cheng. He leads **ROMA Lab**, an open academic cooperation platform focusing on responsible online media analytics and graph-centric AI for social computing.  He received his Ph.D. from Southeast University in 2022 under Prof. Bo Liu. He was also a visiting researcher at Zhejiang Lab (2022), a research intern at Microsoft Research Asia (2021–2022), and a joint Ph.D. student at The University of Queensland (2019–2021) supervised by ARC Future Fellow Prof. Hongzhi Yin.
 
 
-## 🔬 Research Interests & Impact
+## 🔬 Research Interests
 
 His research interests include: Data mining, Online social networks, Social computing, Next-generation AI for social science, Graph learning & multimodal reasoning. His work appears in **SIGKDD, VLDB, TKDE, NeurIPS, ICML, ICLR, WWW, WSDM, CIKM, TOIS, TNNLS, RecSys, IJCAI**. 2025-10 (Google Scholar)：**2160+ citations**, **H-index 24**, **6 papers** with **100+ citations**
 
-### Influence Highlights
+### Academic Impact
 
 - **Paper Digest (2025-03)**
     - 2 first-authored papers → *Most Influential Papers* in **KDD 2023** & **KDD 2024**
@@ -14,6 +14,28 @@ His research interests include: Data mining, Online social networks, Social comp
 - **Web of Science (2025-06)**
     - 1 first-authored paper → **Top 1% Most Cited Paper (KDD 2023)**
     - 1 first-authored + 4 co-authored papers → **Top 10% Most Cited Papers** in WSDM 2021, KDD 2020, CIKM 2021, IJCAI 2024
+
+
+### Industrial Impact
+
+- **Heterogeneous Hypergraph Model**  
+  His heterogeneous hypergraph model was adopted as a **standard algorithm** in the open-source graph computing framework **EasyGraph**, demonstrating both theoretical novelty and community recognition.
+
+- **Universal Graph Prompting Paradigm**  
+  He pioneered the **Universal Graph Prompting** paradigm, achieving performance **surpassing AlphaFold-Multimer** in protein complex structure prediction, showing excellent cross-domain generalization potential.
+
+- **ProG: Open-source Toolkit**  
+  He led the development of **ProG**, an open-source graph prompting toolkit widely used as a benchmarking standard, with **560+ GitHub stars**.
+
+- **Public Security Intelligence Systems**  
+  His algorithms serve as **core components** in intelligent public security systems in Nanjing and Jiangsu Province, supporting large-scale criminal investigation and intelligence analysis.
+
+- **COVID-19 Analytics Platform**  
+  During the pandemic, his models supported an enterprise-level **grid-based COVID-19 analytics system**, generating substantial social and economic value.
+
+- **Industry Deployment at Tencent**  
+  His multi-behavior recommendation research has been successfully transferred to Tencent and **fully deployed in the WeChat Official Accounts ecosystem**.
+
 
 ## 🧺 Academic Service
 
@@ -40,9 +62,12 @@ SIGKDD (2020–2026), NeurIPS (2023–2025), ICML 2025, ICLR (2024–2026), IJCA
 
 ## 🎓 Academic Experience
 
-### Postdoctoral & Research Positions
+### Research Positions
+- **2026.01 – present**  
+  Southeast University  
+  Professor
 
-- **2022.05 – present**  
+- **2022.05 – 2025.12**  
   The Chinese University of Hong Kong  
   Postdoctoral Research Fellow with Prof. Hong Cheng (程鸿)
 
