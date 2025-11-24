@@ -1,9 +1,9 @@
-Dr. Xiangguo Sun is a Postdoctoral Research Fellow at The Chinese University of Hong Kong, supervised by Prof. Hong Cheng. He leads **ROMA Lab**, an open academic cooperation platform focusing on responsible online media analytics and graph-centric AI for social computing.  He received his Ph.D. from Southeast University in 2022 under Prof. Bo Liu. He was also a visiting researcher at Zhejiang Lab (2022), a research intern at Microsoft Research Asia (2021–2022), and a joint Ph.D. student at The University of Queensland (2019–2021) supervised by ARC Future Fellow Prof. Hongzhi Yin.
+Dr. Xiangguo Sun is a Postdoctoral Research Fellow at The Chinese University of Hong Kong, supervised by Prof. Hong Cheng. He is set to join Southeast University as a Young Chair Professor (Full Professor) in Jan 2026. He leads **ROMA Lab**, an open academic cooperation platform focusing on responsible online media analytics and graph-centric AI for social computing.  He received his Ph.D. from Southeast University in 2022 under Prof. Bo Liu. He was also a visiting researcher at Zhejiang Lab (2022), a research intern at Microsoft Research Asia (2021–2022), and a joint Ph.D. student at The University of Queensland (2019–2021) supervised by ARC Future Fellow Prof. Hongzhi Yin.
 
 
 ## 🔬 Research Interests
 
-His research interests include: Data mining, Online social networks, Social computing, Next-generation AI for social science, Graph learning & multimodal reasoning. His work appears in **SIGKDD, VLDB, TKDE, NeurIPS, ICML, ICLR, WWW, WSDM, CIKM, TOIS, TNNLS, RecSys, IJCAI**. 2025-10 (Google Scholar)：**2160+ citations**, **H-index 24**, **6 papers** with **100+ citations**
+His research interests include: Data mining, Online social networks, Social computing, Next-generation AI for social science, Graph learning & multimodal reasoning. His work appears in **SIGKDD, VLDB, TKDE, NeurIPS, ICML, ICLR, WWW, WSDM, CIKM, TOIS, TNNLS, RecSys, IJCAI**. Google Scholar (2025-11)：**2319+ citations**, **H-index 24**, **7 papers** with **100+ citations**
 
 ### Academic Impact
 
@@ -18,23 +18,17 @@ His research interests include: Data mining, Online social networks, Social comp
 
 ### Industrial Impact
 
-- **Heterogeneous Hypergraph Model**  
-  His heterogeneous hypergraph model was adopted as a **standard algorithm** in the open-source graph computing framework **EasyGraph**, demonstrating both theoretical novelty and community recognition.
+- His heterogeneous hypergraph model was adopted as a **standard algorithm** in the open-source graph computing library **EasyGraph**, demonstrating both theoretical novelty and community recognition.
 
-- **Universal Graph Prompting Paradigm**  
-  He pioneered the **Universal Graph Prompting** paradigm, achieving performance **surpassing AlphaFold-Multimer** in protein complex structure prediction, showing excellent cross-domain generalization potential.
+- He pioneered the **Universal Graph Prompting** paradigm, achieving performance **surpassing AlphaFold-Multimer** in protein complex structure prediction, showing excellent cross-domain generalization potential.
 
-- **ProG: Open-source Toolkit**  
-  He led the development of **ProG**, an open-source graph prompting toolkit widely used as a benchmarking standard, with **560+ GitHub stars**.
+- He led the development of **ProG**, an open-source graph prompting toolkit widely used as a benchmarking standard, with **560+ GitHub stars**.
 
-- **Public Security Intelligence Systems**  
-  His algorithms serve as **core components** in intelligent public security systems in Nanjing and Jiangsu Province, supporting large-scale criminal investigation and intelligence analysis.
+- His algorithms serve as **core components** in intelligent public security systems in Nanjing and Jiangsu Province, supporting large-scale criminal investigation and intelligence analysis.
 
-- **COVID-19 Analytics Platform**  
-  During the pandemic, his models supported an enterprise-level **grid-based COVID-19 analytics system**, generating substantial social and economic value.
+- During the COVID-19 pandemic, his models supported an enterprise-level **grid-based COVID-19 analytics system**, generating substantial social and economic value.
 
-- **Industry Deployment at Tencent**  
-  His multi-behavior recommendation research has been successfully transferred to Tencent and **fully deployed in the WeChat Official Accounts ecosystem**.
+- His multi-behavior recommendation research has been successfully transferred to Tencent and **fully deployed in the WeChat Official Accounts ecosystem**.
 
 
 ## 🧺 Academic Service
@@ -105,8 +99,9 @@ SIGKDD (2020–2026), NeurIPS (2023–2025), ICML 2025, ICLR (2024–2026), IJCA
 > 但那些都只是虚名罢了，  
 > 没什么鸟用，  
 > 亦不必鸟它。  
+> 
 > Though not that talented,  
 > I've gotten some props.  
-> But they are merely empty names—  
+> But they are merely empty names.
 > They don’t mean shit,  
 > And I don’t give a shit.

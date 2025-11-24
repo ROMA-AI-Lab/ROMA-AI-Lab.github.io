@@ -3,7 +3,7 @@
     {
       "name": "Dr. Xiangguo Sun",
       "slug": "xiangguo-sun",
-      "role": "\uD83C\uDF1F Lab Lead / Postdoctoral Fellow",
+      "role": "\uD83C\uDF1F Lab Lead",
       "email": "roma_lab@yeah.net",
       "site": "https://xgsun.mysxl.cn",
       "avatar": "/assets/people/xiangguo.avif",
@@ -25,14 +25,32 @@
       "topics": ["Explainability","Fairness","RecSys","Counterfactual","GNNs"],
       "affiliation": "UTS (Australia)",
       "status": "partner",
-      "education": ["Ph.D. from University of Technology Sydney",
-        "Master from National University of Defense Technology"
+      "education": ["Ph.D.: University of Technology Sydney",
+        "Master: National University of Defense Technology"
       ],
       "placement": [
-        "Apr. 2024- Present: Associate Professor at the Nanjing University of Aeronautics and Astronautics",
-        "Sep. 2022 - Apr. 2024: Visiting student at The Hong Kong Polytechnic University"],
+        "Apr. 2024- Present: Nanjing University of Aeronautics and Astronautics. Associate Professor",
+        "Sep. 2022 - Apr. 2024: The Hong Kong Polytechnic University. Visiting Student"],
       "selected_publications": [],
       "awards": []
+    },
+    {
+      "name": "Ke Wan",
+      "slug": "ke-wan",
+      "role": "RA / Master Student",
+      "email": "kewank1@163.com",
+      "site": "",
+      "avatar": "/assets/people/wanke.avif",
+      "topics": ["Quantitative Finance","Data Mining","AI4Finance"],
+      "affiliation": "CUHK (Hong Kong)",
+      "status": "ra",
+      "education": ["Master: The Chinese University of Hong Kong. Financial Technology",
+        "Bachelor: University of Edinburgh. Mathematics and Statistics"],
+      "selected_publications": [],
+      "awards": [],
+      "placement": ["Sep. 2025- Present: ByteDance. Research Intern.",
+        "Jun. 2023- Aug. 2023: Huatai United Securities/华泰联合证券. Intern."
+      ]
     },
     {
       "name": "Zoey (Zhiyao) Shu",
@@ -65,7 +83,7 @@
       "site": "",
       "avatar": "/assets/people/pingwang.avif",
       "topics": ["LLM Reasoning","Trustworthy and Responsible LLMs"],
-      "affiliation": "RUC",
+      "affiliation": "Renmin University of China",
       "status": "ra"
     },
     {
@@ -89,6 +107,21 @@
       "topics": ["Personality","AI4Education","Visual Large Language Models"],
       "affiliation": "PolyU (Hong Kong)",
       "status": "ra"
+    },
+    {
+      "name": "Minbin Huang",
+      "slug": "minbin-huang",
+      "role": "RA / Ph.D. Student",
+      "email": "",
+      "site": "",
+      "avatar": "/assets/people/minbin.avif",
+      "topics": ["MLLMs", "Efficient LLMs", "RL with Verifiable Rewards"],
+      "affiliation": "CUHK (Hong Kong)",
+      "status": "ra",
+      "education": [],
+      "selected_publications": [],
+      "awards": [],
+      "placement": []
     },
     {
       "name": "Wang Han",
@@ -120,7 +153,7 @@
       "site": "",
       "avatar": "/assets/people/yihanw.avif",
       "topics": ["Predictive Coding","NLP","Diffusion Models"],
-      "affiliation": "NJU",
+      "affiliation": "Nanjing University",
       "status": "ra"
     },
     {
@@ -153,7 +186,7 @@
       "site": "https://cs.seu.edu.cn/bliu/main.htm",
       "avatar": "/assets/people/boliu.avif",
       "topics": ["Social Network Analysis", "AI Trustworthiness"],
-      "affiliation": "SEU",
+      "affiliation": "Southeast University",
       "status": "sc"
     },
     {
@@ -164,7 +197,7 @@
       "site": "https://cyber.seu.edu.cn/cjx1/list.htm",
       "avatar": "/assets/people/jiuxincao.avif",
       "topics": ["Social Computing", "AI Security & Trustworthiness"],
-      "affiliation": "SEU",
+      "affiliation": "Southeast University",
       "status": "sc"
     },
     {
