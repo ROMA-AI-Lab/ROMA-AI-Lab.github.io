@@ -29,8 +29,8 @@
         "Master: National University of Defense Technology"
       ],
       "placement": [
-        "Apr. 2024- Present: Nanjing University of Aeronautics and Astronautics. Associate Professor",
-        "Sep. 2022 - Apr. 2024: The Hong Kong Polytechnic University. Visiting Student"],
+        "Apr. 2024- Present: NUAA/南京航空航天大学. Associate Professor",
+        "Sep. 2022 - Apr. 2024: PolyU/香港理工大学. Visiting Student"],
       "selected_publications": [],
       "awards": []
     },
@@ -44,11 +44,11 @@
       "topics": ["Quantitative Finance","Data Mining","AI4Finance"],
       "affiliation": "CUHK (Hong Kong)",
       "status": "ra",
-      "education": ["Master: The Chinese University of Hong Kong. Financial Technology",
-        "Bachelor: University of Edinburgh. Mathematics and Statistics"],
+      "education": ["Master: The Chinese University of Hong Kong/香港中文大学. Financial Technology",
+        "Bachelor: University of Edinburgh/爱丁堡大学. Mathematics and Statistics"],
       "selected_publications": [],
       "awards": [],
-      "placement": ["Sep. 2025- Present: ByteDance. Research Intern.",
+      "placement": ["Sep. 2025- Present: ByteDance/字节跳动. Research Intern.",
         "Jun. 2023- Aug. 2023: Huatai United Securities/华泰联合证券. Intern."
       ]
     },
@@ -105,8 +105,15 @@
       "site": "",
       "avatar": "/assets/people/sixuan.avif",
       "topics": ["Personality","AI4Education","Visual Large Language Models"],
-      "affiliation": "PolyU (Hong Kong)",
-      "status": "ra"
+      "affiliation": "UCL (UK)",
+      "status": "ra",
+      "education": ["Master: University College London/英国伦敦大学学院. Network Engineering",
+        "Bachelor: Beijing Jiaotong University/北京交通大学. Information Science and Engineering"],
+      "selected_publications": [],
+      "awards": [],
+      "placement": ["Sep. 2025- Present: EdUHK/香港教育大学. Research Assistant.",
+        "Jun. 2023- Aug. 2023: PolyU/香港理工大学. Research Assistant."
+      ]
     },
     {
       "name": "Minbin Huang",
