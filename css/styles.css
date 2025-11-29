@@ -644,14 +644,13 @@ section:last-of-type {
 .news-text a {
     text-decoration: underline;
     text-underline-offset: 2px;
-    color: var(--brand);
-    font-weight: 500;
 }
 
 .news-text a:hover,
 .news-text a:focus-visible {
-    color: var(--brand-2);
+    text-decoration-thickness: 2px;
 }
+
 
 
 /* ----- Footer ----- */
