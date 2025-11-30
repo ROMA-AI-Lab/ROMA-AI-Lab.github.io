@@ -362,13 +362,42 @@ function rebuildBibtex(typeRaw, key, f){
 
 
 // 读取 Markdown（不存在时返回 null）
+// async function fetchMarkdown(path){
+//     try{
+//         const res = await fetch(path, { cache: 'no-store' });
+//         if (!res.ok) return null;
+//         return await res.text();
+//     }catch{ return null; }
+// }
+
+// 读取 Markdown（不存在或被 SPA 重写成 HTML 时返回 null）
 async function fetchMarkdown(path){
     try{
         const res = await fetch(path, { cache: 'no-store' });
         if (!res.ok) return null;
-        return await res.text();
-    }catch{ return null; }
+
+        const text = await res.text();
+        const ct = res.headers.get('Content-Type') || '';
+
+        // ① 服务器把 .md 重写成 HTML（常见于 OnePage 这种 SPA 托管）
+        //    Content-Type 会是 text/html
+        if (/text\/html/i.test(ct)) return null;
+
+        // ② 即使 Content-Type 不准，但内容本身长得像 HTML，也当作无效
+        const trimmed = text.trim().toLowerCase();
+        if (trimmed.startsWith('<!doctype html') || trimmed.startsWith('<html')) {
+            return null;
+        }
+
+        return text;
+    }catch{
+        return null;
+    }
 }
+
+
+
+
 
 // 高级 Markdown（若第三方库存在）；否则退回轻量版
 function renderMarkdown(mdText){
