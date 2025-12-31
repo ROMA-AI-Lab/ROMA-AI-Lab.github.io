@@ -1,14 +1,14 @@
 {
   "items": [
     {
-      "name": "Dr. Xiangguo Sun",
+      "name": "Prof. Xiangguo Sun",
       "slug": "xiangguo-sun",
       "role": "\uD83C\uDF1F Lab Lead",
       "email": "roma_lab@yeah.net",
       "site": "https://xgsun.mysxl.cn",
       "avatar": "/assets/people/xiangguo.avif",
       "topics": ["Data Mining","Social Intelligence","AI Theory for Non-linear Data"],
-      "affiliation": "CUHK (Hong Kong)",
+      "affiliation": "Southeast University",
       "status": "lead",
       "education": [],
       "selected_publications": [],
