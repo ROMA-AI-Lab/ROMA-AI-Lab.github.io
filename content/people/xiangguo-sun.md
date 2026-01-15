@@ -33,25 +33,29 @@ His research interests include: Data mining, Online social networks, Social comp
 
 ## 🧺 Academic Service
 
-### Committee Roles
+### Junior Roles:
+- **PC Member & Reviewer for Major Venues:** SIGKDD (2020–2026), NeurIPS (2023–2025), ICML 2025, ICLR (2024–2026), IJCAI 2024, AAAI 2026, WWW (2023–2026), TKDE, TPAMI, TNNLS, SIGIR 2021, ICDE 2021, VLDB 2022, DASFAA (2020–2026), WSDM (2025–2026), SDM 2024, CIKM (2024–2025)
+- **Reviewer Recognition:** Outstanding / Best / Top Reviewer by NeurIPS 2025, KDD 2025 (Feb top 10%, Aug top 20%), BESC 2020 (only 8 positions)
 
+### Senior Roles:
+- **Senior Program Committee (SPC):** IJCAI 2026
+- **Area Chair:** TBD
+- **Program Chair:** TBD
+
+### Editorial Roles
+- **Editor**, *Information Processing and Management (IP&M)*
+- **Associate Editor**, *Big Data Mining and Analytics* / 《大数据挖掘与分析(英文)》
+- **Associate Editor**, *Journal of Social Computing*
+
+
+### Society Roles
 - Elected Member, **CAAI Social Computing & Social Intelligence Committee**
     - *Only* postdoc elected
     - Deputy Secretary-General
     - Chair, Young Scholar Rising Star Executive Committee
 
-### Editorial Roles
 
-- **Editor**, *Information Processing and Management (IP&M)*
-- **Associate Editor**, *Big Data Mining and Analytics* / 《大数据挖掘与分析(英文)》
-- **Associate Editor**, *Journal of Social Computing*
 
-### Reviewer Recognition
-
-Recognized as Outstanding / Best / Top Reviewer by: NeurIPS 2025, KDD 2025 (Feb top 10%, Aug top 20%), BESC 2020 (only 8 positions)
-
-### PC Member & Reviewer for Major Venues
-SIGKDD (2020–2026), NeurIPS (2023–2025), ICML 2025, ICLR (2024–2026), IJCAI 2024, AAAI 2026, WWW (2023–2026), TKDE, TPAMI, TNNLS, SIGIR 2021, ICDE 2021, VLDB 2022, DASFAA (2020–2026), WSDM (2025–2026), SDM 2024, CIKM (2024–2025)
 
 
 ## 🎓 Academic Experience
