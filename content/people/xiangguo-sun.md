@@ -1,5 +1,5 @@
-Dr. Xiangguo Sun is a Postdoctoral Research Fellow at The Chinese University of Hong Kong, supervised by Prof. Hong Cheng. He is set to join Southeast University as a Young Chair Professor (Full Professor) in Jan 2026. He leads **ROMA Lab**, an open academic cooperation platform focusing on responsible online media analytics and graph-centric AI for social computing.  He received his Ph.D. from Southeast University in 2022 under Prof. Bo Liu. He was also a visiting researcher at Zhejiang Lab (2022), a research intern at Microsoft Research Asia (2021–2022), and a joint Ph.D. student at The University of Queensland (2019–2021) supervised by ARC Future Fellow Prof. Hongzhi Yin.
-
+Dr. Xiangguo Sun/孙相国 (sun hsiang-kuo) is now working as a Full Professor at Southeast University. He leads **ROMA Lab**, an open academic cooperation platform focusing on responsible online media analytics and
+graph-centric AI for social computing. Before joining SEU, he worked as a Postdoctoral Research Fellow at The Chinese University of Hong Kong, supervised by Prof. Hong Cheng. He received his Ph.D. in 2022 from Southeast University, supervised by Prof. Bo Liu. In the same year, he visited Zhejiang Lab as a visiting researcher hosted by Chief Scientist Prof. Hongyang Chen. He worked as a research intern at Microsoft Research Asia with Dr. Hang Dong and Bo Qiao. In 2019, he came to Australia as a 2-year joint Ph.D. student at The University of Queensland, supervised by ARC Future Fellow Prof. Hongzhi Yin.
 
 ## 🔬 Research Interests
 
