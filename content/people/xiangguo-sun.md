@@ -3,7 +3,7 @@ Dr. Xiangguo Sun is a Postdoctoral Research Fellow at The Chinese University of 
 
 ## 🔬 Research Interests
 
-His research interests include: Data mining, Online social networks, Social computing, Next-generation AI for social science, Graph learning & multimodal reasoning. His work appears in **SIGKDD, VLDB, TKDE, NeurIPS, ICML, ICLR, WWW, WSDM, CIKM, TOIS, TNNLS, RecSys, IJCAI**. Google Scholar (2025-11)：**2319+ citations**, **H-index 24**, **7 papers** with **100+ citations**
+His research interests include: Data mining, Online social networks, Social computing, Next-generation AI for social science, Graph learning & multimodal reasoning. His work appears in **SIGKDD, VLDB, TKDE, NeurIPS, ICML, ICLR, WWW, WSDM, CIKM, TOIS, TNNLS, RecSys, IJCAI**. Google Scholar (2025-12)：**2400+ citations**, **H-index 25**, **7 papers** with **100+ citations**
 
 ### Academic Impact
 
