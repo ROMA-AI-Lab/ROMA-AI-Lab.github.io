@@ -38,9 +38,8 @@ His research interests include: Data mining, Online social networks, Social comp
 - **Reviewer Recognition:** Outstanding / Best / Top Reviewer by NeurIPS 2025, KDD 2025 (Feb top 10%, Aug top 20%), BESC 2020 (only 8 positions)
 
 ### Senior Roles:
-- **Senior Program Committee (SPC):** IJCAI 2026
-- **Area Chair:** TBD
-- **Program Chair:** TBD
+- SPC of IJCAI 2026
+- SPC of SIGIR 2026
 
 ### Editorial Roles
 - **Editor**, *Information Processing and Management (IP&M)*
