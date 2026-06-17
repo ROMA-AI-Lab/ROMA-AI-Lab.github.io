@@ -1,0 +1,16 @@
+{
+  "source": [
+    "core.en.json",
+    "extended.en.json"
+  ],
+  "output": [
+    "core.zh.json",
+    "extended.zh.json"
+  ],
+  "policy": "英文题库中文翻译版。保留英文题库的 id、score、dims 等评分字段，仅将 title、scenario、options.label 翻译为中文。",
+  "counts": {
+    "core": 20,
+    "extended": 30
+  },
+  "generatedAt": "2026-06-17T13:33:02.894Z"
+}
