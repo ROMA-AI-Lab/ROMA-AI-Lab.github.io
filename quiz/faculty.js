@@ -78,35 +78,55 @@ function analyze(rep){
   let answered=0, goodCount=0;
   let publicityRisk=0, integrityRisk=0, volatilityRisk=0, egoismRisk=0;
 
-  Object.keys(ans).forEach(qid=>{
-    const q=qmap[qid]; if(!q) return;
-    const sel=ans[qid];
-    const opt=(q.options||[]).find(o=>o.id===sel);
-    const best=(q.options||[]).reduce((a,b)=> b.score>(a?a.score:-1)?b:a, null);
-    if(opt){
-      answered++; if(opt.score>0) goodCount++;
-      for(const k in per){ per[k]+= (opt.dims?.[k]||0); }
-      const dimsSum = Object.values(opt.dims||{}).reduce((a,b)=>a+b,0);
-      if(opt.score===0 && dimsSum===0){ severeFlags.push({qid, title:q.title, choice:sel, label:opt.label}); }
-      else if(opt.score===0){ weakFlags.push({qid, title:q.title, choice:sel, label:opt.label}); }
-      if(RULES && RULES.triggers){
-        const blob=(q.title+' '+q.scenario+' '+opt.label).toLowerCase();
-        RULES.triggers.forEach(tg=>{
-          if(blob.includes((tg.key||'').toLowerCase())){
-            const aff=tg.affect||{};
-            if('publicityRisk' in aff) publicityRisk += aff.publicityRisk;
-            if('integrityRisk' in aff) integrityRisk += aff.integrityRisk;
-            if('volatilityRisk' in aff) volatilityRisk += aff.volatilityRisk;
-            if('egoismRisk' in aff) egoismRisk += aff.egoismRisk;
-            triggerHits.push({key:tg.key, affectVal:JSON.stringify(aff)});
-          }
-        });
-      }
-    }
-    if(best){ for(const k in mx){ mx[k]+= (best.dims?.[k]||0); } }
-  });
 
-  const ratio={}; DIM.forEach(k=> ratio[k]= Math.round((per[k]/Math.max(1,mx[k]))*100));
+  BANK.forEach(q => {
+        const opts = q.options || [];
+
+        // 分母：与学生端 app.js 保持一致，每一维使用该题所有选项中的维度最大值
+        for (const k of DIM) {
+            mx[k] += Math.max(0, ...opts.map(o => o.dims?.[k] || 0));
+        }
+
+        const sel = ans[q.id];
+        const opt = opts.find(o => o.id === sel);
+        if (!opt) return;
+
+        answered++;
+        if (opt.score > 0) goodCount++;
+
+        for (const k of DIM) {
+            per[k] += (opt.dims?.[k] || 0);
+        }
+
+        const dimsSum = Object.values(opt.dims || {}).reduce((a, b) => a + b, 0);
+        if (opt.score === 0 && dimsSum === 0) {
+            severeFlags.push({ qid: q.id, title: q.title, choice: sel, label: opt.label });
+        } else if (opt.score === 0) {
+            weakFlags.push({ qid: q.id, title: q.title, choice: sel, label: opt.label });
+        }
+
+        if (RULES && RULES.triggers) {
+            // 临时安全修复：只匹配学生选择文本，避免题干/情境误触发风险
+            const blob = String(opt.label || '').toLowerCase();
+
+            RULES.triggers.forEach(tg => {
+                if (blob.includes((tg.key || '').toLowerCase())) {
+                    const aff = tg.affect || {};
+                    if ('publicityRisk' in aff) publicityRisk += aff.publicityRisk;
+                    if ('integrityRisk' in aff) integrityRisk += aff.integrityRisk;
+                    if ('volatilityRisk' in aff) volatilityRisk += aff.volatilityRisk;
+                    if ('egoismRisk' in aff) egoismRisk += aff.egoismRisk;
+                    triggerHits.push({ key: tg.key, affectVal: JSON.stringify(aff) });
+                }
+            });
+        }
+    });
+
+
+
+  const ratio = {};DIM.forEach(k => {ratio[k] = clamp((per[k] / Math.max(1, mx[k])) * 100, 0, 100);});
+
+
   const completion = Math.round( (answered/Math.max(1,Object.keys(buildQMap()).length))*100 );
   const goodRate = Math.round((goodCount/Math.max(1,answered))*100);
 
@@ -623,76 +643,158 @@ function renderNav(rep){
 }
 
 // ---- Prompt builders ----
+// Suggested replacement for the prompt payload section in faculty.js.
+// Replace compressBankForPrompt() and the faculty-facing payload block inside buildPrompts(rep, r).
+
 function compressBankForPrompt(){
-  // keep only id, title, scenario, options:{id,label,dims}
-  return BANK.map(q=>({
-    id:q.id, title:q.title, scenario:q.scenario||'',
-    options:(q.options||[]).map(o=>({id:o.id, label:o.label, dims:o.dims||{}}))
-  }));
+    return BANK.map(q => ({
+        id: q.id,
+        title: q.title,
+        scenario: q.scenario || '',
+        options: (q.options || []).map(o => ({
+            id: o.id,
+            label: o.label,
+            score: typeof o.score === 'number' ? o.score : null,
+            dims: o.dims || {}
+        }))
+    }));
 }
+
+function buildSelectedEvidenceForPrompt(rep){
+    const ans = rep.answers || {};
+    const durations = rep.pace?.durations || {};
+    return BANK.map(q => {
+        const selectedId = ans[q.id];
+        const opt = (q.options || []).find(o => o.id === selectedId);
+        if (!opt) return null;
+        return {
+            qid: q.id,
+            title: q.title,
+            scenario: q.scenario || '',
+            selected_option: {
+                id: opt.id,
+                label: opt.label,
+                score: typeof opt.score === 'number' ? opt.score : null,
+                dims: opt.dims || {}
+            },
+            duration_ms: durations[q.id] || null
+        };
+    }).filter(Boolean);
+}
+
+function buildFacultyPayload(rep, r, auto_summary){
+    const bank = compressBankForPrompt();
+    const selectedEvidence = buildSelectedEvidenceForPrompt(rep);
+
+    return {
+        schema_version: 'roma-cit-faculty-prompt-v2',
+        language: 'zh-CN',
+        role: 'ROMA Lab CIT admissions evaluator',
+        task: '基于学生答题 JSON、系统计算指标和题库证据，生成审慎、证据导向、中文的导师测评报告。',
+        field_guide: {
+            student_report: {
+                answers: '学生最终答案，格式为 {题号: 选项ID}。',
+                picked: '学生选择记录，可能包含改答案历史；每条通常包含 qid、optionId、ts。',
+                pace: {
+                    durations: '每题首次作答停留时间，单位毫秒；只能作为行为辅助线索，不等同于真实心理状态。',
+                    order: '首次作答题目顺序；若为空，说明旧版答题页未记录该字段。',
+                    timestamps: '首次作答时间戳；若为空，说明旧版答题页未记录该字段。'
+                },
+                per: '学生端计算出的五维标准化画像百分比；仅作参考，以导师端 computed_metrics.dimension_ratio 为准。',
+                max: '学生端各维度理论最大值；仅作校验参考。',
+                answered_total: 'answered/total 表示完成度。'
+            },
+            scoring_model: {
+                dimensions: {
+                    BND: '边界感/分寸感：数据、署名、隐私、合作边界与场合判断。',
+                    COM: '沟通协作：主动澄清、同步、协调、建设性表达。',
+                    EMP: '同理支持：对他人感受、处境、压力与尊严的觉察。',
+                    INT: '诚信规范：科研诚信、透明度、规则意识、可追溯性。',
+                    CRV: '创造与抗压：不确定情境下的弹性、替代方案与推进能力。'
+                },
+                score_rubric: {
+                    0: '明显不推荐或存在风险信号。',
+                    1: '可接受但较保守、被动或有短板。',
+                    2: '较成熟、整体可鼓励。',
+                    3: '高度契合实验室期待，成熟且低风险。'
+                },
+                fit_weights: (RULES && RULES.fit_weights) || {BND:0.22, COM:0.22, INT:0.28, EMP:0.18, CRV:0.10},
+                caution: 'score 是选项推荐度/风险等级，不是学生人格分数；dims 是五维特质贡献。'
+            },
+            computed_metrics: {
+                dimension_ratio: '导师端按题库和答案重新计算的五维画像百分比。',
+                roma_fit: '按 fit_weights 加权后的总体适配度。',
+                good_rate: 'score > 0 的选项比例；题库 score 未校准时不可过度解读。',
+                risks: {
+                    publicityRisk: '公开表达/传播边界风险，主要用于提示是否需要进一步核验。',
+                    integrityRisk: '诚信规范风险，结合 INT 维度和规则触发项。',
+                    volatilityRisk: '波动风险，结合触发项、goodRate 和作答行为线索。',
+                    egoismRisk: '协作与自我取向风险；请避免道德化标签，用中性语言解释。'
+                },
+                pace: 'Pace Trust、Consistency、avgMs、medianMs 等只是行为稳定性线索，不构成心理诊断。'
+            }
+        },
+        data: {
+            student_report: rep,
+            auto_summary: auto_summary || '',
+            computed_metrics: {
+                dimension_ratio: r.ratio,
+                roma_fit: r.romaFit,
+                completion: r.completion,
+                good_rate: r.goodRate,
+                risks: {
+                    publicityRisk: r.publicityRisk,
+                    integrityRisk: r.integrityRisk,
+                    volatilityRisk: r.volatilityRisk,
+                    egoismRisk: r.egoismRisk
+                },
+                pace: {
+                    paceTrust: r.paceTrust,
+                    consistency: r.consistency,
+                    avgMs: r.avgMs,
+                    medianMs: r.medianMs,
+                    fastRate: r.fastRate,
+                    slowRate: r.slowRate,
+                    varcoef: r.varcoef
+                },
+                flags: {
+                    severeFlags: r.severeFlags || [],
+                    weakFlags: r.weakFlags || [],
+                    triggerHits: r.triggerHits || []
+                }
+            },
+            selected_evidence: selectedEvidence,
+            question_bank_compact: bank
+        },
+        requirements: [
+            '全文使用中文。',
+            '区分事实、计算结果、解释性推断，不要把启发式风险当成诊断结论。',
+            '每个关键判断必须引用至少一个题号、题干/情境、学生选项和行为解释。',
+            '不要复述完整原始 JSON，只提取与结论有关的证据。',
+            '不要输出思维过程；不要使用道德审判式措辞。',
+            '当 score 尚未校准或题库字段可能不完整时，明确降低该指标权重。'
+        ],
+        expected_sections: [
+            '开头格式为ROMA Lab招生评估报告，然后附带报告版本、评估对象、测试完成度、评估日期等信息',
+            '核心画像与维度概览（用自然的语言概括评估对象，包括核心优势和主要缺点，简要分析各个维度的情况）',
+            '关键证据链（逐条列出，含题号/题干/选项/解释）',
+            '潜在风险与成因分析（列举每一个潜在风险、以及他们对应的表现、成因分析、实验室风险等）',
+            '这份测试结果的可信度（根据Pace Trust、答题时间节奏、一致性、波动性等数据）',
+            '面试核验建议（提问清单）',
+            '综合结论与录取建议（如需分情境给出建议）'
+        ]
+    };
+}
+
+
+
 function buildPrompts(rep, r){
-  const userBox = $('#promptUser');
-  const facText = $('#promptFacultyText');
   const facJSON = $('#promptFacultyJSON');
-  if(!userBox || !facText || !facJSON) return;
+  if(!facJSON) return;
 
-  // student-facing (plain text)
-  const dims = r.ratio;
-  const top = Object.entries(dims).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([k,v])=>`${DIM_NAME[k]} ${v}%`).join(', ');
   const auto_summary = $('#summary')?.textContent || '';
-  const studentPrompt = [
-    '[SYSTEM] You are ROMA Lab CIT coach. Praise-first, supportive, conversational.',
-    '[INSTRUCTION] Write the report in Chinese. Do not give rigid advice; celebrate strengths with concrete observations sounding human and lab-contextual.',
-    `[SCORES] ROMA Fit ${r.romaFit}%; top signals: ${top}.`,
-    '[OUTPUT] 6–9 short bullets of appreciation + a warm closing paragraph.',
-    '[NOTE] Keep privacy and ethics reminders subtle.'
-  ].join('\n');
-  userBox.value = studentPrompt;
-
-  // faculty-facing (text + JSON)
-  const bank = compressBankForPrompt();
-  const payload = {
-    system: 'You are the evaluator for ROMA Lab admissions. Produce a deep, evidence-based analysis in Chinese.',
-    inputs: {
-      student_report: rep,
-      auto_summary: auto_summary,
-      scoring_model: {
-        dims: ['BND','COM','EMP','INT','CRV'],
-        weights: (RULES && RULES.fit_weights) || {BND:0.22,COM:0.22,INT:0.28,EMP:0.18,CRV:0.10}
-      },
-      question_bank_compact: bank
-    },
-    requirements: [
-      'Write the final report entirely in Chinese (保持中文输出)。',
-      'Include an evidence chain: for each key claim, cite question id, title/scenario (原始语言), chosen option text, and the behavior interpretation.',
-      'Diagnose potential risks (publicity, integrity, volatility, egoism) and explain why with references to answers.',
-      'Analyze behavior patterns to see whether this report is trustworthy (pace trust, timeduration, consistency, etc)',
-      'Provide concrete interview probes tailored to this student.',
-      'Incorporate answering behavior (pace, consistency, jump patterns if any).',
-      'Do not expose internal weights; no moralizing tone; be specific and fair.'
-    ],
-    expected_sections: [
-      '核心画像与维度概览',
-      '关键证据链（逐条列出，含题号/题干/选项/解释）',
-      '潜在风险与成因分析',
-        '这份测试结果的可信度（根据Pace Trust、答题时间节奏、一致性、波动性等数据）',
-      '面试核验建议（提问清单）',
-      '综合结论与录取建议（如需分情境给出建议）'
-    ]
-  };
+  const payload = buildFacultyPayload(rep, r, auto_summary);
   facJSON.value = JSON.stringify(payload, null, 2);
-
-  const facTextPrompt = [
-    '[SYSTEM] You are the evaluator for ROMA Lab admissions. Generate a detailed Chinese report.',
-    '[DATA] 以下为学生本地导出的 JSON 报告（原样）：',
-    JSON.stringify(rep),
-    '[AUTO_SUMMARY] 由系统生成的综合分析报告：',
-    auto_summary || '(无)',
-    '[BANK] 仅保留必要字段（id, title, scenario, options.label, options.dims）：',
-    JSON.stringify(bank).slice(0, 100000), // safeguard very long
-    '[REQUIREMENTS] 输出必须为中文，包含：核心画像、证据链（题号/题干/选项/行为解释）、潜在风险与成因分析、这份测试结果的可信度(（根据Pace Trust、答题时间节奏、一致性、波动性等数据）)、面试核验建议（提问清单）、综合结论与录取建议（如需分情境给出建议）。请结合作答节奏等行为数据给出洞察。'
-  ].join('\n');
-  facText.value = facTextPrompt;
 }
 
 // ---------- Flow ----------
@@ -736,15 +838,3 @@ function copyWithToast(textareaId, btn){
         setTimeout(()=>{ btn.textContent = old; btn.disabled = false; }, 300);
     });
 }
-
-(function(){
-    const box = document.getElementById('facJSONBox');
-    if(!box) return;
-    const sum = box.querySelector('summary');
-    box.addEventListener('toggle', ()=>{
-        if(!sum) return;
-        sum.textContent = box.open ? '收起 JSON' : '显示 JSON';
-    });
-})();
-
-

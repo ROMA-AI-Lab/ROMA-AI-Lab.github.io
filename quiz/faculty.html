@@ -24,7 +24,6 @@
       </div>
       <div class="controls">
         <span id="langBadge" class="langBadge">Bank: —</span>
-<!--        <button id="themeBtn" class="btn">🌗 主题</button>-->
       </div>
     </div>
   </div>
@@ -52,46 +51,29 @@
           <div class="body"><div id="summary" class="mono"></div></div>
         </div>
 
-<!--        <div class="card" style="margin-top:12px">-->
-<!--          <div class="head"><h3>证据样例（题目与作答）</h3><div class="subtle">自动抽样</div></div>-->
-<!--          <div class="body"><ol id="evidenceList" class="evidence"></ol></div>-->
-<!--        </div>-->
-
-<!--          <div class="card" style="margin-top:12px">-->
-<!--              <div class="head"><h3>证据样例（题目与作答）</h3><div class="subtle">自动抽样</div></div>-->
-<!--              <div class="body">-->
-<!--                  <ol id="evidenceList" class="evidence"></ol>-->
-<!--                  <div class="evidence-actions">-->
-<!--                      <button id="evidenceMore" class="btn small ghost">展开更多</button>-->
-<!--                  </div>-->
-<!--              </div>-->
-<!--          </div>-->
-
-          <div class="card" style="margin-top:12px">
-              <div class="head">
-                  <h3>证据样例（题目与作答）</h3>
-                  <div class="subtle">代表性优先 · 支持分页与导出</div>
-              </div>
-              <div class="body">
-                  <ol id="evidenceList" class="evidence"></ol>
-
-                  <!-- 分页 + 导出控件（JS 会复用/创建） -->
-                  <div class="evidence-controls">
-                      <div class="controls-left">
-                          <button id="evidencePrev" class="btn small ghost">上一页</button>
-                          <span id="evidencePage" class="page-indicator">1 / 1</span>
-                          <button id="evidenceNext" class="btn small ghost">下一页</button>
-                      </div>
-                      <div class="controls-right">
-                          <button id="evidenceExportMd" class="btn small">导出 MD</button>
-                          <button id="evidenceExportCsv" class="btn small">导出 CSV</button>
-                      </div>
-                  </div>
-              </div>
+        <div class="card" style="margin-top:12px">
+          <div class="head">
+            <h3>证据样例（题目与作答）</h3>
+            <div class="subtle">代表性优先 · 支持分页与导出</div>
           </div>
+          <div class="body">
+            <ol id="evidenceList" class="evidence"></ol>
 
+            <div class="evidence-controls">
+              <div class="controls-left">
+                <button id="evidencePrev" class="btn small ghost">上一页</button>
+                <span id="evidencePage" class="page-indicator">1 / 1</span>
+                <button id="evidenceNext" class="btn small ghost">下一页</button>
+              </div>
+              <div class="controls-right">
+                <button id="evidenceExportMd" class="btn small">导出 MD</button>
+                <button id="evidenceExportCsv" class="btn small">导出 CSV</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
-          <div class="card" style="margin-top:12px">
+        <div class="card" style="margin-top:12px">
           <div class="head"><h3>内部诊断（仅供导师）</h3></div>
           <div class="body"><ul id="diag" style="margin:0 0 0 18px;line-height:1.7"></ul></div>
         </div>
@@ -108,10 +90,7 @@
           <div class="body"><div id="kpi" class="kpi"></div></div>
         </div>
 
-
-
-
-          <div class="card" style="margin-top:12px">
+        <div class="card" style="margin-top:12px">
           <div class="head"><h3>交互导航分析</h3><div class="subtle">跳转热力 / 回看比</div></div>
           <div class="body">
             <canvas id="navHeat" class="canvas" height="120"></canvas>
@@ -136,42 +115,67 @@
 
         <div class="card" style="margin-top:12px">
           <div class="head">
-            <h3>一键生成两份系统提示词（大模型专用）</h3>
+            <h3>系统提示词-DeepSeak(Instant DeepThink)专用</h3>
             <div class="subtle">上传 JSON 后自动填充</div>
           </div>
           <div class="body prompt-box">
             <div>
-              <div class="small subtle" style="margin-bottom:6px">面向学生（复制后可直接投喂大模型）：</div>
-              <textarea id="promptUser" class="prompt" placeholder="上传 JSON 后自动填充"></textarea>
+              <div class="small subtle" style="margin-bottom:6px">面向导师（JSON，复制后可直接投喂大模型）：</div>
+              <textarea id="promptFacultyJSON" class="prompt" placeholder="上传 JSON 后自动填充"></textarea>
               <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
-<!--                <button id="copyUser" class="btn" onclick="navigator.clipboard.writeText(document.getElementById('promptUser').value)">复制学生版</button>-->
-                  <button id="copyUser" class="btn" onclick="copyWithToast('promptUser', this)">复制学生版</button>
-                  <button id="downloadUser" class="btn" onclick="downloadText('promptUser','CIT_prompt_user.txt')">下载学生版提示词</button>
-              </div>
-            </div>
-            <div>
-              <div class="small subtle" style="margin-bottom:6px">面向导师（复制后可直接投喂大模型）</div>
-              <textarea id="promptFacultyText" class="prompt" placeholder="上传 JSON 后自动填充"></textarea>
-              <div class="small subtle" style="margin:8px 0 4px">（可选）查看 JSON 版：</div>
-                <details id="facJSONBox">
-                <summary class="btn ghost small">显示 JSON</summary>
-                <textarea id="promptFacultyJSON" class="prompt" placeholder="JSON 版本（点击上方生成后出现）"></textarea>
-              </details>
-              <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
-<!--                <button id="copyFacultyText" class="btn" onclick="navigator.clipboard.writeText(document.getElementById('promptFacultyText').value)">复制导师版（文本）</button>-->
-
-                  <button id="copyFacultyText" class="btn" onclick="copyWithToast('promptFacultyText', this)">复制导师版（文本）</button>
-
-<!--                  <button id="copyFacultyJSON" class="btn" onclick="navigator.clipboard.writeText(document.getElementById('promptFacultyJSON').value)">复制导师版（JSON）</button>-->
-
-                  <button id="copyFacultyJSON" class="btn" onclick="copyWithToast('promptFacultyJSON', this)">复制导师版（JSON）</button>
-                  <button id="downloadFacultyText" class="btn" onclick="downloadText('promptFacultyText','CIT_prompt_faculty.txt')">下载导师版（文本）</button>
+                <button id="copyFacultyJSON" class="btn" onclick="copyWithToast('promptFacultyJSON', this)">复制导师版（JSON）</button>
                 <button id="downloadFacultyJSON" class="btn" onclick="downloadText('promptFacultyJSON','CIT_prompt_faculty.json')">下载导师版（JSON）</button>
               </div>
             </div>
           </div>
         </div>
 
+        <div class="card ai-report-card" id="aiReportCard" style="margin-top:12px">
+          <div class="head">
+            <h3>大模型测评报告</h3>
+            <div class="subtle">DeepSeek · 手动触发</div>
+          </div>
+          <div class="body">
+            <div class="ai-panel">
+              <div class="ai-field ai-field-key">
+                <label for="deepseekApiKey">DeepSeek API Key</label>
+                <div class="ai-key-row">
+                  <input id="deepseekApiKey" class="ai-input" type="password" autocomplete="off" spellcheck="false" placeholder="sk-..."/>
+                  <button id="clearDeepseekApiKey" class="btn small ghost" type="button">清除</button>
+                </div>
+                <div id="deepseekKeyHint" class="ai-hint">Key 仅保存在本机浏览器，不会上传到网站服务器。</div>
+              </div>
+
+              <div class="ai-field">
+                <label for="deepseekModel">模型 / 模式</label>
+                <select id="deepseekModel" class="ai-input">
+                  <option value="deepseek-v4-pro" data-thinking="enabled" data-effort="high" selected>deepseek-v4-pro · 深度测评</option>
+                  <option value="deepseek-v4-flash" data-thinking="enabled" data-effort="high">deepseek-v4-flash · 快速 + 深度思考</option>
+                  <option value="deepseek-v4-flash" data-thinking="disabled" data-effort="">deepseek-v4-flash · 快速无思考</option>
+                </select>
+              </div>
+
+              <div class="ai-field">
+                <label for="aiPromptSource">提示词来源</label>
+                <select id="aiPromptSource" class="ai-input">
+                  <option value="json" selected>导师版 JSON</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="ai-controls">
+              <button id="generateAiReport" class="btn primary">生成测评报告</button>
+              <button id="abortAiReport" class="btn" disabled>停止生成</button>
+              <button id="copyAiReport" class="btn" disabled>复制报告</button>
+              <button id="downloadAiReportMd" class="btn" disabled>下载 MD</button>
+              <button id="downloadAiReportJson" class="btn" disabled>下载原始 JSON</button>
+              <button id="printAiReport" class="btn" disabled>打印/PDF</button>
+            </div>
+
+            <div id="aiReportStatus" class="ai-status">上传学生 JSON 后，选择提示词并点击“生成测评报告”。页面不会自动调用 DeepSeek。</div>
+            <div id="aiReportOutput" class="ai-report-output" aria-live="polite"></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -180,5 +184,7 @@
 
   <div id="tip" class="tip"></div>
   <script src="faculty.js"></script>
+  <link rel="stylesheet" href="faculty-ai.css"/>
+  <script src="faculty-ai.js"></script>
 </body>
 </html>

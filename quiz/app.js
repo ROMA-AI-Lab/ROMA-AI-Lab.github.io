@@ -15,7 +15,9 @@ const state = {
     // NEW: navigation analytics
     navEvents: [] // {type:'auto'|'next'|'prev'|'blocked_next'|'blocked_prev', from,to, ts, reason?}
 };
-const BANK_URLS = (lang) => ({core: `core.${lang}.json`, extended: `extended.${lang}.json`});
+
+const BANK_URLS = () => ({core: 'core.zh.json', extended: 'extended.zh.json'});
+
 const T = {
     zh: {
         title: 'ROMA Lab Cultural Insight Test (version 4.3)',
@@ -221,7 +223,23 @@ async function applyLangMode(lang, mode, keepAnswers = true) {
     Object.keys(prevPace.durations || {}).forEach(qid => {
         if (validIds.has(qid)) newDur[qid] = prevPace.durations[qid]
     });
-    state.pace = {durations: newDur, order: [], timestamps: []};
+
+    const newOrder = [];
+    const newTimestamps = [];
+
+    (prevPace.order || []).forEach((qid, i) => {
+        if (validIds.has(qid)) {
+            newOrder.push(qid);
+            newTimestamps.push((prevPace.timestamps || [])[i] || null);
+        }
+    });
+
+    state.pace = {
+        durations: newDur,
+        order: newOrder,
+        timestamps: newTimestamps
+    };
+
     state.navEvents = prevNav;
     let newIdx = 0;
     if (prevIdxQid) {
@@ -273,11 +291,12 @@ function renderHeader() {
     $('#t_desc').textContent = T[state.lang].desc;
     $('#t_hint').textContent = T[state.lang].hint;
     $('#modeTag').textContent = state.mode === 'core' ? T[state.lang].tagCore : T[state.lang].tagFull;
-    $('#langTag').textContent = state.lang === 'zh' ? '中文' : 'English';
-    $('#langBtn').onclick = async () => {
-        state.lang = state.lang === 'zh' ? 'en' : 'zh';
-        await applyLangMode(state.lang, state.mode, true)
-    };
+    $('#langTag').textContent = '中文';
+    const langBtn = $('#langBtn');
+    if (langBtn) {
+        langBtn.disabled = true;
+        langBtn.style.display = 'none';
+    }
     $('#themeBtn').onclick = () => {
         document.body.classList.toggle('light')
     };
@@ -328,11 +347,19 @@ function renderQuestion() {
         if (state.answers[q.id] === o.id) d.classList.add('selected');
         d.textContent = o.label;
         d.onclick = () => {
-            if (!state.pace.durations[q.id]) {
-                state.pace.durations[q.id] = Date.now() - (state._showTs || Date.now())
+            const now = Date.now();
+            const firstAnswerForQuestion = !Object.prototype.hasOwnProperty.call(state.pace.durations, q.id);
+
+            if (firstAnswerForQuestion) {
+                state.pace.durations[q.id] = now - (state._showTs || now);
+                state.pace.order.push(q.id);
+                state.pace.timestamps.push(now);
             }
+
             state.answers[q.id] = o.id;
-            state.pickedHistory.push({qid: q.id, optionId: o.id, ts: Date.now()});
+            state.pickedHistory.push({qid: q.id, optionId: o.id, ts: now});
+
+
             $$('#opts .opt').forEach(x => x.classList.remove('selected'));
             d.classList.add('selected');
             computeScore();
@@ -350,6 +377,9 @@ function renderQuestion() {
                 renderQuestion();
             }
         };
+
+
+
         opts.appendChild(d)
     });
 
@@ -424,10 +454,24 @@ function renderReport() {
     const labels = state.lang === 'zh' ? T.zh.labels : T.en.labels;
     $('#radar').innerHTML = radarSVG(state.per, labels);
     $('#donut').innerHTML = donutSVG(state.per, labels);
+
+
     const ids = state.bank.map(q => q.id);
-    const ds = ids.map(id => state.pace.durations[id] || 0);
-    const maxd = Math.max(1, ...ds);
-    const arr = ds.map(d => maxd ? (1 - d / maxd) : 0.5);
+    const validDurations = ids
+        .map(id => state.pace.durations[id])
+        .filter(d => Number.isFinite(d) && d > 0);
+
+    const minD = validDurations.length ? Math.min(...validDurations) : 0;
+    const maxD = validDurations.length ? Math.max(...validDurations) : 0;
+    const span = maxD - minD;
+
+    const arr = ids.map(id => {
+        const d = state.pace.durations[id];
+        if (!Number.isFinite(d) || d <= 0) return 0;
+        if (span <= 0) return 0.5;
+        return 0.1 + (1 - (d - minD) / span) * 0.9;
+    });
+
     $('#spark').innerHTML = sparkSVG(arr);
 
 
