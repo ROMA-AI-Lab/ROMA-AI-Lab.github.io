@@ -1,6 +1,9 @@
 ROMA-AI-Lab.github.io/   纯静态站点，GitHub Pages 从 main 分支直接发布，无构建步骤
 │
 ├── index.html              首页（单页多版块：Home / Research / Publications / Reputation / Project / People / Life）
+├── README.md               维护说明与本地预览方法
+├── sitemap.xml / robots.txt / 404.html   站点级 SEO 与错误页
+├── assets/og-cover.jpg     社交分享封面（1200×630）
 ├── css/styles.css          全站样式（配色、字体、响应式、深浅色主题）
 │
 ├── js/                     首页脚本
@@ -19,8 +22,8 @@ ROMA-AI-Lab.github.io/   纯静态站点，GitHub Pages 从 main 分支直接发
 │   ├── gallery.json        照片墙全量，pages/life.html 使用
 │   ├── gallery_cover.json  首页照片墙封面（6 张）
 │   ├── settings.json       全局配置：manual_url / newsVisible / newsCutoff
-│   └── reputation_bak.json 历史备份，站点未使用
-│   备注：代码中仍保留 data/publications.json 的回退引用，该文件已移除；论文以 publications.bib 为准。
+│   （历史备份 reputation_bak.json 已移出仓库，存于工作区外的备份目录）
+│   备注：旧版 publications.json / lab-data.json 回退请求已清理；论文统一以 publications.bib 为准。
 │
 ├── pages/                  二级页面
 │   ├── pages.js            各页共用逻辑：数据加载、slug 解析、动态渲染
@@ -40,8 +43,9 @@ ROMA-AI-Lab.github.io/   纯静态站点，GitHub Pages 从 main 分支直接发
 │
 ├── assets/                 静态资源（优先 .avif，同名 .jpg/.png 为原始备份）
 │   ├── favicon.svg / beian.png / bilibili.png / redbook.png
-│   └── people/ peers/ gallery/ research/ videos/
+│   ├── people/ peers/ research/ videos/     avif 展示图（同名 jpg/png 原始备份已移出仓库）
+│   └── gallery/                    照片墙原图 JPG + cover_*.avif + thumbs/（520px avif 缩略图）
 │
-├── content/                成员与项目 Markdown 草稿
-├── manual/                 Notion 导出的实验手册静态页（含标注「内部资料（不对外公布）」的页面）
-└── tmp/、.idea/             临时文件与 IDE 配置（历史遗留，站点未引用）
+├── content/                成员与项目详情页引用的 Markdown（不要删除）
+├── manual/                 旧版实验手册静态页（按负责人要求保留）
+└── .idea/                  IDE 配置（历史遗留，站点未引用）

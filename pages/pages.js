@@ -13,7 +13,7 @@ function slugify(s=''){
         .replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-');
 }
 
-// 载入站点数据（兼容拆分JSON与旧lab-data.json）
+// 载入站点数据（拆分 JSON）
 async function loadDataForPages(){
     const safeLoad = async (path) => {
         try{ const r = await fetch(path, {cache:'no-store'}); if (!r.ok) throw 0; return await r.json(); }
@@ -24,25 +24,19 @@ async function loadDataForPages(){
         const news      = await safeLoad('../data/news.json');
         const people    = await safeLoad('../data/people.json');
         const projects  = await safeLoad('../data/projects.json');
-        const pubs      = await safeLoad('../data/publications.json');
         const gallery   = await safeLoad('../data/gallery.json');
 
-        if (news || people || projects || pubs){
+        if (news || people || projects){
             return {
                 manual_url: settings?.manual_url || 'about:blank',
                 news: Array.isArray(news) ? news : (news?.items ?? []),
                 people: (Array.isArray(people) ? people : (people?.items ?? [])).map(p=>({...p, slug: p.slug || slugify(p.name)})),
                 projects: (Array.isArray(projects) ? projects : (projects?.items ?? [])).map(p=>({...p, slug: p.slug || slugify(p.title)})),
-                publications: Array.isArray(pubs) ? pubs : (pubs?.items ?? []),
+                publications: [],
                 gallery: Array.isArray(gallery) ? gallery : (gallery?.items ?? [])
             };
         }
-        // 退回旧结构
-        const res = await fetch('../data/lab-data.json', {cache:'no-store'});
-        const legacy = await res.json();
-        legacy.people   = (legacy.people||[]).map(p=>({...p, slug: p.slug || slugify(p.name)}));
-        legacy.projects = (legacy.projects||[]).map(p=>({...p, slug: p.slug || slugify(p.title)}));
-        return legacy;
+        return {manual_url:'about:blank', news:[], people:[], projects:[], publications:[], gallery:[]};
     }catch(e){
         console.error('[pages] loadData failed', e);
         return {people:[], projects:[], publications:[], news:[], gallery:[]};
@@ -92,12 +86,11 @@ async function loadJSON(path, fallback){
 }
 
 async function loadAll(){
-    const [settings, news, people, projects, pubs, gallery] = await Promise.all([
+    const [settings, news, people, projects, gallery] = await Promise.all([
         loadJSON('../data/settings.json', {}),
         loadJSON('../data/news.json', {items:[]}),
         loadJSON('../data/people.json', {items:[]}),
         loadJSON('../data/projects.json', {items:[]}),
-        loadJSON('../data/publications.json', {items:[]}),
         loadJSON('../data/gallery.json', {items:[]})
     ]);
 
@@ -106,7 +99,7 @@ async function loadAll(){
         news: Array.isArray(news) ? news : (news.items || []),
         people: (Array.isArray(people) ? people : (people.items || [])).map(p=>({ ...p, slug: p.slug || slugify(p.name) })),
         projects: (Array.isArray(projects) ? projects : (projects.items || [])).map(p=>({ ...p, slug: p.slug || slugify(p.title) })),
-        publications: Array.isArray(pubs) ? pubs : (pubs.items || []),
+        publications: [],
         gallery: Array.isArray(gallery) ? gallery : (gallery.items || []),
     };
 }
@@ -134,19 +127,6 @@ async function loadPublicationsUnified(){
         }
     }catch(e){
         console.warn('[pubs] bib load failed:', e);
-    }
-
-    // 2) 回退 publications.json
-    try{
-        const r = await fetch('../data/publications.json', {cache:'no-store'});
-        if (r.ok){
-            const j = await r.json();
-            const pubs = Array.isArray(j) ? j : (j.items || []);
-            console.info('[pubs] loaded from JSON:', pubs.length);
-            return pubs;
-        }
-    }catch(e){
-        console.warn('[pubs] json load failed:', e);
     }
 
     console.warn('[pubs] no publications loaded');
@@ -1022,11 +1002,12 @@ async function initLifePage(){
             const okT = !t || (g.tags||[]).includes(t);
             return okY && okT;
         }).map(g=>{
-            const src = g.src || '';
+            const src  = g.thumb || g.src || '';
+            const full = g.full  || g.src || '';
             const title = g.title || '';
             const date = g.date ? `<div class="meta">${fmtDate(g.date)}</div>` : '';
             const img = src
-                ? `<img class="project-cover" src="${src}" alt="${title}" loading="lazy" data-fallback="cover" />`
+                ? `<img class="project-cover" src="${src}" alt="${title}" loading="lazy" width="520" height="293" data-full="${full}" data-fallback="cover" />`
                 : `<div class="project-cover placeholder" aria-hidden="true"></div>`;
             return `
         <article class="card">

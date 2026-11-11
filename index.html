@@ -6,11 +6,11 @@
     <meta content="telephone=no, email=no" name="format-detection"> <!-- 避免 iOS 误识别 -->
     <meta content="dark light" name="color-scheme">                  <!-- 表示双主题可用 -->
     <title>ROMA Lab | Next-Generation AI for Social Science</title>
-    <meta content="ROMA Lab — AI research on graph learning, multimodal reasoning, and neural-symbolic systems."
+    <meta content="ROMA Lab (Responsible Online Media Analytics Lab) at Southeast University: next-generation AI for social science, social intelligence and nonlinear data mining."
           name="description"/>
     <meta content="#0f172a" name="theme-color"/>
     <meta content="ROMA Lab" property="og:title"/>
-    <meta content="AI research on gr knowledge systems." property="og:description"/>
+    <meta content="ROMA Lab (Responsible Online Media Analytics Lab) at Southeast University: next-generation AI for social science, social intelligence and nonlinear data mining." property="og:description"/>
     <meta content="website" property="og:type"/>
     <meta content="https://roma-ai-lab.github.io/" property="og:url"/>
     <link href="assets/favicon.svg" rel="icon"/>
@@ -25,7 +25,9 @@
     <link rel="preload" href="js/videos.js" as="script">
     <link rel="preload" href="js/home-enhance.js" as="script">
 
-
+    <link rel="canonical" href="https://roma-ai-lab.github.io/"/>
+    <meta property="og:image" content="https://roma-ai-lab.github.io/assets/og-cover.jpg"/>
+    <meta name="twitter:card" content="summary_large_image"/>
 </head>
 <body>
 <!-- Header / Nav -->
@@ -52,72 +54,47 @@
         </nav>
 
         <!-- controls -->
-<!--        <div class="controls">-->
-<!--            <button aria-label="Toggle theme" class="btn ghost" id="theme-toggle" title="Toggle light/dark">-->
-<!--                <span aria-hidden="true">🌓</span><span class="sr-only">Toggle theme</span>-->
-<!--            </button>-->
-<!--            <button-->
+
 <!--                    aria-controls="mobile-drawer"-->
 <!--                    aria-expanded="false"-->
 <!--                    aria-label="Menu"-->
 <!--                    class="btn ghost"-->
 <!--                    id="menu"-->
 <!--                    title="Menu">☰-->
-<!--            </button>-->
-<!--        </div>-->
+
         <!-- controls -->
-<!--        <div class="controls">-->
-<!--            <button aria-label="Toggle theme" class="btn ghost" id="theme-toggle" title="Toggle light/dark">-->
-<!--                <span aria-hidden="true">🌓</span><span class="sr-only">Toggle theme</span>-->
-<!--            </button>-->
 
 <!--            &lt;!&ndash; 访问线路切换按钮 &ndash;&gt;-->
-<!--            <button-->
+
 <!--                    type="button"-->
 <!--                    class="btn ghost route-switch"-->
 <!--                    title="选择访问线路">-->
-<!--                <span>CN / Global</span>-->
-<!--            </button>-->
 
-<!--            <button-->
 <!--                    aria-controls="mobile-drawer"-->
 <!--                    aria-expanded="false"-->
 <!--                    aria-label="Menu"-->
 <!--                    class="btn ghost"-->
 <!--                    id="menu"-->
 <!--                    title="Menu">☰-->
-<!--            </button>-->
-<!--        </div>-->
 
         <!-- controls -->
-<!--        <div class="controls">-->
+
 <!--            &lt;!&ndash; 主题切换 &ndash;&gt;-->
-<!--            <button aria-label="Toggle theme" class="btn ghost" id="theme-toggle" title="Toggle light/dark">-->
-<!--                <span aria-hidden="true">🌓</span><span class="sr-only">Toggle theme</span>-->
-<!--            </button>-->
 
 <!--            &lt;!&ndash; 访问线路切换按钮 &ndash;&gt;-->
-<!--            <button-->
+
 <!--                    type="button"-->
 <!--                    class="btn ghost route-switch"-->
 <!--                    title="选择访问线路">-->
-<!--        <span class="route-label">-->
-<!--            <span class="route-part route-cn">中国大陆</span>-->
-<!--            <span class="route-slash">/</span>-->
-<!--            <span class="route-part route-global">International</span>-->
-<!--        </span>-->
-<!--            </button>-->
 
 <!--            &lt;!&ndash; 移动端菜单 &ndash;&gt;-->
-<!--            <button-->
+
 <!--                    aria-controls="mobile-drawer"-->
 <!--                    aria-expanded="false"-->
 <!--                    aria-label="Menu"-->
 <!--                    class="btn ghost"-->
 <!--                    id="menu"-->
 <!--                    title="Menu">☰-->
-<!--            </button>-->
-<!--        </div>-->
 
         <!-- controls -->
         <div class="controls">
@@ -135,8 +112,7 @@
                     aria-expanded="false">
         <span class="route-label">
             <span class="route-icon" aria-hidden="true">🌐</span>
-<!--            <span class="route-text">Routes</span>-->
-<!--            <span class="route-caret" aria-hidden="true">▼</span>-->
+
         </span>
                 <span class="sr-only">选择访问线路</span>
             </button>
@@ -189,7 +165,7 @@
             </p>
             <div class="hero-actions">
                 <a class="btn ghost " href="#" id="call2students"><strong>🔥Lab Manual</strong></a>
-                <a class="btn ghost " href="quiz/index.html" target="_blank"><strong>🔥CIT @ ROMA Lab</strong></a>
+                <a class="btn ghost " href="quiz/index.html" target="_blank" rel="noopener"><strong>🔥CIT @ ROMA Lab</strong></a>
                 <a class="btn ghost" href="mailto:roma_lab@yeah.net"><strong>📩 Email</strong></a>
             </div>
             <br>
@@ -197,17 +173,17 @@
             <div class="hero-card">
                 <div class="hero-grid">
                     <div class="metric">
-                        <div class="k" id="metric-pubs" aria-live="polite">Loading... (VPN needed in China Mainland)</div>
+                        <div class="k" id="metric-pubs" aria-live="polite">Loading...</div>
                         <div class="meta">Publications</div>
                     </div>
                     <div class="metric">
-<!--                        <div class="k" id="metric-projects" aria-live="polite">—</div>-->
-                        <div class="k" id="metric-projects" aria-live="polite">Loading... (VPN needed in China Mainland)</div>
+
+                        <div class="k" id="metric-projects" aria-live="polite">Loading...</div>
                         <div class="meta">Active Projects</div>
                     </div>
                     <div class="metric">
-<!--                        <div class="k" id="metric-members" aria-live="polite">—</div>-->
-                        <div class="k" id="metric-members" aria-live="polite">Loading... (VPN needed in China Mainland)</div>
+
+                        <div class="k" id="metric-members" aria-live="polite">Loading...</div>
                         <div class="meta">Lab Members</div>
                     </div>
                 </div>
@@ -220,9 +196,9 @@
                 <a aria-label="View all news" class="btn ghost" href="pages/news.html" rel="noopener" >All
                     News →</a>
             </div>
-<!--            <ul aria-live="polite" class="v-scroll" id="news-list"></ul>-->
+
             <ul aria-live="polite" class="v-scroll" id="news-list">
-                <li class="loading-hint">Loading... (VPN needed in China Mainland)</li>
+                <li class="loading-hint">Loading...</li>
             </ul>
 
         </aside>
@@ -236,16 +212,14 @@
                 <h2 id="videos-h">Research</h2>
             </div>
         </div>
-<!--        <div aria-live="polite" class="grid videos" id="video-grid"></div>-->
+
         <div aria-live="polite" class="grid videos" id="video-grid">
-            <p class="loading-hint">Loading... (VPN needed in China Mainland)</p>
+            <p class="loading-hint">Loading...</p>
         </div>
 
         <noscript><p>Please enable JavaScript to view the video wall.</p></noscript>
     </div>
 </section>
-
-
 
 <!-- ======== PUBLICATIONS ======== -->
 <section aria-labelledby="pub-h" data-view="publications" id="publications">
@@ -275,11 +249,10 @@
                 <a class="btn ghost" href="pages/publications.html" rel="noopener">Full List</a>
             </div>
         </div>
-<!--        <div class="count"><span id="pub-count">—</span> results</div>-->
-<!--        <div aria-live="polite" class="grid pub v-scroll" id="pub-list"></div>-->
+
         <div class="count"><span id="pub-count">—</span> selected results</div>
         <div aria-live="polite" class="grid pub v-scroll" id="pub-list">
-            <p class="loading-hint">Loading... (VPN needed in China Mainland)</p>
+            <p class="loading-hint">Loading...</p>
         </div>
 
     </div>
@@ -297,14 +270,13 @@
                 <a class="btn ghost" href="pages/reputations.html" rel="noopener">Full List</a>
             </div>
         </div>
-<!--        <div aria-live="polite" class="grid people v-scroll" id="repute-list"></div>-->
+
         <div aria-live="polite" class="grid people v-scroll" id="repute-list">
-            <p class="loading-hint">Loading... (VPN needed in China Mainland)</p>
+            <p class="loading-hint">Loading...</p>
         </div>
 
     </div>
 </section>
-
 
 <!-- ======== RESEARCH ======== -->
 <section aria-labelledby="research-h" data-view="research" id="research">
@@ -322,14 +294,13 @@
                 <a class="btn ghost" href="pages/projects.html" rel="noopener">Full List</a>
             </div>
         </div>
-        <!--        <div aria-live="polite" class="grid research v-scroll" id="research-grid"></div>-->
+
         <div aria-live="polite" class="grid research v-scroll" id="research-grid">
-            <p class="loading-hint">Loading... (VPN needed in China Mainland)</p>
+            <p class="loading-hint">Loading...</p>
         </div>
 
     </div>
 </section>
-
 
 <!-- ======== PEOPLE ======== -->
 <section aria-labelledby="people-h" data-view="people" id="people">
@@ -346,15 +317,13 @@
                 <a class="btn ghost" href="pages/people.html" rel="noopener">Full List</a>
             </div>
         </div>
-        <!--        <div aria-live="polite" class="grid people v-scroll" id="people-grid"></div>-->
+
         <div aria-live="polite" class="grid people v-scroll" id="people-grid">
-            <p class="loading-hint">Loading... (VPN needed in China Mainland)</p>
+            <p class="loading-hint">Loading...</p>
         </div>
 
     </div>
 </section>
-
-
 
 <!-- ======== LIFE (Home preview) ======== -->
 <section aria-labelledby="life-h" id="life">
@@ -368,31 +337,15 @@
                 <a class="btn ghost" href="pages/life.html" id="life-all-btn" rel="noopener">Full List</a>
             </div>
         </div>
-<!--        <div class="grid" id="life-home-grid"></div>-->
+
         <div class="grid" id="life-home-grid">
-            <p class="loading-hint">Loading... (VPN needed in China Mainland)</p>
+            <p class="loading-hint">Loading...</p>
         </div>
 
     </div>
 </section>
 
-
-
-
 <!--&lt;!&ndash; ======== LAB MANUAL ======== &ndash;&gt;-->
-<!--<section id="manual" aria-labelledby="manual-h" data-view="manual">-->
-<!--    <div class="container">-->
-<!--        <div class="section-head">-->
-<!--            <div>-->
-<!--                <h2 id="manual-h">Lab Manual</h2>-->
-<!--                <p class="section-desc">Our official lab manual is hosted externally. Open it in a new tab below.</p>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--                <a id="manual-cta" class="btn cta" href="#" target="_blank" rel="noopener">Open Lab Manual ↗</a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
 
 <!-- Footer -->
 <footer role="contentinfo">
@@ -403,7 +356,7 @@
             <small>
                 © <span id="year"></span> ROMA Lab. All rights reserved.
                 <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">备案号：粤ICP备2025495736号</a>
-                <img src="/assets/beian.png" height="40" width="36"/>
+                <img src="/assets/beian.png" height="40" width="36" alt="ICP 备案标识"/>
                 <a href="https://beian.mps.gov.cn/#/query/webSearch?code=44030002008688" rel="noreferrer" target="_blank">粤公网安备44030002008688号</a>
             </small>
         </div>
@@ -413,9 +366,8 @@
 
 <script src="js/main.js" type="module"></script>
 <script defer src="js/videos.js"></script>
-<!--<script src="js/mediafx.js"></script>-->
-<script defer src="js/home-enhance.js"></script>
 
+<script defer src="js/home-enhance.js"></script>
 
 <div id="cinematic-overlay">
     <div class="cinematic-backdrop"></div>

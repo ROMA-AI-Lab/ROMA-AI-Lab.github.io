@@ -19,6 +19,13 @@
         #person-detail .btn{padding:8px 12px;border-radius:10px}
         #person-detail h3{margin-top:18px}
     </style>
+    <link rel="canonical" href="https://roma-ai-lab.github.io/pages/person.html"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Member Profile | ROMA Lab"/>
+    <meta property="og:description" content="Individual profile page of a ROMA Lab member."/>
+    <meta property="og:image" content="https://roma-ai-lab.github.io/assets/og-cover.jpg"/>
+    <meta property="og:url" content="https://roma-ai-lab.github.io/pages/person.html"/>
+    <meta name="twitter:card" content="summary_large_image"/>
 </head>
 <body data-page="person">
 <header class="simple">
@@ -61,7 +68,7 @@
                 © <span id="year"></span> ROMA Lab. All rights reserved.
                 备案号：<a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">粤ICP备2025495736号</a>
 
-                <img src="/assets/beian.png" height="40" width="36"/>
+                <img src="/assets/beian.png" height="40" width="36" alt="ICP 备案标识"/>
                 <a href="https://beian.mps.gov.cn/#/query/webSearch?code=44030002008688" rel="noreferrer" target="_blank">粤公网安备44030002008688号</a>
             </small>
         </div>
@@ -107,7 +114,7 @@
         }
 
         function enhance(){
-            // pages.js 注入后常见结构：#person-detail .avatar img 或直接 <img class="avatar">
+            // pages.js 注入后常见结构：#person-detail .avatar img 或直接 <img class="avatar" alt="Member photo">
             // 优先找 #person-detail 范围内的头像 img
             const img = document.querySelector('#person-detail img.avatar, #person-detail .avatar img');
             if (img) wrapMediaFx(img);

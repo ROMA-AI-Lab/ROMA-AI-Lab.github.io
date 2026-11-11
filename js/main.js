@@ -667,19 +667,6 @@ async function loadPublicationsUnified(){
         console.warn('[pubs] bib load failed:', e);
     }
 
-    // 2) 回退 publications.json
-    try{
-        const r = await fetch('data/publications.json', {cache:'no-store'});
-        if (r.ok){
-            const j = await r.json();
-            const pubs = Array.isArray(j) ? j : (j.items || []);
-            console.info('[pubs] loaded from JSON:', pubs.length);
-            return pubs;
-        }
-    }catch(e){
-        console.warn('[pubs] json load failed:', e);
-    }
-
     console.warn('[pubs] no publications loaded');
     return [];
 }
@@ -894,7 +881,7 @@ function rebuildBibtex(typeRaw, key, f){
 /* ----------------- DATA LOADING ----------------- */
 async function loadData(){
     try{
-        // 新结构：拆分后的 JSON；兼容老数据（如果文件不存在则退回 lab-data.json）
+        // 新结构：拆分后的 JSON
         const load = async (path) => {
             try{ const r = await fetch(path, {cache:'no-store'}); if (!r.ok) throw 0; return await r.json(); }
             catch{ return null; }
@@ -903,10 +890,9 @@ async function loadData(){
         const news      = await load('data/news.json');
         const people    = await load('data/people.json');
         const projects  = await load('data/projects.json');
-        const pubs      = await load('data/publications.json');
         const gallery   = await load('data/gallery_cover.json');
 
-        if (news || people || projects || pubs){
+        if (news || people || projects){
             return {
                 news_visible: settings?.newsVisible ?? 3,
                 news_cutoff: settings?.newsCutoff ?? null,
@@ -914,17 +900,12 @@ async function loadData(){
                 news: Array.isArray(news) ? news : (news?.items ?? []),
                 people: (Array.isArray(people) ? people : (people?.items ?? [])).map(p=>({...p, slug: p.slug || slugify(p.name)})),
                 projects: (Array.isArray(projects) ? projects : (projects?.items ?? [])).map(p=>({...p, slug: p.slug || slugify(p.title)})),
-                publications: Array.isArray(pubs) ? pubs : (pubs?.items ?? []),
+                publications: [],
                 gallery: Array.isArray(gallery) ? gallery : (gallery?.items ?? [])
             };
         }
 
-        // 兼容旧版 lab-data.json
-        const res = await fetch('data/lab-data.json', {cache:'no-store'});
-        const legacy = await res.json();
-        legacy.people = (legacy.people||[]).map(p=>({...p, slug: slugify(p.name)}));
-        legacy.projects = (legacy.projects||[]).map(p=>({...p, slug: slugify(p.title)}));
-        return legacy;
+        return {news_visible:3, news:[], people:[], projects:[], publications:[], manual_url:'manual/manual_index.html', gallery:[]};
     }catch(e){
         console.error('Failed to load data:', e);
         return {news_visible:3, news:[],people:[],projects:[],publications:[],manual_url:'manual/manual_index.html', gallery:[]};
@@ -1396,7 +1377,7 @@ async function init(){
 
     // 2) 尝试用 BibTeX 覆盖 publications（失败则保持原有 JSON / lab-data）
     try{
-        const pubs = await loadPublicationsUnified(); // 优先 data/publications.bib → publications.json → lab-data.json
+        const pubs = await loadPublicationsUnified(); // 论文统一从 data/publications.bib 读取
         if (Array.isArray(pubs) && pubs.length){
             DATA.publications = pubs;
         }

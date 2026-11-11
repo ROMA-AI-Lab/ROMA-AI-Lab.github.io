@@ -1,17 +1,36 @@
 {
   "items": [
-    { "date": "2025-11-15", "text": "<a href=\"https://xgsun.mysxl.cn\" target=\"_blank\" rel=\"noopener\">Dr. Xiangguo SUN</a> is set to join Southeast University in Jan 2026 as a Full Professor." }
-    ],
-  "old":[
-    { "date": "2026-01-17", "text": "<a href=\"https://xgsun.mysxl.cn\" target=\"_blank\" rel=\"noopener\">Dr. Xiangguo SUN</a> will serve as SPC for IJCAI 2026 and SIGIR 2026." },
-    { "date": "2025-10-23", "text": "CIT @ ROMA Lab (ROMA Lab Cultural Insight Test) version 4.3 released." },
-    { "date": "2025-10-17", "text": "Dr. Xiangguo SUN was awarded NeurIPS'2025 Top Reviewer." },
-    { "date": "2025-10-15", "text": "Dr. Xiangguo Sun has been appointed to a dual leadership role at CAAI: Deputy Secretary-General for Social Computing and Social Intelligence, and Chair of the new Rising Scholars Committee." },
-    { "date": "2025-10-13", "text": "Our Lab website established!" }
+    {
+      "date": "2026-11-11",
+      "text": "ROMA Lab papers accepted at <b>EMNLP 2026</b> (main conference), <b>KDD 2026</b> and <b>CIKM 2026</b>, spanning LLM robustness, long-term spatio-temporal forecasting and circuit-aware unlearning for LLM-based recommendation."
+    },
+    {
+      "date": "2026-11-11",
+      "text": "<a href=\"https://xgsun.mysxl.cn\" target=\"_blank\" rel=\"noopener\">Dr. Xiangguo SUN</a> takes on new senior service roles: Area Chair for KDD 2026 (Research Track, Cycle 2) and WWW 2027, and editorial roles at <em>Information Processing &amp; Management</em>, <em>Big Data Mining and Analytics</em>, <em>Journal of Social Computing</em> and the <em>International Journal on Social Computing and Social Intelligence</em>."
+    },
+    {
+      "date": "2026-01-17",
+      "text": "<a href=\"https://xgsun.mysxl.cn\" target=\"_blank\" rel=\"noopener\">Dr. Xiangguo SUN</a> will serve as SPC for IJCAI 2026 and SIGIR 2026."
+    },
+    {
+      "date": "2026-01-01",
+      "text": "<a href=\"https://xgsun.mysxl.cn\" target=\"_blank\" rel=\"noopener\">Dr. Xiangguo SUN</a> has joined Southeast University as a Full Professor."
+    },
+    {
+      "date": "2025-10-23",
+      "text": "CIT @ ROMA Lab (ROMA Lab Cultural Insight Test) version 4.3 released."
+    },
+    {
+      "date": "2025-10-17",
+      "text": "Dr. Xiangguo SUN was awarded NeurIPS'2025 Top Reviewer."
+    },
+    {
+      "date": "2025-10-15",
+      "text": "Dr. Xiangguo Sun has been appointed to a dual leadership role at CAAI: Deputy Secretary-General for Social Computing and Social Intelligence, and Chair of the new Rising Scholars Committee."
+    },
+    {
+      "date": "2025-10-13",
+      "text": "Our Lab website established!"
+    }
   ]
 }
-
-
-
-
-
