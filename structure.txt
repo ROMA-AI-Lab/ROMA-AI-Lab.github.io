@@ -1,40 +1,47 @@
-ROMA-AI-Lab.github.io/
+ROMA-AI-Lab.github.io/   纯静态站点，GitHub Pages 从 main 分支直接发布，无构建步骤
 │
-├── index.html                 # 网站首页，包含首页布局与主要入口（News, People, Projects等）
-├── css/                       # 全站 CSS 样式表目录
-│   └── styles.css             # 主样式文件（定义颜色、字体、布局、响应式）
+├── index.html              首页（单页多版块：Home / Research / Publications / Reputation / Project / People / Life）
+├── css/styles.css          全站样式（配色、字体、响应式、深浅色主题）
 │
-├── js/                        # 全站通用 JS 脚本
-│   └── main.js                # 主脚本：负责加载JSON数据、页面导航、动态渲染逻辑
+├── js/                     首页脚本
+│   ├── main.js             数据加载、首页渲染、BibTeX 解析、筛选与导航
+│   ├── home-enhance.js     首页增强效果
+│   ├── pages-mediafx.js    媒体与动效
+│   └── videos.js           视频板块（读取 data/videos.json）
 │
-├── data/                      # 网站核心数据源（JSON 或 bib 文件）
-│   ├── people.json            # 成员信息（姓名、职称、头像、研究方向、链接）
-│   ├── projects.json          # 研究项目数据（标题、描述、年份、标签）
-│   ├── news.json              # 实验室新闻与动态（用于News & Highlights滚动）
-│   ├── gallery.json           # 图片墙或生活区展示素材
-│   ├── settings.json          # 网站全局配置项（如主题、站点信息）
-│   └── publications.bib       # BibTeX格式的论文列表（通过JS动态解析展示）
+├── data/                   ★ 日常信息更新只需改这里
+│   ├── news.json           新闻动态：items=置顶、old=归档；text 允许内联 HTML
+│   ├── people.json         成员信息：items（slug / role / avatar / topics / status / education ...）
+│   ├── projects.json       研究项目：items（slug / area / cover / highlights / links / featured）
+│   ├── publications.bib    ★ 论文列表，BibTeX 格式，由 main.js 解析（当前 56 条）
+│   ├── reputation.json     同行评价（含 settings.home_limit 控制首页条数）
+│   ├── videos.json         视频条目（B 站嵌入地址、封面、系列、置顶）
+│   ├── gallery.json        照片墙全量，pages/life.html 使用
+│   ├── gallery_cover.json  首页照片墙封面（6 张）
+│   ├── settings.json       全局配置：manual_url / newsVisible / newsCutoff
+│   └── reputation_bak.json 历史备份，站点未使用
+│   备注：代码中仍保留 data/publications.json 的回退引用，该文件已移除；论文以 publications.bib 为准。
 │
-├── pages/                     # 各个独立的二级页面
-│   ├── people.html            # 成员页面（People）
-│   ├── person.html            # 单个成员详情页（与people.html链接）
-│   ├── projects.html          # 项目总览（Projects）
-│   ├── project.html           # 单个项目详情页
-│   ├── publications.html      # 论文发表页面（解析 data/publications.bib）
-│   ├── news.html              # 新闻页
-│   ├── life.html              # 照片墙 / 生活展示页（动态缩放功能）
-│   └── pages.js               # 这些页面的通用脚本逻辑（slug解析、数据加载、动态渲染）
+├── pages/                  二级页面
+│   ├── pages.js            各页共用逻辑：数据加载、slug 解析、动态渲染
+│   ├── news.html           新闻列表
+│   ├── people.html / person.html       成员列表 / 成员详情
+│   ├── projects.html / project.html    项目列表 / 项目详情
+│   ├── publications.html   论文完整列表
+│   ├── reputations.html    同行评价完整列表
+│   └── life.html           照片墙 / 实验室生活
 │
-├── quiz/                      # 在线测评子系统（ROMA Lab新生评估平台）
-│   ├── index.html             # 测评系统主入口
-│   ├── app.js                 # 核心逻辑（加载题库、记录作答、生成报告）
-│   ├── core.zh.json / en.json # 核心题库（中英版）
-│   ├── extended.zh/en.json    # 扩展题库（中英版）
-│   ├── metadata.json          # 题库元数据定义
-│   ├── rules.weights.json     # 维度评分规则与权重文件
-│   └── styles.css             # Quiz专用样式文件
+├── quiz/                   CIT @ ROMA Lab 新生测评子系统（相对独立）
+│   ├── index.html / app.js / styles.css
+│   ├── core.zh.json / extended.zh.json    中文题库（核心 / 扩展）
+│   ├── metadata.json / rules.weights.json 题库元数据与评分权重
+│   ├── faculty.html / faculty.js / faculty.css   导师端页面
+│   └── beta/、bak/                        题库与页面备份
 │
-├── assets/                    # 静态资源目录
-│   ├── favicon.svg            # 网站图标
-│   ├── bilibili.png, redbook.png  # 社交媒体图标
-│   └── (图片、logo、装饰素材等)
+├── assets/                 静态资源（优先 .avif，同名 .jpg/.png 为原始备份）
+│   ├── favicon.svg / beian.png / bilibili.png / redbook.png
+│   └── people/ peers/ gallery/ research/ videos/
+│
+├── content/                成员与项目 Markdown 草稿
+├── manual/                 Notion 导出的实验手册静态页（含标注「内部资料（不对外公布）」的页面）
+└── tmp/、.idea/             临时文件与 IDE 配置（历史遗留，站点未引用）
