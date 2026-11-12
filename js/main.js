@@ -896,7 +896,7 @@ async function loadData(){
             return {
                 news_visible: settings?.newsVisible ?? 3,
                 news_cutoff: settings?.newsCutoff ?? null,
-                manual_url:  settings?.manual_url ?? 'manual/manual_index.html',
+                manual_url:  settings?.manual_url ?? '/manual/',
                 news: Array.isArray(news) ? news : (news?.items ?? []),
                 people: (Array.isArray(people) ? people : (people?.items ?? [])).map(p=>({...p, slug: p.slug || slugify(p.name)})),
                 projects: (Array.isArray(projects) ? projects : (projects?.items ?? [])).map(p=>({...p, slug: p.slug || slugify(p.title)})),
@@ -905,10 +905,10 @@ async function loadData(){
             };
         }
 
-        return {news_visible:3, news:[], people:[], projects:[], publications:[], manual_url:'manual/manual_index.html', gallery:[]};
+        return {news_visible:3, news:[], people:[], projects:[], publications:[], manual_url:'/manual/', gallery:[]};
     }catch(e){
         console.error('Failed to load data:', e);
-        return {news_visible:3, news:[],people:[],projects:[],publications:[],manual_url:'manual/manual_index.html', gallery:[]};
+        return {news_visible:3, news:[],people:[],projects:[],publications:[],manual_url:'/manual/', gallery:[]};
     }
 }
 
@@ -1341,7 +1341,7 @@ $('#pub-type')?.addEventListener('change', filterPubs);
 
 /* ----------------- Manual link ----------------- */
 function wireManualLink(){
-    const manualURL = DATA.manual_url || 'manual/manual_index.html';
+    const manualURL = DATA.manual_url || '/manual/';
     const navManual = $('#nav-manual');
     if (navManual) {
         navManual.addEventListener('click', (e) => {

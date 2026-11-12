@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Lab Manual | ROMA Lab</title>
+    <meta name="description" content="ROMA Lab handbook: latest archived edition, live Notion draft, and version history."/>
+    <link rel="canonical" href="https://roma-ai-lab.site/manual/"/>
+    <meta property="og:title" content="ROMA Lab Manual"/>
+    <meta property="og:description" content="Latest archived edition of the ROMA Lab handbook, plus the live Notion draft and version history."/>
+    <meta property="og:url" content="https://roma-ai-lab.site/manual/"/>
+    <meta property="og:type" content="website"/>
+    <link rel="icon" href="../assets/favicon.svg"/>
+    <link rel="stylesheet" href="../css/styles.css"/>
+    <style>
+        header.simple {position:sticky;top:0;z-index:40;background:var(--panel);border-bottom:1px solid var(--border)}
+        header.simple .bar {display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
+        header.simple .brand {display:flex;align-items:center;gap:8px;font-weight:700}
+        main {padding:40px 0}
+        .manual-hero {max-width:760px;margin:0 auto 28px}
+        .manual-cards {display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;max-width:760px;margin:0 auto 32px}
+        .manual-card {border:1px solid var(--border);border-radius:14px;padding:20px;background:var(--panel)}
+        .manual-card h3 {margin:0 0 6px}
+        .manual-card p {margin:0 0 14px;font-size:14px;opacity:.75}
+        .manual-history {max-width:760px;margin:0 auto}
+        .manual-history table {width:100%;border-collapse:collapse;font-size:14px}
+        .manual-history th,.manual-history td {text-align:left;padding:8px 10px;border-bottom:1px solid var(--border)}
+        .badge-latest {display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;background:var(--accent,#2f6fed);color:#fff;margin-left:6px;vertical-align:middle}
+    </style>
+</head>
+<body data-page="manual">
+<header class="simple">
+    <div class="container bar">
+        <div class="left">
+            <a class="brand" href="../index.html#home" aria-label="Back to home">
+                <svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true">
+                    <path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46"
+                          stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/>
+                </svg>
+                <span>ROMA Lab</span>
+            </a>
+        </div>
+        <div class="right">
+            <button id="theme-toggle" class="btn ghost" title="Toggle theme">🌓</button>
+            <a class="btn" href="../index.html#home">Back to Home</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="manual-hero">
+            <h1>Lab Manual 实验室手册</h1>
+            <p>The ROMA Lab handbook is drafted and continuously updated on Notion, and archived here
+               as fast-loading local editions. 手册在 Notion 上持续修订，这里存放加载更快的归档版本。</p>
+        </div>
+        <div class="manual-cards">
+            <div class="manual-card">
+                <h3>📖 Latest Edition 最新版</h3>
+                <p>ROMA Lab 实验室手册（2025 年版） · 本地托管，秒开。</p>
+                <a class="btn primary" href="2025/index.html">Read the 2025 edition →</a>
+            </div>
+            <div class="manual-card">
+                <h3>✏️ Live Draft 实时草稿</h3>
+                <p>Notion 上持续更新的工作稿，改动即时可见，但页面加载较慢。</p>
+                <a class="btn" href="https://www.notion.so/xiangguo/ROMA-Lab-2026-28afeec35b9080f98051d9690a2aa63e" target="_blank" rel="noopener">Open in Notion ↗</a>
+            </div>
+        </div>
+        <div class="manual-history">
+            <h3>Version History 历史版本</h3>
+            <table>
+                <thead><tr><th>Version</th><th>Title</th><th>Released</th><th></th></tr></thead>
+                <tbody>
+                    <tr><td>2025<span class="badge-latest">latest</span></td><td>ROMA Lab 实验室手册（2025 年版）</td><td>2025</td><td><a class="chip" href="2025/index.html">Open →</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<footer role="contentinfo">
+    <div class="container foot">
+        <div class="foot-left">
+            <svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+            <small>© <span id="year"></span> ROMA Lab. All rights reserved.</small>
+        </div>
+        <div class="foot-links">
+            <a class="chip" href="mailto:roma_lab@yeah.net">📩</a>
+            <a class="btn primary" href="https://github.com/ROMA-AI-Lab" target="_blank" rel="noopener">GitHub</a>
+        </div>
+    </div>
+</footer>
+
+<script src="../pages/pages.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

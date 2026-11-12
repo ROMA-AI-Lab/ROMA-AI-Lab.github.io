@@ -19,12 +19,13 @@ Live at: https://roma-ai-lab.site and https://roma-ai-lab.github.io
 | `data/projects.json` + `content/projects/<slug>.md` | Projects |
 | `data/publications.bib` | Publications (BibTeX) |
 | `data/gallery*.json`, `data/videos.json`, `data/reputation.json` | Media, videos, peer quotes |
-| `data/settings.json` | Manual link, news visibility, cutoff |
+| `data/settings.json` | Manual link (`manual_url` → `/manual/`, `manual_url_notion` → live Notion draft), news visibility, cutoff |
+| `manual/` | Lab Manual: `index.html` portal (generated, do not hand-edit), `versions.json` registry, `<version>/` per archived edition |
 | `index.html`, `pages/*.html`, `css/styles.css`, `js/main.js`, `pages/pages.js` | Layout, styles, rendering |
 
 ## Hard constraints
 
-1. **`manual/` must be kept.** It holds the archived 2025 handbook static pages. Do not delete.
+1. **`manual/` must be kept.** It holds the versioned lab handbook. Structure: `index.html` (portal, **generated — regenerate with the publish script, never hand-edit**), `versions.json` (version registry + Notion live-draft URL), `<version>/` (one archived edition each; entry is `<version>/index.html`). To publish a new edition: export the Notion manual as HTML (zip), then run `python3 /Users/xiangguosun/WorkBuddy/Claw/tools/manual-publish.py <export.zip> --version <id> --title "<title>"` — it unpacks, strips Notion filename hashes, converts standalone Bilibili/YouTube links to iframes, localizes external images, injects a version badge, updates `versions.json` and the portal. The script never commits or pushes; preview first, then commit + push manually.
 2. **`content/` must not be deleted.** Member and project detail pages depend on it.
 3. **`quiz/` is a separate sub-system.** Any change there needs its own review; never touch it as part of an unrelated edit.
 4. **New public pages** require adding the URL to `sitemap.xml` and setting `canonical` + `og:*` meta tags.
