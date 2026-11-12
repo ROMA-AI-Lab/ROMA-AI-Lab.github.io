@@ -1,6 +1,14 @@
 {
   "items": [
     {
+      "date": "2026-11-13",
+      "text": "The <b>ROMA Lab Manual (2026 Edition)</b> is now online. The handbook is published as a versioned, locally hosted archive — with embedded videos and figures — alongside earlier editions and the continuously updated Notion draft. <a href=\"/manual/\">Read the 2026 edition →</a>"
+    },
+    {
+      "date": "2026-11-13",
+      "text": "<b>CIT @ ROMA Lab</b> has been upgraded from v4.3 to <b>v5.3</b>. The new edition introduces a six-dimension research-temperament profile (boundary, communication, empathy, integrity, creativity, resilience), a fixed 50-item bank, a separate lab-preference layer and a single scoring engine. <a href=\"/quiz/\">Explore the CIT →</a>"
+    },
+    {
       "date": "2026-11-12",
       "text": "ROMA Lab welcomes <b>Sixu An</b> (Ph.D., 2026 Spring), <b>Yufan Wen</b> (Master, 2026 Fall) and undergraduate researchers <b>Shurong Liu</b>, <b>Xi Yao</b>, <b>Zihan Zhang</b> and <b>Zihan Yuan</b>. Their research spans graph prompt learning, LLM social cognition and pragmatics, research evaluation, and LLM4Graph benchmarking."
     },
