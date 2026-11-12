@@ -1,4 +1,4 @@
-/* ROMA Lab · CIT Faculty Analyzer v5.1
+/* ROMA Lab · CIT Faculty Analyzer v5.3
  * - 计分一律走 scoring.js（与学生端同一份内核），本文件不再复制公式
  * - 题库只说「选项体现什么特质」，口味文件说「实验室喜欢什么」，两者分开载入
  * - 载入报告后先做双重对账：题库指纹 + 口味指纹；题库不符→分数不可比，口味不符→契合度口径不同

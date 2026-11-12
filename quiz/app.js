@@ -1,4 +1,4 @@
-/* ROMA Lab CIT · 学生端 v5.1
+/* ROMA Lab CIT · 学生端 v5.3
  * 计分逻辑全部来自 scoring.js（与导师端共用），本文件只负责交互与呈现。
  * 题库（dims）与口味（preference）是两个文件，这里只负责把它们一起载入。
  */
