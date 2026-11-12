@@ -983,6 +983,9 @@ function fitHomeNewsToHero(listEl){
 }
 
 // People (home)
+const ICON_MAIL = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>';
+const ICON_PERSON = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg>';
+
 function personCardHome(p){
     const tags = (p.topics||[]).map(t=>`<span class="tag">${t}</span>`).join('');
     const personURL = `pages/person.html?slug=${encodeURIComponent(p.slug||slugify(p.name))}`;
@@ -995,18 +998,20 @@ function personCardHome(p){
          <div class="avatar placeholder" role="img" aria-label="${p.name}"></div>
        </a>`;
 
-    const emailBtn   = p.email ? `<a class="btn ghost" href="mailto:${p.email}">Email</a>` : '';
-    const profileBtn = `<a class="btn ghost" href="${personURL}" target="_blank" rel="noopener">Profile</a>`;
+    const emailIcon = p.email ? `<a class="icon-btn" href="mailto:${p.email}" title="Email" aria-label="Email ${p.name}">${ICON_MAIL}</a>` : '';
+    const profileIcon = `<a class="icon-btn" href="${personURL}" target="_blank" rel="noopener" title="Profile" aria-label="Profile of ${p.name}">${ICON_PERSON}</a>`;
 
     return `
   <article class="card" data-name="${p.name}" data-role="${p.role||''}" data-topics="${(p.topics||[]).join(' ')}">
     ${avatarNode}
     <div class="body">
       <div class="meta">${p.role||''}</div>
-      <h3 style="margin:.2rem 0 .3rem">${p.name}</h3>
+      <div class="name-row">
+        <h3 style="margin:.2rem 0 .3rem">${p.name}</h3>
+        <span class="mini-actions">${emailIcon}${profileIcon}</span>
+      </div>
       <div class="meta">${p.affiliation||'—'}</div>
       <div class="tags">${tags}</div>
-      <div class="actions-row">${emailBtn}${profileBtn}</div>
     </div>
   </article>`;
 }

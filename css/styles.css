@@ -560,6 +560,39 @@ section:last-of-type {
     min-height: 42px
 }
 
+/* 成员卡片：姓名 + 迷你图标按钮同行 */
+.card .name-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px
+}
+
+.card .mini-actions {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0
+}
+
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--muted);
+    transition: color .2s ease, border-color .2s ease, transform .2s ease
+}
+
+.icon-btn:hover {
+    color: var(--text);
+    border-color: var(--muted);
+    transform: translateY(-1px)
+}
+
 /* ----- Publication (no thumbnails on home) ----- */
 .pub-item {
     display: grid;

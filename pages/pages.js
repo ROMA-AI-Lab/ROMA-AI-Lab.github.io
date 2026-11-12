@@ -747,6 +747,9 @@ async function initNewsPage(){
 }
 
 /* -------------------- All People -------------------- */
+const ICON_MAIL = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>';
+const ICON_PERSON = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg>';
+
 function personCard(p){
     const tags = (Array.isArray(p.topics)?p.topics:String(p.topics||'').split(/[;,]/))
         .map(t=>t.trim()).filter(Boolean)
@@ -756,18 +759,20 @@ function personCard(p){
         ? `<a class="avatar-link" href="${personURL}" target="_blank" rel="noopener"><img class="avatar" src="${p.avatar}" alt="${p.name}" loading="lazy" data-fallback="avatar" /></a>`
         : `<a class="avatar-link" href="${personURL}" target="_blank" rel="noopener"><div class="avatar placeholder" role="img" aria-label="${p.name}"></div></a>`;
 
-    const email = p.email ? `<a class="btn ghost" href="mailto:${p.email}">Email</a>` : '';
-    const profile = `<a class="btn ghost" href="${personURL}" target="_blank" rel="noopener">Profile</a>`;
+    const emailIcon = p.email ? `<a class="icon-btn" href="mailto:${p.email}" title="Email" aria-label="Email ${p.name}">${ICON_MAIL}</a>` : '';
+    const profileIcon = `<a class="icon-btn" href="${personURL}" target="_blank" rel="noopener" title="Profile" aria-label="Profile of ${p.name}">${ICON_PERSON}</a>`;
 
     return `
   <article class="card person-card" data-name="${p.name}" data-role="${p.role||''}" data-topics="${(p.topics||[]).join(' ')}" data-status="${p.status||''}">
     ${avatar}
     <div class="body">
       <div class="meta">${p.role||''}</div>
-      <h3 style="margin:.2rem 0 .3rem">${p.name}</h3>
+      <div class="name-row">
+        <h3 style="margin:.2rem 0 .3rem">${p.name}</h3>
+        <span class="mini-actions">${emailIcon}${profileIcon}</span>
+      </div>
       <div class="meta">${p.affiliation||'—'}</div>
       <div class="tags">${tags}</div>
-      <div class="actions-row">${email}${profile}</div>
     </div>
   </article>`;
 }
