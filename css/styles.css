@@ -621,6 +621,12 @@ section:last-of-type {
     gap: 10px
 }
 
+/* 高度被截断时，底部渐隐提示还有更多内容 */
+#news-list.is-clipped {
+    -webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 32px), transparent 100%);
+    mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 32px), transparent 100%)
+}
+
 .news-card .body {
     display: flex;
     gap: 10px;

@@ -940,31 +940,46 @@ function renderHomeNews(){
         list.appendChild(li);
     });
 
-    const visible = Number(DATA.news_visible ?? 3);
-    setNewsVisibleCount(list, visible);
-
     if (stopNewsScroll) stopNewsScroll();
+    fitHomeNewsToHero(list);
     stopNewsScroll = setupStepScroll(list, {axis:'y', pause:2200, duration:600});
 }
-function setNewsVisibleCount(listEl, n){
-    function computeAndApply(){
-        const first = listEl.firstElementChild;
-        if (!first) return;
-        const rect = first.getBoundingClientRect();
-        const itemH = rect.height;
-        const styles = getComputedStyle(listEl);
-        const gap = parseFloat(styles.rowGap || styles.gap || '10');
-        const target = (itemH * n) + (gap * (n - 1));
-        listEl.style.maxHeight = `${target}px`;
-        listEl.style.overflow = 'auto';
+
+// 首页右侧 News 面板高度跟随左侧主栏：超出部分截断，可滚动查看
+function fitHomeNewsToHero(listEl){
+    const wrap = listEl.closest('.hero-wrap');
+    const aside = listEl.closest('aside');
+    const left = wrap ? wrap.children[0] : null;
+    if (!wrap || !aside || !left){
+        listEl.style.maxHeight = '520px';
+        return;
     }
-    computeAndApply();
-    let ro;
-    if ('ResizeObserver' in window){
-        ro = new ResizeObserver(() => computeAndApply());
-        ro.observe(listEl);
+    function fit(){
+        const wide = window.matchMedia('(min-width: 901px)').matches;
+        if (!wide){
+            // 窄屏单列布局：不跟随高度，恢复默认行为
+            listEl.style.maxHeight = '';
+            listEl.classList.remove('is-clipped');
+            return;
+        }
+        const headRow = aside.querySelector('.news-head');
+        const headH = headRow && headRow.parentElement ? headRow.parentElement.getBoundingClientRect().height : 0;
+        const cs = getComputedStyle(aside);
+        const pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+        const leftH = left.getBoundingClientRect().height;
+        listEl.style.maxHeight = Math.max(160, Math.floor(leftH - headH - pad - 12)) + 'px';
+        listEl.classList.toggle('is-clipped', listEl.scrollHeight > listEl.clientHeight + 4);
     }
-    window.addEventListener('resize', computeAndApply);
+    fit();
+    if ('ResizeObserver' in window && !listEl._fitRO){
+        listEl._fitRO = new ResizeObserver(fit);
+        listEl._fitRO.observe(left);
+        listEl._fitRO.observe(listEl);
+    }
+    if (!listEl._fitResize){
+        listEl._fitResize = fit;
+        window.addEventListener('resize', fit);
+    }
 }
 
 // People (home)
