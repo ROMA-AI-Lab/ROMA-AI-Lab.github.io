@@ -128,17 +128,15 @@ try {
   ok('载入 50 题（唯一模式）', q.n === 50, JSON.stringify(q));
   ok('每题渲染 4 个选项', q.opts === 4);
 
-  // M1：选后停留窗口——未开 __CIT_FAST 时，选中不立即跳题，约 700ms 后自动跳
-  const hold = await cdp.eval(`(async () => {
+  // v5.3 回退 M1：选中后立即跳下一题（停留窗口已撤销，改答靠「上一题」回退）
+  const hop = await cdp.eval(`(async () => {
     const sleep = ms => new Promise(r => setTimeout(r, ms));
     const before = state.idx;
     document.querySelector('#opts .opt').click();
-    const immediate = state.idx;
-    await sleep(950);
-    return { before, immediate, after: state.idx };
+    await sleep(60);
+    return { before, after: state.idx };
   })()`);
-  ok('选中后停留确认窗口（不立即跳，~700ms 自动跳下一题）',
-    hold.immediate === hold.before && hold.after === hold.before + 1, JSON.stringify(hold));
+  ok('选中后立即自动跳下一题（无停留窗口）', hop.after === hop.before + 1, JSON.stringify(hop));
 
   // M2：答过的题应已暂存到 localStorage（刷新可恢复）
   const savedN = await cdp.eval(`(() => {
@@ -146,9 +144,6 @@ try {
     return s && s.answers ? Object.keys(s.answers).length : 0;
   })()`);
   ok('答题进度已暂存 localStorage', savedN >= 1, String(savedN));
-
-  // 后续 50 题流程打开测试钩子，跳过停留窗口（否则整套测试要多等 35 秒）
-  await cdp.eval(`window.__CIT_FAST = true; true`, false);
 
   // 真实点击：每题选「契合度最高」的选项，模拟一个成熟作答者
   const done = await cdp.eval(`(async () => {

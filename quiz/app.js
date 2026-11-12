@@ -6,9 +6,6 @@ const CIT = window.CIT;
 const DIMS = CIT.DIMS;
 const LABEL = CIT.DIM_LABEL;
 
-// 选后停留窗口（毫秒）：选中后等待这么久再自动跳下一题，期间可改选。
-// window.__CIT_FAST（测试钩子）下不等待。
-const CONFIRM_MS = 700;
 // 进度暂存的 localStorage 键（见 saveProgress / restoreProgress）
 const PROGRESS_KEY = 'romaCIT.progress.v1';
 
@@ -22,7 +19,6 @@ const state = {
   score: null,
   name: '',
   _showTs: null,
-  _advTimer: null,
   navEvents: []
 };
 
@@ -348,20 +344,12 @@ function renderQuestion() {
 
       if (allAnswered()) { onSubmit(); return; }
       if (state.idx < state.bank.length - 1) {
-        // 选后停留窗口：CONFIRM_MS 内可以立即改选（计时重置），到点自动跳下一题。
-        // 设计理念是「让学生纠结」，点完即跳会把改答率信号压没；停留一下让改答成为真实数据。
-        // window.__CIT_FAST 是端到端测试钩子：置 true 时立即跳转。
-        clearTimeout(state._advTimer);
+        // 点选即跳下一题（v5.3 回退：停留窗口会掩盖「快速糊弄」的作答信号；
+        // 改答通过「上一题」回退完成，navEvents 里的 prev 记录就是真实改答数据）。
         const from = state.idx;
-        d.classList.add('confirming');
-        const advance = () => {
-          if (state.idx !== from) return;  // 期间用户已手动翻页
-          state.idx += 1;
-          state.navEvents.push({ type: 'auto', from, to: state.idx, ts: Date.now() });
-          renderQuestion();
-        };
-        if (window.__CIT_FAST) { advance(); return; }
-        state._advTimer = setTimeout(advance, CONFIRM_MS);
+        state.idx += 1;
+        state.navEvents.push({ type: 'auto', from, to: state.idx, ts: Date.now() });
+        renderQuestion();
       }
     };
     opts.appendChild(d);
@@ -374,14 +362,12 @@ function renderQuestion() {
   nextBtn.disabled = !state.answers[q.id] || nextIdx === -1;
   prevBtn.onclick = () => {
     if (prevIdx === -1) return;
-    clearTimeout(state._advTimer);
     state.navEvents.push({ type: 'prev', from: state.idx, to: prevIdx, ts: Date.now() });
     state.idx = prevIdx;
     renderQuestion();
   };
   nextBtn.onclick = () => {
     if (!state.answers[q.id] || nextIdx === -1) return;
-    clearTimeout(state._advTimer);
     state.navEvents.push({ type: 'next', from: state.idx, to: nextIdx, ts: Date.now() });
     state.idx = nextIdx;
     renderQuestion();
