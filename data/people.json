@@ -16,6 +16,63 @@
       "placement": []
     },
     {
+      "name": "Hao Wu",
+      "slug": "hao-wu",
+      "role": "Master Student (2027 Fall)",
+      "email": "",
+      "site": "",
+      "avatar": "",
+      "topics": ["Software Engineering","LLM Agents & RAG","Graph Learning"],
+      "affiliation": "Southeast University",
+      "status": "student",
+      "education": ["B.Eng.: Southeast University/东南大学. Software Engineering, 2023–2027 (GPA 4.08/4.8, rank 6/126)"],
+      "selected_publications": [],
+      "awards": ["National Scholarship (2025)",
+        "Tencent Scholarship (2024)",
+        "MCM/ICM Finalist Award (F)",
+        "National Third Prize, Global Campus AI Algorithm Elite Competition",
+        "Second Prize (Regional), Huawei Software Elite Challenge"
+      ],
+      "placement": []
+    },
+    {
+      "name": "Xinyu Zhong",
+      "slug": "xinyu-zhong",
+      "role": "Master Student (2027 Fall)",
+      "email": "",
+      "site": "",
+      "avatar": "",
+      "topics": ["LLM Code Security","Retrieval-Augmented Generation","Software Engineering"],
+      "affiliation": "Southeast University",
+      "status": "student",
+      "education": ["B.Eng.: Central South University/中南大学. Software Engineering, 2023–2027 (GPA 90.52/100, rank 21/206)"],
+      "selected_publications": [],
+      "awards": ["National Second Prize, National English Competition for College Students (2025)",
+        "Provincial Third Prize, Chinese Mathematics Competition (2025)",
+        "National-level Excellent Project, Undergraduate Innovation & Entrepreneurship Program (2024–2025)"
+      ],
+      "placement": []
+    },
+    {
+      "name": "Rouxi Shen",
+      "slug": "rouxi-shen",
+      "role": "Master Student (2027 Fall)",
+      "email": "",
+      "site": "",
+      "avatar": "",
+      "topics": ["Agent Planning","Graph Learning","Urban Computing"],
+      "affiliation": "Southeast University",
+      "status": "student",
+      "education": ["B.Sc.: Southeast University/东南大学. Computer Science (Top-notch Talent Program), 2023–2027 (GPA 3.90/4.8)"],
+      "selected_publications": [],
+      "awards": ["Grand Prize, 19th “Challenge Cup” AI Special Track (2025)",
+        "First Prize (Provincial), 7th Global Campus AI Algorithm Elite Competition (2025)",
+        "“Zhi Shan” Student Award, Southeast University",
+        "Second Prize, “China Nuclear Power” Scholarship"
+      ],
+      "placement": []
+    },
+    {
       "name": "Dr. Yicong Li",
       "slug": "yicong-li",
       "role": "Former RA / Ph.D.",

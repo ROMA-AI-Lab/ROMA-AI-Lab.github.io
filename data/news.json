@@ -1,6 +1,10 @@
 {
   "items": [
     {
+      "date": "2026-11-12",
+      "text": "Three students will join ROMA Lab as master students in September 2027: <b>Hao Wu</b> (Southeast University), <b>Xinyu Zhong</b> (Central South University) and <b>Rouxi Shen</b> (Southeast University). Their research interests span LLM agents, secure code generation and agent planning. Welcome aboard!"
+    },
+    {
       "date": "2026-11-11",
       "text": "ROMA Lab papers accepted at <b>EMNLP 2026</b> (main conference), <b>KDD 2026</b> and <b>CIKM 2026</b>, spanning LLM robustness, long-term spatio-temporal forecasting and circuit-aware unlearning for LLM-based recommendation."
     },
