@@ -28,7 +28,7 @@ QUIZ = os.path.dirname(HERE)
 TASTE_DIR = os.path.join(QUIZ, 'tastes')
 BANK_FILES = ['core.zh.json', 'extended.zh.json']
 DIMS = ['BND', 'COM', 'EMP', 'INT', 'CRE', 'RES']
-BANK_VERSION = '5.1.0'
+BANK_VERSION = '5.3.0'  # 由 tools/bump.py 同步；只在首次抽取生成 taste 时使用
 
 TASTE_META = {
     'roma': {

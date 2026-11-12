@@ -26,12 +26,15 @@ v5.1 之前这两样混在题库的 `score` 字段里，结果是题库看起来
 | `migration_v4.3.json` | v4.3 旧报告的选项字母迁移表（本版重排过选项顺序） |
 | `metadata.json` `rules.weights.json` | 版本、维度定义、权重、阈值、触发词 |
 | `tools/rekey.py` | 题库重键工具：以 `tools/source_v4.3/` 为只读素材源，输出新题库 + 迁移表 + `tastes/roma.json` |
-| `tools/bump.py` | 版本号一键同步（内核/元数据/权重/页面/文案共 6 处，`--bank` 连口味绑定的 bank_version 一起改） |
+| `tools/bump.py` | 版本号一键同步：**14 处**当前版本标识（内核/元数据/权重/两个页面的 title 与文案/文件头注释/工具常量）；`--check` 只读校验一致性；`--bank` 额外 bump 口味绑定的 bank_version |
 | `tools/extract_taste.py` | 把题库里的偏好分抽成独立口味文件；`--check` 校验绑定关系 |
 | `tools/audit.py` | 题库质量审计：区分度 / 可达区间 / 维度相关 / 位置均衡 / 潜变量回收 |
 | `tools/calibrate_risk.js` | 风险指标标定：十种典型作答画像仿真，改风险系数前后必须跑 |
 | `tools/philosophy_audit.py` | 设计理念体检：表面线索泄漏、作弊策略实测、取舍率、单题决定性 |
 | `tests/` | 单元测试与浏览器端到端测试 |
+
+`bump.py --check` 已并入 `cit-check.sh` 第 2 步，版本标识漂移会直接判失败；`scoring.js` 的 `const VERSION` 是唯一权威版本。
+**有意不同步的历史事实**：`migration_v4.3.json` 的 `"to": "5.1.0"`、`tastes/README.md` 的 schema 示例、所有「v5.x 起」沿革表述——它们不是当前版本号，别当残留改。
 
 ## 计分口径
 
