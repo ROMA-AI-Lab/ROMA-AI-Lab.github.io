@@ -73,7 +73,7 @@
       "name": "Xinyu Zhong",
       "slug": "xinyu-zhong",
       "role": "Master Student (2027 Fall)",
-      "email": "",
+      "email": "8209230211@csu.edu.cn",
       "site": "",
       "avatar": "/assets/people/xinyuzhong.avif",
       "topics": ["LLM Code Security","Retrieval-Augmented Generation","Software Engineering"],
@@ -83,7 +83,10 @@
       "selected_publications": [],
       "awards": ["National Second Prize, National English Competition for College Students (2025)",
         "Provincial Third Prize, Chinese Mathematics Competition (2025)",
-        "National-level Excellent Project, Undergraduate Innovation & Entrepreneurship Program (2024–2025)"
+        "National-level Excellent Project, Undergraduate Innovation & Entrepreneurship Program (2024–2025)",
+        "Second-class Scholarship, Central South University (2023–2024, 2024–2025)",
+        "Outstanding Communist Youth League Member, Central South University (2024–2025)",
+        "Outstanding Student, School of Computer Science and Engineering, CSU (2024–2025)"
       ],
       "placement": []
     },
