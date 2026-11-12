@@ -2,7 +2,7 @@ Dr. Xiangguo Sun/孙相国 (sun hsiang-kuo) is now working as a Full Professor a
 
 ## 🔬 Research Interests
 
-His research interests include: Data mining, Online social networks, Social computing, Next-generation AI for social science, Graph learning & multimodal reasoning. His work appears in **SIGKDD, VLDB, TKDE, NeurIPS, ICML, ICLR, WWW, WSDM, CIKM, TOIS, TNNLS, RecSys, IJCAI**. Google Scholar (2025-12)：**2400+ citations**, **H-index 25**, **7 papers** with **100+ citations**
+His research interests lie in data mining and graph-native intelligence, with broad applications spanning social computing, medical informatics, and intelligent agents. His work appears in **SIGKDD, VLDB, TKDE, NeurIPS, ICML, ICLR, WWW, WSDM, CIKM, TOIS, TNNLS, RecSys, IJCAI, EMNLP**. Google Scholar (2026-10)：**3450+ citations**, **H-index 30**, **11 papers** with **100+ citations**
 
 ### Academic Impact
 
