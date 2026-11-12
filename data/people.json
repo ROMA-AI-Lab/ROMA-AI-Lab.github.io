@@ -16,6 +16,40 @@
       "placement": []
     },
     {
+      "name": "Sixu An",
+      "slug": "sixu-an",
+      "role": "Ph.D. Student (2026 Spring)",
+      "email": "ansixu123@163.com",
+      "site": "",
+      "avatar": "/assets/people/sixuan.avif",
+      "topics": ["Personality","AI4Education","Visual Large Language Models"],
+      "affiliation": "Southeast University",
+      "status": "student",
+      "education": ["Ph.D.: Southeast University/东南大学. 2026–present",
+        "Master: University College London/英国伦敦大学学院. Network Engineering",
+        "Bachelor: Beijing Jiaotong University/北京交通大学. Information Science and Engineering"],
+      "selected_publications": [],
+      "awards": [],
+      "placement": ["Sep. 2025- Present: EdUHK/香港教育大学. Research Assistant.",
+        "Jun. 2023- Aug. 2023: PolyU/香港理工大学. Research Assistant."
+      ]
+    },
+    {
+      "name": "Yufan Wen",
+      "slug": "yufan-wen",
+      "role": "Master Student (2026 Fall)",
+      "email": "",
+      "site": "",
+      "avatar": "",
+      "topics": ["Graph Learning","Graph Prompt Learning","Research Evaluation"],
+      "affiliation": "Southeast University",
+      "status": "student",
+      "education": ["M.Eng.: Southeast University/东南大学. 2026–present"],
+      "selected_publications": [],
+      "awards": [],
+      "placement": []
+    },
+    {
       "name": "Hao Wu",
       "slug": "hao-wu",
       "role": "Master Student (2027 Fall)",
@@ -70,6 +104,66 @@
         "“Zhi Shan” Student Award, Southeast University",
         "Second Prize, “China Nuclear Power” Scholarship"
       ],
+      "placement": []
+    },
+    {
+      "name": "Shurong Liu",
+      "slug": "shurong-liu",
+      "role": "Undergraduate Researcher (Chien-Shiung Wu College)",
+      "email": "shurong.liu.2025@gmail.com",
+      "site": "",
+      "avatar": "",
+      "topics": ["Graph Prompt Learning","Hypergraph Learning","LLM Watermarking"],
+      "affiliation": "Southeast University",
+      "status": "ra",
+      "education": [],
+      "selected_publications": [],
+      "awards": [],
+      "placement": []
+    },
+    {
+      "name": "Xi Yao",
+      "slug": "xi-yao",
+      "role": "Undergraduate Researcher (Thesis)",
+      "email": "",
+      "site": "",
+      "avatar": "",
+      "topics": ["LLM Social Cognition","Pragmatics in Summarization","Personality Attribution"],
+      "affiliation": "Southeast University",
+      "status": "ra",
+      "education": [],
+      "selected_publications": [],
+      "awards": [],
+      "placement": []
+    },
+    {
+      "name": "Zihan Zhang",
+      "slug": "zihan-zhang",
+      "role": "Undergraduate Researcher (SRTP)",
+      "email": "",
+      "site": "",
+      "avatar": "",
+      "topics": ["Research Evaluation","Peer Review Mining","Scholarly Data Mining"],
+      "affiliation": "Southeast University",
+      "status": "ra",
+      "education": [],
+      "selected_publications": [],
+      "awards": [],
+      "placement": []
+    },
+    {
+      "name": "Zihan Yuan",
+      "slug": "zihan-yuan",
+      "role": "Undergraduate Intern",
+      "email": "",
+      "site": "",
+      "avatar": "",
+      "topics": ["LLM4Graph","Graph Learning","Benchmarking"],
+      "affiliation": "Southeast University",
+      "status": "ra",
+      "education": [],
+      "selected_publications": [],
+      "awards": [],
       "placement": []
     },
     {
@@ -153,24 +247,6 @@
       "topics": ["Rumor Detection","Online Social Networks"],
       "affiliation": "Tencent",
       "status": "ra"
-    },
-    {
-      "name": "Sixu An",
-      "slug": "sixu-an",
-      "role": "Former RA / Master",
-      "email": "ansixu123@163.com",
-      "site": "",
-      "avatar": "/assets/people/sixuan.avif",
-      "topics": ["Personality","AI4Education","Visual Large Language Models"],
-      "affiliation": "UCL (UK)",
-      "status": "ra",
-      "education": ["Master: University College London/英国伦敦大学学院. Network Engineering",
-        "Bachelor: Beijing Jiaotong University/北京交通大学. Information Science and Engineering"],
-      "selected_publications": [],
-      "awards": [],
-      "placement": ["Sep. 2025- Present: EdUHK/香港教育大学. Research Assistant.",
-        "Jun. 2023- Aug. 2023: PolyU/香港理工大学. Research Assistant."
-      ]
     },
     {
       "name": "Minbin Huang",
