@@ -1,0 +1,800 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>实验室基本准则（26年更新🔥）</title><meta name="data-notion-page-icon" content="📋"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%8B%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+	/* Paint a complete callout box on every PDF page fragment. */
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="28afeec3-5b90-815f-9ddd-d0306ad17510" class="page sans" data-notion-page-icon="📋"><header><img class="page-cover-image" src="../ext-assets/woodcuts_7.jpg" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="📋"></span></div><h1 class="page-title" dir="auto">实验室基本准则（26年更新🔥）</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><p id="28afeec3-5b90-805c-9051-d8e1d56323f9" class="" dir="auto"><em><mark class="highlight-gray" data-notion-highlight="gray">最后更新:</mark></em><em><mark class="highlight-gray" data-notion-highlight="gray"><time datetime="2025-10-12">@2025年10月12日</time></mark></em></p><p id="28bfeec3-5b90-80b2-a745-ee0887a78b88" class="" dir="auto">
+</p><p id="28bfeec3-5b90-80dd-b4d9-d66123fd7795" class="" dir="auto"><code>本节目录</code></p><nav id="28bfeec3-5b90-803d-9205-fe4e93c5cf8c" class="block-color-gray table_of_contents" data-notion-highlight="gray" data-notion-toc="" dir="ltr"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-80e8-9df9-c21a5e9f6d46">A. ROMA Lab核心理念</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-80cf-bb82-db435cb8254d">⛳ 追求卓越，拿出代表作</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-80f3-a616-dc68b0600c86">B. 关系准则</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-8056-909f-c87a717c038d">👥 师生关系:我们是战友</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-80d6-82e1-c4794bc5769c">⚖️ 拒绝论资排辈,平等相待</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-8085-8c0f-e0bfd494e3b3">🌱 反对资历压榨,拒绝&quot;假传旨意&quot;</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-80b8-a9ee-e316aee629c4">C. 沟通与交流</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-804b-bb95-d4ec94e7fce7">📧 工作沟通讲方式、守时限</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-80f0-8f67-da750f39f0bc">💬 定期一对一交流</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-8070-9800-ea952c758fed">D. 团队文化</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-8002-b683-e38c24aa8714">❤️ 互助是情分,感恩是本分</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-806b-b43d-d5b241ce2c0c">🚫 拒绝精致利己,人品优先</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-801e-8314-ce7257fb8ace">🧠 不轻蔑评价,尊重他人工作</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-8024-8dee-db0feeed15d2">E. 生活与边界</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-80a7-9133-ff2555f9dc8e">🌙 休息时间请彻底放松</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-8092-8742-e4dbdab4a4a2">🙊 私生活不干涉、不参与、不评价</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28afeec3-5b90-80aa-a9eb-c01ab57abfcd">💞 支持纯粹感情,严禁骚扰行为</a></div></nav><h2 id="28afeec3-5b90-80e8-9df9-c21a5e9f6d46" class="" dir="auto">A. ROMA Lab核心理念</h2><h3 id="28afeec3-5b90-80cf-bb82-db435cb8254d" class="" dir="auto">⛳ 追求卓越，拿出代表作</h3><blockquote id="364feec3-5b90-80d1-9b67-d62ae9a5bfe3" class="" dir="auto">我们期待实验室所有成员可以在顶尖期刊会议上发表高质量的学术论文,以此为基础,进一步在你的个性化发展道路上追求卓越。期待参加毕业典礼时候的你,成为一个既有生活,又有作品的人。</blockquote><hr id="364feec3-5b90-8010-9a2e-eb46a7ca2d15" dir="auto"/><h2 id="28afeec3-5b90-80f3-a616-dc68b0600c86" class="" dir="auto">B. 关系准则</h2><h3 id="28afeec3-5b90-8056-909f-c87a717c038d" class="" dir="auto">👥 师生关系:我们是战友</h3><p id="28afeec3-5b90-808d-a2cb-cace685c776c" class="" dir="auto"><strong>实验室师生不是老板与员工、上下级或主仆,而是共同前进的&quot;达瓦里氏&quot;。</strong></p><blockquote id="364feec3-5b90-80a2-a1c3-e290b9024ac8" class="" dir="auto"><p id="28afeec3-5b90-80e6-9e57-c7ea9b31cda3" class="" dir="auto">我们不提倡&quot;老板-员工&quot;模式(我也发不了几个钱),更反对&quot;主仆式&quot;关系(你也别&quot;奴隶&quot;我)。我们更像是并肩作战的战友,互相尊重、共同成长——你可以叫我&quot;达瓦里氏&quot;。</p></blockquote><h3 id="28afeec3-5b90-80d6-82e1-c4794bc5769c" class="" dir="auto">⚖️ 拒绝论资排辈,平等相待</h3><p id="28afeec3-5b90-8061-b467-c117618b43a6" class="" dir="auto"><strong>实验室没有&quot;辈分&quot;之分,只有师生、同事与同行。</strong></p><blockquote id="28afeec3-5b90-80f5-a01c-d703cf91610d" class="" dir="auto">入学早晚不代表能力差距，低年级同学可以做高年级同学的“小导师”，硕士生可以带领博士生，每个人在我眼中一律平等。我们鼓励实验室内部打破“年级资历”，在相互尊重、互相关爱、友善友好的前提下，平等交流（但请注意说话的语气和态度，低年级同学不要用道德绑架的巨婴姿态来和高年级同学沟通，高年级同学也不要用高高在上的态度和低年级同学说话）。</blockquote><h3 id="28afeec3-5b90-8085-8c0f-e0bfd494e3b3" class="" dir="auto">🌱 反对资历压榨,拒绝&quot;假传旨意&quot;</h3><p id="28afeec3-5b90-8094-a30b-f794f8323368" class="" dir="auto"><strong>高年级同学应平等谦逊,严禁利用身份或信息优势压迫低年级同学。</strong></p><blockquote id="28afeec3-5b90-80ea-9cca-cd831571e5c4" class="" dir="auto">坚决反对高年级学生借经验、关系等优势逼迫或骚扰师弟师妹,更禁止假借我的名义指派任务。<mark class="highlight-red" data-notion-highlight="red"><strong><span style="border-bottom:0.05em solid">&quot;假传旨意&quot;是实验室红线。</span></strong></mark></blockquote><hr id="364feec3-5b90-8049-8e24-dbaaecc71434" dir="auto"/><h2 id="28afeec3-5b90-80b8-a9ee-e316aee629c4" class="" dir="auto">C. 沟通与交流</h2><h3 id="28afeec3-5b90-804b-bb95-d4ec94e7fce7" class="" dir="auto">📧 工作沟通讲方式、守时限</h3><p id="28afeec3-5b90-8025-b588-f8fe15a6e7d2" class="" dir="auto"><strong>工作沟通请发英文邮件,非紧急不微信,我承诺回复时会注明处理周期。</strong></p><blockquote id="28afeec3-5b90-80eb-bb5e-daaf24438851" class="" dir="auto">日常沟通尽量通过英文邮件（如果有些事情英文表述不清也可以用中文或中英文混杂），微信群主要用于组织娱乐活动。我会在回信中明确处理时间，期间请勿催促。若我超时未完成，会主动道歉并尽力补救。我一般会在截止日前告知还需多久。</blockquote><h3 id="28afeec3-5b90-80f0-8f67-da750f39f0bc" class="" dir="auto">💬 定期一对一交流</h3><p id="28afeec3-5b90-8019-bdf6-d39080e55f05" class="" dir="auto"><strong>每月至少一次一对一指导,额外需求可邮件预约。</strong></p><blockquote id="28afeec3-5b90-802d-873c-f3a1688a6fbf" class="" dir="auto">我承诺每月至少一次面对面交流,你也可以随时邮件预约更多讨论时间。</blockquote><hr id="364feec3-5b90-8095-8cc6-df2b3f859fff" dir="auto"/><h2 id="28afeec3-5b90-8070-9800-ea952c758fed" class="" dir="auto">D. 团队文化</h2><h3 id="28afeec3-5b90-8002-b683-e38c24aa8714" class="" dir="auto">❤️ 互助是情分,感恩是本分</h3><p id="28afeec3-5b90-8048-9102-e9b95f8916e6" class="" dir="auto"><strong>鼓励互助,但别把别人的帮助视为理所当然。</strong></p><blockquote id="28afeec3-5b90-804b-a7e2-e7ff06eb7af4" class="" dir="auto">团队鼓励像家人般互相关心，但没人有义务无条件帮你——包括我。若有人给予帮助，请心怀感激，并思考如何回馈(不止于一句谢谢)。师兄师姐帮你或你帮助了师兄师姐，都是情分，也等于帮了我。</blockquote><h3 id="28afeec3-5b90-806b-b43d-d5b241ce2c0c" class="" dir="auto">🚫 拒绝精致利己,人品优先</h3><p id="28afeec3-5b90-80ab-8606-d1dbf1e50246" class="" dir="auto"><strong>反对自私利己行为,学历背景不论,人品是第一标准。</strong></p><blockquote id="28afeec3-5b90-80d2-8522-e1ce01a4d38d" class="" dir="auto">我对名校光环无感，无论你来自哪里，一视同仁。更看重的是真诚、合作与担当。</blockquote><h3 id="28afeec3-5b90-801e-8314-ce7257fb8ace" class="" dir="auto">🧠 不轻蔑评价,尊重他人工作</h3><p id="28afeec3-5b90-80c4-9962-c07355e0ac43" class="" dir="auto"><strong>拒绝轻飘否定他人成果,反对学术或职场&quot;黑话&quot;跟风。</strong></p><blockquote id="28afeec3-5b90-808e-b766-cb5500860784" class="" dir="auto">不说“没卵用&quot;、&quot;灌水&quot;等轻率评价，也别转身进了企业就满口&quot;赋能&quot;、&quot;对齐颗粒度&quot;。尊重别人的付出，reflect自己几斤几两。</blockquote><hr id="364feec3-5b90-80c6-bd83-de75e84dedea" dir="auto"/><h2 id="28afeec3-5b90-8024-8dee-db0feeed15d2" class="" dir="auto">E. 生活与边界</h2><h3 id="28afeec3-5b90-80a7-9133-ff2555f9dc8e" class="" dir="auto">🌙 休息时间请彻底放松</h3><p id="28afeec3-5b90-802f-9262-c1bd8f19aeaa" class="" dir="auto"><strong>法定节假日与非工作时间,大家尽可&quot;相忘于江湖&quot;,不扰彼此清净。</strong></p><blockquote id="28afeec3-5b90-8069-85dc-e949cef52f2e" class="" dir="auto">当然,如果是一起约饭、爬山或出游,非常欢迎!</blockquote><h3 id="28afeec3-5b90-8092-8742-e4dbdab4a4a2" class="" dir="auto">🙊 私生活不干涉、不参与、不评价</h3><p id="28afeec3-5b90-8096-9c39-ddfa1b969415" class="" dir="auto"><strong>尊重彼此的私人空间,不介入、不议论各自的私生活。</strong></p><blockquote id="28afeec3-5b90-8044-bac1-e83e0b653fb7" class="" dir="auto">只要不影响团队合作与对外交流，我充分尊重你的个人生活。同样地，我也希望学生不在社交平台(如小红书)上公开评价我，无论是褒是贬，彼此保持平等与边界。</blockquote><h3 id="28afeec3-5b90-80aa-a9eb-c01ab57abfcd" class="" dir="auto">💞 支持纯粹感情,严禁骚扰行为</h3><p id="28afeec3-5b90-8016-b346-fb2c6a0528df" class="" dir="auto"><strong>支持同学间健康发展恋情,但坚决抵制性骚扰、PUA与歧视。</strong></p><blockquote id="28afeec3-5b90-80d6-9e6e-c3c852553663" class="" dir="auto">我乐于见证实验室内的真挚感情，甚至期待未来能做你们的证婚人。但会定期向女生发放问卷,排查骚扰与歧视行为。一经证实,肇事者立即清退。男生如遇类似问题，也欢迎私下找我。</blockquote><p id="28bfeec3-5b90-80fb-8932-ebf607c75da5" class="" dir="auto">
+</p><hr id="28bfeec3-5b90-8023-81a4-fb3384531a1c" dir="auto"/><div id="28bfeec3-5b90-8056-ae38-d1f870827198" class="column-list" data-notion-column-list="" dir="auto"><div id="28bfeec3-5b90-8053-a1bc-e0389a725077" style="width:100%" class="column" data-notion-column-ratio="1" dir="auto"><p id="28bfeec3-5b90-805a-9eec-c72b68a0a09a" class="" dir="auto"><a href="ROMA%20Lab%E7%9A%84%E5%AD%A6%E6%9C%AF%E7%90%86%E5%BF%B5.html">上一页</a></p></div><div id="28bfeec3-5b90-80ae-9ee0-e9f0ea98653f" style="width:100%" class="column" data-notion-column-ratio="1" dir="auto"><p id="28bfeec3-5b90-8057-b0f6-d74cf4bcfe33" class="" dir="auto"><a href="../index.html">回到上级</a></p></div><div id="28bfeec3-5b90-8006-b816-d5807cc26feb" style="width:100%" class="column" data-notion-column-ratio="1" dir="auto"><p id="28bfeec3-5b90-8015-a15c-dfa41e6a42f0" class="" dir="auto"><a href="%E6%B4%A5%E8%B4%B4%E4%B8%8E%E5%AE%9E%E4%B9%A0(26%E5%B9%B4%E6%9B%B4%E6%96%B0%F0%9F%94%A5).html">下一页</a></p></div></div><p id="28bfeec3-5b90-809d-a301-f2f668dc84e5" class="" dir="auto">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span><div id="roma-manual-badge" style="position:fixed;right:12px;bottom:12px;z-index:99999;background:rgba(255,255,255,.92);border:1px solid #ddd;border-radius:8px;padding:4px 10px;font-size:12px;color:#666;box-shadow:0 1px 4px rgba(0,0,0,.08)">ROMA Lab 手册 · 2026 版 · <a href="../../index.html">全部版本</a> · <a href="https://www.notion.so/xiangguo/ROMA-Lab-2026-28afeec35b9080f98051d9690a2aa63e" target="_blank" rel="noopener">实时草稿</a></div></body></html>

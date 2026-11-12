@@ -1,0 +1,817 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>如何联系（26年更新）</title><meta name="data-notion-page-icon" content="📩"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%A9%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+	/* Paint a complete callout box on every PDF page fragment. */
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="28afeec3-5b90-8137-a1c8-c708debe835c" class="page sans" data-notion-page-icon="📩"><header><img class="page-cover-image" src="../../ext-assets/gradients_3.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="📩"></span></div><h1 class="page-title" dir="auto">如何联系（26年更新）</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><p id="28afeec3-5b90-8150-93d0-e733c879629a" class="" dir="auto"><em><mark class="highlight-gray" data-notion-highlight="gray">最后更新 </mark></em><em><mark class="highlight-gray" data-notion-highlight="gray"><time datetime="2026-08-08" data-notion-date-format="relative">@2026年8月8日</time></mark></em></p><p id="28bfeec3-5b90-808c-a1fe-fa7608b4bfae" class="" dir="auto">
+</p><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="28afeec3-5b90-811f-972b-e9f942b0e1b6" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%">我们的邮件地址：<strong><a href="mailto:roma_lab@yeah.net">roma_lab@yeah.net</a></strong><p id="28afeec3-5b90-810d-802c-f6a237991e2e" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><strong>作为实验室负责人，孙相国教授在此郑重承诺：所有通过大学正式录取程序并获得实验室确认的同学，名额将保留至最后。</strong></mark></p></div></aside><p id="28afeec3-5b90-81b7-8225-c82f677e2f05" class="" dir="auto">
+</p><p id="28bfeec3-5b90-8089-a51f-ca6f0b75f935" class="" dir="auto">
+</p><p id="28bfeec3-5b90-80c1-b1f9-d0c8102f5d0c" class="" dir="auto"><code>本节目录</code></p><nav id="28afeec3-5b90-81c7-b331-f71733ac4df5" class="block-color-gray table_of_contents" data-notion-highlight="gray" data-notion-toc="" dir="ltr"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3b5feec3-5b90-8006-b1b9-d002622ea56b">Step 0: 联络我们之前你要做的事</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-81cf-8d51-cb61524c1141"><strong>Step 1: 初次联络（请确保你完成了Step 0）</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-813b-9849-c5d6c02370dd"><strong>Step 2: 获得我们的意向和同步信息（仅针对预推免的硕士/直博申请人；申请考核制的博士申请人不适用）</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-81f4-bb00-f59f809c3051"><strong>Step 3: 预推免前的会谈与确认（仅针对预推免的硕士/直博申请人；申请考核制的博士申请人不适用）</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3a2feec3-5b90-8096-9107-db2cdd90480d">其他事项：关于统考生的安排</a></div></nav><p id="3b5feec3-5b90-8002-b328-f30a1680c1ef" class="" dir="auto">
+</p><h3 id="3b5feec3-5b90-8006-b1b9-d002622ea56b" class="" dir="auto">Step 0: 联络我们之前你要做的事</h3><ul id="293feec3-5b90-80d8-bb14-e20a57178279" class="bulleted-list" dir="auto"><li style="list-style-type:disc">请先完整阅读我们的招生指南 <a href="../ROMA%20Lab%E6%8B%9B%E7%94%9F%E6%8C%87%E5%8D%97%EF%BC%88%E6%8E%A8%E5%85%8D%E7%94%9F%E5%BF%85%E7%9C%8B%F0%9F%94%A5%EF%BC%89.html" data-notion-page-id="28afeec3-5b90-810f-b98f-d8227ac8628b" data-notion-space-id="d54a57ae-4226-4fd1-aad1-1d78f0e28da0"><span class="icon" data-emoji="🖐️"></span>ROMA Lab招生指南（推免生必看🔥）</a> </li></ul><ul id="3b5feec3-5b90-80c0-a99d-edd47b57a3b3" class="bulleted-list" dir="auto"><li style="list-style-type:disc">特别是其中的这一节：<a href="%E6%8B%9B%E7%94%9F%E6%96%87%E6%A1%88%EF%BC%88@2026%E5%B9%B410%E6%9C%8820%E6%97%A5%20%EF%BC%89.html" data-notion-page-id="28afeec3-5b90-8037-83b5-e2e889d28e75" data-notion-space-id="d54a57ae-4226-4fd1-aad1-1d78f0e28da0">📮 如何申请</a> </li></ul><ul id="3b5feec3-5b90-80f2-8966-dde696910726" class="bulleted-list" dir="auto"><li style="list-style-type:disc">此外，若有余力，最好可以通读<a href="../../index.html">实验室手册</a>全部内容（手册包含了你可能感兴趣的几乎所有问题）</li></ul><p id="3b5feec3-5b90-80e0-93c0-e63a6b3e221e" class="" dir="auto">
+</p><h3 id="28afeec3-5b90-81cf-8d51-cb61524c1141" class="" dir="auto"><strong>Step 1: 初次联络（请确保你完成了Step 0）</strong></h3><p id="293feec3-5b90-80ce-a7b1-c0b43e294f3e" class="" dir="auto">在完成Step 0后：<strong><span style="border-bottom:0.05em solid">请严格使用以下的邮件模板给我们发送申请</span></strong>。这能帮助我们快速、公平地获取关键信息，判断我们之间是否可能存在良好的合作基础。</p><hr id="28afeec3-5b90-8128-9535-f60f1f29320f" dir="auto"/><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="28afeec3-5b90-81af-b94f-f390a9239d6a" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><strong>邮件主题：</strong> 2026<strong><span style="border-bottom:0.05em solid">[这是你的预计入学年份，不是你获得推免身份的年份，例如26年参加预推免的选手，应该写2027]</span></strong> Fall/Spring<strong><span style="border-bottom:0.05em solid">[推免硕士统考硕士一般都是秋季入学，而其他类型的硕士博士可能有春季入学批次，请根据你的个人情况选择]</span></strong> PhD/Master<strong><span style="border-bottom:0.05em solid">[若你暂不确定推免直博还是推免硕士可以写PhD-Master，其他情况请从PhD和Master中选择一种，非全日制博士写Part-time PhD，实习生写Intern]</span></strong> Application - Your NAME<strong><span style="border-bottom:0.05em solid">[你的名字，eg.: 韦一敏]</span></strong><p id="3b6feec3-5b90-8082-8aaf-dcb20adf0013" class="" dir="auto">
+</p><p id="28afeec3-5b90-81ec-963a-d7860a7601fc" class="" dir="auto"><strong>邮件正文：</strong></p><p id="28afeec3-5b90-81e2-a0e7-dfd6c4e99f09" class="" dir="auto">Dear Prof. Sun Xiangguo,</p><p id="28afeec3-5b90-8150-9b96-d585b7ea694a" class="" dir="auto">I am <strong><span style="border-bottom:0.05em solid">[你最新的身份,e.g.: a junior student in XXX University, majoring in Mathematics. <br/>大一/大二/大三/大四对应的英文：freshman/sophomore/junior/senior，或者仅仅写为1st/2nd...year undergraduate student. 在职人士可直接写单位职位]</span></strong><strong>. </strong>I am writing to express my interest in joining the ROMA Lab as a <strong><span style="border-bottom:0.05em solid">[PhD / Master]</span></strong> student at Southeast University. </p><ol type="1" id="28afeec3-5b90-8198-9303-fdd18f7ec43a" class="numbered-list" start="1" dir="auto"><li><strong>Upon completing my [PhD / Master] degree, my career goal is to</strong> <span style="border-bottom:0.05em solid">[请简要陈述您的职业目标，例如去企业？去高校？选调生？出国深造？创业？……]</span></li></ol><ol type="1" id="28afeec3-5b90-81ce-8429-da222826f64a" class="numbered-list" start="2" dir="auto"><li><strong>I hope ROMA Lab can offer me</strong> <span style="border-bottom:0.05em solid">[请提出您的具体期望]</span></li></ol><ol type="1" id="28afeec3-5b90-81b1-8245-d2ebb2d34ff4" class="numbered-list" start="3" dir="auto"><li><strong>I can contribute to the lab by</strong> <span style="border-bottom:0.05em solid">[请简明扼要地突出您的优势，不要写太多，1-2个足够了，一两句话就行，如果你有太多想要写，请放进简历里]</span></li></ol><ol type="1" id="28afeec3-5b90-81f7-98f2-f480599a56d3" class="numbered-list" start="4" dir="auto"><li><strong>Beyond research,</strong> I am passionate about <span style="border-bottom:0.05em solid">[请真诚地分享您的爱好/兼职/副业，我们期待看到立体鲜活的你]</span>. </li></ol><ol type="1" id="28afeec3-5b90-81f8-9d2a-fff287741fb0" class="numbered-list" start="5" dir="auto"><li><strong>What are the most important factors you consider when choosing a research advisor and a lab? And what aspects of ROMA Lab resonate with you the most?</strong></li></ol><p id="3acfeec3-5b90-8036-a9b7-c74b6bcb8f33" class="" dir="auto">
+</p><p id="28afeec3-5b90-8163-97e2-d9b5b7e71b27" class="" dir="auto">Please find my CV （<strong>my photo within</strong>）and my CIT <code>json</code> results attached for your review. </p><p id="3acfeec3-5b90-8004-93cf-e422ea8f81f2" class="" dir="auto">
+</p><p id="28afeec3-5b90-812b-95cb-d9ddb171ca24" class="" dir="auto">Best regards,</p><p id="28afeec3-5b90-81d0-b78f-d84b7ed59d88" class="" dir="auto">[Your Full Name]<br/>[Your Current University &amp; Major]<br/>[Your Email Address] | [Your Phone Number, Optional]<br/>[Link to Your LinkedIn Profile or Personal Website, Optional]</p></div></aside><p id="3b5feec3-5b90-80ac-8986-fb4863a2f373" class="" dir="auto">
+</p><p id="28afeec3-5b90-81ad-8467-c51b52e8b7df" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><strong>我们承诺阅读每一封邮件，并在 1-7个工作日内给予回复。</strong></mark></p><aside class="block-color-yellow_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="yellow_background" style="white-space:pre-wrap;display:flex" id="3a2feec3-5b90-800a-9176-cc290ea0eeb3" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><ul id="3a2feec3-5b90-809c-8c0e-ddce7a04bc86" class="bulleted-list" dir="auto"><li style="list-style-type:disc">实验室每年大概会收到200-300封的学生自荐邮件，精力有限，因此未按上述要求发送邮件，或以中文发送邮件等，均有可能会被视为群发海投而被忽略，恕不能保障一定会在1-7个工作日内回复（尽管我们会尽力回复）</li></ul><ul id="3acfeec3-5b90-80f5-b62c-c4defc3eb817" class="bulleted-list" dir="auto"><li style="list-style-type:disc">请不要在你的邮件中粘贴任何外部链接（特别是网易邮箱超大附件形式的简历文件），我们不会点击任何链接，因此请把你的简历以pdf的形式传送给我们</li></ul></div></aside><p id="3b5feec3-5b90-807d-b251-d37dedb9674d" class="" dir="auto">
+</p><p id="3b5feec3-5b90-80a9-806e-f13b81d75f4c" class="block-color-purple" data-notion-highlight="purple" dir="auto"><strong>🌟🌟🌟博士申请需额外留意：</strong></p><aside class="block-color-purple_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="purple_background" style="white-space:pre-wrap;display:flex" id="3b5feec3-5b90-800c-baa2-cf03a5343e5a" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3b5feec3-5b90-8017-adce-f46a3113161a" class="" dir="auto">We have 2-3 PhD openings per year. Due to recent reforms in our department, our prospective students must be highly competitive to secure admission.</p><p id="3b5feec3-5b90-80b6-9e1b-cc78e36294fb" class="" dir="auto">For example: if the department admits 80 PhD students in a given year, approximately 60 positions are allocated to special‑track programs (mostly for Engineering‑Oriented doctoral candidates, a.k.a EngD), leaving only around 20 regular‑track slots (Academic PhD). I am currently not affiliated with any of these special‑track programs. <strong><span style="border-bottom:0.05em solid">Therefore, my students would need to rank within the top 20 in the overall evaluation to be admitted in the regular track. If they rank lower, they would be reassigned to other faculty members who hold special-track quotas, and my own quota would be voided.</span></strong> For this reason, I generally expect applicants to my PhD group to have at least one first-author regular CCF-A (or similar standard) paper (benchmark papers, short papers, and surveys are not counted).</p></div></aside><p id="3b5feec3-5b90-8099-b6be-f142b41b0203" class="" dir="auto">
+</p><hr id="28afeec3-5b90-81eb-b296-c76fb611aa92" dir="auto"/><h3 id="28afeec3-5b90-813b-9849-c5d6c02370dd" class="" dir="auto"><strong>Step 2: 获得我们的意向和同步信息（仅针对预推免的硕士/直博申请人；申请考核制的博士申请人不适用）</strong></h3><p id="3b5feec3-5b90-80af-8b7b-dcf86b8fd75c" class="" dir="auto">
+</p><p id="3a2feec3-5b90-80c3-b7de-e990f246f1cc" class="" dir="auto">我们会在回复你的邮件中告诉你如下信息：</p><ul id="3a2feec3-5b90-80c2-86cf-f82d1eb4593c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">我的招生名额情况</li></ul><ul id="3a2feec3-5b90-8003-b4f6-d3dc279dca7c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">你目前在我们候选中的排名情况</li></ul><ul id="3a2feec3-5b90-8029-8b4f-d08a1fa28acf" class="bulleted-list" dir="auto"><li style="list-style-type:disc">其他相关事项</li></ul><aside class="block-color-yellow_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="yellow_background" style="white-space:pre-wrap;display:flex" id="3a2feec3-5b90-805f-a56b-c166605368b9" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a2feec3-5b90-80bc-8046-e73bbd76b3f1" class="" dir="auto">这一阶段，我们一般不会安排任何形式的面试（特别优秀的学生我们亦可能会单独约时间提前面谈）</p></div></aside><p id="3a2feec3-5b90-8096-ad1d-f3c81a2194dd" class="" dir="auto"><br/>我们会通过邮件<strong>定期、</strong>同步进度，例如：“<em><mark class="highlight-teal" data-notion-highlight="teal">目前，我们计划名额4-6名，已意向确认3名（你在其中/你不在其中），候补名单5名，你其中处在怎样的level……</mark></em>” 我们坚信，公开透明的流程是对所有申请者最基本的尊重。</p><p id="3a2feec3-5b90-8089-8646-f96e2006a4f8" class="" dir="auto">
+</p><hr id="28afeec3-5b90-8140-a482-d831db405c8a" dir="auto"/><h3 id="28afeec3-5b90-81f4-bb00-f59f809c3051" class="" dir="auto"><strong>Step 3: 预推免前的会谈与确认（仅针对预推免的硕士/直博申请人；申请考核制的博士申请人不适用）</strong></h3><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="28afeec3-5b90-81e3-8903-cbc315d136d6" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><mark class="highlight-red" data-notion-highlight="red"><strong>请注意：获得本实验室的通过不代表您同时获得了大学的录用，您需要通过大学的入学考核程序后，本实验室的通过才具有有效性，这两者没有实际的联系（提前获得本实验室录用并不会增加您在大学入学考核通过的概率）</strong></mark></div></aside><p id="3a2feec3-5b90-80a8-8110-f0286bbebe0e" class="" dir="auto">会谈时间：一般在预推免报名开始一周内（学校的预推免报名时间一般会持续一个月）集中和各位候选学生约时间面谈</p><aside class="block-color-yellow_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="yellow_background" style="white-space:pre-wrap;display:flex" id="3a2feec3-5b90-80a2-8fa0-f00b32c0e748" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3b6feec3-5b90-8016-a391-c071a59af157" class="" dir="auto">以2026年为例，我们的学校预推免报名开始于7月10日（结束于8月10日），我们在当日（7月10日）给所有候选学生发送了邮件预约面谈时间（所有候选学生会在集中一周内面谈结束）。请各位同学留意自己的邮箱信息，逾期不候，先约先谈。</p></div></aside><p id="3a2feec3-5b90-80f0-9541-c4bb68d7f361" class="" dir="auto">
+</p><p id="3a2feec3-5b90-8094-b1a2-fe4e1d6456e3" class="" dir="auto">本次会谈旨在增进相互了解，形式轻松，不涉及任何考核性质的内容。</p><p id="3a2feec3-5b90-8066-90dd-ec94889d6d27" class="" dir="auto">我们会在面谈结束后一周内（一般在预推免报名开始一周内），告诉您我们对您的确认意向。在收到您的确认前，该名额暂不为您保留。</p><p id="28afeec3-5b90-8146-ba49-f2419272e18b" class="" dir="auto"><strong>确认流程与共同承诺：</strong></p><ol type="1" id="28afeec3-5b90-811e-9176-c19eb527abbf" class="numbered-list" start="1" dir="auto"><li><strong>慎重决策</strong>：您的确认意味着您将占用实验室一个宝贵的名额，同时我们也为您拒绝了其他候选人。请务必在十分确定、没有任何前提假设的情况下，再发出确认邮件。</li></ol><ol type="1" id="28afeec3-5b90-81fd-a899-f514478bb0fe" class="numbered-list" start="2" dir="auto"><li><strong>我们的承诺</strong>：在收到您的正式确认邮件后，我们将第一时间给予您正式的确认。<strong>一经确认，除非遭遇国家政策突变等不可抗力，否则我们将信守承诺，为您保留名额至最后。</strong> 即便遇到不可抗力情况，我们也将负起责任，全力协助您寻找更合适的导师或出路。</li></ol><p id="3a2feec3-5b90-8016-a21d-fbecc8043108" class="" dir="auto">
+</p><h3 id="3a2feec3-5b90-8096-9107-db2cdd90480d" class="" dir="auto">其他事项：关于统考生的安排</h3><p id="3a2feec3-5b90-809b-8976-dece47ca3907" class="" dir="auto">实验室名额每年大部分都会在推免阶段用完（被我们选中的推免生，极少会出现放鸽子的情况，几乎没有），尽管如此，我们依然会努力为统考生争取提前预留1个名额。统考生可在每年复试前与我们联络，参考上面Step1的内容。</p><p id="3b6feec3-5b90-80e2-818e-e277d351b857" class="" dir="auto">
+</p><p id="3b6feec3-5b90-80c2-9266-eed4ed2403fd" class="" dir="auto">
+</p><p id="3b6feec3-5b90-80ac-b8ad-d2102481dced" class="" dir="auto">
+</p><p id="28bfeec3-5b90-8027-a350-d0e6f00d22bd" class="" dir="auto">
+</p><hr id="28bfeec3-5b90-80fe-acf8-c98eaf6dcf6a" dir="auto"/><div id="28bfeec3-5b90-8043-b25e-fc6d64ce9e33" class="column-list" data-notion-column-list="" dir="auto"><div id="28bfeec3-5b90-80e6-909e-df621fb0e3be" style="width:100%" class="column" data-notion-column-ratio="1" dir="auto"><p id="28bfeec3-5b90-80c8-be37-f3708116fa2a" class="" dir="auto"><a href="%E5%AF%BC%E5%B8%88%E5%AD%A6%E6%9C%AF%E6%B0%B4%E5%B9%B3%E4%B8%8E%E8%83%BD%E5%8A%9B%E8%AF%84%E4%BC%B0%EF%BC%88@2026%E5%B9%B410%E6%9C%8821%E6%97%A5%EF%BC%89.html">上一页</a></p></div><div id="28bfeec3-5b90-8004-9908-f37bc731bcfb" style="width:100%" class="column" data-notion-column-ratio="1" dir="auto"><p id="28bfeec3-5b90-8079-934a-f1ff35fd9a25" class="" dir="auto"><a href="../ROMA%20Lab%E6%8B%9B%E7%94%9F%E6%8C%87%E5%8D%97%EF%BC%88%E6%8E%A8%E5%85%8D%E7%94%9F%E5%BF%85%E7%9C%8B%F0%9F%94%A5%EF%BC%89.html">回到上级</a></p></div><div id="28bfeec3-5b90-8094-bae0-c6cb07a5dedd" style="width:100%" class="column" data-notion-column-ratio="1" dir="auto"><p id="28bfeec3-5b90-8046-8640-e73217411cf0" class="" dir="auto"><a href="../About%20ROMA%20Lab.html">下一页</a></p></div></div><p id="28bfeec3-5b90-808d-b2cc-f11f22a9e720" class="" dir="auto">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span><div id="roma-manual-badge" style="position:fixed;right:12px;bottom:12px;z-index:99999;background:rgba(255,255,255,.92);border:1px solid #ddd;border-radius:8px;padding:4px 10px;font-size:12px;color:#666;box-shadow:0 1px 4px rgba(0,0,0,.08)">ROMA Lab 手册 · 2026 版 · <a href="../../../index.html">全部版本</a> · <a href="https://www.notion.so/xiangguo/ROMA-Lab-2026-28afeec35b9080f98051d9690a2aa63e" target="_blank" rel="noopener">实时草稿</a></div></body></html>

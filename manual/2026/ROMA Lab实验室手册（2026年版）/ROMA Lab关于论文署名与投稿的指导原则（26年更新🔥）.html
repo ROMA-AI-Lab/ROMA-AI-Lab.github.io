@@ -1,0 +1,802 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ROMA Lab关于论文署名与投稿的指导原则（26年更新🔥）</title><meta name="data-notion-page-icon" content="🧸"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%A7%B8%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+	/* Paint a complete callout box on every PDF page fragment. */
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="28afeec3-5b90-8110-af0a-cf924807c2f7" class="page sans" data-notion-page-icon="🧸"><header><img class="page-cover-image" src="../ext-assets/gradients_2.png" style="object-position:center 19.999999999999996%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="🧸"></span></div><h1 class="page-title" dir="auto"><strong>ROMA Lab关于论文署名与投稿的指导原则（26年更新🔥）</strong></h1><p class="page-description" dir="auto"></p></header><div class="page-body"><p id="28bfeec3-5b90-8006-8bb2-c51138c4ea78" class="" dir="auto"><em><mark class="highlight-gray" data-notion-highlight="gray">最后更新 </mark></em><em><mark class="highlight-gray" data-notion-highlight="gray"><time datetime="2026-05-08" data-notion-date-format="relative">@2026年5月8日</time></mark></em></p><p id="28bfeec3-5b90-8003-b856-fc9aace84276" class="" dir="auto">
+</p><p id="28afeec3-5b90-810e-b8ab-cf8e95ab4442" class="" dir="auto">为保障ROMA实验室研究成果发表的规范性、公平性与学术声誉，并明确学生与导师在论文撰写、署名及投稿过程中的权利与责任，特制定本指导原则。</p><p id="35afeec3-5b90-8075-9d41-ea03c1fd5afa" class="" dir="auto">
+</p><nav id="35afeec3-5b90-804c-a13a-f761d992ce8d" class="block-color-gray table_of_contents" data-notion-highlight="gray" data-notion-toc="" dir="ltr"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-8106-8acc-c0a0ed62501b">一、 作者署名标准</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-81e3-a574-d1f35cc73f1e">二、 论文投稿流程</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-812e-89f1-eef74af79a9e">三、 研究经费与发表费用</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28afeec3-5b90-817b-a026-f9482cfb2f86">四、 学术责任与独立发表</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#35afeec3-5b90-806c-a347-dee416f82d61">五、建议阅读</a></div></nav><h2 id="28afeec3-5b90-8106-8acc-c0a0ed62501b" class="" dir="auto">一、 作者署名标准</h2><p id="28afeec3-5b90-8179-b78c-fd19f656f9af" class="" dir="auto">作者署名应基于实际学术贡献，而非身份或资历。以下是本实验室对作者贡献的基本定义：</p><ul id="28afeec3-5b90-8115-973e-ec70e623f99d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>第一作者</strong>：通常是研究<strong>创意的主要提出者</strong>，负责研究的<strong>细化设计、论文初稿的撰写</strong>，并作为<strong>实验负责人</strong>推进项目。</li></ul><ul id="28afeec3-5b90-8149-9bbe-d31df5215a44" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>第二作者</strong>：通常是<strong>实验的主要执行者或重要的实验辅助人员</strong>，对研究创意有<strong>重要的补充和完善</strong>，并做出了仅次于第一作者的关键贡献。</li></ul><ul id="28afeec3-5b90-81ec-9562-e19e3edcd8db" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>第三作者及以后</strong>：参与了部分实验、数据分析或提供了其他实质性的辅助支持。</li></ul><ul id="28afeec3-5b90-81af-9366-ebcca3e844a0" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>通讯作者</strong>：通常由导师担任，负责论文的学术质量把关、投稿事宜、稿件修改期间的沟通以及发表后的一切学术责任。</li></ul><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="35afeec3-5b90-80ee-b161-f9c089e4ec5a" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="28afeec3-5b90-81a9-95b7-dd5355c0dc30" class="" dir="auto"><strong>特殊情形1</strong>：若导师作为第一作者，将根据学生的工作态度、工作量及实际贡献，公平决定其在作者列表中的位置（如第二、第三作者）。</p><p id="35afeec3-5b90-80db-8479-df3d1a7275e7" class="" dir="auto"><strong>特殊情形2：</strong>实习生与本实验室合作发表的论文，署名标准见<a href="%E7%A7%91%E7%A0%94%E5%AE%9E%E4%B9%A0%E5%90%88%E4%BD%9C%E6%8C%87%E5%8D%97(26%E5%B9%B4%E6%96%B0%E5%A2%9E%F0%9F%94%A5).html" data-notion-page-id="34ffeec3-5b90-8022-bcd8-d73c3ccbb0bc" data-notion-space-id="d54a57ae-4226-4fd1-aad1-1d78f0e28da0"><span class="icon" data-emoji="💡"></span>无标题</a> </p></div></aside><h2 id="28afeec3-5b90-81e3-a574-d1f35cc73f1e" class="" dir="auto">二、 论文投稿流程</h2><ol type="1" id="28afeec3-5b90-8199-8c5c-f624b265c16b" class="numbered-list" start="1" dir="auto"><li><strong>投稿授权</strong>：所有以东南大学或ROMA实验室名义进行的研究工作，在投稿前<strong>必须</strong>获得导师的同意。此规定为大学通则，也是学位申请中成果认定的必要条件。</li></ol><ol type="1" id="35afeec3-5b90-8064-b43d-c026a21faa3a" class="numbered-list" start="2" dir="auto"><li><strong>诚信评估：所有以本实验室署名的论文，特别是通讯作者论文，第一作者有义务向通讯作者陈述实验细节，接受通讯作者的询问，并在发表前向通讯作者提供所有原始实验数据，公开代码，并协助通讯作者委托的第三方（通常是通讯作者的实验室学生）可能进行的可复现情况评估</strong></li></ol><ol type="1" id="28afeec3-5b90-8142-933d-c70387897ae8" class="numbered-list" start="3" dir="auto"><li><strong>通讯作者</strong>：<ul id="28afeec3-5b90-8149-9e02-ce4a6635f0ad" class="bulleted-list" dir="auto"><li style="list-style-type:disc">在学生作为第一作者的论文中，导师通常担任通讯作者，特别是在投稿至高水平期刊/会议时。</li></ul><ul id="28afeec3-5b90-8130-8cdd-d707a5a20779" class="bulleted-list" dir="auto"><li style="list-style-type:disc">对于贡献较低或不符合实验室发展方向的投稿，导师有权拒绝署名。</li></ul></li></ol><h2 id="28afeec3-5b90-812e-89f1-eef74af79a9e" class="" dir="auto">三、 研究经费与发表费用</h2><ul id="28afeec3-5b90-81f7-b3d6-c04bcf93ffee" class="bulleted-list" dir="auto"><li style="list-style-type:disc">实验室的项目经费仅可用于支持导师署名的论文所产生的相关费用（如会议注册费、版面费等）。</li></ul><ul id="28afeec3-5b90-81f9-8ab6-fab4ac3deed7" class="bulleted-list" dir="auto"><li style="list-style-type:disc">无导师署名的论文，所有发表及相关费用需由学生自行承担，且导师无法提供经费支持。</li></ul><ul id="35afeec3-5b90-809a-bff5-c2924f7550ca" class="bulleted-list" dir="auto"><li style="list-style-type:disc">实习生与本实验室合作（署名标准见<a href="%E7%A7%91%E7%A0%94%E5%AE%9E%E4%B9%A0%E5%90%88%E4%BD%9C%E6%8C%87%E5%8D%97(26%E5%B9%B4%E6%96%B0%E5%A2%9E%F0%9F%94%A5).html" data-notion-page-id="34ffeec3-5b90-8022-bcd8-d73c3ccbb0bc" data-notion-space-id="d54a57ae-4226-4fd1-aad1-1d78f0e28da0"><span class="icon" data-emoji="💡"></span>无标题</a> ）<ul id="35afeec3-5b90-8042-ade1-d24c80b14327" class="bulleted-list" dir="auto"><li style="list-style-type:circle">本校吴健雄学院和计算机拔尖基地学生与实验室合作发表论文（实验室唯一通讯 and last author），相关费用由吴健雄学院和拔尖基地承担，具体请咨询相关单位负责人。对于特别优秀的论文成果，实验室可在吴健雄学院和拔尖基地基础上提供额外的资助。</li></ul><ul id="35afeec3-5b90-8004-8137-c13cf654382c" class="bulleted-list" dir="auto"><li style="list-style-type:circle">本校吴健雄学院以及计算机拔尖基地以外的其他本科实习生与实验室合作发表论文（实验室唯一通讯 and last author），<strong><span style="border-bottom:0.05em solid">实验室仅承担高水平期刊会议论文的注册费，</span></strong>学校层面和学生所在院系层面一般也会有相关资助政策，学生可及时关注申请。在此基础上本实验室根据实验室预算情况尽可能为学生提供资助补充（但不承诺一定会）</li></ul><ul id="35afeec3-5b90-80d7-8a36-c1359450fd07" class="bulleted-list" dir="auto"><li style="list-style-type:circle">外校实习生与本实验室合作发表的论文，原则上相关费用由外校实习生自行承担。实验室在预算允许的情况下，会根据以下优先级，择优补充一定资助：<ul id="35afeec3-5b90-800d-b3cf-fc193f8364e1" class="bulleted-list" dir="auto"><li style="list-style-type:square">高水平论文+本实验室为共同一作（排第二）+唯一通讯+last author</li></ul><ul id="35afeec3-5b90-8002-8e18-c5ff4a311a56" class="bulleted-list" dir="auto"><li style="list-style-type:square">高水平论文+本实验室为唯一通讯+last author</li></ul><ul id="35afeec3-5b90-809c-b575-f4217445436f" class="bulleted-list" dir="auto"><li style="list-style-type:square">高水平论文+本实验室为last author（一般不资助）</li></ul><ul id="35afeec3-5b90-806c-aa79-fdab6e27ea4b" class="bulleted-list" dir="auto"><li style="list-style-type:square">其他情况（一般不资助）</li></ul></li></ul></li></ul><h2 id="28afeec3-5b90-817b-a026-f9482cfb2f86" class="" dir="auto">四、 学术责任与独立发表</h2><ul id="28afeec3-5b90-818a-b020-dac79477454b" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>根据学校的政策，学生毕业前，导师始终是学生培养的第一责任人，需全程对学生论文的学术规范性负责（无论该论文是否有导师署名）。因此，</strong><mark class="highlight-red" data-notion-highlight="red"><strong><span style="border-bottom:0.05em solid">任何未经导师知情同意而进行的投稿行为，以及任何未经导师知情同意而与外部人士私下合作署名论文的行为，均不被允许。</span></strong></mark></li></ul><ul id="28afeec3-5b90-8134-a074-e01de28f0029" class="bulleted-list" dir="auto"><li style="list-style-type:disc">学生若希望完全独立发表，应在研究启动前与导师明确沟通，并以<strong>完全独立的身份，不提及东南大学及ROMA实验室，不使用东南大学以及本实验室任何资源（包括但不限于软件、硬件、资料，以及参考了实验室内部讨论产生的idea等）</strong> 进行。此类成果将无法作为学位申请的有效认定依据，且所有责任由学生本人承担。本实验室强烈不鼓励此种方式，这违背了我们实验室合作、透明的精神。我希望我们能通过开诚布公的沟通来解决任何问题，而不是走到这一步。</li></ul><p id="35afeec3-5b90-80f8-8d5a-cea1d09aa6a7" class="" dir="auto">
+</p><h2 id="35afeec3-5b90-806c-a347-dee416f82d61" class="" dir="auto">五、建议阅读</h2><figure id="357feec3-5b90-8067-83e4-c418b2410b0b" class="link-to-page"><a href="%E8%AD%A6%E7%A4%BA%E6%95%99%E8%82%B2%EF%BC%8826%E6%96%B0%E5%A2%9E%F0%9F%94%A5%EF%BC%89.html" data-notion-page-id="357feec3-5b90-8067-83e4-c418b2410b0b" data-notion-space-id="d54a57ae-4226-4fd1-aad1-1d78f0e28da0"><span class="icon" data-emoji="🫵"></span>警示教育（26新增🔥）</a></figure><figure id="2b8feec3-5b90-80c4-83ea-e8ef4be1cbdb" class="link-to-page"><a href="%E7%A7%91%E7%A0%94%E5%AE%9E%E4%B9%A0%E5%90%88%E4%BD%9C%E6%8C%87%E5%8D%97(26%E5%B9%B4%E6%96%B0%E5%A2%9E%F0%9F%94%A5).html" data-notion-page-id="2b8feec3-5b90-80c4-83ea-e8ef4be1cbdb" data-notion-space-id="d54a57ae-4226-4fd1-aad1-1d78f0e28da0"><span class="icon" data-emoji="📯"></span>科研实习合作指南(26年新增🔥)</a></figure><p id="28bfeec3-5b90-80c7-9d97-fbc418745e2b" class="" dir="auto">
+</p><hr id="28bfeec3-5b90-804f-9b89-e127922be068" dir="auto"/><div id="28bfeec3-5b90-80bf-8a94-f89da610e9c3" class="column-list" data-notion-column-list="" dir="auto"><div id="28bfeec3-5b90-80b7-b686-f60e0d4d530e" style="width:100%" class="column" data-notion-column-ratio="1" dir="auto"><p id="28bfeec3-5b90-8064-859d-ec6904c48882" class="" dir="auto"><a href="%E7%A7%91%E7%A0%94%E5%AE%9E%E4%B9%A0%E5%90%88%E4%BD%9C%E6%8C%87%E5%8D%97(26%E5%B9%B4%E6%96%B0%E5%A2%9E%F0%9F%94%A5).html">上一页</a></p></div><div id="28bfeec3-5b90-8097-ae64-f57918468d6c" style="width:100%" class="column" data-notion-column-ratio="1" dir="auto"><p id="28bfeec3-5b90-80b2-9de6-fee7ff9c94e9" class="" dir="auto"><a href="../index.html">回到上级</a></p></div><div id="28bfeec3-5b90-80d9-be0b-e9327a78aa3c" style="width:100%" class="column" data-notion-column-ratio="1" dir="auto"><p id="28bfeec3-5b90-8022-90cf-ec5548c3683e" class="" dir="auto"><a href="%E5%8F%8D%E9%9C%B8%E5%87%8C%E6%AD%A7%E8%A7%86%E6%80%A7%E9%AA%9A%E6%89%B0%E6%8C%87%E5%8D%97.html">下一页</a></p></div></div><p id="28bfeec3-5b90-8059-9c4d-ef0e0278afc5" class="" dir="auto">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span><div id="roma-manual-badge" style="position:fixed;right:12px;bottom:12px;z-index:99999;background:rgba(255,255,255,.92);border:1px solid #ddd;border-radius:8px;padding:4px 10px;font-size:12px;color:#666;box-shadow:0 1px 4px rgba(0,0,0,.08)">ROMA Lab 手册 · 2026 版 · <a href="../../index.html">全部版本</a> · <a href="https://www.notion.so/xiangguo/ROMA-Lab-2026-28afeec35b9080f98051d9690a2aa63e" target="_blank" rel="noopener">实时草稿</a></div></body></html>
