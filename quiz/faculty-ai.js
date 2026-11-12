@@ -174,6 +174,21 @@
     return { model, thinkingType, effort };
   }
 
+  // 发送云端前的最后一道脱敏：导师版 payload 本就不含 name，
+  // 但提示词文本可被人工编辑，这里把学生姓名从待发文本中显式抹除，纵深防御。
+  function redactStudentName(promptText) {
+    const raw = (byId('raw')?.textContent || '').trim();
+    if (!raw) return promptText;
+    try {
+      const parsed = JSON.parse(raw);
+      const name = String(parsed.name || '').trim();
+      if (!name) return promptText;
+      return promptText.split(name).join('（姓名已隐去）');
+    } catch (err) {
+      return promptText;
+    }
+  }
+
   function buildRequestBody() {
     const info = getPromptInfo();
     const cfg = getModelConfig();
@@ -181,7 +196,7 @@
       model: cfg.model,
       messages: [
         { role: 'system', content: REPORT_SYSTEM_PROMPT },
-        { role: 'user', content: buildUserPrompt(info.text, info.source) }
+        { role: 'user', content: buildUserPrompt(redactStudentName(info.text), info.source) }
       ],
       stream: false,
       thinking: { type: cfg.thinkingType }

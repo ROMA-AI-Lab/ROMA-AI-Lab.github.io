@@ -6,6 +6,12 @@ const CIT = window.CIT;
 const DIMS = CIT.DIMS;
 const LABEL = CIT.DIM_LABEL;
 
+// 选后停留窗口（毫秒）：选中后等待这么久再自动跳下一题，期间可改选。
+// window.__CIT_FAST（测试钩子）下不等待。
+const CONFIRM_MS = 700;
+// 进度暂存的 localStorage 键（见 saveProgress / restoreProgress）
+const PROGRESS_KEY = 'romaCIT.progress.v1';
+
 const state = {
   bank: [],
   taste: null,
@@ -16,6 +22,7 @@ const state = {
   score: null,
   name: '',
   _showTs: null,
+  _advTimer: null,
   navEvents: []
 };
 
@@ -23,8 +30,8 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
 const T = {
-  title: 'ROMA Lab Cultural Insight Test (v5.1)',
-  about_title: 'ROMA Lab · 六维科研气质评估模型（CIT v5.1）',
+  title: 'ROMA Lab Cultural Insight Test (v5.3)',
+  about_title: 'ROMA Lab · 六维科研气质评估模型（CIT v5.3）',
   about_html: `
 <p><b>ROMA Lab 自主研发</b>的轻量评估模型，帮助你了解自己的科研气质，并与实验室文化做自我参照。</p>
 <ul>
@@ -47,7 +54,7 @@ const T = {
   btnReport: '查看报告',
   btnLater: '稍后再看',
   coach: '助教寄语',
-  privacy: '隐私说明：所有计算都在你的浏览器端完成；导出的 JSON 由你自行决定是否交给导师。',
+  privacy: '隐私说明：所有计算都在你的浏览器端完成，本页不上传任何数据；导出的 JSON 由你自行决定是否交给导师。若交给导师，导师端分析在本地进行；如导师使用 AI 生成测评报告，你的作答数据（不含姓名）会被发送至相应的模型服务商处理。',
   radar: '六维雷达图',
   donut: '维度占比',
   spark: '答题节奏',
@@ -209,6 +216,44 @@ async function loadTaste() {
   return res.json();
 }
 
+/* ---------- 进度暂存（刷新/误关页面不丢进度） ---------- */
+function saveProgress() {
+  try {
+    if (!state.bank.length) return;
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify({
+      v: 1,
+      bankHash: CIT.hashBank(state.bank),
+      tasteHash: state.taste ? CIT.hashTaste(state.taste) : null,
+      name: state.name,
+      idx: state.idx,
+      answers: state.answers,
+      pickedHistory: state.pickedHistory,
+      pace: state.pace,
+      navEvents: state.navEvents,
+      savedAt: Date.now()
+    }));
+  } catch (e) { /* 隐私模式等场景下静默失败，不影响作答 */ }
+}
+
+function loadSavedProgress() {
+  try {
+    const raw = localStorage.getItem(PROGRESS_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) { return null; }
+}
+
+function clearProgress() {
+  try { localStorage.removeItem(PROGRESS_KEY); } catch (e) { /* ignore */ }
+}
+
+function resetQuizState() {
+  state.answers = {};
+  state.pickedHistory = [];
+  state.pace = { durations: {}, order: [], timestamps: [] };
+  state.navEvents = [];
+  state.idx = 0;
+}
+
 async function start() {
   try {
     state.bank = await loadBank();
@@ -218,11 +263,35 @@ async function start() {
       // 拿旧口味套新题会静默算错分，必须挡住而不是警告了事
       throw new Error('题库与口味文件不匹配：' + bind.issues.map(i => i.msg).join('；'));
     }
-    state.answers = {};
-    state.pickedHistory = [];
-    state.pace = { durations: {}, order: [], timestamps: [] };
-    state.navEvents = [];
-    state.idx = 0;
+    resetQuizState();
+    // 有未提交的暂存且题库/口味未变 → 询问是否继续；指纹对不上（升级过）直接丢弃
+    const saved = loadSavedProgress();
+    if (saved) {
+      const sameBank = saved.bankHash === CIT.hashBank(state.bank);
+      const sameTaste = saved.tasteHash === CIT.hashTaste(state.taste);
+      const savedN = saved.answers ? Object.keys(saved.answers).length : 0;
+      if (sameBank && sameTaste && savedN > 0) {
+        const resume = window.confirm(
+          `检测到你上次答到 ${savedN}/${state.bank.length} 题（未提交）。\n点「确定」继续上次作答，点「取消」重新开始。`
+        );
+        if (resume) {
+          state.answers = saved.answers || {};
+          state.pickedHistory = saved.pickedHistory || [];
+          state.pace = saved.pace || { durations: {}, order: [], timestamps: [] };
+          state.navEvents = saved.navEvents || [];
+          state.idx = Math.min(saved.idx || 0, state.bank.length - 1);
+          if (saved.name && !state.name) {
+            state.name = saved.name;
+            const ni = $('#nameInput');
+            if (ni) ni.value = saved.name;
+          }
+        } else {
+          clearProgress();
+        }
+      } else {
+        clearProgress();
+      }
+    }
     state.score = CIT.compute(state.bank, state.answers, state.taste);
     $('#quiz').classList.remove('hidden');
     $('#setup').classList.add('hidden');
@@ -275,13 +344,24 @@ function renderQuestion() {
       d.classList.add('selected');
       state.score = CIT.compute(state.bank, state.answers, state.taste);
       renderProgress();
+      saveProgress();
 
       if (allAnswered()) { onSubmit(); return; }
       if (state.idx < state.bank.length - 1) {
+        // 选后停留窗口：CONFIRM_MS 内可以立即改选（计时重置），到点自动跳下一题。
+        // 设计理念是「让学生纠结」，点完即跳会把改答率信号压没；停留一下让改答成为真实数据。
+        // window.__CIT_FAST 是端到端测试钩子：置 true 时立即跳转。
+        clearTimeout(state._advTimer);
         const from = state.idx;
-        state.idx += 1;
-        state.navEvents.push({ type: 'auto', from, to: state.idx, ts: Date.now() });
-        renderQuestion();
+        d.classList.add('confirming');
+        const advance = () => {
+          if (state.idx !== from) return;  // 期间用户已手动翻页
+          state.idx += 1;
+          state.navEvents.push({ type: 'auto', from, to: state.idx, ts: Date.now() });
+          renderQuestion();
+        };
+        if (window.__CIT_FAST) { advance(); return; }
+        state._advTimer = setTimeout(advance, CONFIRM_MS);
       }
     };
     opts.appendChild(d);
@@ -294,12 +374,14 @@ function renderQuestion() {
   nextBtn.disabled = !state.answers[q.id] || nextIdx === -1;
   prevBtn.onclick = () => {
     if (prevIdx === -1) return;
+    clearTimeout(state._advTimer);
     state.navEvents.push({ type: 'prev', from: state.idx, to: prevIdx, ts: Date.now() });
     state.idx = prevIdx;
     renderQuestion();
   };
   nextBtn.onclick = () => {
     if (!state.answers[q.id] || nextIdx === -1) return;
+    clearTimeout(state._advTimer);
     state.navEvents.push({ type: 'next', from: state.idx, to: nextIdx, ts: Date.now() });
     state.idx = nextIdx;
     renderQuestion();
@@ -308,6 +390,7 @@ function renderQuestion() {
 
 function onSubmit() {
   state.score = CIT.compute(state.bank, state.answers, state.taste);
+  clearProgress();   // 已完成作答，清掉暂存，下次进来是全新的一份
   showModal();
   confettiBurst();
 }
@@ -377,7 +460,7 @@ function renderReport() {
 
   $('#exportBtn').onclick = exportJSON;
   $('#printBtn').onclick = () => window.print();
-  $('#restartBtn').onclick = () => location.reload();
+  $('#restartBtn').onclick = () => { clearProgress(); location.reload(); };
 }
 
 /* 报告载荷的唯一构造函数：导出与端到端测试都走这里，避免字段漂移 */
@@ -461,7 +544,7 @@ function initCIT() {
   $('#themeBtn').onclick = () => document.body.classList.toggle('light');
   $('#startBtn').onclick = () => start();
   const nameInput = $('#nameInput');
-  if (nameInput) nameInput.addEventListener('input', e => state.name = e.target.value.trim());
+  if (nameInput) nameInput.addEventListener('input', e => { state.name = e.target.value.trim(); saveProgress(); });
 }
 
 document.addEventListener('DOMContentLoaded', initCIT);

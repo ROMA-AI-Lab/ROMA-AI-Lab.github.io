@@ -32,7 +32,7 @@
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
 
-  const VERSION = '5.2.0';
+  const VERSION = '5.3.0';
   const DIMS = ['BND', 'COM', 'EMP', 'INT', 'CRE', 'RES'];
   const DIM_LABEL = {
     BND: '分寸感',

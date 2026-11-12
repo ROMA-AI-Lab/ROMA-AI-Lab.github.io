@@ -161,12 +161,50 @@ async function analyze(rep) {
   const volatilityRisk = clamp(weak * 1.2 + (100 - maturity) * 0.35 + fastRate * 25 + Math.min(varcoef, 1.2) * 20 + volTrig, 0, 100);
   const egoismRisk = clamp(Math.max(0, 55 - rEMP) * 1.1 + Math.max(0, 55 - rCOM) * 0.7 + sev * 3 + egoTrig, 0, 100);
 
+  // 6. 押中异常（疑似预先获取评分表）
+  // 纯静态架构下口味表可被技术手段下载，防线是「识别」而非「保密」：
+  // 强制排列后每题最优解唯一，正常学生 50 题全中近乎不可能（真实最优样本约 35/50）。
+  // 看过答案的报告反而最好识别——满分本身就是最大的红旗。
+  let topCount = 0, prefN = 0;
+  if (TASTE && TASTE.preference) {
+    bank.forEach(q => {
+      const a = answers[q.id];
+      if (!a) return;
+      const row = TASTE.preference[q.id];
+      if (!row || row[a] === undefined) return;
+      prefN++;
+      if (row[a] === 3) topCount++;
+    });
+  }
+  const topRate = prefN ? topCount / prefN : 0;
+  const pickedLog = Array.isArray(rep.picked) ? rep.picked : [];
+  const seenQ = new Set();
+  let changeCount = 0;
+  pickedLog.forEach(p => { if (p && seenQ.has(p.qid)) changeCount++; else if (p) seenQ.add(p.qid); });
+  const tsLog = (rep.pace && Array.isArray(rep.pace.timestamps)) ? rep.pace.timestamps : [];
+  const totalMin = tsLog.length >= 2 ? (tsLog[tsLog.length - 1] - tsLog[0]) / 60000 : null;
+  const gamingReasons = [];
+  if (prefN && topRate >= 0.9) gamingReasons.push(`${prefN} 题中 ${topCount} 题押中实验室最优解（真实学生样本最高约 7 成）`);
+  if (totalMin !== null && totalMin < 4) gamingReasons.push(`总用时约 ${totalMin.toFixed(1)} 分钟，不足以读完 50 题题干`);
+  if (prefN && topRate >= 0.9 && pickedLog.length && changeCount === 0) gamingReasons.push('最优率极高且全程零改答');
+  let gamingLevel = null;
+  if (prefN && (topRate >= 0.98 || (topRate >= 0.9 && totalMin !== null && totalMin < 4 && pickedLog.length && changeCount === 0))) {
+    gamingLevel = 'alert';
+  } else if (prefN && topRate >= 0.9 && ((totalMin !== null && totalMin < 5) || (pickedLog.length && changeCount === 0))) {
+    gamingLevel = 'watch';
+  }
+  const gaming = {
+    topCount, topN: prefN, topRate: Math.round(topRate * 1000) / 10,
+    changeCount, totalMin: totalMin === null ? null : Math.round(totalMin * 10) / 10,
+    level: gamingLevel, reasons: gamingReasons
+  };
+
   return {
     ratio, fit, thr, W, score, answers, migrated, ver,
     taste: TASTE ? { id: TASTE.taste_id, name: TASTE.name, hash: ver.tasteHash } : null,
     tasteBind: TASTE_BIND,
     publicityRisk, integrityRisk, volatilityRisk, egoismRisk,
-    triggerHits,
+    triggerHits, gaming,
     pace: { paceTrust, consistency, avgMs, medianMs, fastRate, slowRate, varcoef },
     // 旧简版（20 题）报告：总量本来就少于 50，不能当成「缺答 30 题」
     legacyShort: (rep.total && rep.total < CIT.TOTAL_ITEMS) ? rep.total : 0,
@@ -265,6 +303,12 @@ function renderDiag(r) {
     add(`<b class="warn">分辨率有限</b>：${coarseDims.map(d => DIM_NAME[d]).join('、')} 的「基线→上限」区间偏窄（不足 ${CIT.MIN_HEADROOM} 分），少数题目的选择就能拉动十几分，请勿把该分数当精确值。`);
   }
 
+  if (r.gaming && r.gaming.level === 'alert') {
+    add(`<b class="bad">疑似预先获取评分表</b>：${r.gaming.reasons.join('；')}。纯静态架构下评分表可被技术手段获取，满分本身就是最大的异常信号。建议面试时就具体题目追问取舍理由核验，不要仅凭本报告做结论。`);
+  } else if (r.gaming && r.gaming.level === 'watch') {
+    add(`<b class="warn">押中率偏高</b>：${r.gaming.reasons.join('；')}。可能确为高度契合，也可能接触过评分表，建议面试追问几道题的取舍理由。`);
+  }
+
   add(`综合契合度（ROMA Fit）：<b class="${fitClass(r.fit, thr)}">${pct(r.fit)}</b>`);
   add(`公开表达风险 <b class="${riskClass(r.publicityRisk, thr)}">${Math.round(r.publicityRisk)}%</b>；诚信风险 <b class="${riskClass(r.integrityRisk, thr)}">${Math.round(r.integrityRisk)}%</b>`);
   add(`波动 <b class="${riskClass(r.volatilityRisk, thr)}">${Math.round(r.volatilityRisk)}%</b>；利己倾向 <b class="${riskClass(r.egoismRisk, thr)}">${Math.round(r.egoismRisk)}%</b>`);
@@ -272,6 +316,10 @@ function renderDiag(r) {
     add(`作答节奏：可信度 <b>${Math.round(r.pace.paceTrust)}%</b> · 一致性 <b>${Math.round(r.pace.consistency)}%</b>`);
   }
   add(`选项与口味：均分 <b>${r.score.quality.meanScore}</b>/3 · 贴合口味的选项占比 <b>${r.score.quality.matureRate}%</b> · 与口味明显相左 <b>${r.score.quality.severeCount}</b> · 略有出入 <b>${r.score.quality.weakCount}</b> 道`);
+  if (r.gaming && r.gaming.topN) {
+    const g = r.gaming;
+    add(`押中最优解：<b class="${g.level === 'alert' ? 'bad' : (g.level === 'watch' ? 'warn' : '')}">${g.topCount}/${g.topN}</b>（${g.topRate}%） · 改答 ${g.changeCount} 次${g.totalMin !== null ? ` · 总用时约 ${g.totalMin} 分钟` : ''}`);
+  }
 }
 
 function renderDecision(r) {
@@ -281,6 +329,7 @@ function renderDecision(r) {
   lines.push(`ROMA Fit: ${pct(r.fit)}（<${thr.fit_warn} 需复核 / ≥${thr.fit_good} 为契合）`);
   lines.push(`Risks: 诚信 ${Math.round(r.integrityRisk)}% · 公开表达 ${Math.round(r.publicityRisk)}% · 利己 ${Math.round(r.egoismRisk)}% · 波动 ${Math.round(r.volatilityRisk)}%`);
   const flags = [];
+  if (r.gaming && r.gaming.level === 'alert') flags.push('疑似押中评分表，面试追问取舍理由');
   if (r.fit !== null && r.fit < thr.fit_warn) flags.push('列入复核');
   if (r.integrityRisk >= thr.risk_warn) flags.push('面试重点核验署名与数据规范');
   if (r.publicityRisk >= thr.risk_warn) flags.push('面试聚焦对外表达边界');
@@ -592,6 +641,14 @@ function buildFacultyPayload(rep, r) {
           egoismRisk: Math.round(r.egoismRisk)
         },
         pace: r.pace,
+        gaming_suspicion: r.gaming ? {
+          level: r.gaming.level, top_picks: `${r.gaming.topCount}/${r.gaming.topN}`,
+          changes: r.gaming.changeCount, total_min: r.gaming.totalMin,
+          reasons: r.gaming.reasons,
+          note: r.gaming.level
+            ? '存在押中评分表的异常信号，面试时应就具体题目追问取舍理由核验。'
+            : '未见押中评分表的异常信号。'
+        } : null,
         flags: { severe: r.score.flags.severe, weak: r.score.flags.weak.slice(0, 10) },
         trigger_hits: r.triggerHits
       },

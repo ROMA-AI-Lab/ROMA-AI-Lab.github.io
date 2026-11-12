@@ -292,3 +292,10 @@
     overflow: visible;
   }
 }
+
+.ai-privacy-note {
+  margin: 8px 0 4px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--ink3, #6b7686);
+}

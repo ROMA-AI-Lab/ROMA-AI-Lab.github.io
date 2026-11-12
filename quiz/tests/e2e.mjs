@@ -13,7 +13,8 @@ import { fileURLToPath } from 'node:url';
 const QUIZ = path.dirname(fileURLToPath(new URL('.', import.meta.url)));
 const PORT = 8971;
 const CDP_PORT = 9333;
-const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+// Chrome 路径：默认 macOS 本机；CI（Linux）用环境变量 CIT_CHROME 指定（如 /usr/bin/google-chrome）
+const CHROME = process.env.CIT_CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
 let pass = 0, fail = 0;
 const ok = (name, cond, extra = '') => {
@@ -87,6 +88,7 @@ const server = spawn('python3', ['-m', 'http.server', String(PORT), '--bind', '1
 });
 const chrome = spawn(CHROME, [
   '--headless=new', '--disable-gpu', '--no-first-run', '--no-default-browser-check',
+  '--no-sandbox',
   `--remote-debugging-port=${CDP_PORT}`, '--user-data-dir=/tmp/cit-e2e-profile',
   '--window-size=1280,900', 'about:blank'
 ], { stdio: 'ignore' });
@@ -116,12 +118,37 @@ try {
   ok('只有单一「开始作答」入口，无模式选择', setupUi.start && !setupUi.core && !setupUi.full, JSON.stringify(setupUi));
   ok('页头标注固定 50 题', setupUi.tag === '50 题', String(setupUi.tag));
 
+  // 复用的浏览器 profile 里可能有陈旧暂存，先清掉，避免触发「继续上次作答」确认框
+  await cdp.eval(`localStorage.clear(); true`, false);
+
   await cdp.eval(`document.querySelector('#startBtn').click(); true`);
   await sleep(400);
 
   const q = await cdp.eval(`({ n: state.bank.length, idx: state.idx, opts: document.querySelectorAll('#opts .opt').length })`);
   ok('载入 50 题（唯一模式）', q.n === 50, JSON.stringify(q));
   ok('每题渲染 4 个选项', q.opts === 4);
+
+  // M1：选后停留窗口——未开 __CIT_FAST 时，选中不立即跳题，约 700ms 后自动跳
+  const hold = await cdp.eval(`(async () => {
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
+    const before = state.idx;
+    document.querySelector('#opts .opt').click();
+    const immediate = state.idx;
+    await sleep(950);
+    return { before, immediate, after: state.idx };
+  })()`);
+  ok('选中后停留确认窗口（不立即跳，~700ms 自动跳下一题）',
+    hold.immediate === hold.before && hold.after === hold.before + 1, JSON.stringify(hold));
+
+  // M2：答过的题应已暂存到 localStorage（刷新可恢复）
+  const savedN = await cdp.eval(`(() => {
+    const s = JSON.parse(localStorage.getItem('romaCIT.progress.v1') || 'null');
+    return s && s.answers ? Object.keys(s.answers).length : 0;
+  })()`);
+  ok('答题进度已暂存 localStorage', savedN >= 1, String(savedN));
+
+  // 后续 50 题流程打开测试钩子，跳过停留窗口（否则整套测试要多等 35 秒）
+  await cdp.eval(`window.__CIT_FAST = true; true`, false);
 
   // 真实点击：每题选「契合度最高」的选项，模拟一个成熟作答者
   const done = await cdp.eval(`(async () => {
@@ -146,6 +173,9 @@ try {
   })()`);
   await sleep(300);
   ok('50 题全部作答并自动进入报告', done && done.answered === 50, JSON.stringify(done));
+
+  const progressCleared = await cdp.eval(`localStorage.getItem('romaCIT.progress.v1') === null`);
+  ok('提交后暂存进度已清除', progressCleared === true);
 
   const view = await cdp.eval(`({
     radarLabels: [...document.querySelectorAll('#radar text')].map(t => t.textContent),
@@ -192,7 +222,8 @@ try {
     decision: document.querySelector('#decision').innerText,
     badge: document.querySelector('#verBadge').textContent,
     prompt: (() => { try { return JSON.parse(document.querySelector('#promptFacultyJSON').value); } catch(e) { return null; } })(),
-    meta: document.querySelector('#meta').innerText
+    meta: document.querySelector('#meta').innerText,
+    privacyNote: (document.querySelector('.ai-privacy-note') || {}).textContent || ''
   })`);
   ok('六维画像渲染 6 行 + 1 行说明', fac.barCount === 7, '实际 ' + fac.barCount);
   ok('关键信号 6 张卡', fac.kpi === 6, '实际 ' + fac.kpi);
@@ -217,6 +248,16 @@ try {
       const a = fac.prompt.data.computed_metrics.dimension[k];
       return Math.abs(a - report.per[k]) < 0.101;
     }), JSON.stringify(fac.prompt?.data.computed_metrics.dimension));
+  ok('全中最优报告触发押中红旗',
+    fac.diag.includes('疑似预先获取评分表') && fac.diag.includes('押中最优解'),
+    fac.diag.slice(0, 200));
+  ok('决策建议包含押中核验', fac.decision.includes('押中'), fac.decision.slice(0, 150));
+  ok('提示词 payload 记录押中判定',
+    fac.prompt && fac.prompt.data.computed_metrics.gaming_suspicion
+    && fac.prompt.data.computed_metrics.gaming_suspicion.level === 'alert',
+    JSON.stringify(fac.prompt && fac.prompt.data.computed_metrics.gaming_suspicion));
+  ok('AI 区域有数据去向告知（DeepSeek · 不含姓名）',
+    /DeepSeek/.test(fac.privacyNote) && /不含姓名/.test(fac.privacyNote), fac.privacyNote.slice(0, 80));
 
   console.log('\n[3] 导师端：载入 v4.3 旧报告（应迁移 + 告警）');
   const LEGACY_SAMPLE = '/Users/xiangguosun/Downloads/各种材料/ROMA_CIT_full_zh_1770481890666.json';

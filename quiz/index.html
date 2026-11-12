@@ -91,6 +91,17 @@
             outline: 2px solid var(--ring)
         }
 
+        /* 选后停留窗口：短暂呼吸提示「已选中，即将下一题，可立即改选」 */
+        .opt.confirming {
+            animation: optConfirm .7s ease
+        }
+
+        @keyframes optConfirm {
+            0% { background: var(--panel) }
+            35% { background: color-mix(in srgb, var(--ring) 14%, var(--panel)) }
+            100% { background: var(--panel) }
+        }
+
         .navs {
             display: flex;
             gap: 8px;
@@ -207,7 +218,7 @@
     <header class="row">
         <div class="row">
             <div class="pill">ROMA Lab · CIT</div>
-            <div class="pill" id="verTag">v5.2.0</div>
+            <div class="pill" id="verTag">v5.3.0</div>
             <div class="pill" id="modeTag">50 题</div>
         </div>
         <div class="row right">
