@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>ROMA Lab · CIT Faculty Analyzer (Private v2.2)</title>
+  <title>ROMA Lab · CIT Faculty Analyzer (Private v5.1)</title>
   <link rel="stylesheet" href="faculty.css"/>
   <style>
     .tip{position:fixed;z-index:9999;pointer-events:none;background:rgba(15,23,42,.95);color:#e5e7eb;border:1px solid rgba(148,163,184,.35);border-radius:8px;padding:8px 10px;font-size:12px;box-shadow:0 6px 20px rgba(2,6,23,.35);transform:translate(-50%,-120%);opacity:0;transition:opacity .12s ease}
     .tip.show{opacity:1}
     .canvas{width:100%;height:120px;display:block;background:transparent}
-    .langBadge{font-size:12px;padding:4px 8px;border-radius:8px;background:var(--panel-2);border:1px solid var(--border);}
+    .verBadge{font-size:12px;padding:4px 8px;border-radius:8px;background:var(--panel-2);border:1px solid var(--border);}
   </style>
 </head>
 <body>
@@ -19,11 +19,11 @@
         <div class="logo"></div>
         <div>
           <div class="title">ROMA Lab · CIT Faculty Analyzer</div>
-          <div class="subtle">私密页面 · 上传学生 JSON 报告以生成内部评估</div>
+          <div class="subtle">私密页面 · 上传学生 JSON 报告以生成内部评估（v5.1 · 六维 · 题库与口味分离）</div>
         </div>
       </div>
       <div class="controls">
-        <span id="langBadge" class="langBadge">Bank: —</span>
+        <span id="verBadge" class="verBadge">题库：—</span>
       </div>
     </div>
   </div>
@@ -42,7 +42,7 @@
     <div class="grid">
       <div class="left">
         <div class="card">
-          <div class="head"><h3>五维画像</h3><div class="subtle">标准化比率</div></div>
+          <div class="head"><h3>六维画像</h3><div class="subtle">基线中心化分数（50 = 随机作答期望）</div></div>
           <div class="body bars" id="bars"></div>
         </div>
 
@@ -183,6 +183,7 @@
   </div>
 
   <div id="tip" class="tip"></div>
+  <script src="scoring.js"></script>
   <script src="faculty.js"></script>
   <link rel="stylesheet" href="faculty-ai.css"/>
   <script src="faculty-ai.js"></script>

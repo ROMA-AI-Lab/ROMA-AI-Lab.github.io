@@ -1,0 +1,18 @@
+{
+  "version": "v4.3",
+  "generated_at": "2025-10-21T09:48:54.081135Z",
+  "description": "ROMA Lab Cultural Insight Test (CIT) 2025 Edition",
+  "dimensions": {
+    "BND": "Boundary / 分寸感与界限意识",
+    "COM": "Communication / 沟通与表达",
+    "EMP": "Empathy / 同理与合作",
+    "INT": "Integrity / 诚信与责任",
+    "CRV": "Creativity & Resilience / 创造与抗压"
+  },
+  "mode": {
+    "core": "人格与实验室契合度（20题）",
+    "extended": "职业精神与风险识别（30题）"
+  },
+  "scoring": "每选项0–3分，含轻微随机扰动，保证分布均衡。",
+  "copyright": "© 2025 ROMA Lab – Responsible Online Media Analytics Lab. All rights reserved."
+}

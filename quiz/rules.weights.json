@@ -1,129 +1,29 @@
 {
-  "version": "v4.3E",
-  "generated_at": "2025-10-21T10:26:52.717456Z",
+  "version": "5.2.0",
+  "generated_at": "2026-11-12T00:00:00.000000Z",
   "fit_weights": {
-    "BND": 0.22,
-    "COM": 0.22,
-    "INT": 0.28,
-    "EMP": 0.18,
-    "CRV": 0.1
+    "BND": 0.2,
+    "COM": 0.2,
+    "INT": 0.25,
+    "EMP": 0.17,
+    "CRE": 0.09,
+    "RES": 0.09
   },
   "thresholds": {
-    "fit_warn": 55,
-    "fit_good": 75,
+    "fit_warn": 45,
+    "fit_good": 62,
     "risk_warn": 40,
     "risk_bad": 70
   },
+  "scale_note": "维度分为 0-100 的基线中心化分数：0=每题都选该维最差，50=随机作答期望，100=每题都选了「口味分最高且该维表现最好」的选项。v5.2 起口味为强制排列（每题最优解唯一），理论上逐题押中口味可得满分，实际需猜中隐藏排序、不可达。综合契合度按实际可测维度重新归一权重。口味分来自独立的 tastes/roma.json，换口味会挪动 100 分的刻度，但六维的相对高低主要由 dims 决定。",
+  "risk_formulas": {
+    "publicityRisk": "触发词得分 + max(0, 60 - BND) × 1.5",
+    "integrityRisk": "严重标记 × 3.5 + 轻微标记 × 1.2 + max(0, 60 - INT) × 0.8 + 触发词得分",
+    "volatilityRisk": "轻微标记 × 1.2 + (100 - 选项成熟率) × 0.35 + 超快作答比例 × 25 + 节奏变异系数（封顶 1.2）× 20 + 触发词得分",
+    "egoismRisk": "max(0, 55 - EMP) × 1.1 + max(0, 55 - COM) × 0.7 + 严重标记 × 3 + 触发词得分",
+    "calibration": "系数由 tools/calibrate_risk.js 以十种典型作答画像仿真标定；改动系数须重跑该脚本，确认「优秀」画像四项风险均低于 20、「最差」画像诚信/利己高于 70。"
+  },
   "triggers": [
-    {
-      "key": "meme",
-      "affect": {
-        "publicityRisk": 5
-      }
-    },
-    {
-      "key": "joke",
-      "affect": {
-        "publicityRisk": 5
-      }
-    },
-    {
-      "key": "credit",
-      "affect": {
-        "integrityRisk": 6
-      }
-    },
-    {
-      "key": "license",
-      "affect": {
-        "integrityRisk": 6
-      }
-    },
-    {
-      "key": "raw data",
-      "affect": {
-        "integrityRisk": 10,
-        "publicityRisk": 8
-      }
-    },
-    {
-      "key": "media",
-      "affect": {
-        "publicityRisk": 8
-      }
-    },
-    {
-      "key": "twitter",
-      "affect": {
-        "publicityRisk": 8
-      }
-    },
-    {
-      "key": "gossip",
-      "affect": {
-        "publicityRisk": 6
-      }
-    },
-    {
-      "key": "NDA",
-      "affect": {
-        "integrityRisk": 8
-      }
-    },
-    {
-      "key": "anonymous",
-      "affect": {
-        "integrityRisk": 6
-      }
-    },
-    {
-      "key": "visitor",
-      "affect": {
-        "publicityRisk": 5
-      }
-    },
-    {
-      "key": "interruption",
-      "affect": {
-        "egoismRisk": 6
-      }
-    },
-    {
-      "key": "coffee alone",
-      "affect": {
-        "publicityRisk": 6
-      }
-    },
-    {
-      "key": "joking about body",
-      "affect": {
-        "publicityRisk": 8
-      }
-    },
-    {
-      "key": "negative result",
-      "affect": {
-        "integrityRisk": 6
-      }
-    },
-    {
-      "key": "replication",
-      "affect": {
-        "integrityRisk": 4
-      }
-    },
-    {
-      "key": "GPU",
-      "affect": {
-        "volatilityRisk": 4
-      }
-    },
-    {
-      "key": "deadline",
-      "affect": {
-        "volatilityRisk": 4
-      }
-    },
     {
       "key": "群聊",
       "affect": {
@@ -143,6 +43,18 @@
       }
     },
     {
+      "key": "发布",
+      "affect": {
+        "publicityRisk": 8
+      }
+    },
+    {
+      "key": "截图",
+      "affect": {
+        "publicityRisk": 6
+      }
+    },
+    {
       "key": "数据丢失",
       "affect": {
         "integrityRisk": 12
@@ -158,6 +70,12 @@
       "key": "夸大结果",
       "affect": {
         "integrityRisk": 15
+      }
+    },
+    {
+      "key": "保留结果",
+      "affect": {
+        "integrityRisk": 12
       }
     },
     {
@@ -198,5 +116,6 @@
       }
     }
   ],
-  "notes": "Faculty analyzer consumes this file. No change to faculty.html needed. New items at Q12, Q18, Q23, Q34, Q41."
+  "notes": "v5.0 起只保留中文触发词（英文题库已下线，英文键永远不可能命中，属死配置）。v4.3 的旧系数（严重×18 + 轻微×7）是按「200 个选项全为 1 分」的退化题库写的，套到 50 题新题库会让正常作答直接顶到 100%，已按仿真重新标定。风险指标是启发式提示，不是心理诊断，不得单独作为录取依据。",
+  "taste_note": "v5.1 起，score 从题库抽到 tastes/<id>.json，语义改为「实验室偏好」而非「客观优劣」。v5.2 起 roma 口味强制每题 0-3 排列（互不相同），风险系数已用 tools/calibrate_risk.js 在新分布下复核：优秀画像四项风险 ≤11、最差画像诚信/利己 100、乱点诚信 ≥55，原系数继续有效。rules.weights.json 里的触发词与阈值仍然生效，但它们的参照系现在明确是这一套口味；换口味文件后应重新过一遍 tools/calibrate_risk.js。"
 }

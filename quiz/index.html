@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <title>ROMA Lab · Cultural Insight Test (CIT)</title>
+    <title>ROMA Lab · Cultural Insight Test (CIT v5.1)</title>
     <link href="styles.css" rel="stylesheet"/>
     <style>
         .pad {
@@ -115,7 +115,18 @@
 
         @media (min-width: 860px) {
             .charts {
-                grid-template-columns:1fr 1fr 1fr
+                grid-template-columns:1fr 1fr
+            }
+
+            /* 六维雷达图在三列布局里只有 250px 宽，标签挤在一起，
+               改成独占一行的两列布局，雷达最大 420px 居中 */
+            .charts>.chart:first-child {
+                grid-column: 1/-1
+            }
+
+            .charts>.chart:first-child #radar {
+                max-width: 420px;
+                margin: 0 auto
             }
         }
 
@@ -196,26 +207,23 @@
     <header class="row">
         <div class="row">
             <div class="pill">ROMA Lab · CIT</div>
-            <div class="pill" id="modeTag">Core</div>
-            <div class="pill" id="langTag">中文</div>
+            <div class="pill" id="verTag">v5.2.0</div>
+            <div class="pill" id="modeTag">50 题</div>
         </div>
         <div class="row right">
-            <button class="btn" id="langBtn">🌐 中文/English</button>
             <button class="btn" id="themeBtn">🌗 主题</button>
         </div>
     </header>
 
     <section class="hero pad" id="setup">
         <div class="h" id="t_title">ROMA Lab Cultural Insight Test (CIT)</div>
-        <div class="sub" id="t_desc">version v3.1 选择一种模式开始作答。全程不收集任何个人数据，结果只保存在你的浏览器。
+        <div class="sub" id="t_desc">50 道情境题，四个选项往往都说得通。全程不收集任何个人数据，结果只保存在你的浏览器。
         </div>
         <div class="row" style="margin-top:10px">
-            <button class="btn primary" id="fullBtn">Full · 50</button>
-            <button class="btn " id="coreBtn">Core · 20</button>
+            <button class="btn primary" id="startBtn">开始作答 · 50 题</button>
             <input class="btn" id="nameInput" placeholder="你的报名邮箱 / Your Email" style="min-width:240px"/>
         </div>
-        <div class="hint" id="t_hint" style="margin-top:8px">Tips: 作答过程中可随时切换中英文；完成后可导出 JSON 与打印
-            PDF。
+        <div class="hint" id="t_hint" style="margin-top:8px">完成可导出 JSON 与打印 PDF；如需导师做进一步分析，可将导出的 JSON 交给导师。
         </div>
     </section>
 
@@ -223,7 +231,7 @@
     <section class="card pad" id="about" style="margin-top:12px">
         <details id="aboutBox" open>
             <summary id="t_about_title" style="cursor:pointer;font-weight:700">
-                ROMA Lab · 五维科研气质评估模型（CIT）
+                ROMA Lab · 六维科研气质评估模型（CIT v5.1）
             </summary>
             <div class="prose" id="aboutContent" style="margin-top:8px"></div>
         </details>
@@ -294,6 +302,7 @@
 </div>
 <canvas class="confetti" id="confetti"></canvas>
 
+<script src="scoring.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

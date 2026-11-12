@@ -1,18 +1,41 @@
 {
-  "version": "v4.3",
-  "generated_at": "2025-10-21T09:48:54.081135Z",
-  "description": "ROMA Lab Cultural Insight Test (CIT) 2025 Edition",
+  "version": "5.2.0",
+  "generated_at": "2026-11-12T00:00:00.000000Z",
+  "description": "ROMA Lab Cultural Insight Test (CIT) 2026 Edition",
   "dimensions": {
     "BND": "Boundary / 分寸感与界限意识",
     "COM": "Communication / 沟通与表达",
     "EMP": "Empathy / 同理与合作",
     "INT": "Integrity / 诚信与责任",
-    "CRV": "Creativity & Resilience / 创造与抗压"
+    "CRE": "Creativity / 创造力：能否主动生成替代方案",
+    "RES": "Resilience / 抗压：受挫与高压下能否稳住并推进"
   },
-  "mode": {
-    "core": "人格与实验室契合度（20题）",
-    "extended": "职业精神与风险识别（30题）"
+  "scoring": {
+    "formula": "题内相对分 → 基线中心化（实现见 scoring.js，禁止在别处复刻）",
+    "raw": "每题按「所选选项分值 ÷ 该题该维最大值」归一，再对有该维的题取平均",
+    "center": "三点基线中心化：floor=每题『选项最小值/最大值』的均值（每题都选最差→0分）；base=每题『选项均值/最大值』的均值（随机作答期望→50分）；top=每题『口味分最高的选项在该维的取值/最大值』的均值（该题在实验室口味下真正可达到的上限→100分）。top 不一定是 100，因为稳妥的答案未必是该维最突出的答案；换一套口味文件，这个刻度会跟着移动。",
+    "min_items": 8,
+    "note": "一个维度若有有效题的题数少于 min_items，或题库中该维度没有任何可区分的题，该维度输出 null（未测量），不再显示为满分。 另：v5.2 起口味改为强制排列（每题最优解唯一），理论上 50 题全部押中实验室口味可达 Fit 100，但这要求逐题猜中隐藏排序，实际不可达；v5.0 起不再提供 20 题简版，题库固定 50 题。"
   },
-  "scoring": "每选项0–3分，含轻微随机扰动，保证分布均衡。",
-  "copyright": "© 2025 ROMA Lab – Responsible Online Media Analytics Lab. All rights reserved."
+  "option_order": "选项在每道题内按题号轮转并打散，最优选项在 A/B/C/D 上均匀分布；不要假设某个位置更优。",
+  "copyright": "© 2025 ROMA Lab – Responsible Online Media Analytics Lab. All rights reserved.",
+  "bank": {
+    "items": 50,
+    "files": [
+      "core.zh.json (第 1-20 题)",
+      "extended.zh.json (第 21-50 题)"
+    ],
+    "modes": "单一模式：固定 50 题，不设简版。题量不足会让单维可分辨区间塌缩（20 题版抗压仅 6 分），测不准的短版比不测更糟。"
+  },
+  "design_principle": "每个选项都在真实情境里成立，不设「明显正确」的答案。目的是提高社会赞许性作答的成本：当四个选项都说得出道理时，学生无法靠猜「出题人想听什么」拿分，只能暴露自己真实的取舍顺序。注意：taste 文件里确实存在「更贴近实验室取向」的选项，这是偏好而非客观优劣，所以它单独存放、可替换；审计（tools/philosophy_audit.py）持续监控三类泄漏：选项长度与口味分的相关、口味分与六维总和的相关（过强等于奖励「全面讨好」）、同一取向在多题重复出现。",
+  "taste": {
+    "files": [
+      "tastes/roma.json"
+    ],
+    "default": "roma",
+    "schema": "roma-cit-taste",
+    "meaning": "题库只描述「选项体现什么特质」（dims），实验室的偏好单独放在 tastes/<id>.json 的 preference 里，0=与实验室取向明显相左，3=最贴近。换机构、换年份的口味只改这个文件，题库不动。roma v2 起强制每题四选项分值为 0-3 的排列（scale.distinct=true，bindTaste 强制校验）：每道题都必须给出完整取舍顺序，任何两个选项之间都有高下，且每题总分恒为 6、题间权重天然均等。选 0-3 而非 1-4，是为了保留表达「明显相左」的真零点（红旗与风险标记的语义基础）。逐题取舍依据见 tastes/roma-v2-设计说明.md。",
+    "binding": "taste 用 bank_binding.bank_hash 与题库指纹绑定；指纹只由 qid+option+dims 计算，与口味无关。题库一改，旧口味立即失配，两端都会拒绝加载而不是静默算错。",
+    "why": "把主观偏好和客观描述分开，题目就不会看起来「自带标准答案」；同一个题库可以服务不同机构的不同取向。"
+  }
 }

@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ROMA Lab · CIT Faculty Analyzer (Private v2.2)</title>
+  <link rel="stylesheet" href="faculty.css"/>
+  <style>
+    .tip{position:fixed;z-index:9999;pointer-events:none;background:rgba(15,23,42,.95);color:#e5e7eb;border:1px solid rgba(148,163,184,.35);border-radius:8px;padding:8px 10px;font-size:12px;box-shadow:0 6px 20px rgba(2,6,23,.35);transform:translate(-50%,-120%);opacity:0;transition:opacity .12s ease}
+    .tip.show{opacity:1}
+    .canvas{width:100%;height:120px;display:block;background:transparent}
+    .langBadge{font-size:12px;padding:4px 8px;border-radius:8px;background:var(--panel-2);border:1px solid var(--border);}
+  </style>
+</head>
+<body>
+  <div class="hdr">
+    <div class="wrap inner">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="title">ROMA Lab · CIT Faculty Analyzer</div>
+          <div class="subtle">私密页面 · 上传学生 JSON 报告以生成内部评估</div>
+        </div>
+      </div>
+      <div class="controls">
+        <span id="langBadge" class="langBadge">Bank: —</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="card">
+      <div class="body">
+        <div class="drop" id="drop">
+          <div>将学生导出的 <b>CIT_*.json</b> 拖拽到此处，或点击选择</div>
+          <input id="file" type="file" accept="application/json" style="margin-top:8px"/>
+          <div id="meta" class="subtle" style="margin-top:8px"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="left">
+        <div class="card">
+          <div class="head"><h3>五维画像</h3><div class="subtle">标准化比率</div></div>
+          <div class="body bars" id="bars"></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="head"><h3>综合分析报告</h3><div class="subtle">自动生成</div></div>
+          <div class="body"><div id="summary" class="mono"></div></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="head">
+            <h3>证据样例（题目与作答）</h3>
+            <div class="subtle">代表性优先 · 支持分页与导出</div>
+          </div>
+          <div class="body">
+            <ol id="evidenceList" class="evidence"></ol>
+
+            <div class="evidence-controls">
+              <div class="controls-left">
+                <button id="evidencePrev" class="btn small ghost">上一页</button>
+                <span id="evidencePage" class="page-indicator">1 / 1</span>
+                <button id="evidenceNext" class="btn small ghost">下一页</button>
+              </div>
+              <div class="controls-right">
+                <button id="evidenceExportMd" class="btn small">导出 MD</button>
+                <button id="evidenceExportCsv" class="btn small">导出 CSV</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="head"><h3>内部诊断（仅供导师）</h3></div>
+          <div class="body"><ul id="diag" style="margin:0 0 0 18px;line-height:1.7"></ul></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="head"><h3>建议决策</h3></div>
+          <div class="body"><div id="decision" class="mono"></div></div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="card">
+          <div class="head"><h3>关键信号</h3></div>
+          <div class="body"><div id="kpi" class="kpi"></div></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="head"><h3>交互导航分析</h3><div class="subtle">跳转热力 / 回看比</div></div>
+          <div class="body">
+            <canvas id="navHeat" class="canvas" height="120"></canvas>
+            <div class="small subtle" style="margin-top:6px">深色代表作答耗时较长；下方为作答事件时间线（选项提交序列）。</div>
+            <canvas id="navTimeline" class="canvas" height="80" style="margin-top:10px"></canvas>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="head"><h3>滑动窗口 · 触发器 & 原始数据</h3></div>
+          <div class="body split">
+            <div class="window">
+              <header>触发器命中</header>
+              <div class="pane"><div id="trigs" class="mono"></div></div>
+            </div>
+            <div class="window">
+              <header>原始数据</header>
+              <div class="pane"><div id="raw" class="mono"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="head">
+            <h3>系统提示词-DeepSeak(Instant DeepThink)专用</h3>
+            <div class="subtle">上传 JSON 后自动填充</div>
+          </div>
+          <div class="body prompt-box">
+            <div>
+              <div class="small subtle" style="margin-bottom:6px">面向导师（JSON，复制后可直接投喂大模型）：</div>
+              <textarea id="promptFacultyJSON" class="prompt" placeholder="上传 JSON 后自动填充"></textarea>
+              <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+                <button id="copyFacultyJSON" class="btn" onclick="copyWithToast('promptFacultyJSON', this)">复制导师版（JSON）</button>
+                <button id="downloadFacultyJSON" class="btn" onclick="downloadText('promptFacultyJSON','CIT_prompt_faculty.json')">下载导师版（JSON）</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card ai-report-card" id="aiReportCard" style="margin-top:12px">
+          <div class="head">
+            <h3>大模型测评报告</h3>
+            <div class="subtle">DeepSeek · 手动触发</div>
+          </div>
+          <div class="body">
+            <div class="ai-panel">
+              <div class="ai-field ai-field-key">
+                <label for="deepseekApiKey">DeepSeek API Key</label>
+                <div class="ai-key-row">
+                  <input id="deepseekApiKey" class="ai-input" type="password" autocomplete="off" spellcheck="false" placeholder="sk-..."/>
+                  <button id="clearDeepseekApiKey" class="btn small ghost" type="button">清除</button>
+                </div>
+                <div id="deepseekKeyHint" class="ai-hint">Key 仅保存在本机浏览器，不会上传到网站服务器。</div>
+              </div>
+
+              <div class="ai-field">
+                <label for="deepseekModel">模型 / 模式</label>
+                <select id="deepseekModel" class="ai-input">
+                  <option value="deepseek-v4-pro" data-thinking="enabled" data-effort="high" selected>deepseek-v4-pro · 深度测评</option>
+                  <option value="deepseek-v4-flash" data-thinking="enabled" data-effort="high">deepseek-v4-flash · 快速 + 深度思考</option>
+                  <option value="deepseek-v4-flash" data-thinking="disabled" data-effort="">deepseek-v4-flash · 快速无思考</option>
+                </select>
+              </div>
+
+              <div class="ai-field">
+                <label for="aiPromptSource">提示词来源</label>
+                <select id="aiPromptSource" class="ai-input">
+                  <option value="json" selected>导师版 JSON</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="ai-controls">
+              <button id="generateAiReport" class="btn primary">生成测评报告</button>
+              <button id="abortAiReport" class="btn" disabled>停止生成</button>
+              <button id="copyAiReport" class="btn" disabled>复制报告</button>
+              <button id="downloadAiReportMd" class="btn" disabled>下载 MD</button>
+              <button id="downloadAiReportJson" class="btn" disabled>下载原始 JSON</button>
+              <button id="printAiReport" class="btn" disabled>打印/PDF</button>
+            </div>
+
+            <div id="aiReportStatus" class="ai-status">上传学生 JSON 后，选择提示词并点击“生成测评报告”。页面不会自动调用 DeepSeek。</div>
+            <div id="aiReportOutput" class="ai-report-output" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">© 2025 ROMA Lab — Responsible Online Media Analytics Lab.</div>
+  </div>
+
+  <div id="tip" class="tip"></div>
+  <script src="faculty.js"></script>
+  <link rel="stylesheet" href="faculty-ai.css"/>
+  <script src="faculty-ai.js"></script>
+</body>
+</html>

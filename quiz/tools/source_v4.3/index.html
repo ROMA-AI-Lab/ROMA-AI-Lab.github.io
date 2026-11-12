@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>ROMA Lab · Cultural Insight Test (CIT)</title>
+    <link href="styles.css" rel="stylesheet"/>
+    <style>
+        .pad {
+            padding: 16px
+        }
+
+        .wrap {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 18px
+        }
+
+        .muted {
+            color: var(--muted)
+        }
+
+        .h {
+            font-size: clamp(22px, 3vw, 28px);
+            font-weight: 800;
+            margin: 6px 0 4px
+        }
+
+        .sub {
+            font-size: 14px
+        }
+
+        .row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center
+        }
+
+        .pill {
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 6px 10px;
+            background: var(--panel-2)
+        }
+
+        .progress {
+            height: 10px;
+            background: color-mix(in oklab, var(--panel-2) 70%, transparent);
+            border-radius: 999px;
+            overflow: hidden;
+            margin: 10px 0 4px
+        }
+
+        .progress > div {
+            height: 100%;
+            background: linear-gradient(90deg, var(--brand), var(--brand-2));
+            width: 0%
+        }
+
+        .qtitle {
+            font-weight: 700;
+            margin: 6px 0
+        }
+
+        .scenario {
+            margin: 6px 0;
+            color: var(--muted)
+        }
+
+        .opts {
+            display: grid;
+            gap: 10px;
+            margin-top: 10px
+        }
+
+        .opt {
+            border: 1px solid var(--border);
+            background: var(--panel);
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            transition: transform .08s ease
+        }
+
+        .opt:hover {
+            transform: translateY(-1px)
+        }
+
+        .opt.selected {
+            outline: 2px solid var(--ring)
+        }
+
+        .navs {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            flex-wrap: wrap
+        }
+
+        .center {
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .hidden {
+            display: none !important
+        }
+
+        .charts {
+            display: grid;
+            gap: 14px
+        }
+
+        @media (min-width: 860px) {
+            .charts {
+                grid-template-columns:1fr 1fr 1fr
+            }
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: var(--shadow)
+        }
+
+        .hero {
+            background: linear-gradient(180deg, var(--panel-2), var(--panel));
+            border: 1px solid var(--border);
+            border-radius: 16px
+        }
+
+        .right {
+            margin-left: auto
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 99
+        }
+
+        .modal.show {
+            display: flex
+        }
+
+        .modal .box {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            max-width: 520px;
+            padding: 18px;
+            text-align: center;
+            box-shadow: var(--shadow)
+        }
+
+        .confetti {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 98
+        }
+
+        .small {
+            font-size: 12px
+        }
+
+        .chart svg {
+            width: 100%;
+            height: auto
+        }
+
+        .hint {
+            font-size: 12px;
+            color: var(--muted)
+        }
+    </style>
+    <meta name="description" content="ROMA Lab at Southeast University: next-generation AI for social science, social intelligence and nonlinear data mining."/>
+    <link rel="canonical" href="https://roma-ai-lab.github.io/quiz/index.html"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="ROMA Lab · Cultural Insight Test (CIT)"/>
+    <meta property="og:description" content="ROMA Lab at Southeast University: next-generation AI for social science, social intelligence and nonlinear data mining."/>
+    <meta property="og:image" content="https://roma-ai-lab.github.io/assets/og-cover.jpg"/>
+    <meta property="og:url" content="https://roma-ai-lab.github.io/quiz/index.html"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+</head>
+<body>
+<div class="wrap">
+
+    <header class="row">
+        <div class="row">
+            <div class="pill">ROMA Lab · CIT</div>
+            <div class="pill" id="modeTag">Core</div>
+            <div class="pill" id="langTag">中文</div>
+        </div>
+        <div class="row right">
+            <button class="btn" id="langBtn">🌐 中文/English</button>
+            <button class="btn" id="themeBtn">🌗 主题</button>
+        </div>
+    </header>
+
+    <section class="hero pad" id="setup">
+        <div class="h" id="t_title">ROMA Lab Cultural Insight Test (CIT)</div>
+        <div class="sub" id="t_desc">version v3.1 选择一种模式开始作答。全程不收集任何个人数据，结果只保存在你的浏览器。
+        </div>
+        <div class="row" style="margin-top:10px">
+            <button class="btn primary" id="fullBtn">Full · 50</button>
+            <button class="btn " id="coreBtn">Core · 20</button>
+            <input class="btn" id="nameInput" placeholder="你的报名邮箱 / Your Email" style="min-width:240px"/>
+        </div>
+        <div class="hint" id="t_hint" style="margin-top:8px">Tips: 作答过程中可随时切换中英文；完成后可导出 JSON 与打印
+            PDF。
+        </div>
+    </section>
+
+    <!-- 在 setup 区块后面、quiz 区块前面插入 -->
+    <section class="card pad" id="about" style="margin-top:12px">
+        <details id="aboutBox" open>
+            <summary id="t_about_title" style="cursor:pointer;font-weight:700">
+                ROMA Lab · 五维科研气质评估模型（CIT）
+            </summary>
+            <div class="prose" id="aboutContent" style="margin-top:8px"></div>
+        </details>
+    </section>
+
+
+    <section class="card pad hidden" id="quiz">
+        <div class="progress">
+            <div id="bar"></div>
+        </div>
+        <div class="row">
+            <div class="muted" id="idx"></div>
+            <div class="right small" id="chapter"></div>
+        </div>
+        <div class="qtitle" id="qtitle"></div>
+        <div class="scenario" id="qsc"></div>
+        <div class="opts" id="opts"></div>
+        <div class="navs">
+            <button class="btn" id="prevBtn">←</button>
+            <button class="btn" id="nextBtn">→</button>
+            <div class="right"></div>
+        </div>
+    </section>
+
+    <section class="card pad hidden" id="result">
+        <div class="h" id="t_congrats">🎉 恭喜你完成答题！</div>
+        <div class="muted" id="t_next">现在你可以查看你的报告（仅保存在本地）。</div>
+        <div class="charts" style="margin-top:10px">
+            <div class="chart card pad">
+                <div class="small" id="radarTitle">Radar</div>
+                <div id="radar"></div>
+            </div>
+            <div class="chart card pad">
+                <div class="small" id="donutTitle">Donut</div>
+                <div id="donut"></div>
+                <div class="legend" id="donutLegend"></div>
+            </div>
+            <div class="chart card pad">
+                <div class="small" id="sparkTitle">Answer Rhythm</div>
+                <div id="spark"></div>
+                <div class="legend" id="sparkLegend"></div>
+                <div class="hintline" id="sparkHint"></div>
+            </div>
+        </div>
+        <div class="card pad" style="margin-top:12px">
+            <div class="h" id="t_coach">AI 助教寄语</div>
+            <ul id="coachList"></ul>
+        </div>
+        <div class="row" style="margin-top:10px">
+            <button class="btn" id="exportBtn">⬇️ 导出 JSON</button>
+            <button class="btn" id="printBtn">🖨️ 打印 / PDF</button>
+            <button class="btn" id="restartBtn">↻ 重新开始</button>
+        </div>
+        <div class="hint" id="t_privacy" style="margin-top:8px">隐私说明：所有数据仅在你的浏览器端运行。</div>
+    </section>
+
+</div>
+
+<div class="modal" id="doneModal">
+    <div class="box">
+        <div id="t_modal_title" style="font-size:22px;font-weight:800">🎊 恭喜你完成答题！</div>
+        <div class="muted" id="t_modal_desc" style="margin:8px 0 12px">现在你可以查看你的报告啦～</div>
+        <div class="row center">
+            <button class="btn primary" id="goReport">查看报告</button>
+            <button class="btn" id="stayBtn">稍后再看</button>
+        </div>
+    </div>
+</div>
+<canvas class="confetti" id="confetti"></canvas>
+
+<script src="app.js"></script>
+</body>
+</html>
