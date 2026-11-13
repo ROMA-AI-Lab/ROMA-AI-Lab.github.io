@@ -5,7 +5,7 @@
 
 .ai-panel {
   display: grid;
-  grid-template-columns: minmax(220px, 1.4fr) minmax(160px, .8fr) minmax(160px, .8fr);
+  grid-template-columns: minmax(220px, 1.4fr) minmax(160px, .8fr) minmax(160px, .8fr) minmax(200px, .9fr);
   gap: 10px;
   align-items: end;
 }
