@@ -1,4 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64">
-    <rect width="100%" height="100%" rx="12" ry="12" fill="#0f172a"/>
-    <path d="M14 46 L32 18 L50 46 M24 46 L32 34 L40 46" stroke="#a3e635" stroke-width="4" fill="none" stroke-linecap="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000" role="img" aria-label="ROMA Lab / Rho"><title>ROMA Lab / Rho</title><rect x="0" y="0" width="1000" height="1000" rx="0" fill="#000000"/><g fill="#FFFFFF" transform="translate(167.92 146) scale(0.874074074) translate(-215 -224)"><path d="M215 1034V588.933C215.000 391.719 382.693 224.000 582.099 224.000C745.144 224.000 923.209 337.602 923.209 510.965C923.209 573.118 896.361 635.594 847.406 677.730C783.927 732.367 694.347 735.934 617.834 753.532C679.447 691.919 749.947 642.425 749.947 546.701C749.947 452.892 670.069 388.599 576.684 388.599C465.486 388.599 379.599 475.862 379.599 588.933V1034Z"/><path d="M615.834 818.000L716.834 778.000L974.834 1034.000L724.834 1034.000Z"/></g></svg>

@@ -208,8 +208,8 @@ header.site-header {
 }
 
 .brand svg {
-    width: 28px;
-    height: 28px
+    height: 28px;
+    width: auto
 }
 
 .nav-links-inline {

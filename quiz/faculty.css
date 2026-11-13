@@ -16,7 +16,7 @@ body{margin:0;background:
 .hdr{position:sticky;top:0;z-index:10;background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.7)); backdrop-filter:blur(8px); border-bottom:1px solid var(--border)}
 .hdr .inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;}
 .brand{display:flex;gap:12px;align-items:center}
-.brand .logo{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));box-shadow:var(--shadow)}
+.brand .logo{width:36px;height:36px;display:block}
 .brand .title{font-weight:800}
 .controls{display:flex;gap:8px;align-items:center}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:#fff;cursor:pointer;box-shadow:0 1px 1px rgba(0,0,0,.02)}
