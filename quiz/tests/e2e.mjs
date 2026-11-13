@@ -225,8 +225,9 @@ try {
   ok('指纹一致时不出告警', !fac.diag.includes('指纹不一致'), fac.diag.slice(0, 80));
   ok('诊断含 Fit 与风险', /ROMA Fit/.test(fac.diag) && /诚信风险/.test(fac.diag));
   ok('决策文案含免责说明', fac.decision.includes('不是人格测评结论'));
-  ok('提示词为 v3 且六维', fac.prompt && fac.prompt.schema_version === 'roma-cit-faculty-prompt-v3'
-    && Object.keys(fac.prompt.scoring_model.dimensions).length === 6,
+  ok('提示词为 v4 人格侧写且六维', fac.prompt && fac.prompt.schema_version === 'roma-cit-faculty-prompt-v4-human-portrait'
+    && Object.keys(fac.prompt.scoring_model.dimensions).length === 6
+    && fac.prompt.output_profile === 'human_portrait_with_internal_appendix',
     fac.prompt ? fac.prompt.schema_version : 'null');
   ok('提示词声明的权重与内核一致',
     fac.prompt && Math.abs(Object.values(fac.prompt.scoring_model.fit_weights).reduce((a, b) => a + b, 0) - 1) < 1e-9);
