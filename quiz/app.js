@@ -40,7 +40,7 @@ const T = {
 <p>分数怎么读：<b>50 分</b>相当于「与随意作答的期望水平相当」，<b>100 分</b>表示该维度每道题都选了最能体现这一特质的选项，<b>0 分</b>表示每道题都选了最差的那个。所以 60 分以上已经是明显高于基线的表现。</p>
 <p class="small">说明：部分题目里「最稳妥的答案」并不是该维度最突出的答案，因此六个维度不会同时满分——这是题目设计使然，不是扣分。</p>
 <p>完成后将生成你的可视化画像与助教寄语，供你自我评估是否与 ROMA Lab 的工作方式契合。</p>
-<p class="small muted">© 2025 ROMA Lab – Responsible Online Media Analytics Lab. All rights reserved.</p>`,
+<p class="small muted">© 2026 ROMA Lab. All rights reserved.</p>`,
   desc: '50 道情境题，约 12–15 分钟。四个选项往往都说得通，请凭第一反应选你真正会做的那个。全程不收集任何个人数据，结果只保存在你的浏览器。',
   hint: '完成可导出 JSON 与打印 PDF；如需导师做进一步分析，可将导出的 JSON 交给导师。',
   congrats: '🎉 恭喜你完成答题！',
