@@ -3,6 +3,7 @@
 
   const API_URL = 'https://api.deepseek.com/chat/completions';
   const API_KEY_STORAGE_KEY = 'romaCIT.deepseekApiKey';
+  const TEMP_STORAGE_KEY = 'romaCIT.deepseekTemp';
   // 唯一提示词 = faculty.js buildFacultyPayload 生成的导师版 JSON。
   // 站内调用与站外粘贴（DeepSeek 网页）发送完全相同的文本：一条 user 消息只装 JSON 原文，
   // 这里不再叠加任何系统提示词或格式包装，避免与 JSON 内指令竞争。姓名脱敏是唯一例外（纵深防御）。
@@ -19,6 +20,7 @@
     return {
       apiKey: byId('deepseekApiKey'),
       model: byId('deepseekModel'),
+      temp: byId('deepseekTemp'),
       source: byId('aiPromptSource'),
       generate: byId('generateAiReport'),
       abort: byId('abortAiReport'),
@@ -50,6 +52,7 @@
     if (els.apiKey) els.apiKey.disabled = isBusy;
     if (els.clearKey) els.clearKey.disabled = isBusy;
     if (els.model) els.model.disabled = isBusy;
+    if (els.temp) els.temp.disabled = isBusy;
     if (els.source) els.source.disabled = isBusy;
   }
 
@@ -114,6 +117,24 @@
     }
   }
 
+  function loadSavedTemp() {
+    const els = getEls();
+    const storage = getLocalStorage();
+    if (!els.temp) return;
+    const saved = storage ? storage.getItem(TEMP_STORAGE_KEY) : null;
+    if (saved && Number.isFinite(parseFloat(saved))) {
+      els.temp.value = String(parseFloat(saved));
+    }
+  }
+
+  function getTemperature() {
+    const els = getEls();
+    if (!els.temp) return null;
+    const t = parseFloat(els.temp.value);
+    if (Number.isNaN(t)) return null;
+    return Math.min(2, Math.max(0, t));
+  }
+
   function getPromptInfo() {
     const els = getEls();
     const source = 'json';
@@ -176,6 +197,9 @@
       thinking: { type: cfg.thinkingType }
     };
     if (cfg.thinkingType === 'enabled' && cfg.effort) body.reasoning_effort = cfg.effort;
+    // temperature 是请求参数，不是提示词的一部分；导师版 JSON 仍是唯一提示词。
+    const t = getTemperature();
+    if (t !== null) body.temperature = t;
     return body;
   }
 
@@ -498,6 +522,11 @@
     els.downloadMd?.addEventListener('click', downloadReportMd);
     els.downloadJson?.addEventListener('click', downloadRawJson);
     els.print?.addEventListener('click', printReport);
+    els.temp?.addEventListener('change', () => {
+      const storage = getLocalStorage();
+      if (storage) storage.setItem(TEMP_STORAGE_KEY, String(getTemperature() ?? 1));
+    });
+    loadSavedTemp();
     updateResultButtons();
   }
 

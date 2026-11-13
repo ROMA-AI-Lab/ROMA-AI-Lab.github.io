@@ -161,6 +161,16 @@
                   <option value="json" selected>导师版 JSON</option>
                 </select>
               </div>
+
+              <div class="ai-field">
+                <label for="deepseekTemp">报告笔触（temperature）</label>
+                <select id="deepseekTemp" class="ai-input">
+                  <option value="0.3">沉稳复现 · 0.3（最贴 JSON 口径，适合同批横向对比）</option>
+                  <option value="1" selected>均衡 · 1.0（默认，与网页直连体验一致）</option>
+                  <option value="1.3">挥洒 · 1.3（比喻与联想更大胆，波动也更大）</option>
+                </select>
+                <div class="ai-hint">深度思考模式下，部分模型可能忽略该参数。</div>
+              </div>
             </div>
 
             <div class="ai-controls">
