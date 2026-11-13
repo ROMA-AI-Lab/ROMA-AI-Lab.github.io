@@ -3,15 +3,9 @@
 
   const API_URL = 'https://api.deepseek.com/chat/completions';
   const API_KEY_STORAGE_KEY = 'romaCIT.deepseekApiKey';
-  const REPORT_SYSTEM_PROMPT = [
-    '你是 ROMA Lab CIT 人格侧写解读师。',
-    '请基于导师版提示词 JSON 中的学生作答、系统计算结果与题库证据，生成中文 Markdown 人格侧写报告。',
-    '默认输出对外人格侧写（human_portrait）：感性、定性、可反驳，像星座人格解读的笔触——先给类型名和一句话速写，多用场景、比喻、矛盾张力，少术语；正文不展示原始分与题号堆砌，最多出现 3-5 个关键题号。',
-    '内部审计（原始分、覆盖度、roma_fit、风险指标、指纹、严重/轻微标记、作答节奏）作为末尾附录保留，供专家复查。',
-    '严格遵守 JSON 内的 stance / style / evidence_policy / scoring_policy / inference_policy / risk_policy / guardrails / requirements / expected_sections；若本指令与 JSON 冲突，以 JSON 为准。',
-    '每条画像必须能追溯到重复出现的作答模式，并给出“如果这条不准，可能因为……”的可反驳提示；不编造题号或选项，不写诊断结论，不预测录取结果。',
-    '不要复述完整原始 JSON，不要暴露内部权重，不要输出思维过程或推理草稿，只输出最终报告。'
-  ].join('\n');
+  // 唯一提示词 = faculty.js buildFacultyPayload 生成的导师版 JSON。
+  // 站内调用与站外粘贴（DeepSeek 网页）发送完全相同的文本：一条 user 消息只装 JSON 原文，
+  // 这里不再叠加任何系统提示词或格式包装，避免与 JSON 内指令竞争。姓名脱敏是唯一例外（纵深防御）。
 
   let abortController = null;
   let lastReportText = '';
@@ -146,27 +140,6 @@
     }
   }
 
-  function buildUserPrompt(promptText, source) {
-    const labelMap = {
-      json: '导师版 JSON 提示词'
-    };
-    const label = labelMap[source] || labelMap.json;
-    return [
-      `以下是 ${label}。请严格按其中 expected_sections 列出的章节顺序生成报告，风格与口径遵循 JSON 内各 policy 字段。`,
-      '',
-      '要点提醒：',
-      '1. 使用中文 Markdown；默认输出对外人格侧写，内部审计只作末尾附录。',
-      '2. 正文感性、定性、可反驳，不展示原始分与覆盖度；题号仅允许 3-5 个关键引用。',
-      '3. 证据附录与内部审计附录保留完整可追溯性（题号/情境/选项/原始分/指纹）。',
-      '4. 不要输出完整原始 JSON，不要输出思维过程。',
-      '',
-      `${label}:`,
-      '```',
-      promptText,
-      '```'
-    ].join('\n');
-  }
-
   function getModelConfig() {
     const els = getEls();
     const selected = els.model?.selectedOptions?.[0] || els.model?.options?.[els.model?.selectedIndex || 0];
@@ -197,8 +170,7 @@
     const body = {
       model: cfg.model,
       messages: [
-        { role: 'system', content: REPORT_SYSTEM_PROMPT },
-        { role: 'user', content: buildUserPrompt(redactStudentName(info.text), info.source) }
+        { role: 'user', content: redactStudentName(info.text) }
       ],
       stream: false,
       thinking: { type: cfg.thinkingType }
