@@ -3,13 +3,10 @@
 
   const API_URL = 'https://api.deepseek.com/chat/completions';
   const API_KEY_STORAGE_KEY = 'romaCIT.deepseekApiKey';
-  const REPORT_SYSTEM_PROMPT = [
-    '你是 ROMA Lab CIT 招生评估助手。',
-    '请基于导师版提示词中的学生 JSON、自动摘要、评分模型、题库证据，生成中文 Markdown 测评报告。',
-    '报告要公平、克制、证据导向，必须引用关键题号、题干/情境、学生选择和行为解释。',
-    '不要复述完整原始 JSON，不要暴露内部权重，不要输出思维过程或推理草稿，只输出最终报告。',
-    '如果证据不足，请明确写出不确定性和需要面试核验的点。'
-  ].join('\n');
+  const TEMP_STORAGE_KEY = 'romaCIT.deepseekTemp';
+  // 唯一提示词 = faculty.js buildFacultyPayload 生成的导师版 JSON。
+  // 站内调用与站外粘贴（DeepSeek 网页）发送完全相同的文本：一条 user 消息只装 JSON 原文，
+  // 这里不再叠加任何系统提示词或格式包装，避免与 JSON 内指令竞争。姓名脱敏是唯一例外（纵深防御）。
 
   let abortController = null;
   let lastReportText = '';
@@ -23,6 +20,7 @@
     return {
       apiKey: byId('deepseekApiKey'),
       model: byId('deepseekModel'),
+      temp: byId('deepseekTemp'),
       source: byId('aiPromptSource'),
       generate: byId('generateAiReport'),
       abort: byId('abortAiReport'),
@@ -54,6 +52,7 @@
     if (els.apiKey) els.apiKey.disabled = isBusy;
     if (els.clearKey) els.clearKey.disabled = isBusy;
     if (els.model) els.model.disabled = isBusy;
+    if (els.temp) els.temp.disabled = isBusy;
     if (els.source) els.source.disabled = isBusy;
   }
 
@@ -118,6 +117,24 @@
     }
   }
 
+  function loadSavedTemp() {
+    const els = getEls();
+    const storage = getLocalStorage();
+    if (!els.temp) return;
+    const saved = storage ? storage.getItem(TEMP_STORAGE_KEY) : null;
+    if (saved && Number.isFinite(parseFloat(saved))) {
+      els.temp.value = String(parseFloat(saved));
+    }
+  }
+
+  function getTemperature() {
+    const els = getEls();
+    if (!els.temp) return null;
+    const t = parseFloat(els.temp.value);
+    if (Number.isNaN(t)) return null;
+    return Math.min(2, Math.max(0, t));
+  }
+
   function getPromptInfo() {
     const els = getEls();
     const source = 'json';
@@ -142,27 +159,6 @@
     } catch (err) {
       return false;
     }
-  }
-
-  function buildUserPrompt(promptText, source) {
-    const labelMap = {
-      json: '导师版 JSON 提示词'
-    };
-    const label = labelMap[source] || labelMap.json;
-    return [
-      `以下是 ${label}。请基于其中的数据生成学生测评报告。`,
-      '',
-      '输出格式要求：',
-      '1. 使用中文 Markdown。',
-      '2. 包含：核心画像与维度概览、关键证据链、潜在风险与成因、测试可信度、面试核验建议、综合结论与录取建议。',
-      '3. 每个关键判断尽量关联题号、题干/情境、选项文本和行为解释。',
-      '4. 不要输出完整原始 JSON，不要输出思维过程。',
-      '',
-      `${label}:`,
-      '```',
-      promptText,
-      '```'
-    ].join('\n');
   }
 
   function getModelConfig() {
@@ -195,13 +191,15 @@
     const body = {
       model: cfg.model,
       messages: [
-        { role: 'system', content: REPORT_SYSTEM_PROMPT },
-        { role: 'user', content: buildUserPrompt(redactStudentName(info.text), info.source) }
+        { role: 'user', content: redactStudentName(info.text) }
       ],
       stream: false,
       thinking: { type: cfg.thinkingType }
     };
     if (cfg.thinkingType === 'enabled' && cfg.effort) body.reasoning_effort = cfg.effort;
+    // temperature 是请求参数，不是提示词的一部分；导师版 JSON 仍是唯一提示词。
+    const t = getTemperature();
+    if (t !== null) body.temperature = t;
     return body;
   }
 
@@ -524,6 +522,11 @@
     els.downloadMd?.addEventListener('click', downloadReportMd);
     els.downloadJson?.addEventListener('click', downloadRawJson);
     els.print?.addEventListener('click', printReport);
+    els.temp?.addEventListener('change', () => {
+      const storage = getLocalStorage();
+      if (storage) storage.setItem(TEMP_STORAGE_KEY, String(getTemperature() ?? 1));
+    });
+    loadSavedTemp();
     updateResultButtons();
   }
 
