@@ -18,7 +18,7 @@
     "note": "一个维度若有有效题的题数少于 min_items，或题库中该维度没有任何可区分的题，该维度输出 null（未测量），不再显示为满分。 另：v5.2 起口味改为强制排列（每题最优解唯一），50 题全部押中实验室口味可达 Fit 100；纯静态架构下口味表可被技术手段获取，因此满分或近乎满分的报告本身即异常信号，导师端会以「押中率+用时+改答」联合判定打出红旗，不以保密为防线。 v5.0 起不再提供 20 题简版，题库固定 50 题。"
   },
   "option_order": "选项在每道题内按题号轮转并打散，最优选项在 A/B/C/D 上均匀分布；不要假设某个位置更优。",
-  "copyright": "© 2025 ROMA Lab – Responsible Online Media Analytics Lab. All rights reserved.",
+  "copyright": "© 2026 ROMA Lab. All rights reserved.",
   "bank": {
     "items": 50,
     "files": [
