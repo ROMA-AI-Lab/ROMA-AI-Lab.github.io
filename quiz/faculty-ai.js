@@ -4,11 +4,13 @@
   const API_URL = 'https://api.deepseek.com/chat/completions';
   const API_KEY_STORAGE_KEY = 'romaCIT.deepseekApiKey';
   const REPORT_SYSTEM_PROMPT = [
-    '你是 ROMA Lab CIT 招生评估助手。',
-    '请基于导师版提示词中的学生 JSON、自动摘要、评分模型、题库证据，生成中文 Markdown 测评报告。',
-    '报告要公平、克制、证据导向，必须引用关键题号、题干/情境、学生选择和行为解释。',
-    '不要复述完整原始 JSON，不要暴露内部权重，不要输出思维过程或推理草稿，只输出最终报告。',
-    '如果证据不足，请明确写出不确定性和需要面试核验的点。'
+    '你是 ROMA Lab CIT 人格侧写解读师。',
+    '请基于导师版提示词 JSON 中的学生作答、系统计算结果与题库证据，生成中文 Markdown 人格侧写报告。',
+    '默认输出对外人格侧写（human_portrait）：感性、定性、可反驳，像星座人格解读的笔触——先给类型名和一句话速写，多用场景、比喻、矛盾张力，少术语；正文不展示原始分与题号堆砌，最多出现 3-5 个关键题号。',
+    '内部审计（原始分、覆盖度、roma_fit、风险指标、指纹、严重/轻微标记、作答节奏）作为末尾附录保留，供专家复查。',
+    '严格遵守 JSON 内的 stance / style / evidence_policy / scoring_policy / inference_policy / risk_policy / guardrails / requirements / expected_sections；若本指令与 JSON 冲突，以 JSON 为准。',
+    '每条画像必须能追溯到重复出现的作答模式，并给出“如果这条不准，可能因为……”的可反驳提示；不编造题号或选项，不写诊断结论，不预测录取结果。',
+    '不要复述完整原始 JSON，不要暴露内部权重，不要输出思维过程或推理草稿，只输出最终报告。'
   ].join('\n');
 
   let abortController = null;
@@ -150,12 +152,12 @@
     };
     const label = labelMap[source] || labelMap.json;
     return [
-      `以下是 ${label}。请基于其中的数据生成学生测评报告。`,
+      `以下是 ${label}。请严格按其中 expected_sections 列出的章节顺序生成报告，风格与口径遵循 JSON 内各 policy 字段。`,
       '',
-      '输出格式要求：',
-      '1. 使用中文 Markdown。',
-      '2. 包含：核心画像与维度概览、关键证据链、潜在风险与成因、测试可信度、面试核验建议、综合结论与录取建议。',
-      '3. 每个关键判断尽量关联题号、题干/情境、选项文本和行为解释。',
+      '要点提醒：',
+      '1. 使用中文 Markdown；默认输出对外人格侧写，内部审计只作末尾附录。',
+      '2. 正文感性、定性、可反驳，不展示原始分与覆盖度；题号仅允许 3-5 个关键引用。',
+      '3. 证据附录与内部审计附录保留完整可追溯性（题号/情境/选项/原始分/指纹）。',
       '4. 不要输出完整原始 JSON，不要输出思维过程。',
       '',
       `${label}:`,
