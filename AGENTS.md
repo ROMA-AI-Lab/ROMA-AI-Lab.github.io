@@ -1,5 +1,7 @@
 # AGENTS.md — ROMA Lab website maintenance rules
 
+> 🔴 **动手前 3 查 → `Claw/tools/action-cards.md` 卡 3（改官网）**：先拉再改 / 隐私红线 / 改完验+push 先过目。卡只做触发，细则见本文。
+
 This file tells any AI agent (or human) how to safely edit this repository.
 Read it before making changes. It is the single source of truth for conventions.
 
